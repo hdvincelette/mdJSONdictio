@@ -11,15 +11,15 @@ Tools to write mdJSON dictionaries that can be imported to mdEditor to create Di
 You can install the development version of mdJSONdictio from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
+# Install devtools from CRAN
+install.packages("devtools")
+
+# Install mdJSONdictio from GitHub
 devtools::install_github("hdvincelette/mdJSONdictio")
 ```
 
-## Example
+## Usage
 
-``` r
-library(mdJSONdictio)
-f<- system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
-write.mdJSON(file = f, title = "Example Dictionary")
-```
+``` r write.mdJSON() ``` writes an mdJSON dictionary from a tabular dictionary template. 
 
+## Learning more
