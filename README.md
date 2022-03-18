@@ -20,6 +20,6 @@ devtools::install_github("hdvincelette/mdJSONdictio")
 
 ## Usage
 
-``` r write.mdJSON() ``` writes an mdJSON dictionary from a tabular dictionary template. 
+```write.mdJSON()``` writes an mdJSON dictionary from a tabular dictionary template. 
 
 ## Learning more
