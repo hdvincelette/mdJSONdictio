@@ -19,3 +19,7 @@ Depends:
 LazyData: true
 URL: https://github.com/hdvincelette/mdJSONdictio
 BugReports: https://github.com/hdvincelette/mdJSONdictio/issues
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
