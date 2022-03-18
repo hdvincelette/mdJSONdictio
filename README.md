@@ -20,6 +20,6 @@ devtools::install_github("hdvincelette/mdJSONdictio")
 
 ## Usage
 
-```write.mdJSON()``` writes an mdJSON dictionary that can be imported to mdEditor to create a Dictionary record. The input file must be formatted to the tabular dictionary template located in '''inst/templates/'''
+```write.mdJSON()``` writes an mdJSON dictionary that can be imported to mdEditor to create a Dictionary record. The input file must be formatted to the tabular dictionary template located in ```inst/templates/```.
 
 ## Learning more
