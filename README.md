@@ -10,7 +10,7 @@ Tools to write mdJSON dictionaries that can be imported to mdEditor to create Di
 
 You can install the development version of mdJSONdictio from [GitHub](https://github.com/) with:
 
-``` r
+```
 # Install devtools from CRAN
 install.packages("devtools")
 
@@ -20,6 +20,6 @@ devtools::install_github("hdvincelette/mdJSONdictio")
 
 ## Usage
 
-```write.mdJSON()``` writes an mdJSON dictionary that can be imported to mdEditor to create a Dictionary record. The input file must be formatted to the provided tabular dictionary template.
+```write.mdJSON()``` writes an mdJSON dictionary that can be imported to mdEditor to create a Dictionary record. The input file must be formatted to the tabular dictionary template located in '''inst/templates/'''
 
 ## Learning more
