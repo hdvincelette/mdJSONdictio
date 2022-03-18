@@ -1,6 +1,6 @@
 #' Write mdJSON Dictionary
 #'
-#' Write an mdJSON dictionary from a \href{https://github.com/hdvincelette/write-mdJSON-dictionary/blob/main/docs/write.mdJSON_Dictionary_Template.xlsx?raw=true}{tabular dictionary template}. The mdJSON dictionary can be imported to mdEditor to create a Dictionary record.
+#' Write an mdJSON dictionary from a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/write.mdJSON_Dictionary_Template.xlsx?raw=true}{tabular dictionary template}. The mdJSON dictionary can be imported to mdEditor to create a Dictionary record.
 #' @param file  A tabular dictionary file.
 #' @param title A string designating the title of the mdJSON dictionary.
 #' @return An mdJSON dictionary file.
