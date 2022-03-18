@@ -4,7 +4,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of mdJSONdictio is to ...
+Tools to write mdJSON dictionaries that can be imported to mdEditor to create Dictionary records.
 
 ## Installation
 
@@ -17,10 +17,9 @@ devtools::install_github("hdvincelette/mdJSONdictio")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
 library(mdJSONdictio)
-## basic example code
+f<- system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
+write.mdJSON(file = f, title = "Example Dictionary")
 ```
 
