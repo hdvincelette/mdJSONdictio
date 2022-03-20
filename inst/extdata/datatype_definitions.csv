@@ -1,0 +1,41 @@
+﻿Value,Definition
+character,fixed length character strings
+character varying,Variable length character strings
+character large object,Character large object
+national character,Fixed length national character strings (2 byte unicode)
+national character varying,Variable length national character strings (2 byte unicode)
+national character large object,National character (2 byte unicode) large object
+text,Variable string to maximum of 65k characters
+tinytext,Variable string to maximum of 255 characters
+mediumtext,Variable string to maximum of 16m characters
+longtext,Variable string to maximum of 4g characters
+binary,Fixed length binary
+binary varying,Variable length binary
+binary large object,Binary large object to maximum of 65k bytes
+mediumblob,Binary large object to maximum of 16m bytes
+longblob,Binary large object to maximum of 4g bytes
+integer,Integers number (+-2b)
+tinyint,Integer numbers (+-128)
+mediumint,Integer numbers (+-16k)
+smallint,Integer numbers (+-32k)
+bigint,Integer numbers (+-1e27)
+float,Floating point numbers
+real,Low precision floating point numbers
+double precision,High precision floating point numbers
+numeric,Fixed precision  and scale decimal numbers
+decimal,Fixed precision  and scale decimal numbers (numeric alternate)
+bit,Fixed length bit strings
+bit varying,Variable length bit strings
+date,Calendar date
+time,Clock time
+datetime,Date and time
+timestamp,Number of seconds since the unix epoch (1970-01-01t00:00:00 utc)
+year,Year
+interval,Time intervals
+interval day,Day intervals
+interval year,Year intervals
+currency,Monetary value
+money,Monetary value
+boolean,Boolean value (yes/no)
+xml,Xml formatted data
+enum,"List of possible values: enum('a','b','c')"

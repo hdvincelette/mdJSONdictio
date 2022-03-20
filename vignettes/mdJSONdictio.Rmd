@@ -1,11 +1,46 @@
 ---
 title: "mdJSONdictio"
-output: rmarkdown::html_vignette
+author: "Hannah Vincelette"
+date: "19 March 2022"
+output:
+  # html_document:
+  #   theme: readable
+  #   highlight:
+  #   fig_caption: true
+  knitr:::html_vignette:
+    toc: true
+  pdf_document:
+    highlight: null
+    number_sections: yes
+geometry: margin = 0.1in
 vignette: >
   %\VignetteIndexEntry{mdJSONdictio}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+<style type="text/css">
+  body{
+  font-size: 12pt;
+}
+</style>
+
+
+
+```{css, echo=FALSE}
+# .main-container {
+#     max-width: 600px !important;
+# }
+
+pre {
+  max-height: 300px !important;
+  overflow-y: auto !important;
+  overflow-x: scroll !important;
+}
+pre code {
+  white-space: pre
+}
+```
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -14,6 +49,141 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(width = 9999)
+
 library(mdJSONdictio)
+library(knitr)
+library(kableExtra)
+library(tibble)
+library(rmarkdown)
+library(DT)
+library(png)
+library(rjson)
 ```
+
+# Introduction
+Anyone who has written metadata in mdEditor knows creating dictionaries can be tedious and repetitive. The R package mdJSONdictio aims to streamline this process. Rather than defining data table attributes in [mdEditor](https://go.mdeditor.org/#/dashboard), users can fill out a tabular data dictionary template and format it to mdJSON using the function ```build.mdJSON()```. The resultant mdJSON file can be imported in mdEditor to create a Dictionary record with data table attributes already defined.
+<br />
+<br />
+<br />
+
+# ```build.mdJSON()``` 
+
+Transforms a tabular data dictionary into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to the template as described in the Tabular Data Dictionary Template section below.
+<br />
+<br />
+
+#### A data dictionary imported as a data frame in R:
+
+```{r options(width=160), echo=FALSE}
+
+# paged_table(readxl::read_excel(system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")), options=list(cols.print=4))
+
+print(readxl::read_excel(system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")), n = 1e3)
+
+```
+<br />
+
+#### The function return value in R:
+
+```{r max_height = "300px", echo=FALSE}
+print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary.json", package = "mdJSONdictio")))
+```
+<br />
+
+### Intented Use 
+
+```build.mdJSON()```  is intended for anyone who writes mdEditor metadata. It is important to note this function is meant to initiate mdEditor Dictionary records, not update them, which should be done manually in the [mdEditor](https://go.mdeditor.org/#/dashboard) web application. It is recommended users maintain the tabular data dictionary as a human-readable reference for the associated data product(s).
+<br />
+<br />
+
+### Next steps in [mdEditor](https://go.mdeditor.org/#/dashboard)
+
+#### 1. Import the mdJSON file to mdEditor
+Open mdEditor in your browser and navigate to the Import tab at the top of the page. Drag and drop the newly written mdJSON file and click "Import Data." This will generate a Dictionary record with the dictionary title you specified in the function. You may need to refresh your browser if the dictionary does not immediately appear
+
+#### 2. Fix errors in the Dictionary record
+When viewing your Dictionary record, you will notice an orange exclamation mark next to the title that indicates the dictionary is incomplete and has missing or erroneous elements. Click the orange exclamation mark to view the details.These errors can be remedied by completing the Responsible Party field in the Main tab and the Entity Code Name and Definition fields in the Entities tab. For more information about these fields, refer to the [mdEditor User Manual](https://guide.mdeditor.org/reference/reference-manual.html). You will know your dictionary is free of errors when the orange triangle disappears and the edit icon next to your Dictionary record in the left-hand menu is green. If you see more than these three errors, make sure the tabular data dictionary is filled out as described in the Tabular Data Dictionary Template section below.
+
+#### 3. Associate and maintain the Dictionary record
+Once the Dictionary record is free of errors, it can be associated with the Metadata record(s) it describes (e.g. tabular dataset, shapefiles) to help create archival quality project metadata. For details of this process and other information, refer to the [mdEditor User Manual](https://guide.mdeditor.org/).Any future updates to your Dictionary record can be done manually in the mdEditor web application.
+
+<br />
+<br />
+<br />
+
+# Tabular Data Dictionary Template
+
+```build.mdJSON()``` only reads data frames formatted to a data dictionary template (Figure 1.1), which can be downloaded [here](https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/write.mdJSON_Dictionary_Template.xlsx?raw=true). While csv is a more flexible file format, this template is in xlsx format because it contains validation rules that prevent incorrect values from being entered, resulting in errors when using ```build.mdJSON()``` or creating the Dictionary record in mdEditor.
+<br />
+<br />
+
+#### Figure 1.1: Data dictionary template in Excel.
+
+<font size="1"> 
+```{r, echo=FALSE}
+include_graphics(system.file("extdata", "dictionary_template.png", package = "mdJSONdictio"))
+```
+</font>
+<br />
+<br />
+The two main components of the tabular data dictionary template are attributes and entry values, each of which are represented as a row. It is important to remember that while entry values are associated with a certain attribute, not all attributes have defined entry values. For example, the attribute "Sex" may have three defined entry values ("F","M", and "U"), where as the attribute "Year" does not have defined entry values since an unlimited number of years can be entered.
+<br />
+<br />
+Table 1.1 describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. "Definition" describes the template column. Many of these definitions are derived from the [mdEditor User Manual](https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html). "Datatype" indicates the type of value allowed in the template column. "Required" indicates whether the template column is required by attributes and/or entry values ("No" indicates it is not required by either attributes or entry values). 
+<br />
+<br />
+ 
+Note:
+
+- The template columns "codeName," "domainItem_name," "domainItem_value," and "definition" are all required by attributes and entry values.
+- The template columns "dataType" and "allowNull" are required by attributes
+<br />
+<br />
+
+<em>Tip: View attribute rows by filtering the dictionary column "domainItem_name" to "colname" and verify all rows have values for dictionary columns "dataType" and "allowNull".</em>
+<br />
+<br />
+
+#### Table 1.1: Column descriptions for the data dictionary template.
+
+<font size="2.5"> 
+```{r, echo=FALSE}
+kable(read.csv(path<-system.file("extdata", "template_column_definitions.csv", package = "mdJSONdictio")),align = "l") %>%
+  kable_styling(full_width = F)
+```
+</font>
+<br />
+<br />
+"dataType" is the only dictionary column with defined entry values. These are derived from the mdEditor web application. The definitions in Table 1.2 were acquired from the [mdCodes Viewer](https://adiwg.github.io/mdTools/#codes-page) in the mdTools interface.
+<br />
+<br />
+
+#### Table 1.2: dataType entry value descriptions for the data dictionary template.
+
+<font size="2.5"> 
+```{r, echo=FALSE}
+kable(read.csv(path<-system.file("extdata", "datatype_definitions.csv", package = "mdJSONdictio")), align = "l") %>%
+  kable_styling(full_width = F,position = "left")
+```
+</font>
+<br />
+<br />
+<br />
+
+
+# Helpful resources
+
+[Hands-On Programming with R](https://rstudio-education.github.io/hopr/index.html)
+
+[mdEditor User Manual](https://guide.mdeditor.org/)
+
+[ADIwg Metadata Toolkit](https://mdbook.adiwg.org/)
+
+[mdCodes Viewer](https://adiwg.github.io/mdTools/)
+
+<br />
+<br />
+<br />

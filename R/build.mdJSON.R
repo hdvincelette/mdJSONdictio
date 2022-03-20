@@ -1,35 +1,52 @@
-#' Write mdJSON Dictionary
+#' Build mdJSON Dictionaries
 #'
-#' Write an mdJSON dictionary from a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/write.mdJSON_Dictionary_Template.xlsx?raw=true}{tabular dictionary template}. The mdJSON dictionary can be imported to mdEditor to create a Dictionary record.
-#' @param file  A tabular dictionary file.
-#' @param title A string designating the title of the mdJSON dictionary.
-#' @return An mdJSON dictionary file.
+#' Transforms a tabular data dictionary into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/write.mdJSON_Dictionary_Template.xlsx?raw=true}{template}.
+#' @param data  Data frame
+#' @param title String
+#' @return R list
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @export
 #' @examples
-#' f<- system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
-#' write.mdJSON(file = f, title = "Example Dictionary")
+#' #Import tabular data dictionary as data frame
+#' path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
+#' e.g.dictionary<-readxl::read_excel(path)
+#'
+#' #Transform data frame to R list
+#' newjson<- build.mdJSON(data = e.g.dictionary, title = "Example Dictionary")
+#'
+#' #Convert R list to JSON
+#' e.g.dictionary = rjson::toJSON(newjson)
+#'
+#' #Export JSON to disk
+#' write(e.g.dictionary, "e.g.dictionary.json")
 
 
-write.mdJSON <- function(file,title) {
-
-  # Import dictionary and blank json file
-  my.dictionary<-read_excel(paste0(file))
+build.mdJSON <- function(data,title) {
 
   # Prepare the dictionary
+  Data.Dictionary<-data
+
+  for( a in 1:ncol(Data.Dictionary)){
+  if(!colnames(Data.Dictionary[a]) %in% c("codeName","domainItem_name","domainItem_value",
+                                     "definition","dataType","allowNull","units",
+                                     "unitsResolution","minValue","maxValue",
+                                     "isCaseSensitive","notes")) stop('Data frame contains an invalid column: ', paste0(colnames(Data.Dictionary[a])), '.\n  Run ?mdJSONdictio::build.mdJSON for more information on data frame requirements.')
+  }
+
+
 
   ## Replace values and add domain column
-  my.dictionary <- my.dictionary %>%
+  Data.Dictionary <- Data.Dictionary %>%
     mutate_if(is.character, str_replace_all, "\"", "'") %>%
     mutate_at(vars(allowNull, isCaseSensitive), ~ replace(., which(.=="yes"), "true")) %>%
     mutate_at(vars(allowNull, isCaseSensitive), ~ replace(., which(.=="no"), "false")) %>%
     select(-notes) %>%
     add_column(domainId=NA)
 
-  for(b in 1:nrow(my.dictionary)){
-    if(my.dictionary$domainItem_name[b]!="colname"){next}
-    else if(sum(my.dictionary$codeName==my.dictionary$codeName[b])>1)
-    {my.dictionary$domainId[b]="true"}}
+  for(b in 1:nrow(Data.Dictionary)){
+    if(Data.Dictionary$domainItem_name[b]!="colname"){next}
+    else if(sum(Data.Dictionary$codeName==Data.Dictionary$codeName[b])>1)
+    {Data.Dictionary$domainId[b]="true"}}
 
 
   ## Generate uuids
@@ -47,7 +64,7 @@ write.mdJSON <- function(file,title) {
 
   ## Add domain ids to original file
   ## Isolate colname rows with domain notations
-  domaincolumns<-my.dictionary %>%
+  domaincolumns<-Data.Dictionary %>%
     filter(domainItem_value=="colname") %>%
     filter(domainId=="true") %>%
     select(codeName,domainId)
@@ -57,10 +74,10 @@ write.mdJSON <- function(file,title) {
 
   ## Join domainIds with origianl data frame
   for(e in 1:nrow(domaincolumns)){
-    for (d in 1:nrow(my.dictionary)){
-      if(domaincolumns$codeName[e]==my.dictionary$codeName[d] &
-         my.dictionary$domainItem_value[d]=="colname"){
-        my.dictionary$domainId[d]=domaincolumns$domainId[e]
+    for (d in 1:nrow(Data.Dictionary)){
+      if(domaincolumns$codeName[e]==Data.Dictionary$codeName[d] &
+         Data.Dictionary$domainItem_value[d]=="colname"){
+        Data.Dictionary$domainId[d]=domaincolumns$domainId[e]
       }
     }}
 
@@ -77,7 +94,7 @@ write.mdJSON <- function(file,title) {
   ## ]}]
 
   ## Create entity data frame for loop
-  EntityDictionary<-my.dictionary %>%
+  EntityDictionary<-Data.Dictionary %>%
     filter(domainItem_value=="colname") %>%
     select(-c("domainItem_name","domainItem_value"))
 
@@ -134,11 +151,11 @@ write.mdJSON <- function(file,title) {
 
 
   ## Create domain data frames for loop
-  DomainDictionaryColname<- my.dictionary %>%
+  DomainDictionaryColname<- Data.Dictionary %>%
     select(c("domainId","codeName","domainItem_name","domainItem_value","definition")) %>%
     filter(domainItem_value=="colname" & !is.na(domainId))
 
-  DomainDictionaryItem <- my.dictionary %>%
+  DomainDictionaryItem <- Data.Dictionary %>%
     select(c("codeName","domainItem_name","domainItem_value","definition")) %>%
     filter(domainItem_value!="colname")
 
@@ -250,13 +267,7 @@ write.mdJSON <- function(file,title) {
   ## Update json attributes string in blank json
   blankjson$data[[1]]$attributes$json <- paste0(templist, collapse = ",")
 
-
-
-  ## Write data frame to json
-
-  newjson= rjson::toJSON(blankjson)
-  write(newjson, paste0(paste0(sub('.[^.]*$', '', basename(file)),".json")))
-
+  assign("newjson",blankjson)
 
 }
 

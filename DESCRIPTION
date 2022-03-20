@@ -1,5 +1,5 @@
 Package: mdJSONdictio
-Title: Write mdEditor mdJSON Dictionary Files
+Title: Tools to Build mdJSON Dictionaries for mdEditor
 Version: 1.0
 Authors@R: 
     person("Hannah", "Vincelette", , "hdvincelette@gmail.com", role = c("aut", "cre"),
