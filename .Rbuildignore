@@ -6,3 +6,4 @@
 ^docs$
 ^pkgdown$
 ^mdJSONdictio$
+^LICENSE\.md$
