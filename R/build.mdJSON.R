@@ -1,6 +1,6 @@
 #' Build mdJSON Dictionaries
 #'
-#' Transforms a tabular data dictionary into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/write.mdJSON_Dictionary_Template.xlsx?raw=true}{template}.
+#' Transforms a tabular data dictionary into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/build.mdJSON_Dictionary_Template.xlsx?raw=true}{template}.
 #' @param data  Data frame
 #' @param title String
 #' @return R list
@@ -30,7 +30,7 @@ build.mdJSON <- function(data,title) {
   if(!colnames(Data.Dictionary[a]) %in% c("codeName","domainItem_name","domainItem_value",
                                      "definition","dataType","allowNull","units",
                                      "unitsResolution","minValue","maxValue",
-                                     "isCaseSensitive","notes")) stop('Data frame contains an invalid column: ', paste0(colnames(Data.Dictionary[a])), '.\n  Run ?mdJSONdictio::build.mdJSON for more information on data frame requirements.')
+                                     "isCaseSensitive","notes")) stop('Data frame contains an invalid column: ', paste0(colnames(Data.Dictionary[a])), '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.')
   }
 
 

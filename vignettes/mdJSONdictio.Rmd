@@ -115,7 +115,7 @@ Once the Dictionary record is free of errors, it can be associated with the Meta
 
 # Tabular Data Dictionary Template
 
-```build.mdJSON()``` only reads data frames formatted to a data dictionary template (Figure 1.1), which can be downloaded [here](https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/write.mdJSON_Dictionary_Template.xlsx?raw=true). While csv is a more flexible file format, this template is in xlsx format because it contains validation rules that prevent incorrect values from being entered, resulting in errors when using ```build.mdJSON()``` or creating the Dictionary record in mdEditor.
+```build.mdJSON()``` only reads data frames formatted to a data dictionary template (Figure 1.1), which can be downloaded [here](https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/build.mdJSON_Dictionary_Template.xlsx?raw=true). While csv is a more flexible file format, this template is in xlsx format because it contains validation rules that prevent incorrect values from being entered, resulting in errors when using ```build.mdJSON()``` or creating the Dictionary record in mdEditor.
 <br />
 <br />
 
