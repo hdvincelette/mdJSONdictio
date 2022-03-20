@@ -1,7 +1,5 @@
 ---
 title: "mdJSONdictio"
-author: "Hannah Vincelette"
-date: "19 March 2022"
 output: 
   html_document:
     theme: readable
@@ -120,12 +118,10 @@ Once the Dictionary record is free of errors, it can be associated with the Meta
 <br />
 
 #### Figure 1.1: Data dictionary template in Excel.
-<font size="1"> 
+![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/dictionary_template.png)
 ```{r, echo=FALSE}
-
-include_graphics(system.file("help/figures","dictionary_template.png", package = "mdJSONdictio"))
+# knitr::include_graphics(system.file("help/figures","dictionary_template.png", package = "mdJSONdictio"))
 ```
-</font>
 <br />
 <br />
 The two main components of the tabular data dictionary template are attributes and entry values, each of which are represented as a row. It is important to remember that while entry values are associated with a certain attribute, not all attributes have defined entry values. For example, the attribute "Sex" may have three defined entry values ("F","M", and "U"), where as the attribute "Year" does not have defined entry values since an unlimited number of years can be entered.
