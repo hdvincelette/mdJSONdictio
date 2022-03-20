@@ -2,11 +2,11 @@
 title: "mdJSONdictio"
 author: "Hannah Vincelette"
 date: "19 March 2022"
-output:
-  # html_document:
-  #   theme: readable
-  #   highlight:
-  #   fig_caption: true
+output: 
+  html_document:
+    theme: readable
+    highlight:
+    fig_caption: true
   knitr:::html_vignette:
     toc: true
   pdf_document:
