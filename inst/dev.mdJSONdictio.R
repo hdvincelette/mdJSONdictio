@@ -8,8 +8,8 @@ library(pkgdown)
 
 # Reload package with changes
 setwd("~/Documents/GitHub/mdJSONdictio/")
-load_all()
 document()
+load_all()
 install()
 
 # Add data
