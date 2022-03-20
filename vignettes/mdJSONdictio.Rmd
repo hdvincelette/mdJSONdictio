@@ -5,11 +5,11 @@ output:
     theme: readable
     highlight:
     fig_caption: true
-  knitr:::html_vignette:
-    toc: true
-  pdf_document:
-    highlight: null
-    number_sections: yes
+  # knitr:::html_vignette:
+  #   toc: true
+  # pdf_document:
+  #   highlight: null
+  #   number_sections: yes
 geometry: margin = 0.1in
 vignette: >
   %\VignetteIndexEntry{mdJSONdictio}
