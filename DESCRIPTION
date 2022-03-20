@@ -16,7 +16,8 @@ Depends:
     uuid,
     R (>= 2.10)
 LazyData: true
-URL: https://github.com/hdvincelette/mdJSONdictio
+URL: https://github.com/hdvincelette/mdJSONdictio,
+    https://hdvincelette.github.io/mdJSONdictio/
 BugReports: https://github.com/hdvincelette/mdJSONdictio/issues
 Suggests: 
     knitr,
