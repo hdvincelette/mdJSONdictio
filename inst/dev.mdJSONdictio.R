@@ -6,12 +6,6 @@ library(devtools)
 library(roxygen2)
 library(pkgdown)
 
-# Reload package with changes
-setwd("~/Documents/GitHub/mdJSONdictio/")
-document()
-load_all()
-install()
-
 # Add data
 setwd("~/Documents/GitHub/mdJSONdictio/")
 use_data(blankjson)
@@ -29,8 +23,15 @@ setwd("~/Documents/GitHub/mdJSONdictio/")
 # pkgdown::build_site()
 deploy_to_branch()
 
+# Reload package with changes
+setwd("~/Documents/GitHub/mdJSONdictio/")
+document()
+load_all()
+install()
+
 # Create package zip
 build()
+
 
 # Install package from GitHub
 install_github("hdvincelette/mdJSONdictio")
