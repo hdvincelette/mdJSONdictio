@@ -109,7 +109,6 @@ When viewing your Dictionary record, you will notice an orange exclamation mark 
 
 #### 3. Associate and maintain the Dictionary record
 Once the Dictionary record is free of errors, it can be associated with the Metadata record(s) it describes (e.g. tabular dataset, shapefiles) to help create archival quality project metadata. For details of this process and other information, refer to the [mdEditor User Manual](https://guide.mdeditor.org/).Any future updates to your Dictionary record can be done manually in the mdEditor web application.
-
 <br />
 <br />
 <br />
@@ -124,7 +123,7 @@ Once the Dictionary record is free of errors, it can be associated with the Meta
 <font size="1"> 
 ```{r, echo=FALSE}
 
-include_graphics(system.file("extdata","dictionary_template.png", package = "mdJSONdictio"))
+include_graphics(system.file("help/figures","dictionary_template.png", package = "mdJSONdictio"))
 ```
 </font>
 <br />
@@ -184,6 +183,3 @@ kable(read.csv(path<-system.file("extdata", "datatype_definitions.csv", package 
 
 [mdCodes Viewer](https://adiwg.github.io/mdTools/)
 
-<br />
-<br />
-<br />
