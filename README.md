@@ -2,6 +2,8 @@
 # mdJSONdictio
 
 <!-- badges: start -->
+[![Travis build status](https://travis-ci.com/hdvincelette/mdJSONdictio.svg?branch=master)](https://travis-ci.com/hdvincelette/mdJSONdictio)
+[![R-CMD-check](https://github.com/hdvincelette/mdJSONdictio/workflows/R-CMD-check/badge.svg)](https://github.com/hdvincelette/mdJSONdictio/actions)
 <!-- badges: end -->
 
 Tools to write mdJSON dictionaries that can be imported to mdEditor to create Dictionary records.
