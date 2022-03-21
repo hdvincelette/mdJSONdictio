@@ -7,17 +7,17 @@
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @export
 #' @examples
-#' #Import tabular data dictionary as data frame
+#' # Import tabular data dictionary as data frame
 #' path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 #' e.g.dictionary<-readxl::read_excel(path)
 #'
-#' #Transform data frame to R list
+#' # Transform data frame to R list
 #' newjson<- build.mdJSON(data = e.g.dictionary, title = "Example Dictionary")
 #'
-#' #Convert R list to JSON
+#' # Convert R list to JSON
 #' e.g.dictionary = rjson::toJSON(newjson)
 #'
-#' #Export JSON to disk
+#' # Export JSON to disk
 #' write(e.g.dictionary, "e.g.dictionary.json")
 
 
