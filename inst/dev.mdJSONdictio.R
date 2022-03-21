@@ -50,14 +50,6 @@ path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 e.g.dictionary<-readxl::read_excel(path)
 
 
-# e.g.dictionary<- e.g.dictionary %>%
-#   rename(
-#     newname2 = notes,
-#     newname1 = codeName
-#   )
-#
-# data<-e.g.dictionary
-
 #Run function to create an R object
 newjson<- build.mdJSON(data = e.g.dictionary, title = "Example Dictionary")
 
@@ -68,4 +60,32 @@ e.g.dictionary = rjson::toJSON(newjson)
 setwd("~/Desktop")
 write(e.g.dictionary, "e.g.dictionary.json")
 
+
+
+e.g.dictionary<- e.g.dictionary %>%
+  rename(
+    newname2 = notes,
+    newname1 = codeName
+  )
+
+e.g.dictionary$domainItem_name[c(1,3)]<-NA
+
+
+Data.Dictionary<-e.g.dictionary
+
+for( a in 1:ncol(Data.Dictionary)){
+  if(!colnames(Data.Dictionary[a]) %in% c("codeName","domainItem_name","domainItem_value",
+                                          "definition","dataType","allowNull","units",
+                                          "unitsResolution","minValue","maxValue",
+                                          "isCaseSensitive","notes")) stop('Data frame contains an invalid column: ', paste0(colnames(Data.Dictionary[a])), '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.')
+  for( aa in 1:nrow(Data.Dictionary)){
+    if(Data.Dictionary[a]) %in% c("codeName","domainItem_name","domainItem_value",
+                                  "definition") &
+      is.na(Data.Dictionary[aa,a]) == TRUE)stop('Required field incomplete: ', paste0(Data.Dictionary[aa,a]), '.\n  View `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.')
+
+
+
+  }
+
+}
 
