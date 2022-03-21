@@ -53,10 +53,9 @@ setwd("~/Desktop")
 path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 e.g.dictionary<-readxl::read_excel(path)
 
-test<- read.csv("datatype_definitions.csv")
 
 #Run function to create an R object
-newjson<- build.mdJSON(data = test, title = "Example Dictionary")
+newjson<- build.mdJSON(data = e.g.dictionary, title = "Example Dictionary")
 
 #Convert R object to JSON
 e.g.dictionary = rjson::toJSON(newjson)
@@ -72,12 +71,14 @@ write(e.g.dictionary, "e.g.dictionary.json")
 path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 e.g.dictionary<-readxl::read_excel(path)
 
-# invalid column
+# missing required column
 e.g.dictionary<- e.g.dictionary %>%
   rename(
-    newname2 = notes,
     newname1 = codeName
   )
+
+# invalid column
+e.g.dictionary$newcol1<- NA
 
 # required field incomplete
 e.g.dictionary$codeName[c(30,45)]<-NA
