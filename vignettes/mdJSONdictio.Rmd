@@ -93,7 +93,7 @@ print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary.json", packag
 
 ### Intented Use 
 
-```build.mdJSON()```  is intended for anyone who writes mdEditor metadata. It is important to note this function is meant to initiate mdEditor Dictionary records, not update them, which should be done manually in the [mdEditor](https://go.mdeditor.org/#/dashboard) web application. It is recommended users maintain the tabular data dictionary as a human-readable reference for the associated data product(s).
+```build.mdJSON()```  is intended for anyone who writes mdEditor metadata. It is important to note this function is meant to initiate mdEditor Dictionary records, not update them, which should be done manually in the [mdEditor](https://go.mdeditor.org/#/dashboard) web application. It is recommended users maintain the tabular data dictionary as a human-readable reference for associated data product(s).
 <br />
 <br />
 
@@ -103,7 +103,7 @@ print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary.json", packag
 Open mdEditor in your browser and navigate to the Import tab at the top of the page. Drag and drop the newly written mdJSON file and click "Import Data." This will generate a Dictionary record with the dictionary title you specified in the function. You may need to refresh your browser if the dictionary does not immediately appear
 
 #### 2. Fix errors in the Dictionary record
-When viewing your Dictionary record, you will notice an orange exclamation mark next to the title that indicates the dictionary is incomplete and has missing or erroneous elements. Click the orange exclamation mark to view the details.These errors can be remedied by completing the Responsible Party field in the Main tab and the Entity Code Name and Definition fields in the Entities tab. For more information about these fields, refer to the [mdEditor User Manual](https://guide.mdeditor.org/reference/reference-manual.html). You will know your dictionary is free of errors when the orange triangle disappears and the edit icon next to your Dictionary record in the left-hand menu is green. If you see more than these three errors, make sure the tabular data dictionary is filled out as described in the [Tabular Data Dictionary Template] section.
+When viewing your Dictionary record, you will notice an orange exclamation mark next to the title that indicates the dictionary is incomplete and has missing or erroneous elements. Click the orange exclamation mark to view the details. These errors can be remedied by completing the Responsible Party field in the Main tab and the Entity Code Name and Definition fields in the Entities tab. For more information about these fields, refer to the [mdEditor User Manual](https://guide.mdeditor.org/reference/reference-manual.html). You will know your dictionary is free of errors when the orange triangle disappears and the edit icon next to your Dictionary record in the left-hand menu is green. If you see more than these three errors, make sure the tabular data dictionary is filled out as described in the [Tabular Data Dictionary Template] section.
 
 #### 3. Associate and maintain the Dictionary record
 Once the Dictionary record is free of errors, it can be associated with the Metadata record(s) it describes (e.g. tabular dataset, shapefiles) to help create archival quality project metadata. For details of this process and other information, refer to the [mdEditor User Manual](https://guide.mdeditor.org/).Any future updates to your Dictionary record can be done manually in the mdEditor web application.
@@ -127,7 +127,7 @@ Once the Dictionary record is free of errors, it can be associated with the Meta
 The two main components of the tabular data dictionary template are attributes and entry values, each of which are represented as a row. It is important to remember that while entry values are associated with a certain attribute, not all attributes have defined entry values. For example, the attribute "Sex" may have three defined entry values ("F","M", and "U"), where as the attribute "Year" does not have defined entry values since an unlimited number of years can be entered.
 <br />
 <br />
-Table 1.1 describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. "Definition" describes the template column. Many of these definitions are derived from the [mdEditor User Manual](https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html). "Datatype" indicates the type of value allowed in the template column. "Required" indicates whether the template column is required by attributes and/or entry values ("No" indicates it is not required by either attributes or entry values). 
+Table 1.1 describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. "Definition" describes the template column. Many of these definitions are derived from the [mdEditor User Manual](https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html). "DataType" indicates the type of value allowed in the template column. "Required" indicates whether the template column is required by attributes and/or entry values ("No" indicates it is not required by either attributes or entry values). 
 <br />
 <br />
  
