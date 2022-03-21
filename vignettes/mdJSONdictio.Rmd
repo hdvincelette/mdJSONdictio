@@ -1,16 +1,15 @@
 ---
 title: "mdJSONdictio"
 output: 
-  html_document:
-    theme: readable
-    highlight:
-    fig_caption: true
-  # knitr:::html_vignette:
-  #   toc: true
-  # pdf_document:
-  #   highlight: null
-  #   number_sections: yes
-geometry: margin = 0.1in
+  # html_document:
+  #   theme: readable
+  #   highlight:
+  #   fig_caption: true
+  knitr:::html_vignette:
+    toc: true
+  pdf_document:
+    highlight: null
+    number_sections: yes
 vignette: >
   %\VignetteIndexEntry{mdJSONdictio}
   %\VignetteEngine{knitr::rmarkdown}
@@ -75,7 +74,7 @@ Transforms a tabular data dictionary into an R list that can be subsequently con
 
 #### A data dictionary imported as a data frame in R:
 
-```{r options(width=160), echo=FALSE}
+```{r, echo=FALSE}
 
 # paged_table(readxl::read_excel(system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")), options=list(cols.print=4))
 
@@ -86,7 +85,7 @@ print(readxl::read_excel(system.file("extdata", "e.g.dictionary.xlsx", package =
 
 #### The function return value in R:
 
-```{r max_height = "300px", echo=FALSE}
+```{r, echo=FALSE}
 print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary.json", package = "mdJSONdictio")))
 ```
 <br />
