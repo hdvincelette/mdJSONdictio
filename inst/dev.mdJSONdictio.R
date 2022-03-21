@@ -23,7 +23,7 @@ setwd("~/Documents/GitHub/mdJSONdictio/")
 # pkgdown::build_site()
 deploy_to_branch()
 
-# Reload package with changes
+# Reload package with local changes
 setwd("~/Documents/GitHub/mdJSONdictio/")
 document()
 load_all()
@@ -37,11 +37,10 @@ build()
 install_github("hdvincelette/mdJSONdictio", build_vignettes = TRUE)
 
 
-
 # View package info
+library(mdJSONdictio)
 ??mdJSONdictio
 ?mdJSONdictio::build.mdJSON
-browseVignettes("mdJSONdictio")
 vignette("mdJSONdictio")
 
 
