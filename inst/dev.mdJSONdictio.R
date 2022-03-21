@@ -53,9 +53,10 @@ setwd("~/Desktop")
 path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 e.g.dictionary<-readxl::read_excel(path)
 
+test<- read.csv("datatype_definitions.csv")
 
 #Run function to create an R object
-newjson<- build.mdJSON(data = e.g.dictionary, title = "Example Dictionary")
+newjson<- build.mdJSON(data = test, title = "Example Dictionary")
 
 #Convert R object to JSON
 e.g.dictionary = rjson::toJSON(newjson)
@@ -93,30 +94,37 @@ e.g.dictionary$allowNull[c(4)]<-NA
 
 Data.Dictionary<-e.g.dictionary
 
+Required.cols<-c("codeName","domainItem_name","domainItem_value",
+       "definition","dataType","allowNull")
+
+if(length(setdiff(Required.cols, names(Data.Dictionary)))!=0) stop('Data frame missing required columns: ',
+                                                                   toString(setdiff(Required.cols, names(Data.Dictionary))),
+                                                                                '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+
 for(a in 1:ncol(Data.Dictionary)){
   if(!colnames(Data.Dictionary[a]) %in% c("codeName","domainItem_name","domainItem_value",
                                           "definition","dataType","allowNull","units",
                                           "unitsResolution","minValue","maxValue",
                                           "isCaseSensitive","notes")) stop('Data frame contains an invalid column: ',
-                                                                           paste0(colnames(Data.Dictionary[a])),
+                                                                           colnames(Data.Dictionary[a]),
                                                                            '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
   for(aa in 1:nrow(Data.Dictionary)){
     if(colnames(Data.Dictionary[a]) %in% c("codeName","domainItem_name","domainItem_value",
-                                  "definition") &
+                                           "definition") &
        is.na(Data.Dictionary[aa,a]) == TRUE) stop('Required field incomplete. \n  ',
-                                                 paste0(colnames(Data.Dictionary[a])),
-                                                 '==NA in row ',paste0(aa),
-                                                 '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+                                                  colnames(Data.Dictionary[a]),
+                                                  '==NA in row ',aa,
+                                                  '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
     if(Data.Dictionary$domainItem_name[aa]=="colname" &
        Data.Dictionary$domainItem_value[aa]!="colname") stop('Data frame contains conflicting entries.',
-                                                                 '\n  Row ',aa,' has "',Data.Dictionary$domainItem_name[aa],
-                                                                 '" for domainItem_name and "',Data.Dictionary$domainItem_value[aa],
-                                                                 '" for domainItem_value. \n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+                                                             '\n  Row ',aa,' has "',Data.Dictionary$domainItem_name[aa],
+                                                             '" for domainItem_name and "',Data.Dictionary$domainItem_value[aa],
+                                                             '" for domainItem_value. \n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
     if(Data.Dictionary$domainItem_name[aa]!="colname" &
        Data.Dictionary$domainItem_value[aa]=="colname") stop('Data frame contains conflicting entries.\n  domainItem_name=="',
-                                                                Data.Dictionary$domainItem_name[aa],'" and domainItem_value=="',
-                                                                Data.Dictionary$domainItem_value[aa],'" in row ',aa,
-                                                                '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+                                                             Data.Dictionary$domainItem_name[aa],'" and domainItem_value=="',
+                                                             Data.Dictionary$domainItem_value[aa],'" in row ',aa,
+                                                             '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
 
     if(Data.Dictionary$domainItem_name[aa]=="colname" &
        is.na(Data.Dictionary$dataType[aa])) stop('Required field incomplete. \n  dataType==NA in row ',aa,
@@ -124,9 +132,9 @@ for(a in 1:ncol(Data.Dictionary)){
 
     if(Data.Dictionary$domainItem_name[aa]=="colname" &
        is.na(Data.Dictionary$allowNull[aa])) stop('Required field incomplete. \n  allowNull==NA in row ',aa,
-                                                 '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+                                                  '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
 
 
-    }
   }
+}
 
