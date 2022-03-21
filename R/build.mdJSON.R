@@ -27,19 +27,26 @@ build.mdJSON <- function(data,title) {
   Data.Dictionary<-data
 
   ## Check for errors
+  Required.cols<-c("codeName","domainItem_name","domainItem_value",
+                   "definition","dataType","allowNull")
+
+  if(length(setdiff(Required.cols, names(Data.Dictionary)))!=0) stop('Data frame missing required columns: ',
+                                                                     toString(setdiff(Required.cols, names(Data.Dictionary))),
+                                                                     '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+
   for(a in 1:ncol(Data.Dictionary)){
     if(!colnames(Data.Dictionary[a]) %in% c("codeName","domainItem_name","domainItem_value",
                                             "definition","dataType","allowNull","units",
                                             "unitsResolution","minValue","maxValue",
                                             "isCaseSensitive","notes")) stop('Data frame contains an invalid column: ',
-                                                                             paste0(colnames(Data.Dictionary[a])),
+                                                                             colnames(Data.Dictionary[a]),
                                                                              '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
     for(aa in 1:nrow(Data.Dictionary)){
       if(colnames(Data.Dictionary[a]) %in% c("codeName","domainItem_name","domainItem_value",
                                              "definition") &
          is.na(Data.Dictionary[aa,a]) == TRUE) stop('Required field incomplete. \n  ',
-                                                    paste0(colnames(Data.Dictionary[a])),
-                                                    '==NA in row ',paste0(aa),
+                                                    colnames(Data.Dictionary[a]),
+                                                    '==NA in row ',aa,
                                                     '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
       if(Data.Dictionary$domainItem_name[aa]=="colname" &
          Data.Dictionary$domainItem_value[aa]!="colname") stop('Data frame contains conflicting entries.',
