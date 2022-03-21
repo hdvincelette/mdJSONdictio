@@ -12,7 +12,7 @@ You can install the development version of mdJSONdictio from [GitHub](https://gi
 install.packages("devtools")
 
 # Install mdJSONdictio from GitHub
-devtools::install_github("hdvincelette/mdJSONdictio")
+devtools::install_github("hdvincelette/mdJSONdictio", build_vignettes = TRUE)
 ```
 
 ## Usage
