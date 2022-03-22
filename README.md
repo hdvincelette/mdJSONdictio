@@ -10,9 +10,12 @@ You can install the development version of mdJSONdictio from [GitHub](https://gi
 ```
 # Install devtools from CRAN
 install.packages("devtools")
+library(devtools)
 
 # Install mdJSONdictio from GitHub
 devtools::install_github("hdvincelette/mdJSONdictio", build_vignettes = TRUE)
+library(mdJSONdictio)
+
 ```
 
 ## Usage
