@@ -51,6 +51,7 @@ setwd("~/Desktop")
 
 # Import tabular dictionary
 path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
+
 e.g.dictionary<-readxl::read_excel(path)
 
 
