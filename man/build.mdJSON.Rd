@@ -18,17 +18,17 @@ R list
 Transforms a tabular data dictionary into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/build.mdJSON_Dictionary_Template.xlsx?raw=true}{template}.
 }
 \examples{
-#Import tabular data dictionary as data frame
+# Import tabular data dictionary as data frame
 path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 e.g.dictionary<-readxl::read_excel(path)
 
-#Transform data frame to R list
+# Transform data frame to R list
 newjson<- build.mdJSON(data = e.g.dictionary, title = "Example Dictionary")
 
-#Convert R list to JSON
+# Convert R list to JSON
 e.g.dictionary = rjson::toJSON(newjson)
 
-#Export JSON to disk
+# Export JSON to disk
 write(e.g.dictionary, "e.g.dictionary.json")
 }
 \keyword{dictionary,}
