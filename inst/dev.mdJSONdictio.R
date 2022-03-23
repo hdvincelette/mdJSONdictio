@@ -6,25 +6,23 @@ library(devtools)
 library(roxygen2)
 library(pkgdown)
 
-# Add data
 setwd("~/Documents/GitHub/mdJSONdictio/")
+setwd("~/GitHub/mdJSONdictio/")
+
+# Add data
 use_data()
 
 # Ignore files
-setwd("~/Documents/GitHub/mdJSONdictio/R")
 usethis::use_build_ignore()
 
 # Write html markdown
-setwd("~/Documents/GitHub/mdJSONdictio/vignettes/")
-rmarkdown::render('mdJSONdictio.Rmd')
+rmarkdown::render('vignettes/mdJSONdictio.Rmd')
 
 # Update site
-setwd("~/Documents/GitHub/mdJSONdictio/")
 # pkgdown::build_site()
 deploy_to_branch()
 
 # Reload package with local changes
-setwd("~/Documents/GitHub/mdJSONdictio/")
 document()
 load_all()
 install()
@@ -46,8 +44,10 @@ vignette("mdJSONdictio")
 
 #### Standard run ####
 
-library(mdJSONdictio)
 setwd("~/Desktop")
+setwd("C:/Users/hvincelette/Desktop")
+
+library(mdJSONdictio)
 
 # Import tabular dictionary
 path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
@@ -62,7 +62,6 @@ newjson<- build.mdJSON(data = e.g.dictionary, title = "Example Dictionary")
 e.g.dictionary = rjson::toJSON(newjson)
 
 # Export JSON
-setwd("~/Desktop")
 write(e.g.dictionary, "e.g.dictionary.json")
 
 
