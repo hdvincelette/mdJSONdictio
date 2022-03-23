@@ -1,7 +1,7 @@
 #' Build mdJSON Dictionaries
 #'
 #' Transforms a tabular data dictionary into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/build.mdJSON_Dictionary_Template.xlsx?raw=true}{template}.
-#' @param x  A data frame
+#' @param x  Data frame
 #' @param title String
 #' @return R list
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
