@@ -2,20 +2,20 @@
 % Please edit documentation in R/build.mdJSON.R
 \name{build.mdJSON}
 \alias{build.mdJSON}
-\title{Build mdJSON Dictionaries}
+\title{Build mdJSON Data Dictionaries}
 \usage{
 build.mdJSON(x, title)
 }
 \arguments{
-\item{x}{Data frame}
+\item{x}{A data frame of the tabular data dictionary.}
 
-\item{title}{String}
+\item{title}{A string designating the title of the Dictionary record in mdEditor.}
 }
 \value{
-R list
+Returns an R list corresponding to the tabular data dictionary.
 }
 \description{
-Transforms a tabular data dictionary into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/build.mdJSON_Dictionary_Template.xlsx?raw=true}{template}.
+Transforms a tabular data dictionary (read as a data frame) into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/build.mdJSON_Dictionary_Template.xlsx?raw=true}{template}.
 }
 \examples{
 # Import tabular data dictionary as data frame
@@ -30,6 +30,9 @@ e.g.dictionary = rjson::toJSON(newjson)
 
 # Export JSON to disk
 write(e.g.dictionary, "e.g.dictionary.json")
+}
+\seealso{
+build.table()
 }
 \keyword{dictionary,}
 \keyword{json,}
