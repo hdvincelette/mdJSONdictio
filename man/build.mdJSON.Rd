@@ -4,10 +4,10 @@
 \alias{build.mdJSON}
 \title{Build mdJSON Dictionaries}
 \usage{
-build.mdJSON(data, title)
+build.mdJSON(x, title)
 }
 \arguments{
-\item{data}{Data frame}
+\item{x}{A data frame}
 
 \item{title}{String}
 }
@@ -23,7 +23,7 @@ path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 e.g.dictionary<-readxl::read_excel(path)
 
 # Transform data frame to R list
-newjson<- build.mdJSON(data = e.g.dictionary, title = "Example Dictionary")
+newjson<- build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
 
 # Convert R list to JSON
 e.g.dictionary = rjson::toJSON(newjson)
