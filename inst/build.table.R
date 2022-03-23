@@ -18,7 +18,7 @@ library(stats)
 # test jsons
 
 setwd("C:/Users/hvincelette/OneDrive - DOI/Data_management")
-e.g.json <- fromJSON(readLines("e.g.dictionary_complete.json"))
+e.g.json <- fromJSON(readLines("e.g.dictionary.json"))
 
 newtable <- build.table(e.g.json)
 
@@ -76,7 +76,7 @@ build.table <- function(x) {
     # Extract domain string
     # \"domain\":[{....}],\"entity\":[{....}],\"description\":...}}
     term5 <- paste0("\"", "domain", "\":[")
-    term6 <- paste0("],\"", "entity", "\":")
+    term6 <- paste0(",\"", "entity", "\":")
     domainstring <- genXtract(dictionarystring, term5, term6)
   }
 
