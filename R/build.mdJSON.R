@@ -32,7 +32,7 @@ build.mdJSON <- function(x,title) {
 
   if(length(setdiff(Required.cols, names(Data.Dictionary)))!=0) stop('Data frame missing required columns: ',
                                                                      toString(setdiff(Required.cols, names(Data.Dictionary))),
-                                                                     '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+                                                                     '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.')
 
   for(a in 1:ncol(Data.Dictionary)){
     if(!colnames(Data.Dictionary[a]) %in% c("codeName","domainItem_name","domainItem_value",
@@ -40,32 +40,32 @@ build.mdJSON <- function(x,title) {
                                             "unitsResolution","minValue","maxValue",
                                             "isCaseSensitive","notes")) stop('Data frame contains an invalid column: ',
                                                                              colnames(Data.Dictionary[a]),
-                                                                             '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+                                                                             '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.')
     for(aa in 1:nrow(Data.Dictionary)){
       if(colnames(Data.Dictionary[a]) %in% c("codeName","domainItem_name","domainItem_value",
                                              "definition") &
          is.na(Data.Dictionary[aa,a]) == TRUE) stop('Required field incomplete. \n  ',
                                                     colnames(Data.Dictionary[a]),
                                                     '==NA in row ',aa,
-                                                    '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+                                                    '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.')
       if(Data.Dictionary$domainItem_name[aa]=="colname" &
          Data.Dictionary$domainItem_value[aa]!="colname") stop('Data frame contains conflicting entries.',
                                                                '\n  Row ',aa,' has "',Data.Dictionary$domainItem_name[aa],
                                                                '" for domainItem_name and "',Data.Dictionary$domainItem_value[aa],
-                                                               '" for domainItem_value. \n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+                                                               '" for domainItem_value. \n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.')
       if(Data.Dictionary$domainItem_name[aa]!="colname" &
          Data.Dictionary$domainItem_value[aa]=="colname") stop('Data frame contains conflicting entries.\n  domainItem_name=="',
                                                                Data.Dictionary$domainItem_name[aa],'" and domainItem_value=="',
                                                                Data.Dictionary$domainItem_value[aa],'" in row ',aa,
-                                                               '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+                                                               '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.')
 
       if(Data.Dictionary$domainItem_name[aa]=="colname" &
          is.na(Data.Dictionary$dataType[aa])) stop('Required field incomplete. \n  dataType==NA in row ',aa,
-                                                   '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+                                                   '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.')
 
       if(Data.Dictionary$domainItem_name[aa]=="colname" &
          is.na(Data.Dictionary$allowNull[aa])) stop('Required field incomplete. \n  allowNull==NA in row ',aa,
-                                                    '.\n  Print vignette("mdJSONdictio") for more information on data frame requirements.')
+                                                    '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.')
 
 
     }
