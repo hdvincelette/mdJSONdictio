@@ -221,46 +221,12 @@ build.table <- function(x) {
       reftable[[paste0(column)]][h] <- entry
       reftable$domainNum[h] <- h
     }
-
-    #  for (m in 1:length(Ref2)) {
-    #   if (grepl("\"", Ref2[m]) == TRUE) {
-    #     Ref2[m] <- gsub("\"", "", Ref2[m])
-    #   }
-    #
-    #
-    #   column <- beg2char(Ref2[m], ":")
-    #
-    #   if (grepl(":", Ref2[m]) == TRUE) {
-    #     entry <- char2end(Ref2[m], ":")
-    #   }
-    #   else {
-    #     entry <- NA
-    #   }
-    #
-    #   reftable[[paste0(column)]][h] <- entry
-    #   reftable$domainNum[h] <- h
-    # }
   }
 
 
 
 
   # Extract separate elements from domain string and add each sub element to blank table
-
-  #
-  # blanktable<-setNames(data.frame(matrix(ncol = 12, nrow = 0)),
-  #                      c("codeName",
-  #                        "name",
-  #                        "value",
-  #                        "definition",
-  #                        "dataType",
-  #                        "allowNull",
-  #                        "units",
-  #                        "unitsResolution",
-  #                        "minValue",
-  #                        "maxValue",
-  #                        "isCaseSensitive",
-  #                        "notes"))
 
 
   ncolrows <- nrow(blanktable)
