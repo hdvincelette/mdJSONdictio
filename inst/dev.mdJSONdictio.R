@@ -42,7 +42,9 @@ library(mdJSONdictio)
 vignette("mdJSONdictio")
 
 
-#### Standard run ####
+#### build.mdJSON() ####
+
+## Standard run ##
 
 setwd("~/Desktop")
 setwd("C:/Users/hvincelette/Desktop")
@@ -65,7 +67,7 @@ e.g.dictionary = rjson::toJSON(newjson)
 write(e.g.dictionary, "e.g.dictionary.json")
 
 
-#### Error check ####
+## Error check ##
 
 # Import data frame
 path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
@@ -138,4 +140,30 @@ for(a in 1:ncol(Data.Dictionary)){
 
   }
 }
+
+#### build.table() ####
+
+library(mdJSONdictio)
+library(rjson)
+library(qdap)
+library(tidyverse)
+library(stats)
+
+
+# test jsons
+
+setwd("C:/Users/hvincelette/OneDrive - DOI/Data_management")
+path <- "C:/Users/hvincelette/OneDrive - DOI/Data_management"
+files <- list.files(path = path, pattern = ".json")
+
+test.json <- NA
+
+for (a in 1:length(files)) {
+  test.json <- fromJSON(file = files[a])
+  test.json <- build.table(test.json)
+  assign(paste0("df", a), test.json)
+}
+
+test.json <- fromJSON(file = files[10])
+newtable <- build.table(test.json)
 
