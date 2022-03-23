@@ -10,7 +10,7 @@
 #' @examples
 #' # Import mdJSON data dictionary as an R list
 #' path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-#' e.g.dictionary2 <- fromJSON(path)
+#' e.g.dictionary2 <- fromJSON(file = path)
 #'
 #' # Transform R list to a data frame
 #' newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1)
