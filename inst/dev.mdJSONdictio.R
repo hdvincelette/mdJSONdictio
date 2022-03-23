@@ -35,6 +35,7 @@ build()
 
 
 # Install package from GitHub
+remove.packages("mdJSONdictio")
 install_github("hdvincelette/mdJSONdictio")
 
 
@@ -145,6 +146,11 @@ for(a in 1:ncol(Data.Dictionary)){
 }
 
 #### build.table() ####
+
+library(mdJSONdictio)
+test<- mdJSONdictio::build.table(fromJSON(
+  file = system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
+))
 
 # test jsons
 
