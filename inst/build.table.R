@@ -24,6 +24,7 @@ newtable <- build.table(e.g.json)
 
 #SEOW_PTT_Dictionary.json
 #e.g.dictionary_complete.json
+#JBER_lowland.json
 
 build.table <- function(x) {
   JSONdictionary <- e.g.json
@@ -159,24 +160,28 @@ build.table <- function(x) {
 
   #### Domains ####
 
+
   # Create a vector of domain elements
   term1 <- paste0("{\"", "domainId", "\":")
-  term2 <- paste0(",\"", "domainItem", "\"")
+  term2 <- paste0(",\"", "description", "\"")
+
+  #\"description\":\
   term3 <- paste0("\"", "domainItem", "\":[")
   term4 <- paste0("]")
 
   # Extract Item and Ref strings
 
-  domainRefs <-
+  domainelements <-
     genXtract(domainstring, term1, term2, with = TRUE)
+
+  domainRefs<-domainelements
+  for(q in 1:length(domainRefs)){
+    domainRefs[q]<-rm_between(domainRefs[q],",\"domainItem\":[","}]", replacement = "")
+  }
+
   domainRefs <- as.vector(domainRefs)
   domainItems <- genXtract(domainstring, term3, term4)
   domainItems <- as.vector(domainItems)
-
-  # Remove extra characters
-  for (d in 1:length(domainRefs)) {
-    domainRefs[d] <- sub(term4, "}", domainRefs[d])
-  }
 
 
 
@@ -190,6 +195,10 @@ build.table <- function(x) {
 
   # Associate codeName with a domain domainNum
   for (h in 1:length(domainRefs)) {
+
+    if(grepl("domainReference",domainRefs[h])==TRUE){
+      domainRefs[h]<-rm_between(domainRefs[h],",\"domainReference\":{","}", replacement = "")
+    }
     Ref <- domainRefs[h]
 
     for (k in 1:length(Ref)) {
@@ -228,8 +237,6 @@ build.table <- function(x) {
 
   # Extract separate elements from domain string and add each sub element to blank table
 
-
-  ncolrows <- nrow(blanktable)
 
   for (e in 1:length(domainItems)) {
     Item <- domainItems[e]
@@ -275,7 +282,7 @@ build.table <- function(x) {
   }
 
   blanktable <- blanktable %>%
-    arrange(entityNum, domainNum) %>%
+    arrange(codeName,domainNum) %>%
     select(-one_of(c("domainNum", "entityNum"))) %>%
     rename("domainItem_name" = "name",
            "domainItem_value" = "value") %>%
