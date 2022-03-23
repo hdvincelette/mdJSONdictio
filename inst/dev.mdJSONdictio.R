@@ -9,6 +9,7 @@ library(pkgdown)
 setwd("~/Documents/GitHub/mdJSONdictio/")
 setwd("~/GitHub/mdJSONdictio/")
 
+
 # Add data
 use_data()
 
@@ -26,6 +27,8 @@ deploy_to_branch()
 document()
 load_all()
 install()
+
+exists("build.table", where=globalenv(), inherits = TRUE)
 
 # Create package zip
 build()
@@ -142,13 +145,6 @@ for(a in 1:ncol(Data.Dictionary)){
 }
 
 #### build.table() ####
-
-library(mdJSONdictio)
-library(rjson)
-library(qdap)
-library(tidyverse)
-library(stats)
-
 
 # test jsons
 
