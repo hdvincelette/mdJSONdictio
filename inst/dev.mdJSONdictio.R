@@ -34,7 +34,7 @@ build()
 
 
 # Install package from GitHub
-install_github("hdvincelette/mdJSONdictio", build_vignettes = TRUE)
+install_github("hdvincelette/mdJSONdictio")
 
 
 # View package info
