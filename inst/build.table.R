@@ -18,31 +18,29 @@ library(stats)
 # test jsons
 
 setwd("C:/Users/hvincelette/OneDrive - DOI/Data_management")
-e.g.json <- fromJSON(readLines("e.g.dictionary.json"))
+path<-"C:/Users/hvincelette/OneDrive - DOI/Data_management"
+files<-list.files(path=path,pattern=".json")
+
+test.json<-NA
+
+for(a in 1:length(files)){
+test.json <- fromJSON(file=files[a])
+test.json<-build.table(test.json)
+assign(paste0("df",a),test.json)
+}
 
 newtable <- build.table(e.g.json)
 
-#SEOW_PTT_Dictionary.json
-#e.g.dictionary_complete.json
-#JBER_lowland.json
+
 
 build.table <- function(x) {
-  JSONdictionary <- e.g.json
+  JSONdictionary <- x
 
   dictionarystring <-
     JSONdictionary[["data"]][[1]][["attributes"]][["json"]]
 
   #\"subject\":[\"dataDictionary\"],\"entity\":
   testterm1 <- paste0("dataDictionary", "\"],\"", "entity", "\"")
-
-  # #\"dictionaryIncludedWithResource\":true,\"domain\"
-  # testterm2 <-
-  #   paste0("dictionaryIncludedWithResource",
-  #          "\":",
-  #          "true",
-  #          ",\"",
-  #          "domain\"")
-
 
   if (grepl(testterm1, dictionarystring) == TRUE) {
     # \"entity\":[{....}],\"domain\":[{....}],\"responsibleParty\":{
@@ -54,12 +52,28 @@ build.table <- function(x) {
     term3 <- paste0("attribute", "\":[")
     term4 <- paste0("],\"", "definition", "\":")
 
-    entitystring2 <- genXtract(entitystring, term3, term4)
+    if (grepl(term4, entitystring) == TRUE) {
+      entitystring2 <- genXtract(entitystring, term3, term4)
+    } else {
+      entitystring2 <- genXtract(entitystring, term3, "}]}")
+
+    }
 
     # Extract domain string
     term5 <- paste0("\"", "domain", "\":[")
     term6 <- paste0("],\"", "responsibleParty", "\":")
-    domainstring <- genXtract(dictionarystring, term5, term6)
+
+    if (grepl(term6, entitystring) == TRUE) {
+      domainstring <- genXtract(dictionarystring, term5, term6)
+    } else {
+      term6 <- paste0(",", "date-updated")
+      term7 <- paste0("],\"", "description", "\":")
+
+      domainstring <- genXtract(dictionarystring, term5, "}}")
+
+
+    }
+
 
   } else {
     # \"domain\":[{....}],\"entity\":[{....}],\"description\":...}}
@@ -135,7 +149,7 @@ build.table <- function(x) {
     subelements <-
       unlist(strsplit(element, ",\"", perl = TRUE), use.names = FALSE)
 
-    blanktable[nrow(blanktable) + 1,] <- NA
+    blanktable[nrow(blanktable) + 1, ] <- NA
 
 
     for (c in 1:length(subelements)) {
@@ -174,9 +188,10 @@ build.table <- function(x) {
   domainelements <-
     genXtract(domainstring, term1, term2, with = TRUE)
 
-  domainRefs<-domainelements
-  for(q in 1:length(domainRefs)){
-    domainRefs[q]<-rm_between(domainRefs[q],",\"domainItem\":[","}]", replacement = "")
+  domainRefs <- domainelements
+  for (q in 1:length(domainRefs)) {
+    domainRefs[q] <-
+      rm_between(domainRefs[q], ",\"domainItem\":[", "}]", replacement = "")
   }
 
   domainRefs <- as.vector(domainRefs)
@@ -195,9 +210,12 @@ build.table <- function(x) {
 
   # Associate codeName with a domain domainNum
   for (h in 1:length(domainRefs)) {
-
-    if(grepl("domainReference",domainRefs[h])==TRUE){
-      domainRefs[h]<-rm_between(domainRefs[h],",\"domainReference\":{","}", replacement = "")
+    if (grepl("domainReference", domainRefs[h]) == TRUE) {
+      domainRefs[h] <-
+        rm_between(domainRefs[h],
+                   ",\"domainReference\":{",
+                   "}",
+                   replacement = "")
     }
     Ref <- domainRefs[h]
 
@@ -213,7 +231,7 @@ build.table <- function(x) {
     Ref2 <-
       unlist(strsplit(Ref[k], ",\"", perl = TRUE), use.names = FALSE)
 
-    reftable[nrow(reftable) + 1,] <- NA
+    reftable[nrow(reftable) + 1, ] <- NA
 
     for (m in 1:length(Ref2)) {
       if (grepl("\"", Ref2[m]) == TRUE) {
@@ -221,11 +239,13 @@ build.table <- function(x) {
       }
 
 
-      if (grepl(":", Ref2[m]) == TRUE){
-      column <- beg2char(Ref2[m], ":")
-      entry <- char2end(Ref2[m], ":")
+      if (grepl(":", Ref2[m]) == TRUE) {
+        column <- beg2char(Ref2[m], ":")
+        entry <- char2end(Ref2[m], ":")
       }
-      else {next}
+      else {
+        next
+      }
 
       reftable[[paste0(column)]][h] <- entry
       reftable$domainNum[h] <- h
@@ -255,7 +275,7 @@ build.table <- function(x) {
       SubItem <-
         unlist(strsplit(Item2[f], ",\"", perl = TRUE), use.names = FALSE)
 
-      blanktable[nrow(blanktable) + 1,] <- NA
+      blanktable[nrow(blanktable) + 1, ] <- NA
 
       for (g in 1:length(SubItem)) {
         SubItem[g] <- gsub("\"", "", SubItem[g])
@@ -282,7 +302,7 @@ build.table <- function(x) {
   }
 
   blanktable <- blanktable %>%
-    arrange(codeName,domainNum) %>%
+    arrange(codeName, domainNum) %>%
     select(-one_of(c("domainNum", "entityNum"))) %>%
     rename("domainItem_name" = "name",
            "domainItem_value" = "value") %>%
