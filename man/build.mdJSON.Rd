@@ -7,7 +7,7 @@
 build.mdJSON(x, title)
 }
 \arguments{
-\item{x}{A data frame}
+\item{x}{Data frame}
 
 \item{title}{String}
 }
