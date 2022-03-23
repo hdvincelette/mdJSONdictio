@@ -1,10 +1,11 @@
-#' Build mdJSON Dictionaries
+#' Build mdJSON Data Dictionaries
 #'
-#' Transforms a tabular data dictionary into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/build.mdJSON_Dictionary_Template.xlsx?raw=true}{template}.
-#' @param x  Data frame
-#' @param title String
-#' @return R list
+#' Transforms a tabular data dictionary (read as a data frame) into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/build.mdJSON_Dictionary_Template.xlsx?raw=true}{template}.
+#' @param x  A data frame of the tabular data dictionary.
+#' @param title A string designating the title of the Dictionary record in mdEditor.
+#' @return Returns an R list corresponding to the tabular data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
+#' @seealso build.table()
 #' @export
 #' @examples
 #' # Import tabular data dictionary as data frame
@@ -455,6 +456,8 @@ build.mdJSON <- function(x, title) {
   blankjson$data[[1]]$attributes$`date-updated` <- paste0(date)
 
   ## Combine json attribute sections: start, entry, and domain
+
+
 
   startstring <- paste0(
     '{\"dictionaryId\":\"',
