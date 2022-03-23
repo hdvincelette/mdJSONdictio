@@ -34,6 +34,7 @@ build()
 
 
 # Install package from GitHub
+detach("package:mdJSONdictio", unload = TRUE)
 install_github("hdvincelette/mdJSONdictio")
 
 
