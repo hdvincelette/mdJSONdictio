@@ -11,16 +11,19 @@
 library(mdJSONdictio)
 library(rjson)
 library(qdap)
+library(tidyverse)
+library(stats)
 
 
-# fix order
-# replace true/false with yes/no
+# test jsons
 
-setwd("~/GitHub/mdJSONdictio/inst/extdata")
+setwd("C:/Users/hvincelette/OneDrive - DOI/Data_management")
 e.g.json <- fromJSON(readLines("e.g.dictionary_complete.json"))
 
 newtable <- build.table(e.g.json)
 
+#SEOW_PTT_Dictionary.json
+#e.g.dictionary_complete.json
 
 build.table <- function(x) {
   JSONdictionary <- e.g.json
@@ -28,23 +31,62 @@ build.table <- function(x) {
   dictionarystring <-
     JSONdictionary[["data"]][[1]][["attributes"]][["json"]]
 
+  #\"subject\":[\"dataDictionary\"],\"entity\":
+  testterm1 <- paste0("dataDictionary", "\"],\"", "entity", "\"")
+
+  # #\"dictionaryIncludedWithResource\":true,\"domain\"
+  # testterm2 <-
+  #   paste0("dictionaryIncludedWithResource",
+  #          "\":",
+  #          "true",
+  #          ",\"",
+  #          "domain\"")
+
+
+  if (grepl(testterm1, dictionarystring) == TRUE) {
+    # \"entity\":[{....}],\"domain\":[{....}],\"responsibleParty\":{
+    # Extract entity string
+    term1 <- paste0("\"", "entity", "\":[")
+    term2 <- paste0("],\"", "domain", "\":")
+    entitystring <- genXtract(dictionarystring, term1, term2)
+
+    term3 <- paste0("attribute", "\":[")
+    term4 <- paste0("],\"", "definition", "\":")
+
+    entitystring2 <- genXtract(entitystring, term3, term4)
+
+    # Extract domain string
+    term5 <- paste0("\"", "domain", "\":[")
+    term6 <- paste0("],\"", "responsibleParty", "\":")
+    domainstring <- genXtract(dictionarystring, term5, term6)
+
+  } else {
+    # \"domain\":[{....}],\"entity\":[{....}],\"description\":...}}
+    # Extract entity string
+    term1 <- paste0("\"", "entity", "\":[")
+    # term2 <- paste0("],\"", "description", "\":")
+    entitystring <- genXtract(dictionarystring, term1, "}}")
+
+    term3 <- paste0("attribute", "\":[")
+    term4 <- paste0("],\"", "codeName", "\":")
+
+    entitystring2 <- genXtract(entitystring, term3, term4)
+
+    # Extract domain string
+    # \"domain\":[{....}],\"entity\":[{....}],\"description\":...}}
+    term5 <- paste0("\"", "domain", "\":[")
+    term6 <- paste0("],\"", "entity", "\":")
+    domainstring <- genXtract(dictionarystring, term5, term6)
+  }
+
+
+
+  # (grepl(testterm2, dictionarystring) == TRUE)
+  # else stop('R list in unsupported format.')
+
+
 
   #### Entity ####
-
-  # \"entity\":[{....}],\"domain\":[{....}],\"responsibleParty\":{
-
-  term1 <- paste0("\"", "entity", "\":[")
-  term2 <- paste0("],\"", "domain", "\":")
-  term3 <- paste0("attribute", "\":[")
-  term4 <- paste0("],\"", "definition", "\":")
-
-  # str_extract_all(dictionarystring, paste0('(?<=',term1,').+(?=',term2,')'))
-  # str_extract(dictionarystring, paste0('(?<=',term1,')(.+)(?=',term2,')'))
-
-  # Extract entity string
-  entitystring <- genXtract(dictionarystring, term1, term2)
-
-  entitystring2 <- genXtract(entitystring, term3, term4)
 
   # Create a vector of entity elements
   entityelements <-
@@ -117,27 +159,18 @@ build.table <- function(x) {
 
   #### Domains ####
 
-  # \"entity\":[{....}],\"domain\":[{....}],\"responsibleParty\":{
-
-  term1 <- paste0("\"", "domain", "\":[")
-  term2 <- paste0("],\"", "responsibleParty", "\":")
-
-  # Extract domain string
-  domainstring <- genXtract(dictionarystring, term1, term2)
-
-
   # Create a vector of domain elements
-  term3 <- paste0("{\"", "domainId", "\":")
-  term4 <- paste0(",\"", "domainItem", "\"")
-  term5 <- paste0("\"", "domainItem", "\":[")
-  term6 <- paste0("]")
+  term1 <- paste0("{\"", "domainId", "\":")
+  term2 <- paste0(",\"", "domainItem", "\"")
+  term3 <- paste0("\"", "domainItem", "\":[")
+  term4 <- paste0("]")
 
   # Extract Item and Ref strings
 
   domainRefs <-
-    genXtract(dictionarystring, term3, term4, with = TRUE)
+    genXtract(domainstring, term1, term2, with = TRUE)
   domainRefs <- as.vector(domainRefs)
-  domainItems <- genXtract(dictionarystring, term5, term6)
+  domainItems <- genXtract(domainstring, term3, term4)
   domainItems <- as.vector(domainItems)
 
   # Remove extra characters
@@ -178,12 +211,35 @@ build.table <- function(x) {
         Ref2[m] <- gsub("\"", "", Ref2[m])
       }
 
+
+      if (grepl(":", Ref2[m]) == TRUE){
       column <- beg2char(Ref2[m], ":")
       entry <- char2end(Ref2[m], ":")
+      }
+      else {next}
 
       reftable[[paste0(column)]][h] <- entry
       reftable$domainNum[h] <- h
     }
+
+    #  for (m in 1:length(Ref2)) {
+    #   if (grepl("\"", Ref2[m]) == TRUE) {
+    #     Ref2[m] <- gsub("\"", "", Ref2[m])
+    #   }
+    #
+    #
+    #   column <- beg2char(Ref2[m], ":")
+    #
+    #   if (grepl(":", Ref2[m]) == TRUE) {
+    #     entry <- char2end(Ref2[m], ":")
+    #   }
+    #   else {
+    #     entry <- NA
+    #   }
+    #
+    #   reftable[[paste0(column)]][h] <- entry
+    #   reftable$domainNum[h] <- h
+    # }
   }
 
 
@@ -213,7 +269,8 @@ build.table <- function(x) {
     Item <- domainItems[e]
 
     Item2 <-
-      unlist(strsplit(Item , "(?<=\\},)(?=\\{)"  , perl = TRUE), use.names = FALSE)
+      unlist(strsplit(Item , "(?<=\\},)(?=\\{)"  , perl = TRUE),
+             use.names = FALSE)
 
     for (f in 1:length(Item2)) {
       if (grepl("},", Item2[f]) == TRUE) {
@@ -252,11 +309,23 @@ build.table <- function(x) {
   }
 
   blanktable <- blanktable %>%
-    arrange(domainNum, entityNum) %>%
+    arrange(entityNum, domainNum) %>%
     select(-one_of(c("domainNum", "entityNum"))) %>%
     rename("domainItem_name" = "name",
-           "domainItem_value" = "value")
+           "domainItem_value" = "value") %>%
+    mutate(
+      allowNull = replace(allowNull, allowNull == "true", "yes"),
+      allowNull = replace(allowNull, allowNull == "false", "no")
+    ) %>%
+    mutate(
+      isCaseSensitive = replace(isCaseSensitive, isCaseSensitive == "true", "yes"),
+      isCaseSensitive = replace(isCaseSensitive, isCaseSensitive == "false", "no")
+    )
 
   assign("newtable", blanktable)
 
 }
+
+
+  # rfile <- file.choose()
+  # NCmisc::list.functions.in.file(rfile)
