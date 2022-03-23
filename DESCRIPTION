@@ -14,6 +14,8 @@ Depends:
     tidyverse,
     rjson,
     uuid,
+    qdap,
+    stats,
     R (>= 2.10)
 LazyData: true
 URL: https://github.com/hdvincelette/mdJSONdictio,
