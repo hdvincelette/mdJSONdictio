@@ -42,7 +42,7 @@ build()
 # Install package from GitHub
 remove.packages("mdJSONdictio")
 devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts=c("--no-multiarch"))
-devtools::install_github("hdvincelette/mdJSONdictio",build_vignettes= TRUE)
+devtools::install_github("hdvincelette/mdJSONdictio", build_vignettes= TRUE)
 
 # build_vignettes= TRUE
 
@@ -54,11 +54,10 @@ NCmisc::list.functions.in.file(rfile)
 # View package info
 library(mdJSONdictio)
 ??mdJSONdictio
-help.search("mdJSONdictio")
+help(package = "mdJSONdictio")
 ?mdJSONdictio::build.table
 ?mdJSONdictio::build.mdJSON
 vignette("mdJSONdictio")
-
 
 #### build.mdJSON() ####
 
@@ -186,8 +185,8 @@ test.json <- NA
 for (a in 1:length(files)) {
   test.json <- fromJSON(file = files[a])
   test.json <- build.table(test.json)
-  name<- paste0(files[a])
-  write.csv(test.json,paste0(name,".csv"))
+  name<- gsub("\\.json$","", paste0(files[a]))
+  write.csv(test.json,paste0(name,".csv"), na="",row.names = FALSE)
   print(files[a])
 }
 
