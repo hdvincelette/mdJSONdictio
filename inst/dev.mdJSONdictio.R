@@ -19,7 +19,7 @@ use_data()
 usethis::use_build_ignore()
 
 # Add packages
-usethis::use_package("qdap","Depends")
+usethis::use_package("tibble","Depends")
 
 # Write html markdown
 rmarkdown::render('vignettes/Intro_mdJSONdictio.Rmd')
@@ -76,7 +76,7 @@ e.g.dictionary<-readxl::read_excel(path)
 
 
 # Run function to create an R object
-newjson<- build.mdJSON(data = e.g.dictionary, title = "Example Dictionary")
+newjson<- build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
 
 # Convert R object to JSON
 e.g.dictionary = rjson::toJSON(newjson)
