@@ -98,9 +98,12 @@ pre code {
 </style>
 <p><br> Anyone who has written metadata in mdEditor knows creating dictionaries can be tedious and repetitive. The R package mdJSONdictio aims to streamline this process. Rather than defining data table attributes in <a href="https://go.mdeditor.org/#/dashboard" class="external-link">mdEditor</a>, users can fill out a tabular data dictionary template and format it to mdJSON using the function <code><a href="../reference/build.mdJSON.html">build.mdJSON()</a></code>. The resultant mdJSON file can be imported in mdEditor to create a Dictionary record with data table attributes already defined. Conversely, the functon <code><a href="../reference/build.table.html">build.table()</a></code> allows you to transform mdEditor data dictionary files into a tabular format that be used as a human-readable reference. <br><br><br></p>
 <div class="section level2">
-<h2 id="build-mdjson">
-<code>build.mdJSON()</code><a class="anchor" aria-label="anchor" href="#build-mdjson"></a>
+<h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
 </h2>
+<div class="section level3">
+<h3 id="build-mdjson">
+<code>build.mdJSON()</code><a class="anchor" aria-label="anchor" href="#build-mdjson"></a>
+</h3>
 <p>Transforms a tabular data dictionary into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a template as described in the <a href="#tabular-data-dictionary-template">Tabular Data Dictionary Template</a> section. A required parameter is <code>title</code>, which accepts a string to designate the title of the Dictionary record in mdEditor. <br><br></p>
 <div class="section level5">
 <h5 id="a-tabular-data-dictionary-imported-as-a-data-frame-in-r">A tabular data dictionary imported as a data frame in R:<a class="anchor" aria-label="anchor" href="#a-tabular-data-dictionary-imported-as-a-data-frame-in-r"></a>
@@ -597,10 +600,10 @@ pre code {
 <p><br></p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="build-table">
+<div class="section level3">
+<h3 id="build-table">
 <code>build.table()</code><a class="anchor" aria-label="anchor" href="#build-table"></a>
-</h2>
+</h3>
 <p>Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a data frame to be used as a human-readable reference. The output is formatted to the template described in the <a href="#tabular-data-dictionary-template">Tabular Data Dictionary Template</a> section. An optional parameter is <code>dictionary_num</code>, which accepts an integer to indicate the dictionary that should be processed if there is more than one in the R list (i.e. if multiple dictionaries are exported together in mdEditor and saved as a single mdJSON file). By default, <code>dictionary_num = 1</code>, so if the mdJSON file only has one dictionary, this parameter can be ignored. <br><br></p>
 <div class="section level5">
 <h5 id="an-mdjson-data-dictionary-imported-as-a-list-in-r">An mdJSON data dictionary imported as a list in R:<a class="anchor" aria-label="anchor" href="#an-mdjson-data-dictionary-imported-as-a-list-in-r"></a>
@@ -645,14 +648,14 @@ pre code {
 <p><br></p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="intented-use">Intented Use<a class="anchor" aria-label="anchor" href="#intented-use"></a>
-</h2>
+<div class="section level3">
+<h3 id="intented-use">Intented Use<a class="anchor" aria-label="anchor" href="#intented-use"></a>
+</h3>
 <p><code><a href="../reference/build.mdJSON.html">build.mdJSON()</a></code> is intended for anyone who writes mdEditor metadata. This function is meant to initiate mdEditor Dictionary records, not update them, which should be done manually in the <a href="https://go.mdeditor.org/#/dashboard" class="external-link">mdEditor</a> web application. It is recommended users maintain the tabular data dictionary as a human-readable reference for associated data product(s). Already have a data dictionary in mdEditor, but not a corresponding tabular data dictionary? Use the <code><a href="../reference/build.table.html">build.table()</a></code> to transform your mdJSON data dictionary to a tabular format. It is important to note the mdJSON schema is not ordered and mdEditor may export json files with a variety of structures. While the ``build.table()``` attempts to anticipate this variability, you may find your particular mdJSON data dictionary cannot be processed and returns an error. If this happens, please <a href="https://github.com/hdvincelette/mdJSONdictio/issues" class="external-link">report a bug</a> through the mdJSONdictio GitHub repository. <br><br></p>
 </div>
-<div class="section level2">
-<h2 id="quick-guide-to-mdeditor">Quick Guide to <a href="https://go.mdeditor.org/#/dashboard" class="external-link">mdEditor</a><a class="anchor" aria-label="anchor" href="#quick-guide-to-mdeditor"></a>
-</h2>
+<div class="section level3">
+<h3 id="quick-guide-to-mdeditor">Quick Guide to <a href="https://go.mdeditor.org/#/dashboard" class="external-link">mdEditor</a><a class="anchor" aria-label="anchor" href="#quick-guide-to-mdeditor"></a>
+</h3>
 <div class="section level4">
 <h4 id="after-building-your-mdjson-data-dictionary">After building your mdJSON data dictionary:<a class="anchor" aria-label="anchor" href="#after-building-your-mdjson-data-dictionary"></a>
 </h4>
@@ -684,6 +687,7 @@ pre code {
 <h5 id="export-the-mdjson-data-dictionary">2. Export the mdJSON data dictionary<a class="anchor" aria-label="anchor" href="#export-the-mdjson-data-dictionary"></a>
 </h5>
 <p>Navigate to the Export tab at the top of the page. Make sure no Metadata records, Contacts or undesired Dictionaries are selected (select and deselect the checkboxes under the search bars). Select the desired dictionary and click “Export Selected” to the right of the screen. Save the file to your working space. If you are not prompted to select a save location, the file may have automatically saved to your local Downloads folder. If you intend to transform more than one Dictionary record into a table, you can select and export them together into a single mdJSON file and specify which dictionary is processed by <code><a href="../reference/build.table.html">build.table()</a></code> with the parameter <code>dictionary_num</code>. <br><br><br></p>
+</div>
 </div>
 </div>
 </div>
