@@ -57,6 +57,7 @@ library(tibble)
 library(rmarkdown)
 library(DT)
 library(png)
+library(utils)
 library(rjson)
 ```
 
