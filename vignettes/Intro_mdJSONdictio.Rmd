@@ -120,7 +120,7 @@ print(as_tibble(read.csv(system.file("extdata", "e.g.dictionary2.csv", package =
 <br />
 <br />
 
-## A Quick Guide to [mdEditor](https://go.mdeditor.org/#/dashboard)
+## Quick Guide to [mdEditor](https://go.mdeditor.org/#/dashboard)
 
 ### After building your mdJSON data dictionary:
 
