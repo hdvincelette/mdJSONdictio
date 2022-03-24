@@ -22,12 +22,14 @@ library(mdJSONdictio)
 
 
 
-# If installation fails, install just the compiled code for the sub-architecture used by R CMD INSTALL
+# If mdJSONdictio installation fails:
+
+# Install just the compiled code for the sub-architecture used by R CMD INSTALL
 devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts=c("--no-multiarch"))
 
+# OR
 
-
-# Alternatively, install manually by downloading the mdJSONdictio zip from the GitHub repository
+# Install manually by downloading the mdJSONdictio zip from the GitHub repository
 browseURL("https://github.com/hdvincelette/mdJSONdictio/archive/refs/heads/master.zip")
 
 # Set the working directory to the zip location - Session->Set Working Directory->Choose Directory
