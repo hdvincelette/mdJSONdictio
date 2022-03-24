@@ -37,13 +37,14 @@ build()
 
 # Install package from GitHub
 remove.packages("mdJSONdictio")
-devtools::install_github("hdvincelette/mdJSONdictio")
+devtools::install_github("hdvincelette/mdJSONdictio", dependancy = TRUE)
 
 
 # View package info
 library(mdJSONdictio)
 ??mdJSONdictio
 ?mdJSONdictio::build.table
+?mdJSONdictio::build.mdJSON
 vignette("mdJSONdictio")
 
 
