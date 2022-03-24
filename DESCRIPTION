@@ -2,7 +2,7 @@ Package: mdJSONdictio
 Title: Tools to Build and Transform mdEditor mdJSON Data Dictionaries
 Version: 1.0
 Authors@R: 
-    person(given = "Vincelette", email = "hdvincelette@gmail.com", role = c("aut", "cre"),
+    person(given = "Hannah Vincelette", email = "hdvincelette@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6404-0410"))
 Description: Tools to write mdJSON dictionaries that can be imported to mdEditor to create Dictionary records.    
 License: MIT + file LICENSE
