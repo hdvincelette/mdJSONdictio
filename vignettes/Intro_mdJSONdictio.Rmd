@@ -161,7 +161,7 @@ Navigate to the Export tab at the top of the page. Make sure no Metadata records
 ```
 <br />
 <br />
-The two main components of the tabular data dictionary template are attributes and entry values, each of which are represented as a row. It is important to remember that while entry values are associated with a certain attribute, not all attributes have defined entry values. For example, the attribute "Sex" may have three defined entry values ("F","M", and "U"), where as the attribute "Year" does not have defined entry values since an unlimited number of years can be entered.
+The two main components of the tabular data dictionary template are attributes and entry values, each of which are represented as a row. Entry values are collectively referred to as the "domain" of an attribute. It is important to remember that while entry values are associated with a certain attribute, not all attributes have defined entry values. For example, the attribute "Sex" may have three defined entry values ("F","M", and "U"), where as the attribute "Year" does not have defined entry values since an unlimited number of years can be entered.
 <br />
 <br />
 Table 1.1 describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. "Definition" describes the template column. Many of these definitions are derived from the [mdEditor User Manual](https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html). "DataType" indicates the type of value allowed in the template column. "Required" indicates whether the template column is required by attributes and/or entry values ("No" indicates it is not required by either attributes or entry values). 
