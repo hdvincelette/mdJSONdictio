@@ -1,6 +1,6 @@
 #' Build Tabular Data Dictionaries
 #'
-#' Transforms an mdEditor mdJSON data dictionary (converted to an R list) into a data frame.
+#' Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a data frame.
 #' @param x An R list converted from an mdJSON data dictionary file.
 #' @param dictionary_num Default=1. An integer indicating the dictionary if there is more than one in the R list (i.e. if multiple dictionaries are exported together in mdEditor).
 #' @return Returns a data frame corresponding to the mdJSON data dictionary.
@@ -29,6 +29,9 @@ build.table <- function(x, dictionary_num) {
   else
     n <- dictionary_num
 
+  if (is.integer(n)==FALSE)
+    stop ('dictionary_num must be an integer.\n  Print `??mdJSONdictio` for Help Pages.'
+    )
 
   # Check validity of the input
   dictionarystring <-
@@ -36,17 +39,17 @@ build.table <- function(x, dictionary_num) {
 
   if (grepl("entity", dictionarystring) == FALSE)
     stop(
-      'No Entity detected.\nPrint `??mdJSONdictio` for more information on data frame requirements.'
+      'No Entity detected.\n  Print `??mdJSONdictio` for Help Pages.'
     )
 
   if (grepl("attribute", dictionarystring) == FALSE)
     stop(
-      'Entity requires atleast one attribute. \nPrint `??mdJSONdictio` for more information on data frame requirements.'
+      'Entity requires atleast one attribute.\n  Print `??mdJSONdictio` for Help Pages.'
     )
 
   if (grepl("dataType", dictionarystring) == FALSE)
     stop(
-      'Entity requires atleast one attribute. \nPrint `??mdJSONdictio` for more information on data frame requirements.'
+      'Entity requires atleast one attribute.\n  Print `??mdJSONdictio` for Help Pages.'
     )
 
 
