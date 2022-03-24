@@ -38,17 +38,17 @@ build.table <- function(x, dictionary_num) {
 
   if (grepl("entity", dictionarystring) == FALSE)
     stop(
-      'No Entity detected.\n  Print `??mdJSONdictio` for Help Pages.'
+      'No Entity detected.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
     )
 
   if (grepl("attribute", dictionarystring) == FALSE)
     stop(
-      'Entity requires atleast one attribute.\n  Print `??mdJSONdictio` for Help Pages.'
+      'Entity requires atleast one attribute.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
     )
 
   if (grepl("dataType", dictionarystring) == FALSE)
     stop(
-      'Entity requires atleast one attribute.\n  Print `??mdJSONdictio` for Help Pages.'
+      'Entity requires atleast one attribute.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
     )
 
 
