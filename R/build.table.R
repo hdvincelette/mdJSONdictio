@@ -5,7 +5,7 @@
 #' @param dictionary_num Default=1. An integer indicating the dictionary if there is more than one in the R list (i.e. if multiple dictionaries are exported together in mdEditor).
 #' @return Returns a data frame corresponding to the mdJSON data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
-#' @seealso build.mdJSON()
+#' @seealso ```build.mdJSON()```
 #' @export
 #' @examples
 #' # Import mdJSON data dictionary as an R list
