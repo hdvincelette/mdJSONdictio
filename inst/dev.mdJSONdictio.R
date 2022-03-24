@@ -1,7 +1,7 @@
 
 #### Update ####
 
-devtools::install_github("mne-tools/mne-r", INSTALL_opts=c("--no-multiarch"))
+devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts=c("--no-multiarch"))
 
 library(devtools)
 library(roxygen2)
