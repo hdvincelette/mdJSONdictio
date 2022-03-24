@@ -30,10 +30,6 @@ build.table <- function(x, dictionary_num) {
   else
     n <- dictionary_num
 
-  if (is.integer(n)==FALSE)
-    stop ('dictionary_num must be an integer.\n  Print `??mdJSONdictio` for Help Pages.'
-    )
-
 
 
   # Check validity of the input
