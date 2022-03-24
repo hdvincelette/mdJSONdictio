@@ -338,4 +338,3 @@ build.table <- function(x, dictionary_num) {
 
 }
 
-
