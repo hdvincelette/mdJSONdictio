@@ -15,7 +15,7 @@ build.table(x, dictionary_num)
 Returns a data frame corresponding to the mdJSON data dictionary.
 }
 \description{
-Transforms an mdEditor mdJSON data dictionary (converted to an R list) into a data frame.
+Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a data frame.
 }
 \examples{
 # Import mdJSON data dictionary as an R list
