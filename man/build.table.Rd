@@ -29,7 +29,7 @@ newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1)
 write.csv(newtable, "e.g.dictionary2.csv",na="",row.names = FALSE)
 }
 \seealso{
-build.mdJSON()
+\code{build.mdJSON()}
 }
 \keyword{dictionary,}
 \keyword{json,}
