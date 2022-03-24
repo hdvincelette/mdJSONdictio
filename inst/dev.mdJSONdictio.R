@@ -28,7 +28,7 @@ rmarkdown::render('vignettes/Intro_mdJSONdictio.Rmd')
 # pkgdown::build_site()
 deploy_to_branch()
 
-# Reload package with local changes
+ # Reload package with local changes
 document()
 load_all()
 install()
