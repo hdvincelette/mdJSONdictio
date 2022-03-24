@@ -163,7 +163,7 @@ for(a in 1:ncol(Data.Dictionary)){
 library(mdJSONdictio)
 test<- mdJSONdictio::build.table(fromJSON(
   file = system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-),dictionary_num = "hi")
+),dictionary_num = 1)
 
 library(mdJSONdictio)
 test<- mdJSONdictio::build.table(fromJSON(
