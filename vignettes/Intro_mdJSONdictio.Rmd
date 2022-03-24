@@ -189,7 +189,7 @@ kable(read.csv(path<-system.file("extdata", "template_column_definitions.csv", p
 </font>
 <br />
 <br />
-"dataType" is the only dictionary column with defined entry values. These are derived from the mdEditor web application. The definitions in Table 1.2 were acquired from the [mdCodes Viewer](https://adiwg.github.io/mdTools/#codes-page) in the mdTools interface.
+The "dataType" dictionary column has numerous defined entry values as shown in Table 1.2. These are derived from the mdEditor web application. The definitions in Table 1.2 were acquired from the [mdCodes Viewer](https://adiwg.github.io/mdTools/#codes-page) in the mdTools interface.
 <br />
 <br />
 
