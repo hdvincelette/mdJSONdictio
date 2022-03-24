@@ -12,10 +12,15 @@ You can install the development version of mdJSONdictio from [GitHub](https://gi
 install.packages("devtools")
 library(devtools)
 
+# Install qdap from CRAN
+install.packages("qdap")
+library(qdap)
+
 # Install mdJSONdictio from GitHub
 # optional: include `build_vingettes = TRUE`
 devtools::install_github("hdvincelette/mdJSONdictio")
 library(mdJSONdictio)
+
 
 ```
 
