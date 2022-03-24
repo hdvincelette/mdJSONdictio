@@ -1,10 +1,11 @@
 
 #### Update ####
 
-library(mdJSONdictio)
 library(devtools)
 library(roxygen2)
 library(pkgdown)
+library(qdap)
+library(mdJSONdictio)
 
 update_packages()
 
@@ -19,7 +20,7 @@ use_data()
 usethis::use_build_ignore()
 
 # Add packages
-usethis::use_package("qdap")
+usethis::use_package("dplyr","Depends")
 
 # Write html markdown
 rmarkdown::render('vignettes/mdJSONdictio.Rmd')
@@ -52,6 +53,7 @@ NCmisc::list.functions.in.file(rfile)
 # View package info
 library(mdJSONdictio)
 ??mdJSONdictio
+help.search("mdJSONdictio")
 ?mdJSONdictio::build.table
 ?mdJSONdictio::build.mdJSON
 vignette("mdJSONdictio")
