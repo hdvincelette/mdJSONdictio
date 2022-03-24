@@ -1,7 +1,7 @@
 
 # mdJSONdictio
 
-Tools for building and transforming mdEditor mdJSON data dictionaries in R.
+Tools to Build and Transform mdEditor mdJSON Data Dictionaries
 
 ## Installation
 
