@@ -5,7 +5,7 @@
 #' @param title A string designating the title of the Dictionary record in mdEditor.
 #' @return Returns an R list corresponding to the tabular data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
-#' @seealso build.table()
+#' @seealso ```build.table()````
 #' @export
 #' @examples
 #' # Import tabular data dictionary as data frame
