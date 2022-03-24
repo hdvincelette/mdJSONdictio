@@ -170,3 +170,8 @@ for (a in 1:length(files)) {
 test.json <- fromJSON(file = files[10])
 newtable <- build.table(test.json)
 
+
+rfile <- file.choose()
+NCmisc::list.functions.in.file(rfile)
+
+usethis::use_package("stats")
