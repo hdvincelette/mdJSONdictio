@@ -12,6 +12,7 @@ RoxygenNote: 7.1.2.9000
 Depends:
     dplyr,
     knitr,
+    qdap,
     R (>= 4.00),
     readxl,
     rjson,
@@ -24,5 +25,3 @@ URL: https://github.com/hdvincelette/mdJSONdictio,
     https://hdvincelette.github.io/mdJSONdictio/
 BugReports: https://github.com/hdvincelette/mdJSONdictio/issues
 VignetteBuilder: knitr
-Imports: 
-    qdap
