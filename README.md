@@ -17,8 +17,7 @@ install.packages("qdap")
 library(qdap)
 
 # Install mdJSONdictio from GitHub
-# optional: include `build_vingettes = TRUE`
-devtools::install_github("hdvincelette/mdJSONdictio")
+devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts=c("--no-multiarch"))
 library(mdJSONdictio)
 
 
