@@ -32,7 +32,7 @@ e.g.dictionary = rjson::toJSON(newjson)
 write(e.g.dictionary, "e.g.dictionary.json")
 }
 \seealso{
-build.table()
+```build.table()````
 }
 \keyword{dictionary,}
 \keyword{json,}
