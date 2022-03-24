@@ -171,9 +171,13 @@ test<- mdJSONdictio::build.table(fromJSON(
 ))
 
 # test jsons
+library(mdJSONdictio)
 
 setwd("C:/Users/hvincelette/OneDrive - DOI/Data_management")
 path <- "C:/Users/hvincelette/OneDrive - DOI/Data_management"
+
+setwd("~/Desktop/test_dictionaries")
+path = "~/Desktop/test_dictionaries"
 files <- list.files(path = path, pattern = ".json")
 
 test.json <- NA
@@ -181,7 +185,9 @@ test.json <- NA
 for (a in 1:length(files)) {
   test.json <- fromJSON(file = files[a])
   test.json <- build.table(test.json)
-  assign(paste0("df", a), test.json)
+  name<- paste0(files[a])
+  write.csv(test.json,paste0(name,".csv"))
+  print(files[a])
 }
 
 test.json <- fromJSON(file = files[10])
