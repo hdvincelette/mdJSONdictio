@@ -1,8 +1,6 @@
 
 #### Update ####
 
-devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts=c("--no-multiarch"))
-
 library(devtools)
 library(roxygen2)
 library(pkgdown)
@@ -43,6 +41,7 @@ build()
 
 # Install package from GitHub
 remove.packages("mdJSONdictio")
+devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts=c("--no-multiarch"), build_vignettes= TRUE)
 devtools::install_github("hdvincelette/mdJSONdictio",build_vignettes= TRUE)
 
 # build_vignettes= TRUE
