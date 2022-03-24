@@ -22,6 +22,7 @@
 build.table <- function(x, dictionary_num) {
   JSONdictionary <- x
 
+  n<-1
 
   # Check for optional parameters
   if (missing(dictionary_num))
@@ -32,6 +33,8 @@ build.table <- function(x, dictionary_num) {
   if (is.integer(n)==FALSE)
     stop ('dictionary_num must be an integer.\n  Print `??mdJSONdictio` for Help Pages.'
     )
+
+
 
   # Check validity of the input
   dictionarystring <-
