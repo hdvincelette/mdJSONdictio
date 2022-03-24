@@ -4,7 +4,6 @@
 library(devtools)
 library(roxygen2)
 library(pkgdown)
-library(qdap)
 library(mdJSONdictio)
 
 update_packages()
@@ -20,10 +19,10 @@ use_data()
 usethis::use_build_ignore()
 
 # Add packages
-usethis::use_package("dplyr","Depends")
+usethis::use_package("qdap","Depends")
 
 # Write html markdown
-rmarkdown::render('vignettes/mdJSONdictio.Rmd')
+rmarkdown::render('vignettes/Intro_mdJSONdictio.Rmd')
 
 # Update site
 # pkgdown::build_site()
@@ -42,12 +41,13 @@ build()
 
 # Install package from GitHub
 remove.packages("mdJSONdictio")
-devtools::install_github("hdvincelette/mdJSONdictio")
+devtools::install_github("hdvincelette/mdJSONdictio",build_vignettes= TRUE)
+
+# build_vignettes= TRUE
 
 # Check which packages used in function
 rfile <- file.choose()
 NCmisc::list.functions.in.file(rfile)
-
 
 
 # View package info
@@ -163,6 +163,11 @@ for(a in 1:ncol(Data.Dictionary)){
 library(mdJSONdictio)
 test<- mdJSONdictio::build.table(fromJSON(
   file = system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
+),dictionary_num = "hi")
+
+library(mdJSONdictio)
+test<- mdJSONdictio::build.table(fromJSON(
+  file = "Test.json"
 ))
 
 # test jsons
