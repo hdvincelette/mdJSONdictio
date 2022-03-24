@@ -41,7 +41,7 @@ build.mdJSON <- function(x, title) {
     stop(
       'Data frame missing required columns: ',
       toString(setdiff(Required.cols, names(Data.Dictionary))),
-      '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.'
+      '.\n  Print `??mdJSONdictio` for Help Pages.'
     )
 
   for (a in 1:ncol(Data.Dictionary)) {
@@ -62,7 +62,7 @@ build.mdJSON <- function(x, title) {
     stop(
       'Data frame contains an invalid column: ',
       colnames(Data.Dictionary[a]),
-      '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.'
+      '.\n  Print `??mdJSONdictio` for Help Pages.'
     )
     for (aa in 1:nrow(Data.Dictionary)) {
       if (colnames(Data.Dictionary[a]) %in% c("codeName",
@@ -75,7 +75,7 @@ build.mdJSON <- function(x, title) {
           colnames(Data.Dictionary[a]),
           '==NA in row ',
           aa,
-          '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.'
+          '.\n  Print `??mdJSONdictio` for Help Pages.'
         )
       if (Data.Dictionary$domainItem_name[aa] == "colname" &
           Data.Dictionary$domainItem_value[aa] != "colname")
@@ -87,7 +87,7 @@ build.mdJSON <- function(x, title) {
           Data.Dictionary$domainItem_name[aa],
           '" for domainItem_name and "',
           Data.Dictionary$domainItem_value[aa],
-          '" for domainItem_value. \n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.'
+          '" for domainItem_value.\n  Print `??mdJSONdictio` for Help Pages.'
         )
       if (Data.Dictionary$domainItem_name[aa] != "colname" &
           Data.Dictionary$domainItem_value[aa] == "colname")
@@ -98,7 +98,7 @@ build.mdJSON <- function(x, title) {
           Data.Dictionary$domainItem_value[aa],
           '" in row ',
           aa,
-          '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.'
+          '.\n  Print `??mdJSONdictio` for Help Pages.'
         )
 
       if (Data.Dictionary$domainItem_name[aa] == "colname" &
@@ -106,7 +106,7 @@ build.mdJSON <- function(x, title) {
         stop(
           'Required field incomplete. \n  dataType==NA in row ',
           aa,
-          '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.'
+          '.\n  Print `??mdJSONdictio` for Help Pages.'
         )
 
       if (Data.Dictionary$domainItem_name[aa] == "colname" &
@@ -114,7 +114,7 @@ build.mdJSON <- function(x, title) {
         stop(
           'Required field incomplete. \n  allowNull==NA in row ',
           aa,
-          '.\n  Print `?mdJSONdictio::build.mdJSON` for more information on data frame requirements.'
+          '.\n  Print `??mdJSONdictio` for Help Pages.'
         )
 
 
