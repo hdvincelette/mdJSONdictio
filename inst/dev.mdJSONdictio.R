@@ -6,6 +6,8 @@ library(devtools)
 library(roxygen2)
 library(pkgdown)
 
+update_packages()
+
 setwd("~/Documents/GitHub/mdJSONdictio/")
 setwd("~/GitHub/mdJSONdictio/")
 
@@ -33,16 +35,15 @@ exists("build.table", where=globalenv(), inherits = TRUE)
 # Create package zip
 build()
 
-
 # Install package from GitHub
 remove.packages("mdJSONdictio")
-install_github("hdvincelette/mdJSONdictio")
+devtools::install_github("hdvincelette/mdJSONdictio")
 
 
 # View package info
 library(mdJSONdictio)
 ??mdJSONdictio
-?mdJSONdictio::build.mdJSON
+?mdJSONdictio::build.table
 vignette("mdJSONdictio")
 
 
