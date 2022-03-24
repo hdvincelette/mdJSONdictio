@@ -85,12 +85,14 @@
 
 
 
-<span class="co"># If installation fails, install just the compiled code for the sub-architecture used by R CMD INSTALL</span>
+<span class="co"># If mdJSONdictio installation fails:</span>
+
+<span class="co"># Install just the compiled code for the sub-architecture used by R CMD INSTALL</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hdvincelette/mdJSONdictio"</span>, INSTALL_opts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"--no-multiarch"</span><span class="op">)</span><span class="op">)</span>
 
+<span class="co"># OR</span>
 
-
-<span class="co"># Alternatively, install manually by downloading the mdJSONdictio zip from the GitHub repository</span>
+<span class="co"># Install manually by downloading the mdJSONdictio zip from the GitHub repository</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/browseURL.html" class="external-link">browseURL</a></span><span class="op">(</span><span class="st">"https://github.com/hdvincelette/mdJSONdictio/archive/refs/heads/master.zip"</span><span class="op">)</span>
 
 <span class="co"># Set the working directory to the zip location - Session-&gt;Set Working Directory-&gt;Choose Directory</span>
