@@ -80,9 +80,22 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://trinker.github.io/qdap/" class="external-link">qdap</a></span><span class="op">)</span>
 
 <span class="co"># Install mdJSONdictio from GitHub</span>
-<span class="co"># optional: include `build_vingettes = TRUE`</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hdvincelette/mdJSONdictio"</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hdvincelette/mdJSONdictio" class="external-link">mdJSONdictio</a></span><span class="op">)</span></code></pre>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hdvincelette/mdJSONdictio" class="external-link">mdJSONdictio</a></span><span class="op">)</span>
+
+
+
+<span class="co"># If installation fails, install just the compiled code for the sub-architecture used by R CMD INSTALL</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hdvincelette/mdJSONdictio"</span>, INSTALL_opts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"--no-multiarch"</span><span class="op">)</span><span class="op">)</span>
+
+
+
+<span class="co"># Alternatively, install manually by downloading the mdJSONdictio zip from the GitHub repository</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/browseURL.html" class="external-link">browseURL</a></span><span class="op">(</span><span class="st">"https://github.com/hdvincelette/mdJSONdictio/archive/refs/heads/master.zip"</span><span class="op">)</span>
+
+<span class="co"># Set the working directory to the zip location - Session-&gt;Set Working Directory-&gt;Choose Directory</span>
+<span class="co"># Install the mdJSONdictio zip</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mdJSONdictio-master"</span><span class="op">)</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
