@@ -1,6 +1,8 @@
 
 #### Update ####
 
+devtools::install_github("mne-tools/mne-r", INSTALL_opts=c("--no-multiarch"))
+
 library(devtools)
 library(roxygen2)
 library(pkgdown)
