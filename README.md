@@ -17,9 +17,22 @@ install.packages("qdap")
 library(qdap)
 
 # Install mdJSONdictio from GitHub
-devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts=c("--no-multiarch"))
+devtools::install_github("hdvincelette/mdJSONdictio")
 library(mdJSONdictio)
 
+
+
+# If installation fails, install just the compiled code for the sub-architecture used by R CMD INSTALL
+devtools::install_github("hdvincelette/mdJSONdictio"), INSTALL_opts=c("--no-multiarch"))
+
+
+
+# Alternatively, install manually by downloading the mdJSONdictio zip from the GitHub repository
+browseURL("https://github.com/hdvincelette/mdJSONdictio/archive/refs/heads/master.zip")
+
+# Set the working directory to the zip location - Session->Set Working Directory->Choose Directory
+# Install the mdJSONdictio zip
+install.packages("mdJSONdictio-master")
 
 ```
 
