@@ -1,8 +1,8 @@
 Package: mdJSONdictio
-Title: Tools to Build mdJSON Dictionaries for mdEditor
+Title: Tools to Build and Transform mdEditor mdJSON Data Dictionaries
 Version: 1.0
 Authors@R: 
-    person("Hannah", "Vincelette", "hdvincelette@gmail.com", role = c("aut", "cre"),
+    person(given = "Vincelette", email = "hdvincelette@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6404-0410"))
 Description: Tools to write mdJSON dictionaries that can be imported to mdEditor to create Dictionary records.    
 License: MIT + file LICENSE
@@ -10,18 +10,18 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2.9000
 Depends:
-    R (>= 4.00)
-LazyData: true
-URL: https://github.com/hdvincelette/mdJSONdictio,
-    https://hdvincelette.github.io/mdJSONdictio/
-BugReports: https://github.com/hdvincelette/mdJSONdictio/issues
-VignetteBuilder: knitr
-Imports: 
     knitr,
-    qdapRegex,
+    R (>= 4.00),
     readxl,
     rjson,
     rmarkdown,
     stats,
     stringr,
     uuid
+LazyData: true
+URL: https://github.com/hdvincelette/mdJSONdictio,
+    https://hdvincelette.github.io/mdJSONdictio/
+BugReports: https://github.com/hdvincelette/mdJSONdictio/issues
+VignetteBuilder: knitr
+Imports: 
+    qdap
