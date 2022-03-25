@@ -33,7 +33,7 @@ build.table <- function(x, dictionary_num, entity_num) {
     n <- dictionary_num
 
 
-  if (missing(dictionary_num))
+  if (missing(entity_num))
     a <- 1
   else
     a <- entity_num
@@ -58,14 +58,6 @@ build.table <- function(x, dictionary_num, entity_num) {
 
 
   # Extract domain and entity string lists
-#
-#   indices <-
-#     c(0, which(cumsum(sapply(unlist(strsplit(dictionarystring, split = '')),
-#                              function(x)
-#                                ifelse(x == '{', 1, ifelse(x == '}',-1, 0)))) == 0))
-#   sapply(1:(length(indices) - 1), function(i)
-#     substring(dictionarystring, indices[i] + 1, indices[i + 1]))
-
   newlist = fromJSON(dictionarystring)
 
   entitylist <- newlist[["dataDictionary"]][["entity"]]
