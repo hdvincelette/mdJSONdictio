@@ -130,7 +130,7 @@ test <- mdJSONdictio::build.table(fromJSON(
 
 
 library(mdJSONdictio)
-test <- mdJSONdictio::build.table(fromJSON(file = "e.g.dictionary2.json"))
+test <- mdJSONdictio::build.table(fromJSON(x = "mdeditor-20220324-230366.json"),entity_num=2)
 
 ## Error check ##
 
@@ -147,9 +147,9 @@ test.json <- NA
 
 for (a in 1:length(files)) {
   test.json <- fromJSON(file = files[a])
-  test.json <- build.table(x = test.json, dictionary_num = "hi")
+  test.json <- build.table(x = test.json)
   name <- gsub("\\.json$", "", paste0(files[a]))
-  # write.csv(test.json,paste0(name,".csv"), na="",row.names = FALSE)
+  write.csv(test.json,paste0(name,".csv"), na="",row.names = FALSE)
   print(files[a])
 }
 
