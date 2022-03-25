@@ -193,3 +193,20 @@ for (a in 1:length(files)) {
 test.json <- fromJSON(file = files[10])
 newtable <- build.table(test.json)
 
+#############################################################################
+
+library(mdJSONdictio)
+
+file<- fromJSON(
+  file = system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
+  )
+
+
+dictstring<- file[["data"]][[1]][["attributes"]][["json"]]
+
+
+
+qdap::bracketX(dictstring, bracket="curly")
+
+
+
