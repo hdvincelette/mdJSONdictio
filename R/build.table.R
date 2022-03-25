@@ -39,16 +39,6 @@ build.table <- function(x, dictionary_num, entity_num) {
     n <- entity_num
 
 
-  if (is.character(dictionary_num) == TRUE)
-    stop (
-      'dictionary_num only accepts integers.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
-    )
-  if (is.character(entity_num) == TRUE)
-    stop (
-      'entity_num only accepts integers.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
-    )
-
-
   # Check validity of the R list
   dictionarystring <-
     JSONdictionary[["data"]][[n]][["attributes"]][["json"]]
@@ -68,13 +58,13 @@ build.table <- function(x, dictionary_num, entity_num) {
 
 
   # Extract domain and entity string lists
-
-  indices <-
-    c(0, which(cumsum(sapply(unlist(strsplit(dictionarystring, split = '')),
-                             function(x)
-                               ifelse(x == '{', 1, ifelse(x == '}',-1, 0)))) == 0))
-  sapply(1:(length(indices) - 1), function(i)
-    substring(dictionarystring, indices[i] + 1, indices[i + 1]))
+#
+#   indices <-
+#     c(0, which(cumsum(sapply(unlist(strsplit(dictionarystring, split = '')),
+#                              function(x)
+#                                ifelse(x == '{', 1, ifelse(x == '}',-1, 0)))) == 0))
+#   sapply(1:(length(indices) - 1), function(i)
+#     substring(dictionarystring, indices[i] + 1, indices[i + 1]))
 
   newlist = fromJSON(dictionarystring)
 
@@ -177,7 +167,7 @@ build.table <- function(x, dictionary_num, entity_num) {
       mutate_at(vars(allowNull, isCaseSensitive),
                 ~ replace(., which(. == "FALSE"), "no"))
 
-    assign(paste0("blanktable", a), blanktable)
+    assign(paste0("table", a), blanktable)
   }
 
 # }
