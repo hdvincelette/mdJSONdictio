@@ -27,6 +27,17 @@ build.table <- function(x, dictionary_num, entity_num) {
   n <- 1
   a <- 1
 
+
+  if (is.character(dictionary_num) == TRUE)
+    stop (
+      'dictionary_num only accepts an integer.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
+    )
+  if (is.character(entity_num) == TRUE)
+    stop (
+      'entity_num only accepts an integer.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
+    )
+
+
   ## Parameter arguments
   if (missing(dictionary_num))
     n <- 1
@@ -38,15 +49,6 @@ build.table <- function(x, dictionary_num, entity_num) {
     a <- 1
   else
     a <- entity_num
-
-  if (is.character(n) == TRUE)
-    stop (
-      'dictionary_num only accepts an integer.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
-    )
-  if (is.character(a) == TRUE)
-    stop (
-      'entity_num only accepts an integer.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
-    )
 
 
   # Check validity of the R list
