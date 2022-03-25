@@ -131,7 +131,7 @@ test <- mdJSONdictio::build.table(fromJSON(
 setwd("~/Desktop/test_dictionaries")
 path = "~/Desktop/test_dictionaries"
 library(mdJSONdictio)
-test2 <- mdJSONdictio::build.table(x=fromJSON(file="2Entities.json"))
+test2 <- mdJSONdictio::build.table(x=fromJSON(file="2Entities.json"), entity_num = "hi")
 
 
 ## Error check ##
