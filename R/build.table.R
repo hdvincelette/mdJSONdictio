@@ -20,7 +20,7 @@
 
 
 build.table <- function(x, dictionary_num) {
-  JSONdictionary <- Test
+  JSONdictionary <- x
 
   n<-1
 
