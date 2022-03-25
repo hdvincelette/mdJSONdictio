@@ -95,7 +95,8 @@ print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary.json", packag
 
 ## ```build.table()``` 
 
-Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a data frame to be used as a human-readable reference. The output is formatted to the template described in the [Tabular Data Dictionary Template] section. An optional parameter is ```dictionary_num```, which accepts an integer to indicate the dictionary that should be processed if there is more than one in the R list (i.e. if multiple dictionaries are exported together in mdEditor and saved as a single mdJSON file). By default, ```dictionary_num = 1```, so if the mdJSON file only has one dictionary, this parameter can be ignored.
+Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a data frame to be used as a human-readable reference. The output is formatted to the template described in the [Tabular Data Dictionary Template] section. Optional parameters are ```entity_num``` and ```dictionary_num```, which accept integers to indicate the dictionary and entity to be processed if more than one exists in the mdJSON file. This is useful when multiple entities are created in a Dictionary record or multiple dictionaries are exported together in mdEditor. By default, ```entity_num = 1``` and ```dictionary_num = 1```, so if the mdJSON file only has one dictionary and entity, these parameters can be ignored. 
+#' 
 <br />
 <br />
 
