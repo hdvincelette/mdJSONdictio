@@ -38,6 +38,9 @@ build.table <- function(x, dictionary_num, entity_num) {
   else
     a <- entity_num
 
+  #if(is.character(n)==TRUE) stop ('dictionary_num only accepts an integer.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.')
+  #if(is.character(a)==TRUE) stop ('entity_num only accepts an integer.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.')
+
 
   # Check validity of the R list
   dictionarystring <-
@@ -102,12 +105,12 @@ build.table <- function(x, dictionary_num, entity_num) {
       )
     )
 
-    for (b in 1:length(entitystring[[a]][["attribute"]])) {
+    for (b in 1:length(entitylist[[a]][["attribute"]])) {
       blanktable[nrow(blanktable) + 1,] <- NA
 
-      for (c in 1:length(entitystring[[a]][["attribute"]][[b]])) {
-        column <- names(entitystring[[a]][["attribute"]][[b]])[c]
-        entry <- entitystring[[a]][["attribute"]][[b]][[c]]
+      for (c in 1:length(entitylist[[a]][["attribute"]][[b]])) {
+        column <- names(entitylist[[a]][["attribute"]][[b]])[c]
+        entry <- entitylist[[a]][["attribute"]][[b]][[c]]
 
 
         blanktable[[paste0(column)]][b] <- entry
