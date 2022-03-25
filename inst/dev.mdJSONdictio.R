@@ -128,9 +128,10 @@ test <- mdJSONdictio::build.table(fromJSON(
   file = system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
 ))
 
-
+setwd("~/Desktop/test_dictionaries")
+path = "~/Desktop/test_dictionaries"
 library(mdJSONdictio)
-test2 <- mdJSONdictio::build.table(x=fromJSON(file="2Entities.json"), entity_num=2)
+test2 <- mdJSONdictio::build.table(x=fromJSON(file="2Entities.json"))
 
 
 ## Error check ##
