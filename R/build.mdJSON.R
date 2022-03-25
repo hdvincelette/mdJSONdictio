@@ -152,7 +152,7 @@ build.mdJSON <- function(x, title) {
   entityId <- UUIDgenerate(use.time = FALSE, n = 1)
 
   ## Create date in IOS format
-  # "date-updated":"2019-10-16T20:13:48.641Z"
+  ## "date-updated":"2019-10-16T20:13:48.641Z"
   date <- strftime(as.POSIXlt(Sys.time(), "UTC"), "%Y-%m-%dT%H:%M")
   date <- paste0(date, ":00.000Z", collapse = "")
 
