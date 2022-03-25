@@ -276,7 +276,7 @@ build.mdJSON <- function(x, title) {
   ## 	{\"name\":\"4\",\"value\":\"4\"},
   ## 	{\"name\":\"6\",\"value\":\"6\"},
   ## 	{\"name\":\"5\",\"value\":\"5\"},
-  ## 	{\"name\":\"7\",\"value\":\"7\"}],\"description\":\"State where banded\"},
+  ## 	{\"name\":\"7\",\"value\":\"7\"}],\"Fat score of captured bird (0-7)\"},
 
 
   ## Create domain data frames for loop
