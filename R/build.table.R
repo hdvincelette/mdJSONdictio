@@ -39,11 +39,11 @@ build.table <- function(x, dictionary_num, entity_num) {
     n <- entity_num
 
 
-  if (is.character(n) == TRUE)
+  if (is.character(dictionary_num) == TRUE)
     stop (
       'dictionary_num only accepts integers.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
     )
-  if (is.character(a) == TRUE)
+  if (is.character(entity_num) == TRUE)
     stop (
       'entity_num only accepts integers.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
     )
