@@ -36,7 +36,7 @@ build.table <- function(x, dictionary_num, entity_num) {
   if (missing(dictionary_num))
     a <- 1
   else
-    n <- entity_num
+    a <- entity_num
 
 
   # Check validity of the R list
