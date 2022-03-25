@@ -130,7 +130,7 @@ test <- mdJSONdictio::build.table(fromJSON(
 
 
 library(mdJSONdictio)
-test <- mdJSONdictio::build.table(x=fromJSON(file="2Entities.json"),diction)
+test2 <- mdJSONdictio::build.table(x=fromJSON(file="2Entities.json"), entity_num=2)
 
 
 ## Error check ##
