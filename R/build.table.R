@@ -71,7 +71,7 @@ build.table <- function(x, dictionary_num, entity_num) {
   # Create blank output table
 
   blanktable <- setNames(
-    data.frame(matrix(ncol = 9, nrow = 0)),
+    data.frame(matrix(ncol = 10, nrow = 0)),
     c(
       "entityNum",
       "domainNum",
@@ -81,6 +81,7 @@ build.table <- function(x, dictionary_num, entity_num) {
       "definition",
       "dataType",
       "allowNull",
+      "isCaseSensitive",
       "domainId"
     )
   )
@@ -92,7 +93,7 @@ build.table <- function(x, dictionary_num, entity_num) {
     domaincount <- 0
 
     blanktable <- setNames(
-      data.frame(matrix(ncol = 9, nrow = 0)),
+      data.frame(matrix(ncol = 10, nrow = 0)),
       c(
         "entityNum",
         "domainNum",
@@ -102,6 +103,7 @@ build.table <- function(x, dictionary_num, entity_num) {
         "definition",
         "dataType",
         "allowNull",
+        "isCaseSensitive",
         "domainId"
       )
     )
@@ -139,14 +141,18 @@ build.table <- function(x, dictionary_num, entity_num) {
         blanktable$codeName[nrow(blanktable)] <-
           domainlist[[d]][["codeName"]]
 
+        blanktable$domainNum[nrow(blanktable)] <- e
+        blanktable$entityNum[nrow(blanktable)] <- b
+
+        if(is.null(domainlist[[d]][["domainItem"]])==TRUE){next}
+
         for (f in 1:length(domainlist[[d]][["domainItem"]])) {
           for (g in 1:length(domainlist[[d]][["domainItem"]][[f]])) {
             column <- names(domainlist[[d]][["domainItem"]][[f]])[[g]]
             entry <- domainlist[[d]][["domainItem"]][[f]][[g]]
 
             blanktable[[paste0(column)]][nrow(blanktable)] <- entry
-            blanktable$domainNum[nrow(blanktable)] <- f
-            blanktable$entityNum[nrow(blanktable)] <- 0
+
           }
         }
       }
