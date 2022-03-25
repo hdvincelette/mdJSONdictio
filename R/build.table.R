@@ -14,7 +14,7 @@
 #' e.g.dictionary2 <- fromJSON(file = path)
 #'
 #' # Transform R list to a data frame
-#' newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1)
+#' newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1, entity_num = 1)
 #'
 #' # Export JSON to disk
 #' write.csv(newtable, "e.g.dictionary2.csv",na="",row.names = FALSE)
@@ -39,8 +39,14 @@ build.table <- function(x, dictionary_num, entity_num) {
   else
     a <- entity_num
 
-  #if(is.character(n)==TRUE) stop ('dictionary_num only accepts an integer.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.')
-  #if(is.character(a)==TRUE) stop ('entity_num only accepts an integer.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.')
+  if (is.character(n) == TRUE)
+    stop (
+      'dictionary_num only accepts an integer.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
+    )
+  if (is.character(a) == TRUE)
+    stop (
+      'entity_num only accepts an integer.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
+    )
 
 
   # Check validity of the R list
