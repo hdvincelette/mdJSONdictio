@@ -4,6 +4,7 @@
 library(devtools)
 library(roxygen2)
 library(pkgdown)
+
 library(mdJSONdictio)
 
 update_packages()
@@ -41,6 +42,7 @@ build()
 
 # Install package from GitHub
 remove.packages("mdJSONdictio")
+devtools::install_github("hdvincelette/mdJSONdictio")
 devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts=c("--no-multiarch"))
 devtools::install_github("hdvincelette/mdJSONdictio", build_vignettes= TRUE)
 
@@ -197,16 +199,20 @@ newtable <- build.table(test.json)
 
 library(mdJSONdictio)
 
+
 file<- fromJSON(
   file = system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
   )
 
-
 dictstring<- file[["data"]][[1]][["attributes"]][["json"]]
 
+indices <- c(0, which(cumsum(sapply(unlist(strsplit(dictstring, split='')),
+                                    function(x) ifelse(x == '{', 1, ifelse(x=='}', -1, 0))))==0))
+sapply(1:(length(indices)-1), function(i) substring(dictstring, indices[i]+1, indices[i+1]))
 
+newlist=fromJSON(dictstring)
 
-qdap::bracketX(dictstring, bracket="curly")
-
+entitystring<-newlist[["dataDictionary"]][["entity"]]
+domainstring<-newlist[["dataDictionary"]][["domain"]]
 
 
