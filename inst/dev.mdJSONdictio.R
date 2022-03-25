@@ -1,7 +1,5 @@
 
-
 #### Update ####
-
 library(devtools)
 library(roxygen2)
 library(pkgdown)
@@ -131,7 +129,7 @@ test <- mdJSONdictio::build.table(fromJSON(
 setwd("~/Desktop/test_dictionaries")
 path = "~/Desktop/test_dictionaries"
 library(mdJSONdictio)
-test2 <- mdJSONdictio::build.table(x=fromJSON(file="2Entities.json"), entity_num = "hi")
+test2 <- mdJSONdictio::build.table(x=fromJSON(file="2Entities.json"), entity_num = 2)
 
 
 ## Error check ##
