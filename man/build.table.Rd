@@ -4,14 +4,14 @@
 \alias{build.table}
 \title{Build Tabular Data Dictionaries}
 \usage{
-build.table(x, dictionary_num, entity_num)
+build.table(x, entity_num, dictionary_num)
 }
 \arguments{
 \item{x}{An R list converted from an mdJSON data dictionary file.}
 
-\item{dictionary_num}{Default=1. An integer indicating the dictionary if there is more than one in the R list (i.e. if multiple dictionaries are exported together in mdEditor).}
+\item{entity_num}{Default=1. An integer indicating the entity if there is more than one in the mdJSON file.}
 
-\item{entity_num}{Default=1. An integer indicating the entity if there is more than one in the R list.}
+\item{dictionary_num}{Default=1. An integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).}
 }
 \value{
 Returns a data frame corresponding to the mdJSON data dictionary.
@@ -25,7 +25,7 @@ path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
 e.g.dictionary2 <- fromJSON(file = path)
 
 # Transform R list to a data frame
-newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1)
+newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1, entity_num = 1)
 
 # Export JSON to disk
 write.csv(newtable, "e.g.dictionary2.csv",na="",row.names = FALSE)
