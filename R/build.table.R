@@ -20,7 +20,7 @@
 
 
 build.table <- function(x, dictionary_num) {
-  JSONdictionary <- x
+  JSONdictionary <- Test
 
   n<-1
 
@@ -162,6 +162,7 @@ build.table <- function(x, dictionary_num) {
       if (grepl("\"", subelements[c]) == TRUE) {
         subelements[c] <- gsub("\"", "", subelements[c])
       }
+
 
       column <- beg2char(subelements[c], ":")
       entry <- char2end(subelements[c], ":")
@@ -311,6 +312,11 @@ build.table <- function(x, dictionary_num) {
         }
       }
     }
+
+
+    blanktable <-
+      blanktable %>%
+      filter(!is.na(codeName))
 
     for (o in 1:nrow(blanktable)) {
       for (p in 1:nrow(reftable)) {
