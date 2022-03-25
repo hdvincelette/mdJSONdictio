@@ -195,24 +195,4 @@ for (a in 1:length(files)) {
 test.json <- fromJSON(file = files[10])
 newtable <- build.table(test.json)
 
-#############################################################################
-
-library(mdJSONdictio)
-
-
-file<- fromJSON(
-  file = system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-  )
-
-dictstring<- file[["data"]][[1]][["attributes"]][["json"]]
-
-indices <- c(0, which(cumsum(sapply(unlist(strsplit(dictstring, split='')),
-                                    function(x) ifelse(x == '{', 1, ifelse(x=='}', -1, 0))))==0))
-sapply(1:(length(indices)-1), function(i) substring(dictstring, indices[i]+1, indices[i+1]))
-
-newlist=fromJSON(dictstring)
-
-entitystring<-newlist[["dataDictionary"]][["entity"]]
-domainstring<-newlist[["dataDictionary"]][["domain"]]
-
 
