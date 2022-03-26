@@ -22,7 +22,7 @@
 #' write(e.g.dictionary, "e.g.dictionary.json")
 
 
-edit.build.mdJSON <- function(x, title) {
+build.mdJSON <- function(x, title) {
   # Prepare the dictionary
 
   Data.Dictionary <- x
