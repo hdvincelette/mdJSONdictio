@@ -13,19 +13,20 @@
 #' e.g.dictionary<-readxl::read_excel(path)
 #'
 #' # Transform data frame to R list
-#' newjson<- build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
+#' newjson2<- build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
 #'
 #' # Convert R list to JSON
-#' e.g.dictionary = rjson::toJSON(newjson)
+#' e.g.dictionary = rjson::toJSON(newjson2)
 #'
 #' # Export JSON to disk
 #' write(e.g.dictionary, "e.g.dictionary.json")
 
 
-
-build.mdJSON <- function(x, title) {
+edit.build.mdJSON <- function(x, title) {
   # Prepare the dictionary
+
   Data.Dictionary <- x
+
 
   ## Check for errors
   Required.cols <- c(
@@ -56,6 +57,8 @@ build.mdJSON <- function(x, title) {
       "unitsResolution",
       "minValue",
       "maxValue",
+      "missingValue",
+      "fieldWidth",
       "isCaseSensitive",
       "notes"
     ))
@@ -152,7 +155,7 @@ build.mdJSON <- function(x, title) {
   entityId <- UUIDgenerate(use.time = FALSE, n = 1)
 
   ## Create date in IOS format
-  ## "date-updated":"2019-10-16T20:13:48.641Z"
+  ## "2019-10-16T20:13:48.641Z"
   date <- strftime(as.POSIXlt(Sys.time(), "UTC"), "%Y-%m-%dT%H:%M")
   date <- paste0(date, ":00.000Z", collapse = "")
 
@@ -180,307 +183,246 @@ build.mdJSON <- function(x, title) {
 
 
 
-  # Create entity string
+  # Add domain and entity reference numbers
 
-  ## REFERENCE
-  ## \"entity\":[{\"entityId\":\"df6e75bb-450a-4b17-ab89-2bb9ea916a89\",\"attribute\":[
-  ## {\"allowNull\":true,
-  ## \"codeName\":\"Project\",
-  ## \"dataType\":\"character varying\",
-  ## \"domainId\":\"5c7daa81-d3b0-405c-9e6d-85632f4b2d2a\"},
-  ## ]}]
-
-  ## Create entity data frame for loop
-  EntityDictionary <- Data.Dictionary %>%
-    filter(domainItem_value == "colname") %>%
-    select(-c("domainItem_name", "domainItem_value"))
-
-  ## Create empty lists for loop
-  elementlist <- list()
-  entitylist <- list()
-  entityelement = NULL
+  Data.Dictionary$entityNum <- NA
+  Data.Dictionary$domainNum <- NA
+  entitycount = 0
+  domaincount = 0
 
 
-  ## Loop to create entity list
-  for (h in 1:nrow(EntityDictionary)) {
-    elementlist <- list()
 
-    for (i in 1:ncol(EntityDictionary)) {
-      if (is.na(EntityDictionary[h, i]) == TRUE)
-      {
-        next
-      }
-      else if (colnames(EntityDictionary[h, i]) %in% c("allowNull", "isCaseSensitive") &
-               EntityDictionary[h, i] == "true")
-      {
-        entityelement <-
-          paste('\"', colnames(EntityDictionary[i]), '"', ':true', sep = "")
-      }
-      else if (colnames(EntityDictionary[h, i]) %in% c("allowNull", "isCaseSensitive") &
-               EntityDictionary[h, i] == "false")
-      {
-        entityelement <-
-          paste('\"', colnames(EntityDictionary[i]), '"', ':false', sep = "")
-      }
-      else{
-        entityelement <-
-          paste('\"',
-                colnames(EntityDictionary[i]),
-                '"',
-                ':\"',
-                EntityDictionary[h, i],
-                '"',
-                sep = "")
+  for (h in 1:nrow(Data.Dictionary)) {
+    if (Data.Dictionary$domainItem_name[h] == "colname") {
+      entitycount = entitycount + 1
+      Data.Dictionary$entityNum[h] <-
+        entitycount
+    } else{
+      Data.Dictionary$entityNum[h] = 0
+    }
+    Data.Dictionary$domainNum[h] = 0
+  }
+
+
+  # Create entity and domain references
+
+
+  domainref.A <- Data.Dictionary %>%
+    filter(domainItem_name == "colname", is.na(domainId) == FALSE) %>%
+    select(-domainItem_name, domainItem_value)
+
+
+  for (i in 1:nrow(Data.Dictionary)) {
+    for (k in 1:nrow(domainref.A)) {
+      if (Data.Dictionary$domainItem_name[i] != "colname" &
+          Data.Dictionary$codeName[i] == domainref.A$codeName[k]) {
+        domaincount = domaincount + 1
+        Data.Dictionary$entityNum[i] <- domainref.A$entityNum[k]
+        Data.Dictionary$domainNum[i] <- domaincount
       }
 
-      m <- length(elementlist) + 1
-      elementlist[[m]] <- entityelement
+    }
+  }
+
+  domainref.I <- Data.Dictionary %>%
+    filter(domainNum != 0)
+
+  entityref <- Data.Dictionary %>%
+    filter(domainItem_name == "colname") %>%
+    select(-domainItem_name, domainItem_value)
+
+
+
+
+
+  for (r in 1:nrow(entityref)) {
+    for (s in 1:nrow(domainref.I)) {
+      if (domainref.I$codeName[s] == entityref$codeName[r]) {
+        domainref.I$domainId[s] = entityref$domainId[r]
+      }
+    }
+  }
+
+
+  # Add attributes
+
+  dictionarylist <-
+    fromJSON(blankjson2[["data"]][[1]][["attributes"]][["json"]])
+
+  dictionarylist[["dataDictionary"]][["entity"]][[1]][["entityId"]] <-
+    entityId
+
+  names <-
+    names(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[1]])
+
+
+  ## Duplicate first (empty) attribute and update the addition
+
+
+
+  for (m in 2:nrow(entityref)) {
+    dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]]) +
+                                                                          1]] <-
+      dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[1]]
+
+    for (n in 1:ncol(entityref)) {
+      for (o in 1:length(names)) {
+        if (colnames(entityref[m, n]) == names[o]) {
+          value <- as.character(entityref[[paste0(names[o])]][m])
+
+          dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[m]][[paste0(names[o])]] <-
+            value
+        }
+      }
     }
 
-    elementstring <-
-      paste0("{", paste0(elementlist, collapse = ","), "}")
-
-    entitylist[[h]] <- elementstring
+    dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[m]] <-
+      dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[m]] %>%
+      map(discard, is.na) %>%
+      compact()
 
   }
 
-  entitystring <- paste0(entitylist, collapse = ",")
 
 
+  ## Update the first attribute
 
-  ## Create final entity string
-  entitystring <-
-    paste0(
-      "\"",
-      "entity",
-      "\":[{\"",
-      "entityId",
-      "\":\"",
-      entityId,
-      "\",\"",
-      "attribute",
-      "\":[",
-      entitystring,
-      "]}]"
-    )
+  for (n in 1:ncol(entityref)) {
+    for (o in 1:length(names)) {
+      if (colnames(entityref[1, n]) == names[o]) {
+        value <- entityref[[paste0(names[o])]][1]
 
+        if (!names[o] %in% c("fieldWidth", "unitsResolution")) {
+          value <- as.character(value)
+        }
 
-  # Create domain string
+        dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[1]][[paste0(names[o])]] <-
+          value
 
-  ## REFERENCE
-  ## {\"domainId\":\"f37eeba4-648b-4f7c-9311-e5a007b41ae1\",\"codeName\":\"FatScore\",\"domainItem\":[
-  ## 	{\"name\":\"0\",\"value\":\"0\",\"definition\":\"No Fat\"},
-  ## 	{\"name\":\"1\",\"value\":\"1\"},
-  ## 	{\"name\":\"3\",\"value\":\"3\"},
-  ## 	{\"name\":\"2\",\"value\":\"2\"},
-  ## 	{\"name\":\"4\",\"value\":\"4\"},
-  ## 	{\"name\":\"6\",\"value\":\"6\"},
-  ## 	{\"name\":\"5\",\"value\":\"5\"},
-  ## 	{\"name\":\"7\",\"value\":\"7\"}],\"Fat score of captured bird (0-7)\"},
-
-
-  ## Create domain data frames for loop
-  DomainDictionaryColname <- Data.Dictionary %>%
-    select(c(
-      "domainId",
-      "codeName",
-      "domainItem_name",
-      "domainItem_value",
-      "definition"
-    )) %>%
-    filter(domainItem_value == "colname" & !is.na(domainId))
-
-  DomainDictionaryItem <- Data.Dictionary %>%
-    select(c(
-      "codeName",
-      "domainItem_name",
-      "domainItem_value",
-      "definition"
-    )) %>%
-    filter(domainItem_value != "colname")
-
-  ## Create empty lists for loop
-  elementlist <- list()
-  subelementlist <- list()
-  domainlist <- list()
-  domainstring <- list()
-  domainelement = NULL
-
-  ## Loop to create domain list
-  for (i in 1:nrow(DomainDictionaryColname)) {
-    elementlist1 <- list()
-    elementlist2 <- list()
-    subelementlist <- list()
-
-    ### Create start of individual domain string
-    if (is.na(DomainDictionaryColname$codeName[i]) == TRUE) {
-      next
-    } else{
-      domainelement <-
-        paste0('\"',
-               'domainId',
-               '"',
-               ':\"',
-               DomainDictionaryColname$domainId[i],
-               '"',
-               sep = "")
-    }
-
-    m <- length(elementlist1) + 1
-    elementlist1[[m]] <- domainelement
-
-    if (is.na(DomainDictionaryColname$codeName[i]) == TRUE) {
-      next
-    } else{
-      domainelement <-
-        paste0('\"',
-               'codeName',
-               '"',
-               ':\"',
-               DomainDictionaryColname$codeName[i],
-               '"',
-               sep = "")
-    }
-
-    elementlist1[[m + 1]] <- domainelement
-
-    elementstring1 <- paste0(paste0(elementlist1, collapse = ","))
-
-
-    ### Create item list for the individual domain
-    subelementlist <- list()
-
-    for (k in 1:nrow(DomainDictionaryItem)) {
-      if (DomainDictionaryItem$codeName[k] != DomainDictionaryColname$codeName[i]) {
-        next
-      } else{
-        subdomainelement <-
-          paste0(
-            '{\"',
-            'name',
-            '"',
-            ':\"',
-            DomainDictionaryItem$domainItem_name[k],
-            '",',
-            '\"',
-            'value',
-            '"',
-            ':\"',
-            DomainDictionaryItem$domainItem_value[k],
-            '",',
-            '\"',
-            'definition',
-            '"',
-            ':\"',
-            DomainDictionaryItem$definition[k],
-            '"}',
-            sep = ""
-          )
       }
+    }
+    dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[1]] <-
+      dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[1]] %>%
+      map(discard, is.na) %>%
+      compact()
+  }
 
-      n <- length(subelementlist) + 1
-      subelementlist[[n]] <- subdomainelement
+
+
+
+  # Add domains
+
+  e.count <- c(1:length(domainref.A$entityNum))
+  d.count <- c(1:length(domainref.I$domainNum))
+
+
+  names <-
+    names(dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]])
+
+
+  ## Duplicate first (empty) domain and update the addition
+
+  for (p in 2:length(e.count)) {
+    dictionarylist[["dataDictionary"]][["domain"]][[length(dictionarylist[["dataDictionary"]][["domain"]]) +
+                                                      1]] <-
+      dictionarylist[["dataDictionary"]][["domain"]][[1]]
+
+    for (q in 2:nrow(domainref.I)) {
+      dictionarylist[["dataDictionary"]][["domain"]][[p]][["codeName"]] <-
+        as.character(domainref.A$codeName[p])
+      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainId"]] <-
+        as.character(domainref.A$domainId[p])
+      dictionarylist[["dataDictionary"]][["domain"]][[p]][["description"]] <-
+        as.character(domainref.A$definition[p])
     }
 
-    # Create item string for the individual domain
-    subelementstring <-
-      paste0('\"',
-             'domainItem',
-             '\":',
-             "[",
-             paste0(subelementlist, collapse = ","),
-             "]")
+    e.reference <- domainref.A$entityNum[p]
 
+    items <- domainref.I %>%
+      filter(entityNum == e.reference)
 
-    ### Create end of individual domain string
-    elementlist2 <- list()
+    ### Duplicate first (empty) domain item and update the addition
 
-    if (is.na(DomainDictionaryColname$codeName[i]) == TRUE) {
-      next
-    } else{
-      domainelement2 <-
-        paste0(
-          '\"',
-          'description',
-          '"',
-          ':\"',
-          DomainDictionaryColname$definition[i],
-          '"',
-          sep = ""
-        )
+    for (t in 1:nrow(items)) {
+      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[length(dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]]) +
+                                                                             1]] <-
+        dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]]
+
+      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["name"]] <-
+        as.character(items$domainItem_name[t])
+      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["value"]] <-
+        as.character(items$domainItem_value[t])
+      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["definition"]] <-
+        as.character(items$definition[t])
+
     }
-
-    m <- length(elementlist2) + 1
-    elementlist2[[m]] <- domainelement2
-
-    elementstring2 <- paste0(paste0(elementlist2, collapse = ","))
-
-
-    templist <- list(elementstring1, subelementstring, elementstring2)
-
-    elementstring <- paste0("{", paste0(templist, collapse = ","), "}")
-
-
-
-    domainlist[[i]] <- elementstring
 
   }
 
-  ## Create final domain string
-  domainstring <-
-    paste0("\"",
-           "domain",
-           "\":[",
-           paste0(domainlist, collapse = ","),
-           "]}}")
+
+  ## Update the first domain and items
+
+  e.reference <- domainref.A$entityNum[1]
 
 
+  items <- domainref.I %>%
+    filter(entityNum == e.reference)
 
-  # write mdJSON dictionary
+  dictionarylist[["dataDictionary"]][["domain"]][[1]][["codeName"]] <-
+    as.character(domainref.A$codeName[1])
+  dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainId"]] <-
+    as.character(domainref.A$domainId[1])
+  dictionarylist[["dataDictionary"]][["domain"]][[1]][["description"]] <-
+    as.character(domainref.A$definition[1])
 
-  ## REFERENCE
-  ## {"data":[{"id":"dl8o5d0h",
-  ## "attributes":{"profile":"org.adiwg.profile.full",
-  ## "json":"{\"dictionaryId\":\"e2218d0f-856d-4d0f-88a8-27ae0035222c\",
-  ## \"dataDictionary\":{
-  ## \"citation\":{\"title\":\"Banding Test\",
-  ## \"date\":[{\"date\":\"2022-01-26T06:24:10.297Z\",\"dateType\":\"creation\"}]},
-  ## \"subject\":[\"dataDictionary\"],
-
-
-  ## Update id in blank json
-  blankjson[[1]][[id]]
-  blankjson$data[[1]]$id <- id
-
-  ## Update date in blank json
-  blankjson$data[[1]]$attributes$`date-updated` <- paste0(date)
-
-  ## Combine json attribute sections: start, entry, and domain
+  dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]][["name"]] <-
+    as.character(items$domainItem_name[1])
+  dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]][["value"]] <-
+    as.character(items$domainItem_value[1])
+  dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]][["definition"]] <-
+    as.character(items$definition[1])
 
 
+  # Update fields
 
-  startstring <- paste0(
-    '{\"dictionaryId\":\"',
-    dictionaryId,
-    '\",\"dataDictionary\":{\"citation\":{\"title\":\"',
-    title,
-    '\",\"date\":[{\"date\":\"',
-    date,
-    '\",\"dateType\":\"creation\"}]},\"subject\":[\"dataDictionary\"]'
-  )
+  dictionarylist[["dictionaryId"]] <- as.character(dictionaryId)
 
+  dictionarylist[["dataDictionary"]][["citation"]][["title"]] <-
+    as.character(title)
+
+  dictionarylist[["dataDictionary"]][["citation"]][["date"]][[1]][["date"]] <-
+    as.character(date)
 
 
-  templist <- list(startstring, entitystring, domainstring)
+  blankjson2[["data"]][[1]][["id"]] <- as.character(id)
+  blankjson2[["data"]][[1]][["attributes"]][["date-updated"]] <-
+    as.character(date)
 
-  attributesjson <- paste0(templist, collapse = ",")
+  newstring <- toJSON(dictionarylist)
 
-  ## Update json attributes string in blank json
-  blankjson$data[[1]]$attributes$json <-
-    paste0(templist, collapse = ",")
+  oldsubject <- paste0('\"', 'subject', '\":\"', 'dataDictionary', '\"')
+  newsubject <- paste0('\"', 'subject', '\":[\"', 'dataDictionary', '\"]')
+  newstring <- mgsub(oldsubject, newsubject, newstring)
 
-  assign("newjson", blankjson)
+  oldcase <- paste0('\"', 'isCaseSensitive', '\":\"', 'true', '\"')
+  newcase <- paste0('\"', 'isCaseSensitive', '\":', 'true')
+  newstring <- mgsub(oldcase, newcase, newstring)
+
+  oldcase <- paste0('\"', 'isCaseSensitive', '\":\"', 'false', '\"')
+  newcase <- paste0('\"', 'isCaseSensitive', '\":', 'false')
+  newstring <- mgsub(oldcase, newcase, newstring)
+
+  oldnull <- paste0('\"', 'allowNull', '\":\"', 'true', '\"')
+  newnull <- paste0('\"', 'allowNull', '\":', 'true')
+  newstring <- mgsub(oldnull, newnull, newstring)
+
+  oldnull <- paste0('\"', 'allowNull', '\":\"', 'false', '\"')
+  newnull <- paste0('\"', 'allowNull', '\":', 'false')
+  newstring <- mgsub(oldnull, newnull, newstring)
+
+  blankjson2[["data"]][[1]][["attributes"]][["json"]] <- newstring
+
+  assign("newjson2", blankjson2)
+
 
 }
-
-
