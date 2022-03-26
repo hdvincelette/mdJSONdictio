@@ -12,6 +12,7 @@ RoxygenNote: 7.1.2.9000
 Depends:
     dplyr,
     knitr,
+    purrr,
     qdap,
     R (>= 4.00),
     readxl,
