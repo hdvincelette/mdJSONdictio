@@ -114,7 +114,8 @@ e.g.dictionary$allowNull[c(4)] <- NA
 e.g.dictionary$fieldWidth[c(4)] <-"hi"
 
 # invalid data type
-e.g.dictionary$uniteResolution[c(10)] <-"hi"
+e.g.dictionary$unitsResolution[c(10)] <-"bye"
+
 
 #### build.table() ####
 
