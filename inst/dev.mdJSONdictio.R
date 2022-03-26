@@ -120,18 +120,29 @@ e.g.dictionary$allowNull[c(4)] <- NA
 
 #### build.table() ####
 
-## Standard run ##
+setwd("~/Desktop")
+setwd("C:/Users/hvincelette/Desktop")
 
 library(mdJSONdictio)
-test <- mdJSONdictio::build.table(fromJSON(
-  file = system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-))
+
+## Standard run ##
+# Import mdJSON data dictionary as an R list
+path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
+e.g.dictionary2 <- fromJSON(file = path)
+
+# Transform R list to a data frame
+newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1, entity_num = 1)
+
+# Export table to disk
+write.csv(newtable, "e.g.dictionary2.csv",na="",row.names = FALSE)
+
+
+
 
 setwd("~/Desktop/test_dictionaries")
 path = "~/Desktop/test_dictionaries"
 library(mdJSONdictio)
 test <- mdJSONdictio::build.table(x=fromJSON(file="blankjson2.json"), entity_num = 1)
-
 
 ## Error check ##
 
