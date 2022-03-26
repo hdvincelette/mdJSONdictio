@@ -25,8 +25,6 @@
 
 build.mdJSON <- function(x, title) {
 
-  options(warn = -1)
-
   # Prepare the dictionary
 
   Data.Dictionary <- x
@@ -443,7 +441,6 @@ build.mdJSON <- function(x, title) {
 
   assign("newjson", blankjson)
 
-  options(warn = 0)
 
 }
 
