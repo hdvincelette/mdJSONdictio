@@ -123,14 +123,14 @@ build.mdJSON <- function(x, title) {
 
       if (is.character(Data.Dictionary$fieldWidth[aa]) == TRUE)
         stop(
-          'fieldWidth must be an integer. \n  allowNull==NA in row ',
+          'fieldWidth has an incompatible data type in row ',
           aa,
           '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
         )
 
       if (is.character(Data.Dictionary$unitsResolution[aa]) == TRUE)
         stop(
-          'unitsResolution must be numeric. \n  allowNull==NA in row ',
+          'unitsResolution has an incompatible data type in row ',
           aa,
           '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
         )
