@@ -153,8 +153,8 @@ files <- list.files(path = path, pattern = ".json")
 test.json <- NA
 
 for (a in 1:length(files)) {
-  test.json <- fromJSON(file = files[a])
-  test.json <- build.table(x = test.json)
+  test.json <- fromJSON(file = files[18])
+  test.json <- build.table(x = test.json,entity_num = 1)
   name <- gsub("\\.json$", "", paste0(files[a]))
   write.csv(test.json,paste0(name,".csv"), na="",row.names = FALSE)
   print(files[a])
