@@ -14,7 +14,7 @@ build.table(x, entity_num, dictionary_num)
 \item{dictionary_num}{Default=1. An integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).}
 }
 \value{
-Returns a data frame corresponding to the mdJSON data dictionary.
+Returns a data frame corresponding to the attributes and domains in the mdJSON data dictionary.
 }
 \description{
 Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a data frame.
