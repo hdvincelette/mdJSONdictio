@@ -28,6 +28,7 @@ build.mdJSON <- function(x, title) {
   Data.Dictionary <- x
 
 
+
   ## Check for errors
   Required.cols <- c(
     "codeName",
@@ -116,6 +117,20 @@ build.mdJSON <- function(x, title) {
           is.na(Data.Dictionary$allowNull[aa]))
         stop(
           'Required field incomplete. \n  allowNull==NA in row ',
+          aa,
+          '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
+        )
+
+      if (is.character(Data.Dictionary$fieldWidth[aa]) == TRUE)
+        stop(
+          'fieldWidth must be an integer. \n  allowNull==NA in row ',
+          aa,
+          '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
+        )
+
+      if (is.character(Data.Dictionary$unitsResolution[aa]) == TRUE)
+        stop(
+          'unitsResolution must be numeric. \n  allowNull==NA in row ',
           aa,
           '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
         )
