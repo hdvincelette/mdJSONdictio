@@ -122,7 +122,7 @@ print(as_tibble(read.csv(system.file("extdata", "e.g.dictionary2.csv", package =
 
 ## Intented Use 
 
-```build.mdJSON()```  is intended for anyone who writes mdEditor metadata. This function is meant to initiate mdEditor Dictionary records, not update them, which should be done manually in the [mdEditor](https://go.mdeditor.org/#/dashboard) web application. It is recommended users maintain the tabular data dictionary as a human-readable reference for associated data product(s). Already have a data dictionary in mdEditor, but not a corresponding tabular data dictionary? Use the ```build.table()``` to transform your mdJSON data dictionary to a tabular format.
+```build.mdJSON()``` is intended for anyone who writes mdEditor metadata. This function is meant to initiate mdEditor Dictionary records, not update them, which should be done manually in the [mdEditor](https://go.mdeditor.org/#/dashboard) web application. Additionally, the tabular data dictionary can be used as a human-readable reference for associated data product(s). ```build.table()``` is helpful if a data product has an mdEditor data dictionary but not a corresponding tabular data dictionary. Further, metadata authors can maintain Dictionary records in mdEditor, and use this function to create updated tabular data dictionaries.
 <br />
 <br />
 
