@@ -6,20 +6,18 @@ library(pkgdown)
 
 library(mdJSONdictio)
 
+# update all installed packages
 update_packages()
-
-setwd("~/Documents/GitHub/mdJSONdictio/")
-setwd("~/GitHub/mdJSONdictio/")
 
 
 # Add data
-use_data()
+use_data(blankjson2)
 
 # Ignore files
 usethis::use_build_ignore()
 
 # Add packages
-usethis::use_package("tibble", "Depends")
+usethis::use_package("purrr", "Depends")
 
 # Write html markdown
 rmarkdown::render('vignettes/Intro_mdJSONdictio.Rmd')
@@ -32,6 +30,8 @@ deploy_to_branch()
 document()
 load_all()
 install()
+
+library(mdJSONdictio)
 
 exists("build.table", where = globalenv(), inherits = TRUE)
 
@@ -88,6 +88,18 @@ e.g.dictionary = rjson::toJSON(newjson)
 write(e.g.dictionary, "e.g.dictionary.json")
 
 
+
+path <-"~/Documents/GitHub/mdJSONdictio/inst/extdata/e.g.dictionary.xlsx"
+e.g.dictionary <- readxl::read_excel(path)
+
+newjson <-
+  edit.build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
+
+newjson2<-toJSON(newjson)
+write(newjson2, "newjson2.json")
+
+
+
 ## Error check ##
 
 # Import data frame
@@ -129,7 +141,7 @@ test <- mdJSONdictio::build.table(fromJSON(
 setwd("~/Desktop/test_dictionaries")
 path = "~/Desktop/test_dictionaries"
 library(mdJSONdictio)
-test2 <- mdJSONdictio::build.table(x=fromJSON(file="2Entities.json"), entity_num = 2)
+test <- mdJSONdictio::build.table(x=fromJSON(file="blankjson2.json"), entity_num = 1)
 
 
 ## Error check ##
