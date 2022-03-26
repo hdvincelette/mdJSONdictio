@@ -20,8 +20,10 @@
 #' write.csv(newtable, "e.g.dictionary2.csv",na="",row.names = FALSE)
 
 
-
 build.table <- function(x, entity_num, dictionary_num) {
+
+  options(warn = -1)
+
   JSONdictionary <- x
 
   n <- 1
@@ -173,7 +175,7 @@ build.table <- function(x, entity_num, dictionary_num) {
 
     ## Fix table structure
     blanktable <- blanktable %>%
-      arrange(codeName, domainNum) %>%
+      arrange(dataType,codeName, domainNum) %>%
       select(-one_of(c("domainNum", "entityNum"))) %>%
       rename("domainItem_name" = "name",
              "domainItem_value" = "value") %>%
@@ -183,7 +185,12 @@ build.table <- function(x, entity_num, dictionary_num) {
                 ~ replace(., which(. == "FALSE"), "no"))
 
     assign(paste0("newtable", a), blanktable)
+
+
+    options(warn = 0)
   }
 
 # }
+
+
 
