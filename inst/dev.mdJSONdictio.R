@@ -89,17 +89,6 @@ write(e.g.dictionary, "e.g.dictionary.json")
 
 
 
-path <-"~/Documents/GitHub/mdJSONdictio/inst/extdata/e.g.dictionary.xlsx"
-e.g.dictionary <- readxl::read_excel(path)
-
-newjson <-
-  edit.build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
-
-newjson2<-toJSON(newjson)
-write(newjson2, "newjson2.json")
-
-
-
 ## Error check ##
 
 # Import data frame
@@ -127,7 +116,7 @@ e.g.dictionary$dataType[c(10)] <- NA
 e.g.dictionary$allowNull[c(4)] <- NA
 
 
-x <- e.g.dictionary
+
 
 #### build.table() ####
 
