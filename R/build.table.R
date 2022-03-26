@@ -174,7 +174,7 @@ build.table <- function(x, entity_num, dictionary_num) {
 
     ## Fix table structure
     blanktable <- blanktable %>%
-      arrange(dataType,codeName, domainNum) %>%
+      arrange(codeName, dataType, domainNum) %>%
       select(-one_of(c("domainNum", "entityNum"))) %>%
       rename("domainItem_name" = "name",
              "domainItem_value" = "value") %>%
