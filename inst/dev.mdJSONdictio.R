@@ -6,18 +6,14 @@ library(pkgdown)
 
 library(mdJSONdictio)
 
+
+# Reload package with local changes
+document()
+load_all()
+install()
+
 # update all installed packages
 update_packages()
-
-
-# Add data
-use_data(blankjson2)
-
-# Ignore files
-usethis::use_build_ignore()
-
-# Add packages
-usethis::use_package("purrr", "Depends")
 
 # Write html markdown
 rmarkdown::render('vignettes/Intro_mdJSONdictio.Rmd')
@@ -26,18 +22,18 @@ rmarkdown::render('vignettes/Intro_mdJSONdictio.Rmd')
 # pkgdown::build_site()
 deploy_to_branch()
 
-# Reload package with local changes
-document()
-load_all()
-install()
 
-library(mdJSONdictio)
+# Add...
+use_data(blankjson2)
+usethis::use_package("purrr", "Depends")
+usethis::use_build_ignore()
 
-exists("build.table", where = globalenv(), inherits = TRUE)
+# Check which packages used in function
+rfile <- file.choose()
+NCmisc::list.functions.in.file(rfile)
 
 # Create package zip
 build()
-
 
 # Install package from GitHub
 remove.packages("mdJSONdictio")
@@ -45,13 +41,7 @@ remove.packages("mdJSONdictio")
 devtools::install_github("hdvincelette/mdJSONdictio")
 devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts = c("--no-multiarch"))
 devtools::install_github("hdvincelette/mdJSONdictio", build_vignettes = TRUE)
-
-# build_vignettes= TRUE
-
-# Check which packages used in function
-rfile <- file.choose()
-NCmisc::list.functions.in.file(rfile)
-
+## build_vignettes= TRUE
 
 # View package info
 library(mdJSONdictio)
@@ -60,6 +50,8 @@ help(package = "mdJSONdictio")
 ? mdJSONdictio::build.table
 ? mdJSONdictio::build.mdJSON
 vignette("mdJSONdictio")
+
+
 
 #### build.mdJSON() ####
 
