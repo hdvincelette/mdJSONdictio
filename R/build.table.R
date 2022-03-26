@@ -16,7 +16,7 @@
 #' # Transform R list to a data frame
 #' newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1, entity_num = 1)
 #'
-#' # Export JSON to disk
+#' # Export table to disk
 #' write.csv(newtable, "e.g.dictionary2.csv",na="",row.names = FALSE)
 
 
@@ -79,7 +79,13 @@ build.table <- function(x, entity_num, dictionary_num) {
       "definition",
       "dataType",
       "allowNull",
+      "units",
+      "unitsResolution",
       "isCaseSensitive",
+      "fieldWidth",
+      "missingValue",
+      "minValue",
+      "maxValue",
       "domainId"
     )
   )
