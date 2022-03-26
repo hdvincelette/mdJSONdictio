@@ -4,7 +4,7 @@
 #' @param x An R list converted from an mdJSON data dictionary file.
 #' @param entity_num Default=1. An integer indicating the entity if there is more than one in the mdJSON file.
 #' @param dictionary_num Default=1. An integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).
-#' @return Returns a data frame corresponding to the mdJSON data dictionary.
+#' @return Returns a data frame corresponding to the attributes and domains in the mdJSON data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```build.mdJSON()```
 #' @export
