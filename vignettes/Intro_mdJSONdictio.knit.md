@@ -43,7 +43,7 @@ pre code {
 
 
 <br />
-Anyone who has written metadata in mdEditor knows creating dictionaries can be tedious and repetitive. The R package mdJSONdictio aims to streamline this process. Rather than defining data table attributes in [mdEditor](https://go.mdeditor.org/#/dashboard), users can fill out a tabular data dictionary template and format it to mdJSON using the function ```build.mdJSON()```. The resultant mdJSON file can be imported in mdEditor to create a Dictionary record with data table attributes already defined. Conversely, the functon ```build.table()``` allows you to transform mdEditor data dictionary files into a tabular format that be used as a human-readable reference. 
+Anyone who has written metadata in mdEditor knows creating dictionaries can be tedious and repetitive. The R package mdJSONdictio aims to streamline this process. Rather than defining data table attributes in [mdEditor](https://go.mdeditor.org/#/dashboard), users can fill out a tabular data dictionary template and format it to mdJSON using the function ```build.mdJSON()```. The resultant mdJSON file can be imported in mdEditor to create a Dictionary record with data table attributes already defined. Conversely, the functon ```build.table()``` transforms mdEditor data dictionary files into a tabular format to be used as a human-readable reference. 
 <br />
 <br />
 <br />
@@ -860,7 +860,7 @@ Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a dat
 
 ## Intented Use 
 
-```build.mdJSON()``` is intended for anyone who writes mdEditor metadata. This function is meant to initiate mdEditor Dictionary records, not update them, which should be done manually in the [mdEditor](https://go.mdeditor.org/#/dashboard) web application. Additionally, the tabular data dictionary can be used as a human-readable reference for associated data product(s). ```build.table()``` is helpful if a data product has an mdEditor data dictionary but not a corresponding tabular data dictionary. Further, metadata authors can maintain Dictionary records in mdEditor, and use this function to create updated tabular data dictionaries.
+```mdJSONdictio``` functions are intended for anyone who writes mdEditor metadata. ```build.mdJSON()``` is meant to ease the process of creating mdEditor Dictionary records by allowing users to complete some fields in a simplified tabular format. ```build.table()``` is meant to help create a human-readable data dictionary reference for an mdEditor Dictionary record. A potential workflow is to use  ```build.mdJSON()``` to initiate a Dictionary record, the mdEditor web application to maintain the Dictionary record, and ```build.table()``` to create an up-to-date human-readable data dictionary as needed.
 <br />
 <br />
 
