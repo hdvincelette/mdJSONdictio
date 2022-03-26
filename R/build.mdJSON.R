@@ -5,7 +5,7 @@
 #' @param title A string designating the title of the Dictionary record in mdEditor.
 #' @return Returns an R list corresponding to the tabular data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
-#' @seealso ```build.table()````
+#' @seealso ```build.table()```
 #' @export
 #' @examples
 #' # Import tabular data dictionary as data frame
@@ -13,10 +13,10 @@
 #' e.g.dictionary<-readxl::read_excel(path)
 #'
 #' # Transform data frame to R list
-#' newjson2<- build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
+#' newjson<- build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
 #'
 #' # Convert R list to JSON
-#' e.g.dictionary = rjson::toJSON(newjson2)
+#' e.g.dictionary = rjson::toJSON(newjson)
 #'
 #' # Export JSON to disk
 #' write(e.g.dictionary, "e.g.dictionary.json")
@@ -247,7 +247,7 @@ build.mdJSON <- function(x, title) {
   # Add attributes
 
   dictionarylist <-
-    fromJSON(blankjson2[["data"]][[1]][["attributes"]][["json"]])
+    fromJSON(blankjson[["data"]][[1]][["attributes"]][["json"]])
 
   dictionarylist[["dataDictionary"]][["entity"]][[1]][["entityId"]] <-
     entityId
@@ -394,8 +394,8 @@ build.mdJSON <- function(x, title) {
     as.character(date)
 
 
-  blankjson2[["data"]][[1]][["id"]] <- as.character(id)
-  blankjson2[["data"]][[1]][["attributes"]][["date-updated"]] <-
+  blankjson[["data"]][[1]][["id"]] <- as.character(id)
+  blankjson[["data"]][[1]][["attributes"]][["date-updated"]] <-
     as.character(date)
 
   newstring <- toJSON(dictionarylist)
@@ -420,9 +420,9 @@ build.mdJSON <- function(x, title) {
   newnull <- paste0('\"', 'allowNull', '\":', 'false')
   newstring <- mgsub(oldnull, newnull, newstring)
 
-  blankjson2[["data"]][[1]][["attributes"]][["json"]] <- newstring
+  blankjson[["data"]][[1]][["attributes"]][["json"]] <- newstring
 
-  assign("newjson2", blankjson2)
+  assign("newjson", blankjson)
 
 
 }
