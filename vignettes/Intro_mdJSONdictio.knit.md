@@ -860,7 +860,7 @@ Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a dat
 
 ## Intented Use 
 
-```mdJSONdictio``` functions are intended for anyone who writes mdEditor metadata. ```build.mdJSON()``` is meant to ease the process of creating mdEditor Dictionary records by allowing users to complete some fields in a simplified tabular format. ```build.table()``` is meant to help create a human-readable data dictionary reference for an mdEditor Dictionary record. A potential workflow is to use  ```build.mdJSON()``` to initiate a Dictionary record, the mdEditor web application to maintain the Dictionary record, and ```build.table()``` to create an up-to-date human-readable data dictionary as needed.
+```mdJSONdictio``` functions are intended for anyone who writes mdEditor metadata. ```build.mdJSON()``` helps ease the process of creating mdEditor Dictionary records by allowing users to complete some fields in a simplified tabular format. ```build.table()``` creates a human-readable data dictionary reference for an mdEditor Dictionary record. A potential workflow is to use  ```build.mdJSON()``` to initiate a Dictionary record, the mdEditor web application to maintain the Dictionary record, and ```build.table()``` to create an up-to-date human-readable data dictionary as needed.
 <br />
 <br />
 
