@@ -19,7 +19,6 @@ Depends:
     rjson,
     rmarkdown,
     stats,
-    stringr,
     tibble,
     uuid
 LazyData: true
