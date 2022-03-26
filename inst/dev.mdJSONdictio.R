@@ -6,6 +6,7 @@ library(pkgdown)
 
 
 # Reload package with local changes
+setwd("~/Documents/GitHub/mdJSONdictio")
 document()
 load_all()
 install()
@@ -109,8 +110,11 @@ e.g.dictionary$dataType[c(10)] <- NA
 # colname row missing allowNull
 e.g.dictionary$allowNull[c(4)] <- NA
 
+# invalid data type
+e.g.dictionary$fieldWidth[c(4)] <-"hi"
 
-
+# invalid data type
+e.g.dictionary$uniteResolution[c(10)] <-"hi"
 
 #### build.table() ####
 
