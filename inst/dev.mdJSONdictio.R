@@ -4,16 +4,12 @@ library(devtools)
 library(roxygen2)
 library(pkgdown)
 
-library(mdJSONdictio)
-
 
 # Reload package with local changes
 document()
 load_all()
 install()
 
-# update all installed packages
-update_packages()
 
 # Write html markdown
 rmarkdown::render('vignettes/Intro_mdJSONdictio.Rmd')
@@ -34,6 +30,9 @@ NCmisc::list.functions.in.file(rfile)
 
 # Create package zip
 build()
+
+# update all installed packages
+update_packages()
 
 # Install package from GitHub
 remove.packages("mdJSONdictio")
@@ -88,6 +87,9 @@ path <-
   system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 e.g.dictionary <- readxl::read_excel(path)
 
+newjson <-
+  build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
+
 # missing required column
 e.g.dictionary <- e.g.dictionary %>%
   rename(newname1 = codeName)
@@ -131,10 +133,6 @@ write.csv(newtable, "e.g.dictionary2.csv",na="",row.names = FALSE)
 
 
 
-setwd("~/Desktop/test_dictionaries")
-path = "~/Desktop/test_dictionaries"
-library(mdJSONdictio)
-test <- mdJSONdictio::build.table(x=fromJSON(file="blankjson2.json"), entity_num = 1)
 
 ## Error check ##
 
@@ -159,11 +157,6 @@ for (a in 1:length(files)) {
 
 test.json <- fromJSON(file = files[10])
 newtable <- build.table(test.json)
-
-
-
-
-
 
 
 
