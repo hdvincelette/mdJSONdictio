@@ -114,7 +114,7 @@ print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary2.json", packa
 
 ```{r, echo=FALSE}
 
-print(as_tibble(read.csv(system.file("extdata", "e.g.dictionary2.csv", package = "mdJSONdictio"))))
+print(as_tibble(read.csv(system.file("extdata", "e.g.dictionary2.csv", package = "mdJSONdictio"))), n = 1e3)
 
 ```
 <br />
