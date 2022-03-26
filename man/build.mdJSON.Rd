@@ -23,16 +23,16 @@ path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 e.g.dictionary<-readxl::read_excel(path)
 
 # Transform data frame to R list
-newjson2<- build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
+newjson<- build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
 
 # Convert R list to JSON
-e.g.dictionary = rjson::toJSON(newjson2)
+e.g.dictionary = rjson::toJSON(newjson)
 
 # Export JSON to disk
 write(e.g.dictionary, "e.g.dictionary.json")
 }
 \seealso{
-```build.table()````
+\code{build.table()}
 }
 \keyword{dictionary,}
 \keyword{json,}
