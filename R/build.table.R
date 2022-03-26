@@ -46,16 +46,16 @@ build.table <- function(x, entity_num, dictionary_num) {
     JSONdictionary[["data"]][[n]][["attributes"]][["json"]]
 
   if (grepl("entity", dictionarystring) == FALSE)
-    stop('No Entity detected.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.')
+    stop('No Entity detected.\n  Print `help(package = "mdJSONdictio")` for Help Pages.')
 
   if (grepl("attribute", dictionarystring) == FALSE)
     stop(
-      'Entity requires atleast one attribute.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
+      'Entity requires atleast one attribute.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
     )
 
   if (grepl("dataType", dictionarystring) == FALSE)
     stop(
-      'Entity requires atleast one attribute.\n  Print `help(package = "mdJSONdictio") ` for Help Pages.'
+      'Entity requires atleast one attribute.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
     )
 
 
@@ -69,7 +69,7 @@ build.table <- function(x, entity_num, dictionary_num) {
   # Create blank output table
 
   blanktable <- setNames(
-    data.frame(matrix(ncol = 10, nrow = 0)),
+    data.frame(matrix(ncol = 16, nrow = 0)),
     c(
       "entityNum",
       "domainNum",
@@ -97,7 +97,7 @@ build.table <- function(x, entity_num, dictionary_num) {
     domaincount <- 0
 
     blanktable <- setNames(
-      data.frame(matrix(ncol = 10, nrow = 0)),
+      data.frame(matrix(ncol = 16, nrow = 0)),
       c(
         "entityNum",
         "domainNum",
@@ -107,7 +107,13 @@ build.table <- function(x, entity_num, dictionary_num) {
         "definition",
         "dataType",
         "allowNull",
+        "units",
+        "unitsResolution",
         "isCaseSensitive",
+        "fieldWidth",
+        "missingValue",
+        "minValue",
+        "maxValue",
         "domainId"
       )
     )
@@ -136,27 +142,30 @@ build.table <- function(x, entity_num, dictionary_num) {
     blanktable$name <- "colname"
     blanktable$value <- "colname"
 
+    if (is.null(domainlist) == FALSE) {
+      for (d in 1:length(domainlist)) {
+        for (e in 1:length(domainlist[[d]])) {
+          blanktable[nrow(blanktable) + 1, ] <- NA
+          blanktable$domainId[nrow(blanktable)] <-
+            domainlist[[d]][["domainId"]]
+          blanktable$codeName[nrow(blanktable)] <-
+            domainlist[[d]][["codeName"]]
 
-    for (d in 1:length(domainlist)) {
-      for (e in 1:length(domainlist[[d]])) {
-        blanktable[nrow(blanktable) + 1,] <- NA
-        blanktable$domainId[nrow(blanktable)] <-
-          domainlist[[d]][["domainId"]]
-        blanktable$codeName[nrow(blanktable)] <-
-          domainlist[[d]][["codeName"]]
+          blanktable$domainNum[nrow(blanktable)] <- e
+          blanktable$entityNum[nrow(blanktable)] <- b
 
-        blanktable$domainNum[nrow(blanktable)] <- e
-        blanktable$entityNum[nrow(blanktable)] <- b
+          if (is.null(domainlist[[d]][["domainItem"]]) == TRUE) {
+            next
+          }
 
-        if(is.null(domainlist[[d]][["domainItem"]])==TRUE){next}
+          for (f in 1:length(domainlist[[d]][["domainItem"]])) {
+            for (g in 1:length(domainlist[[d]][["domainItem"]][[f]])) {
+              column <- names(domainlist[[d]][["domainItem"]][[f]])[[g]]
+              entry <- domainlist[[d]][["domainItem"]][[f]][[g]]
 
-        for (f in 1:length(domainlist[[d]][["domainItem"]])) {
-          for (g in 1:length(domainlist[[d]][["domainItem"]][[f]])) {
-            column <- names(domainlist[[d]][["domainItem"]][[f]])[[g]]
-            entry <- domainlist[[d]][["domainItem"]][[f]][[g]]
+              blanktable[[paste0(column)]][nrow(blanktable)] <- entry
 
-            blanktable[[paste0(column)]][nrow(blanktable)] <- entry
-
+            }
           }
         }
       }
@@ -173,7 +182,7 @@ build.table <- function(x, entity_num, dictionary_num) {
       mutate_at(vars(allowNull, isCaseSensitive),
                 ~ replace(., which(. == "FALSE"), "no"))
 
-    assign(paste0("table", a), blanktable)
+    assign(paste0("newtable", a), blanktable)
   }
 
 # }
