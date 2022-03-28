@@ -164,4 +164,9 @@ test.json <- fromJSON(file = files[10])
 newtable <- build.table(test.json)
 
 
+test <- fromJSON(fromJSON(file = "~/Desktop/mdeditor-20220328-010342.json")[["data"]][[1]][["attributes"]][["json"]])
+
+test2<- build.table(x = test, dictionary_num = 1, entity_num = 1)
+
+
 
