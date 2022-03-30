@@ -21,7 +21,7 @@ deploy_to_branch()
 
 
 # Add...
-use_data(blankjson2)
+
 usethis::use_package("purrr", "Depends")
 usethis::use_build_ignore()
 
