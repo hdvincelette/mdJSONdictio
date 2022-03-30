@@ -61,7 +61,7 @@ library(utils)
 library(rjson)
 ```
 <br />
-Anyone who has written metadata in mdEditor knows creating dictionaries can be tedious and repetitive. The R package mdJSONdictio aims to streamline this process. Rather than defining data table attributes in [mdEditor](https://go.mdeditor.org/#/dashboard), users can fill out a tabular data dictionary template and format it to mdJSON using the function ```build.mdJSON()```. The resultant mdJSON file can be imported in mdEditor to create a Dictionary record with data table attributes already defined. Conversely, the functon ```build.table()``` transforms mdEditor data dictionary files into a tabular format to be used as a human-readable reference. 
+Anyone who has written metadata in mdEditor knows creating dictionaries can be tedious and repetitive. The R package mdJSONdictio aims to streamline this process. Rather than defining data table attributes in [mdEditor](https://go.mdeditor.org/#/dashboard), users can fill out a tabular data dictionary template and translate it to mdJSON using the function ```build.mdJSON()```. The resultant mdJSON file can be imported in mdEditor to create a Dictionary record with data table attributes already defined. Conversely, the functon ```build.table()``` transforms mdEditor data dictionary files into a tabular format to be used as a human-readable reference. 
 <br />
 <br />
 <br />
