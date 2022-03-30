@@ -81,12 +81,15 @@
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Transform data frame to R list</span></span>
 <span class="r-in"><span class="va">newjson</span><span class="op">&lt;-</span> <span class="fu">build.mdJSON</span><span class="op">(</span>x <span class="op">=</span> <span class="va">e.g.dictionary</span>, title <span class="op">=</span> <span class="st">"Example Dictionary"</span><span class="op">)</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in is_fun_list(.funs):</span> object 'str_replace_all' not found</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Convert R list to JSON</span></span>
 <span class="r-in"><span class="va">e.g.dictionary</span> <span class="op">=</span> <span class="fu">rjson</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rjson/man/toJSON.html" class="external-link">toJSON</a></span><span class="op">(</span><span class="va">newjson</span><span class="op">)</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in rjson::toJSON(newjson):</span> object 'newjson' not found</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Export JSON to disk</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/write.html" class="external-link">write</a></span><span class="op">(</span><span class="va">e.g.dictionary</span>, <span class="st">"e.g.dictionary.json"</span><span class="op">)</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in cat(x, file = file, sep = c(rep.int(sep, ncolumns - 1), "\n"),     append = append):</span> argument 1 (type 'list') cannot be handled by 'cat'</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
