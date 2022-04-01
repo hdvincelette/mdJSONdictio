@@ -20,6 +20,7 @@ Depends:
     rmarkdown,
     stats,
     tibble,
+    stringr,
     uuid
 LazyData: true
 URL: https://github.com/hdvincelette/mdJSONdictio,
