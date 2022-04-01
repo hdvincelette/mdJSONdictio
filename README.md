@@ -25,7 +25,8 @@ library(mdJSONdictio)
 # If mdJSONdictio installation fails:
 
 # Install mdJSONdictio with compiled code only for sub-architecture used by R CMD INSTALL
-devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts=c("--no-multiarch"))
+devtools::install_github("hdvincelette/mdJSONdictio",
+                         INSTALL_opts = c("--no-multiarch"))
 
 # OR
 
