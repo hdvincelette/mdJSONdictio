@@ -52,6 +52,7 @@ options(width = 9999)
 
 library(mdJSONdictio)
 library(knitr)
+library(bookdown)
 library(kableExtra)
 library(tibble)
 library(rmarkdown)
@@ -219,4 +220,5 @@ kable(read.csv(path<-system.file("extdata", "datatype_definitions.csv", package 
 [ADIwg Metadata Toolkit](https://mdbook.adiwg.org/)
 
 [mdCodes Viewer](https://adiwg.github.io/mdTools/)
+
 
