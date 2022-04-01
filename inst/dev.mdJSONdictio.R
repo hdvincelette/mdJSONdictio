@@ -5,6 +5,7 @@ library(roxygen2)
 library(pkgdown)
 
 
+
 # Reload package with local changes
 setwd("~/Documents/GitHub/mdJSONdictio")
 document()
