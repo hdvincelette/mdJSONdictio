@@ -45,7 +45,7 @@ library(utils)
 library(rjson)
 ```
 
-The following describes how to install R and RStudio and subsequently the mdJSONdictio package so that it's ready for use.
+The following describes how to setup a working space to use the mdJSONdictio functions, including how to install R, RStudio, and the mdJSONdictio package.
 <br />
 
 #### What is R?
@@ -107,10 +107,6 @@ Paste the following code in the RStudio Source pane and run each line. Run the c
 # Install devtools from CRAN
 install.packages("devtools")
 library(devtools)
-
-# Install qdap from CRAN
-install.packages("qdap")
-library(qdap)
 
 # Install mdJSONdictio from GitHub
 devtools::install_github("hdvincelette/mdJSONdictio")
@@ -182,5 +178,3 @@ Restart the R session: Session -> Restart R.
 
 Reinstall the package: Packages tab -> Install -> type in the package name -> Install
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Install.png)
-
-
