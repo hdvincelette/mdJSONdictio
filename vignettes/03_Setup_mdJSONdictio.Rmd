@@ -59,9 +59,9 @@ The following describes how to setup a working space to use the mdJSONdictio fun
 <br />
 <br />
 
-# Install R on a DOI Windows PC
+# Install R on a Windows PC
 
-*Note: These instructions are catered to USFWS employees, but may be adapted to those with similar operating systems.*
+*Note: These instructions are catered to U.S. Fish & Wildlife employees, but may be adapted to those with similar operating systems.*
 
 Search "FWS-Apps-to-Go" in the Windows search box.
 
@@ -148,7 +148,7 @@ If the R simply prints the executed code in the Console pane, then installation 
 # Troubleshooting tips
 
 <br />
-### If mdJSONdictio installation fails:
+## If mdJSONdictio installation fails
 
 Paste the following code in the RStudio Source pane and run each line.
 
@@ -159,7 +159,7 @@ devtools::install_github("hdvincelette/mdJSONdictio",
 ```
 <br />                         
                          
-### If mdJSONdictio installation fails again:
+## If mdJSONdictio installation fails again
 
 Navigate to the mdJSONdictio GitHub repository and download the package zip: Code -> Download ZIP.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/GitHub_Repo.png)
@@ -180,7 +180,7 @@ install.packages("mdJSONdictio-master")
 <br />
 <br />
 
-### If dependent package updates fail:
+## If dependent package updates fail
 
 Uninstall the package in the Files, Plots, Packages, Help Viewer pane: Packages tab -> click the "x" next to the package. When a pop-up asks "Are you sure?", click Yes.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Uninstall.png)
