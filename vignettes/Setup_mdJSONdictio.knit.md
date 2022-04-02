@@ -47,13 +47,16 @@ The following describes how to setup a working space to use the mdJSONdictio fun
 Search "FWS-Apps-to-Go" in the Windows search box.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/FWS_Apps_Search.png)
 <br />
+<br />
 
 Search “IFW-R” in the Applications search box. Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for [R](https://cran.r-project.org/bin/windows/base/) and [RStudio](https://www.rstudio.com/products/rstudio/download/).
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Install_R.png)
 <br />
+<br />
 
 Search "RStudio" in the Windows search box.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png)
+<br />
 <br />
 <br />
 
@@ -62,11 +65,12 @@ Search "RStudio" in the Windows search box.
 There are four main panes in RStudio: Source (upper left), Console (lower left), Environment, History, Connections, Tutorial (upper right), and Files, Plots, Packages, Help, Viewer (lower right). Expand the Source pane with Ctrl + 1 or by clicking the double window icon in the upper right corner of the pane.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Open.png)
 <br />
+<br />
 
 The Console pane is where code is executed. Code can be submitted directly to the Console pane or written in "scripts" in the Source pane and sent to the Console pane. Code written in the Source pane can be saved for later, whereas the Console pane only keeps a short-term record of executed code. 
 <br />
 
-### Operation tips
+#### Operation tips
 
 * Code in the Source pane is sent to the Console with Ctrl + Enter or by clicking the Run button.
 * The blinking cursor in the Source pane indicates the line of code that will be executed. Chunks of code can be executed by highlighting multiple lines of code.
@@ -75,6 +79,7 @@ The Console pane is where code is executed. Code can be submitted directly to th
 <br />
 
 For a more thorough instructions on R and RStudio, visit the Tutorial tab in the Environment, History, Connections, Tutorial pane, or refer to the [Hands-On Programming with R website](https://rstudio-education.github.io/hopr/).
+<br />
 <br />
 <br />
 
@@ -101,9 +106,11 @@ library(mdJSONdictio)
 mdJSONdictio requires other packages to work properly. R may prompt you to update these dependent packages during installation. To update all, type "1" in the Console pane and hit Enter.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png)
 <br />
+<br />
 
 If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update_2.png)
+<br />
 <br />
 
 ### Verify mdJSONdictio installation
@@ -118,6 +125,8 @@ library(mdJSONdictio)
 If the R simply prints the executed code in the Console pane, then installation was successful. If R returns the Error message “there is no package called ‘mdJSONdictio’,” then installation failed. 
 <br />
 <br />
+<br />
+
 # Troubleshooting tips
 
 ### If mdJSONdictio installation fails...
@@ -137,9 +146,11 @@ devtools::install_github("hdvincelette/mdJSONdictio",
 Navigate to the mdJSONdictio GitHub repository and download the package zip: Code -> Download ZIP.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/GitHub_Repo.png)
 <br />
+<br />
 
 In RStudio, set the working directory to the zip location: Session -> Set Working Directory -> Choose Directory.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_setwd.png)
+<br />
 <br />
 
 Paste the following in the RStudio Source pane and run each line of code.
@@ -150,15 +161,18 @@ Paste the following in the RStudio Source pane and run each line of code.
 install.packages("mdJSONdictio-master")
 ```
 <br />
+<br />
 
 ### If dependent package updates fail…
 
 Uninstall the package in the Files, Plots, Packages, Help Viewer pane: Packages tab -> click the "x" next to the package. When a pop-up asks "Are you sure?", click Yes.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Unattach_Package.png)
 <br />
+<br />
 
 Restart the R session: Session -> Restart R.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Restart.png)
+<br />
 <br />
 
 Reinstall the package: Packages tab -> Install -> type in the package name -> Install
