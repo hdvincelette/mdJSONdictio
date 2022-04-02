@@ -51,7 +51,7 @@ library(rjson)
 <br />
 
 #### Figure 1.1: Data dictionary template in Excel.
-![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/dictionary_template.png)
+![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Dictionary_Template.png)
 ```{r, echo=FALSE}
 # knitr::include_graphics(system.file("help/figures","dictionary_template.png", package = "mdJSONdictio"))
 ```
