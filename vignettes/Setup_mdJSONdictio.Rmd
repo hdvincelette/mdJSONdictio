@@ -82,7 +82,7 @@ The Console pane is where code is executed. Code can be submitted directly to th
 > Lines of code that start with **#** are "comments" and are not executed in the Console pane.
 > A blue **>** at the bottom of the Console pane indicates R finished processing the code.
 
-For a more thorough instructions on R and RStudio, visit the Tutorial tab in the Environment, History, Connections, Tutorial pane, or refer to the Hands-On Programming with R website.
+For a more thorough instructions on R and RStudio, visit the Tutorial tab in the Environment, History, Connections, Tutorial pane, or refer to the [Hands-On Programming with R website](https://rstudio-education.github.io/hopr/).
 
 
 # Install mdJSONdictio in R
