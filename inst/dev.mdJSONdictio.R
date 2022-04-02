@@ -15,10 +15,10 @@ install()
 
 
 # Write markdown
-rmarkdown::render('vignettes/Intro_mdJSONdictio.Rmd')
-rmarkdown::render('vignettes/Dictionary_Template.Rmd')
-rmarkdown::render('vignettes/Setup_mdJSONdictio.Rmd')
-rmarkdown::render('vignettes/Steps_mdEditor.Rmd')
+rmarkdown::render('vignettes/01_Intro_mdJSONdictio.Rmd')
+rmarkdown::render('vignettes/02_Dictionary_Template.Rmd')
+rmarkdown::render('vignettes/03_Setup_mdJSONdictio.Rmd')
+rmarkdown::render('vignettes/04_Steps_mdEditor.Rmd')
 
 
 # Update site
