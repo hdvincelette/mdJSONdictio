@@ -131,7 +131,7 @@ mdJSONdictio requires other packages to work properly. R may prompt you to updat
 
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png)
 <br />
-If package updates fail, installation of mdJSONdictio may halt. See the [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#troubleshooting-tips) for an alternative way to update dependent packages.
+If package updates fail, installation of mdJSONdictio may halt. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#if-dependent-package-updates-fail) for an alternative way to update dependent packages.
 
 <br />
 
