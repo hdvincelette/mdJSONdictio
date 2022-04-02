@@ -419,23 +419,23 @@ build.mdJSON <- function(x, title) {
 
   oldsubject <- paste0('\"', 'subject', '\":\"', 'dataDictionary', '\"')
   newsubject <- paste0('\"', 'subject', '\":[\"', 'dataDictionary', '\"]')
-  newstring <- mgsub(oldsubject, newsubject, newstring)
+  newstring <- gsub(oldsubject, newsubject, newstring)
 
   oldcase <- paste0('\"', 'isCaseSensitive', '\":\"', 'true', '\"')
   newcase <- paste0('\"', 'isCaseSensitive', '\":', 'true')
-  newstring <- mgsub(oldcase, newcase, newstring)
+  newstring <- gsub(oldcase, newcase, newstring)
 
   oldcase <- paste0('\"', 'isCaseSensitive', '\":\"', 'false', '\"')
   newcase <- paste0('\"', 'isCaseSensitive', '\":', 'false')
-  newstring <- mgsub(oldcase, newcase, newstring)
+  newstring <- gsub(oldcase, newcase, newstring)
 
   oldnull <- paste0('\"', 'allowNull', '\":\"', 'true', '\"')
   newnull <- paste0('\"', 'allowNull', '\":', 'true')
-  newstring <- mgsub(oldnull, newnull, newstring)
+  newstring <- gsub(oldnull, newnull, newstring)
 
   oldnull <- paste0('\"', 'allowNull', '\":\"', 'false', '\"')
   newnull <- paste0('\"', 'allowNull', '\":', 'false')
-  newstring <- mgsub(oldnull, newnull, newstring)
+  newstring <- gsub(oldnull, newnull, newstring)
 
   blankjson[["data"]][[1]][["attributes"]][["json"]] <- newstring
 
