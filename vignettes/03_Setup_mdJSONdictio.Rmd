@@ -102,13 +102,13 @@ The Console pane is where code is executed. Code can be submitted directly to th
 * A blue **>** at the bottom of the Console pane indicates R finished processing the code.
 <br />
 
-*For a more thorough instructions on R and RStudio, visit the Tutorial tab in the Environment, History, Connections, Tutorial pane, or refer to the [Hands-On Programming with R website](https://rstudio-education.github.io/hopr/).?*
+*For a more thorough instructions on R and RStudio, visit the Tutorial tab in the Environment, History, Connections, Tutorial pane, or refer to the [Hands-On Programming with R website](https://rstudio-education.github.io/hopr/).*
 <br />
 <br />
 <br />
 
 # Install mdJSONdictio in R
-***Note: These instructions apply any computer system with R and RStudio***
+***Note: These instructions apply any computer system with R and RStudio.***
 
 ### Run installation code in RStudio
 
@@ -150,8 +150,7 @@ If the R simply prints the executed code in the Console pane, then installation 
 <br />
 
 # Troubleshooting tips
-***Note: These instructions apply any computer system with R and RStudio***
-
+***Note: These instructions apply any computer system with R and RStudio.***
 <br />
 
 ## If mdJSONdictio installation fails
@@ -185,7 +184,6 @@ Paste the following in the RStudio Source pane and run each line of code.
 # Install mdJSONdictio from zip source
 install.packages("mdJSONdictio-master")
 ```
-<br />
 <br />
 
 ## If dependent package updates fail
