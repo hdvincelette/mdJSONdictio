@@ -46,28 +46,28 @@ library(rjson)
 ```
 
 
-```build.mdJSON()``` only reads data frames formatted to a data dictionary template (Figure 1.1), which can be downloaded [here](https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true). While csv is a more flexible file format, this template is in xlsx format because it contains validation rules that prevent incorrect values from being entered, resulting in errors when using ```build.mdJSON()``` or creating the Dictionary record in mdEditor.
+```build.mdJSON()``` only reads data frames formatted to a data dictionary template, which can be downloaded [here](https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true). While csv is a more flexible file format, this template is in xlsx format because it contains validation rules that prevent incorrect values from being entered, resulting in errors when using ```build.mdJSON()``` or creating the Dictionary record in mdEditor.
 <br />
-<br />
-
-#### Figure 1.1: Data dictionary template in Excel.
+#### Data Dictionary Template in Excel
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Dictionary_Template.png)
 ```{r, echo=FALSE}
 # knitr::include_graphics(system.file("help/figures","dictionary_template.png", package = "mdJSONdictio"))
 ```
 <br />
 <br />
+
+# Attributes and Entry Values
+
 The two main components of the tabular data dictionary template are attributes and entry values, each of which are represented as a row. Entry values are known as "domain items" which collectively make up the "domain" of an attribute. It is important to remember that while entry values are associated with a certain attribute, not all attributes have defined entry values. For example, the attribute "Sex" may have three defined entry values ("F","M", and "U"), where as the attribute "Year" does not have defined entry values since an unlimited number of years can be entered.
 <br />
 <br />
 The table below describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. "Definition" describes the template column. Many of these definitions are derived from the [mdEditor User Manual](https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html). "DataType" indicates the type of value allowed in the template column. "Required" indicates whether the template column is required by attributes and/or entry values ("No" indicates it is not required by either attributes or entry values). 
 <br />
- 
 *Note: The template columns "codeName," "domainItem_name," "domainItem_value," and "definition" are all required by attributes and entry values. The template columns "dataType" and "allowNull" are required by attributes*
 <br />
 <br />
 
-#### Column descriptions for the data dictionary template.
+#### Data Dictionary Template Column Descriptions
 
 <font size="2.5"> 
 ```{r, echo=FALSE}
@@ -77,11 +77,13 @@ kable(read.csv(path<-system.file("extdata", "template_column_definitions.csv", p
 </font>
 <br />
 <br />
-The "dataType" dictionary column has numerous defined entry values as shown in the table below. These are derived from the mdEditor web application, and the definitions were acquired from the [mdCodes Viewer](https://adiwg.github.io/mdTools/#codes-page) in the mdTools interface.
+
+# Attribute Data Types
+Attributes require a defined data type. The "dataType" template column accepts  numerous values as shown in the table below. These are derived from the mdEditor web application, and the definitions were acquired from the [mdCodes Viewer](https://adiwg.github.io/mdTools/#codes-page) in the mdTools interface.
 <br />
 <br />
 
-#### dataType entry value descriptions for the data dictionary template.
+#### "dataType" Value Descriptions
 
 <font size="2.5"> 
 ```{r, echo=FALSE}
