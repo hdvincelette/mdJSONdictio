@@ -7,14 +7,18 @@ library(pkgdown)
 
 
 # Reload package with local changes
+setwd("~/GitHub/mdJSONdictio")
 setwd("~/Documents/GitHub/mdJSONdictio")
 document()
 load_all()
 install()
 
 
-# Write html markdown
+# Write markdown
 rmarkdown::render('vignettes/Intro_mdJSONdictio.Rmd')
+rmarkdown::render('vignettes/Dictionary_Template.Rmd')
+rmarkdown::render('vignettes/Setup_mdJSONdictio.Rmd')
+rmarkdown::render('vignettes/Steps_mdEditor.Rmd')
 
 # Update site
 # pkgdown::build_site()
