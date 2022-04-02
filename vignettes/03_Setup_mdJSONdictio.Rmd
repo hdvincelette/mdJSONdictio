@@ -63,18 +63,18 @@ The following describes how to setup a working space to use the mdJSONdictio fun
 
 *Note: These instructions are catered to USFWS employees, but may be adapted to those with similar operating systems.*
 
-#### Search "FWS-Apps-to-Go" in the Windows search box.
+Search "FWS-Apps-to-Go" in the Windows search box.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/FWS_Apps_Search.png)
 <br />
 <br />
 
-#### Search “IFW-R” in the Applications search box. 
+Search “IFW-R” in the Applications search box. 
 Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for [R](https://cran.r-project.org/bin/windows/base/) and [RStudio](https://www.rstudio.com/products/rstudio/download/).
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Install_R.png)
 <br />
 <br />
 
-#### Search "RStudio" in the Windows search box.
+Search "RStudio" in the Windows search box.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png)
 <br />
 <br />
@@ -98,7 +98,7 @@ The Console pane is where code is executed. Code can be submitted directly to th
 * A blue **>** at the bottom of the Console pane indicates R finished processing the code.
 <br />
 
-For a more thorough instructions on R and RStudio, visit the Tutorial tab in the Environment, History, Connections, Tutorial pane, or refer to the [Hands-On Programming with R website](https://rstudio-education.github.io/hopr/).
+*For a more thorough instructions on R and RStudio, visit the Tutorial tab in the Environment, History, Connections, Tutorial pane, or refer to the [Hands-On Programming with R website](https://rstudio-education.github.io/hopr/).?*
 <br />
 <br />
 <br />
