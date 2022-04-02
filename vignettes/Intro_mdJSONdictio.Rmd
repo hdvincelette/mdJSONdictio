@@ -69,6 +69,7 @@ Anyone who has written metadata in mdEditor knows creating dictionaries can be t
 
 # Function Overview
 <br />
+
 ## ```build.mdJSON()``` 
 
 Transforms a tabular data dictionary into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a template as described in the [Tabular Data Dictionary Template] section. A required parameter is ```title```, which accepts a string to designate the title of the Dictionary record in mdEditor.
