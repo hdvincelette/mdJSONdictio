@@ -63,14 +63,7 @@ The two main components of the tabular data dictionary template are attributes a
 The table below describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. "Definition" describes the template column. Many of these definitions are derived from the [mdEditor User Manual](https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html). "DataType" indicates the type of value allowed in the template column. "Required" indicates whether the template column is required by attributes and/or entry values ("No" indicates it is not required by either attributes or entry values). 
 <br />
  
-Note:
-
-- The template columns "codeName," "domainItem_name," "domainItem_value," and "definition" are all required by attributes and entry values.
-- The template columns "dataType" and "allowNull" are required by attributes
-<br />
-<br />
-
-<em>Tip: View attribute rows by filtering the dictionary column "domainItem_name" to "colname" and verify all rows have values for dictionary columns "dataType" and "allowNull".</em>
+*Note: The template columns "codeName," "domainItem_name," "domainItem_value," and "definition" are all required by attributes and entry values. The template columns "dataType" and "allowNull" are required by attributes*
 <br />
 <br />
 
