@@ -64,7 +64,8 @@ The following describes how to setup a working space to use the mdJSONdictio fun
 *Note: These instructions are catered to USFWS employees, but may be adapted to those with similar operating systems.*
 
 Search "FWS-Apps-to-Go" in the Windows search box.
-![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/FWS_Apps_Search.png)
+
+![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/FWS_Apps_Search.png){width=50%}
 <br />
 <br />
 
@@ -75,14 +76,15 @@ Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. 
 <br />
 
 Search "RStudio" in the Windows search box.
-![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png)
+
+![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png){width=50%}
 <br />
 <br />
 <br />
 
 # Get to know RStudio
 
-There are four main panes in RStudio: Source (upper left), Console (lower left), Environment, History, Connections, Tutorial (upper right), and Files, Plots, Packages, Help, Viewer (lower right). Expand the Source pane with Ctrl + 1 or by clicking the double window icon in the upper right corner of the pane.
+There are four main panes in RStudio: Source (upper left), Console (lower left), Environment, History, Connections, Tutorial (upper right), and Files, Plots, Packages, Help, Viewer (lower right). Expand the Source pane with Ctrl + 1 or by clicking the double window icon in the upper right corner of the Console pane.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Open.png)
 <br />
 <br />
