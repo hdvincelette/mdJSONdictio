@@ -20,6 +20,7 @@ rmarkdown::render('vignettes/Dictionary_Template.Rmd')
 rmarkdown::render('vignettes/Setup_mdJSONdictio.Rmd')
 rmarkdown::render('vignettes/Steps_mdEditor.Rmd')
 
+
 # Update site
 # pkgdown::build_site()
 deploy_to_branch()
