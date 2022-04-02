@@ -108,7 +108,7 @@ pre code {
 </h3>
 <p>Transforms a tabular data dictionary into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a template as described in the <a href="https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html">Tabular Data Dictionary Template article</a>. A required parameter is <code>title</code>, which accepts a string to designate the title of the Dictionary record in mdEditor. <br><br></p>
 <div class="section level5">
-<h5 id="a-tabular-data-dictionary-imported-as-a-data-frame-in-r">A tabular data dictionary imported as a data frame in R:<a class="anchor" aria-label="anchor" href="#a-tabular-data-dictionary-imported-as-a-data-frame-in-r"></a>
+<h5 id="tabular-data-dictionary-imported-as-a-data-frame-in-r">Tabular data dictionary imported as a data frame in R<a class="anchor" aria-label="anchor" href="#tabular-data-dictionary-imported-as-a-data-frame-in-r"></a>
 </h5>
 <pre><code><span class="co">#&gt; <span style="color: #949494;"># A tibble: 463 × 14</span></span>
 <span class="co">#&gt;     codeName           domainItem_name  domainItem_value definition                                                                                                     dataType          allowNull units           unitsResolution isCaseSensitive fieldWidth missingValue minValue maxValue notes</span>
@@ -579,7 +579,8 @@ pre code {
 <p><br></p>
 </div>
 <div class="section level5">
-<h5 id="the-function-return-value-in-r">The function return value in R:<a class="anchor" aria-label="anchor" href="#the-function-return-value-in-r"></a>
+<h5 id="build-mdjson-return-value-in-r">
+<code>build.mdJSON()</code> return value in R<a class="anchor" aria-label="anchor" href="#build-mdjson-return-value-in-r"></a>
 </h5>
 <pre><code><span class="co">#&gt; $data</span>
 <span class="co">#&gt; $data[[1]]</span>
@@ -609,7 +610,7 @@ pre code {
 <p>Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a data frame to be used as a human-readable reference. The output is formatted to the template described in the [Tabular Data Dictionary Template] section. Optional parameters are <code>entity_num</code> and <code>dictionary_num</code>, which accept integers to indicate the dictionary and entity to be processed if more than one exists in the mdJSON file. This is useful when multiple entities are created in the Entity tab of a Dictionary record or multiple dictionaries are exported together in mdEditor. By default, <code>entity_num = 1</code> and <code>dictionary_num = 1</code>, so if the mdJSON file only has one entity and dictionary, these parameters can be ignored.</p>
 <p><em>Note: Depending on how the Dictionary record was completed in mdEditor, an mdJSON file processed by this function may output a table with additional columns other than those in the tabular data dictionary template. Refer to the <a href="https://mdbook.adiwg.org/appendix/mdjson_data_dictionary.html" class="external-link">mdJSON Data Dictionary</a> to translate these and other mdEditor terms</em>. <br><br></p>
 <div class="section level5">
-<h5 id="an-mdjson-data-dictionary-imported-as-a-list-in-r">An mdJSON data dictionary imported as a list in R:<a class="anchor" aria-label="anchor" href="#an-mdjson-data-dictionary-imported-as-a-list-in-r"></a>
+<h5 id="mdjson-data-dictionary-imported-as-a-list-in-r">mdJSON data dictionary imported as a list in R<a class="anchor" aria-label="anchor" href="#mdjson-data-dictionary-imported-as-a-list-in-r"></a>
 </h5>
 <pre><code><span class="co">#&gt; $data</span>
 <span class="co">#&gt; $data[[1]]</span>
@@ -632,7 +633,8 @@ pre code {
 <p><br></p>
 </div>
 <div class="section level5">
-<h5 id="the-function-return-value-in-r-1">The function return value in R:<a class="anchor" aria-label="anchor" href="#the-function-return-value-in-r-1"></a>
+<h5 id="build-table-return-value-in-r">
+<code>build.table()</code> return value in R<a class="anchor" aria-label="anchor" href="#build-table-return-value-in-r"></a>
 </h5>
 <pre><code><span class="co">#&gt; <span style="color: #949494;"># A tibble: 257 × 14</span></span>
 <span class="co">#&gt;     codeName           domainItem_name domainItem_value definition                                                                                                    dataType            allowNull units             unitsResolution isCaseSensitive fieldWidth missingValue minValue maxValue domainId                              </span>
