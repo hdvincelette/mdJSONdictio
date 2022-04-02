@@ -44,17 +44,18 @@ The following describes how to setup a working space to use the mdJSONdictio fun
 
 *Note: These instructions are catered to USFWS employees, but may be adapted to those with similar operating systems.*
 
-Search "FWS-Apps-to-Go" in the Windows search box.
+#### Search "FWS-Apps-to-Go" in the Windows search box.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/FWS_Apps_Search.png)
 <br />
 <br />
 
-Search “IFW-R” in the Applications search box. Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for [R](https://cran.r-project.org/bin/windows/base/) and [RStudio](https://www.rstudio.com/products/rstudio/download/).
+#### Search “IFW-R” in the Applications search box. 
+Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for [R](https://cran.r-project.org/bin/windows/base/) and [RStudio](https://www.rstudio.com/products/rstudio/download/).
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Install_R.png)
 <br />
 <br />
 
-Search "RStudio" in the Windows search box.
+#### Search "RStudio" in the Windows search box.
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png)
 <br />
 <br />
@@ -129,6 +130,7 @@ If the R simply prints the executed code in the Console pane, then installation 
 
 # Troubleshooting tips
 
+<br />
 ### If mdJSONdictio installation fails...
 
 Paste the following code in the RStudio Source pane and run each line.
