@@ -100,9 +100,21 @@
 <h2 id="install-r-on-a-doi-windows-pc">Install R on a DOI Windows PC<a class="anchor" aria-label="anchor" href="#install-r-on-a-doi-windows-pc"></a>
 </h2>
 <p><em>Note: These instructions are catered to USFWS employees, but may be adapted to those with similar operating systems.</em></p>
-<p>Search “FWS-Apps-to-Go” in the Windows search box. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/FWS_Apps_Search.png"><br><br></p>
-<p>Search “IFW-R” in the Applications search box. Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for <a href="https://cran.r-project.org/bin/windows/base/" class="external-link">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">RStudio</a>. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Install_R.png"><br><br></p>
-<p>Search “RStudio” in the Windows search box. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png"><br><br><br></p>
+<div class="section level5">
+<h5 id="search-fws-apps-to-go-in-the-windows-search-box-">Search “FWS-Apps-to-Go” in the Windows search box.<a class="anchor" aria-label="anchor" href="#search-fws-apps-to-go-in-the-windows-search-box-"></a>
+</h5>
+<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/FWS_Apps_Search.png"><br><br></p>
+</div>
+<div class="section level5">
+<h5 id="search-ifw-r-in-the-applications-search-box-">Search “IFW-R” in the Applications search box.<a class="anchor" aria-label="anchor" href="#search-ifw-r-in-the-applications-search-box-"></a>
+</h5>
+<p>Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for <a href="https://cran.r-project.org/bin/windows/base/" class="external-link">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">RStudio</a>. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Install_R.png"><br><br></p>
+</div>
+<div class="section level5">
+<h5 id="search-rstudio-in-the-windows-search-box-">Search “RStudio” in the Windows search box.<a class="anchor" aria-label="anchor" href="#search-rstudio-in-the-windows-search-box-"></a>
+</h5>
+<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png"><br><br><br></p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="get-to-know-rstudio">Get to know RStudio<a class="anchor" aria-label="anchor" href="#get-to-know-rstudio"></a>
@@ -157,16 +169,13 @@
 <div class="section level2">
 <h2 id="troubleshooting-tips">Troubleshooting tips<a class="anchor" aria-label="anchor" href="#troubleshooting-tips"></a>
 </h2>
-<div class="section level4">
-<h4 id="if-mdjsondictio-installation-fails">If mdJSONdictio installation fails…<a class="anchor" aria-label="anchor" href="#if-mdjsondictio-installation-fails"></a>
-</h4>
+<p><br> ### If mdJSONdictio installation fails…</p>
 <p>Paste the following code in the RStudio Source pane and run each line.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install mdJSONdictio with compiled code only for sub-architecture used by R CMD INSTALL</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hdvincelette/mdJSONdictio"</span>,
                          INSTALL_opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"--no-multiarch"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><br></p>
-</div>
 <div class="section level4">
 <h4 id="if-mdjsondictio-installation-fails-again">If mdJSONdictio installation fails again…<a class="anchor" aria-label="anchor" href="#if-mdjsondictio-installation-fails-again"></a>
 </h4>
