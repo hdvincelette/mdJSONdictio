@@ -59,9 +59,9 @@ The following describes how to setup a working space to use the mdJSONdictio fun
 <br />
 <br />
 
-# Install R on a Windows PC
-
-*Note: These instructions are catered to U.S. Fish & Wildlife employees, but may be adapted to those with similar operating systems.*
+# Install R and RStudio on a Windows PC
+***Note: These instructions are catered to U.S. Fish & Wildlife employees, but may be adapted to those with similar operating systems. Visit the [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download) download pages to find desktop installation instructions for Windows, Mac, and Linux.***
+<br />
 
 Search "FWS-Apps-to-Go" in the Windows search box.
 
@@ -71,6 +71,7 @@ Search "FWS-Apps-to-Go" in the Windows search box.
 
 Search “IFW-R” in the Applications search box. 
 Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for [R](https://cran.r-project.org/bin/windows/base/) and [RStudio](https://www.rstudio.com/products/rstudio/download/).
+
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Install_R.png)
 <br />
 <br />
@@ -85,6 +86,7 @@ Search "RStudio" in the Windows search box.
 # Get to know RStudio
 
 There are four main panes in RStudio: Source (upper left), Console (lower left), Environment, History, Connections, Tutorial (upper right), and Files, Plots, Packages, Help, Viewer (lower right). Expand the Source pane with Ctrl + 1 or by clicking the double window icon in the upper right corner of the Console pane.
+
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Open.png)
 <br />
 <br />
@@ -106,6 +108,7 @@ The Console pane is where code is executed. Code can be submitted directly to th
 <br />
 
 # Install mdJSONdictio in R
+***Note: These instructions apply any computer system with R and RStudio***
 
 ### Run installation code in RStudio
 
@@ -125,6 +128,7 @@ library(mdJSONdictio)
 ### Update dependent packages
 
 mdJSONdictio requires other packages to work properly. R may prompt you to update these dependent packages during installation. To update all, type "1" in the Console pane and hit Enter. If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes.
+
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png)
 <br />
 If package updates fail, installation of mdJSONdictio may halt. See the [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#troubleshooting-tips) for an alternative way to update dependent packages.
@@ -146,8 +150,10 @@ If the R simply prints the executed code in the Console pane, then installation 
 <br />
 
 # Troubleshooting tips
+***Note: These instructions apply any computer system with R and RStudio***
 
 <br />
+
 ## If mdJSONdictio installation fails
 
 Paste the following code in the RStudio Source pane and run each line.
@@ -162,11 +168,13 @@ devtools::install_github("hdvincelette/mdJSONdictio",
 ## If mdJSONdictio installation fails again
 
 Navigate to the mdJSONdictio GitHub repository and download the package zip: Code -> Download ZIP.
+
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/GitHub_Repo.png)
 <br />
 <br />
 
 In RStudio, set the working directory to the zip location: Session -> Set Working Directory -> Choose Directory.
+
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_setwd.png)
 <br />
 <br />
@@ -183,16 +191,19 @@ install.packages("mdJSONdictio-master")
 ## If dependent package updates fail
 
 Uninstall the package in the Files, Plots, Packages, Help Viewer pane: Packages tab -> click the "x" next to the package. When a pop-up asks "Are you sure?", click Yes.
+
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Uninstall.png)
 <br />
 <br />
 
 Restart the R session: Session -> Restart R.
+
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Restart.png)
 <br />
 <br />
 
 Reinstall the package: Packages tab -> Install -> type in the package name -> Install
+
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Install.png)
 <br />
 <br />
