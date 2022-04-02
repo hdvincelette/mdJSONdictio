@@ -153,8 +153,9 @@ If the R simply prints the executed code in the Console pane, then installation 
 ***Note: These instructions apply any computer system with R and RStudio.***
 <br />
 
-## If mdJSONdictio installation fails
+## Failed mdJSONdictio installation
 
+### Solution 1
 Paste the following code in the RStudio Source pane and run each line.
 
 ```{r, include=TRUE, eval=FALSE}
@@ -164,7 +165,7 @@ devtools::install_github("hdvincelette/mdJSONdictio",
 ```
 <br />                         
                          
-## If mdJSONdictio installation fails again
+### Solution 2
 
 Navigate to the mdJSONdictio GitHub repository and download the package zip: Code -> Download ZIP.
 
@@ -186,7 +187,7 @@ install.packages("mdJSONdictio-master")
 ```
 <br />
 
-## If dependent package updates fail
+## Failed dependent package update
 
 Uninstall the package in the Files, Plots, Packages, Help Viewer pane: Packages tab -> click the "x" next to the package. When a pop-up asks "Are you sure?", click Yes.
 
