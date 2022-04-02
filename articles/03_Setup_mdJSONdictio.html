@@ -41,10 +41,10 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Dictionary_Template.html">Tabular Data Dictionary Template</a>
-    <a class="dropdown-item" href="../articles/Intro_mdJSONdictio.html">Introduction to mdJSONdictio</a>
-    <a class="dropdown-item" href="../articles/Setup_mdJSONdictio.html">Setup mdJSONdictio</a>
-    <a class="dropdown-item" href="../articles/Steps_mdEditor.html">Steps in mdEditor</a>
+    <a class="dropdown-item" href="../articles/01_Intro_mdJSONdictio.html">Introduction to mdJSONdictio</a>
+    <a class="dropdown-item" href="../articles/02_Dictionary_Template.html">Tabular Data Dictionary Template</a>
+    <a class="dropdown-item" href="../articles/03_Setup_mdJSONdictio.html">Setup mdJSONdictio</a>
+    <a class="dropdown-item" href="../articles/04_Steps_mdEditor.html">Steps in mdEditor</a>
   </div>
 </li>
       </ul>
@@ -68,13 +68,13 @@
 
 
 
-<script src="Setup_mdJSONdictio_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+<script src="03_Setup_mdJSONdictio_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Setup mdJSONdictio</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/hdvincelette/mdJSONdictio/blob/HEAD/vignettes/Setup_mdJSONdictio.Rmd" class="external-link"><code>vignettes/Setup_mdJSONdictio.Rmd</code></a></small>
-      <div class="d-none name"><code>Setup_mdJSONdictio.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/hdvincelette/mdJSONdictio/blob/HEAD/vignettes/03_Setup_mdJSONdictio.Rmd" class="external-link"><code>vignettes/03_Setup_mdJSONdictio.Rmd</code></a></small>
+      <div class="d-none name"><code>03_Setup_mdJSONdictio.Rmd</code></div>
     </div>
 
     
@@ -100,18 +100,18 @@
 <h2 id="install-r-on-a-doi-windows-pc">Install R on a DOI Windows PC<a class="anchor" aria-label="anchor" href="#install-r-on-a-doi-windows-pc"></a>
 </h2>
 <p><em>Note: These instructions are catered to USFWS employees, but may be adapted to those with similar operating systems.</em></p>
-<p>Search “FWS-Apps-to-Go” in the Windows search box. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/FWS_Apps_Search.png"><br></p>
-<p>Search “IFW-R” in the Applications search box. Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for <a href="https://cran.r-project.org/bin/windows/base/" class="external-link">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">RStudio</a>. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Install_R.png"><br></p>
-<p>Search “RStudio” in the Windows search box. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png"><br><br></p>
+<p>Search “FWS-Apps-to-Go” in the Windows search box. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/FWS_Apps_Search.png"><br><br></p>
+<p>Search “IFW-R” in the Applications search box. Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for <a href="https://cran.r-project.org/bin/windows/base/" class="external-link">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">RStudio</a>. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Install_R.png"><br><br></p>
+<p>Search “RStudio” in the Windows search box. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png"><br><br><br></p>
 </div>
 <div class="section level2">
 <h2 id="get-to-know-rstudio">Get to know RStudio<a class="anchor" aria-label="anchor" href="#get-to-know-rstudio"></a>
 </h2>
-<p>There are four main panes in RStudio: Source (upper left), Console (lower left), Environment, History, Connections, Tutorial (upper right), and Files, Plots, Packages, Help, Viewer (lower right). Expand the Source pane with Ctrl + 1 or by clicking the double window icon in the upper right corner of the pane. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Open.png"><br></p>
+<p>There are four main panes in RStudio: Source (upper left), Console (lower left), Environment, History, Connections, Tutorial (upper right), and Files, Plots, Packages, Help, Viewer (lower right). Expand the Source pane with Ctrl + 1 or by clicking the double window icon in the upper right corner of the pane. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Open.png"><br><br></p>
 <p>The Console pane is where code is executed. Code can be submitted directly to the Console pane or written in “scripts” in the Source pane and sent to the Console pane. Code written in the Source pane can be saved for later, whereas the Console pane only keeps a short-term record of executed code. <br></p>
-<div class="section level4">
-<h4 id="operation-tips">Operation tips<a class="anchor" aria-label="anchor" href="#operation-tips"></a>
-</h4>
+<div class="section level5">
+<h5 id="operation-tips">Operation tips<a class="anchor" aria-label="anchor" href="#operation-tips"></a>
+</h5>
 <ul>
 <li>Code in the Source pane is sent to the Console with Ctrl + Enter or by clicking the Run button.</li>
 <li>The blinking cursor in the Source pane indicates the line of code that will be executed. Chunks of code can be executed by highlighting multiple lines of code.</li>
@@ -119,7 +119,7 @@
 <li>A blue <strong>&gt;</strong> at the bottom of the Console pane indicates R finished processing the code. <br>
 </li>
 </ul>
-<p>For a more thorough instructions on R and RStudio, visit the Tutorial tab in the Environment, History, Connections, Tutorial pane, or refer to the <a href="https://rstudio-education.github.io/hopr/" class="external-link">Hands-On Programming with R website</a>. <br><br></p>
+<p>For a more thorough instructions on R and RStudio, visit the Tutorial tab in the Environment, History, Connections, Tutorial pane, or refer to the <a href="https://rstudio-education.github.io/hopr/" class="external-link">Hands-On Programming with R website</a>. <br><br><br></p>
 </div>
 </div>
 <div class="section level2">
@@ -142,8 +142,8 @@
 <div class="section level4">
 <h4 id="update-dependent-packages">Update dependent packages<a class="anchor" aria-label="anchor" href="#update-dependent-packages"></a>
 </h4>
-<p>mdJSONdictio requires other packages to work properly. R may prompt you to update these dependent packages during installation. To update all, type “1” in the Console pane and hit Enter. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png"><br></p>
-<p>If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update_2.png"><br></p>
+<p>mdJSONdictio requires other packages to work properly. R may prompt you to update these dependent packages during installation. To update all, type “1” in the Console pane and hit Enter. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png"><br><br></p>
+<p>If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update_2.png"><br><br></p>
 </div>
 <div class="section level4">
 <h4 id="verify-mdjsondictio-installation">Verify mdJSONdictio installation<a class="anchor" aria-label="anchor" href="#verify-mdjsondictio-installation"></a>
@@ -151,8 +151,12 @@
 <p>Re-run the following code to verify mdJSONdictio was successfully installed.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hdvincelette/mdJSONdictio" class="external-link">mdJSONdictio</a></span><span class="op">)</span></code></pre></div>
-<p>If the R simply prints the executed code in the Console pane, then installation was successful. If R returns the Error message “there is no package called ‘mdJSONdictio’,” then installation failed. <br><br> # Troubleshooting tips</p>
+<p>If the R simply prints the executed code in the Console pane, then installation was successful. If R returns the Error message “there is no package called ‘mdJSONdictio’,” then installation failed. <br><br><br></p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="troubleshooting-tips">Troubleshooting tips<a class="anchor" aria-label="anchor" href="#troubleshooting-tips"></a>
+</h2>
 <div class="section level4">
 <h4 id="if-mdjsondictio-installation-fails">If mdJSONdictio installation fails…<a class="anchor" aria-label="anchor" href="#if-mdjsondictio-installation-fails"></a>
 </h4>
@@ -166,19 +170,19 @@
 <div class="section level4">
 <h4 id="if-mdjsondictio-installation-fails-again">If mdJSONdictio installation fails again…<a class="anchor" aria-label="anchor" href="#if-mdjsondictio-installation-fails-again"></a>
 </h4>
-<p>Navigate to the mdJSONdictio GitHub repository and download the package zip: Code -&gt; Download ZIP. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/GitHub_Repo.png"><br></p>
-<p>In RStudio, set the working directory to the zip location: Session -&gt; Set Working Directory -&gt; Choose Directory. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_setwd.png"><br></p>
+<p>Navigate to the mdJSONdictio GitHub repository and download the package zip: Code -&gt; Download ZIP. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/GitHub_Repo.png"><br><br></p>
+<p>In RStudio, set the working directory to the zip location: Session -&gt; Set Working Directory -&gt; Choose Directory. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_setwd.png"><br><br></p>
 <p>Paste the following in the RStudio Source pane and run each line of code.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install mdJSONdictio from zip source</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mdJSONdictio-master"</span><span class="op">)</span></code></pre></div>
-<p><br></p>
+<p><br><br></p>
 </div>
 <div class="section level4">
 <h4 id="if-dependent-package-updates-fail">If dependent package updates fail…<a class="anchor" aria-label="anchor" href="#if-dependent-package-updates-fail"></a>
 </h4>
-<p>Uninstall the package in the Files, Plots, Packages, Help Viewer pane: Packages tab -&gt; click the “x” next to the package. When a pop-up asks “Are you sure?”, click Yes. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Unattach_Package.png"><br></p>
-<p>Restart the R session: Session -&gt; Restart R. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Restart.png"><br></p>
+<p>Uninstall the package in the Files, Plots, Packages, Help Viewer pane: Packages tab -&gt; click the “x” next to the package. When a pop-up asks “Are you sure?”, click Yes. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Unattach_Package.png"><br><br></p>
+<p>Restart the R session: Session -&gt; Restart R. <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Restart.png"><br><br></p>
 <p>Reinstall the package: Packages tab -&gt; Install -&gt; type in the package name -&gt; Install <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Install.png"></p>
 </div>
 </div>

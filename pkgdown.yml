@@ -2,11 +2,11 @@ pandoc: 2.7.3
 pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
-  Dictionary_Template: Dictionary_Template.html
-  Intro_mdJSONdictio: Intro_mdJSONdictio.html
-  Setup_mdJSONdictio: Setup_mdJSONdictio.html
-  Steps_mdEditor: Steps_mdEditor.html
-last_built: 2022-04-02T09:36Z
+  01_Intro_mdJSONdictio: 01_Intro_mdJSONdictio.html
+  02_Dictionary_Template: 02_Dictionary_Template.html
+  03_Setup_mdJSONdictio: 03_Setup_mdJSONdictio.html
+  04_Steps_mdEditor: 04_Steps_mdEditor.html
+last_built: 2022-04-02T09:45Z
 urls:
   reference: https://hdvincelette.github.io/mdJSONdictio/reference
   article: https://hdvincelette.github.io/mdJSONdictio/articles
