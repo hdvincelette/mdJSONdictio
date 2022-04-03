@@ -46,7 +46,7 @@ library(utils)
 library(rjson)
 ```
 
-The following describes how to setup a working space to use the mdJSONdictio functions, including how to install R, RStudio, and the mdJSONdictio package.
+This article illustrates how to setup a working space to use the mdJSONdictio functions, including how to install R, RStudio, and the mdJSONdictio package.
 <br />
 
 ##### What is R?
