@@ -103,20 +103,15 @@
 <div class="section level4">
 <h4 id="open-fws-apps-to-go-in-windows">Open FWS-Apps-to-Go in Windows<a class="anchor" aria-label="anchor" href="#open-fws-apps-to-go-in-windows"></a>
 </h4>
-<div class="section level6">
-<h6 id="searching-fws-apps-to-go-in-the-windows-search-box">
-<span style="color: grey;">Searching “FWS-Apps-to-Go” in the Windows search box</span><a class="anchor" aria-label="anchor" href="#searching-fws-apps-to-go-in-the-windows-search-box"></a>
-</h6>
-<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/FWS_Apps_Search.png" style="width:50.0%"><br><br></p>
-</div>
+<p>Search “FWS-Apps-to-Go” in the Windows search box ##### <span style="color: grey;">Windows search for FWS-Apps-to-Go</span> <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/FWS_Apps_Search.png" style="width:50.0%"><br><br></p>
 </div>
 <div class="section level4">
 <h4 id="locate-r-and-rstudio-in-fws-apps-to-go">Locate R and RStudio in FWS-Apps-to-Go<a class="anchor" aria-label="anchor" href="#locate-r-and-rstudio-in-fws-apps-to-go"></a>
 </h4>
-<p>Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for <a href="https://cran.r-project.org/bin/windows/base/" class="external-link">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">RStudio</a>.</p>
+<p>Search “IFW-R” in the Applications search box.Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for <a href="https://cran.r-project.org/bin/windows/base/" class="external-link">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">RStudio</a>.</p>
 <div class="section level6">
-<h6 id="searching-ifw-r-in-the-applications-search-box">
-<span style="color: grey;">Searching “IFW-R” in the Applications search box</span><a class="anchor" aria-label="anchor" href="#searching-ifw-r-in-the-applications-search-box"></a>
+<h6 id="fws-apps-to-go-search-for-r-and-rstudio">
+<span style="color: grey;">FWS-Apps-to-Go search for R and RStudio</span><a class="anchor" aria-label="anchor" href="#fws-apps-to-go-search-for-r-and-rstudio"></a>
 </h6>
 <p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Install_R.png"><br><br></p>
 </div>
@@ -124,12 +119,7 @@
 <div class="section level4">
 <h4 id="open-rstudio-in-windows">Open RStudio in Windows<a class="anchor" aria-label="anchor" href="#open-rstudio-in-windows"></a>
 </h4>
-<div class="section level6">
-<h6 id="searching-rstudio-in-the-windows-search-box">
-<span style="color: grey;">Searching “RStudio” in the Windows search box</span><a class="anchor" aria-label="anchor" href="#searching-rstudio-in-the-windows-search-box"></a>
-</h6>
-<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png" style="width:50.0%"><br><br><br></p>
-</div>
+<p>Search “RStudio” in the Windows search box. ##### <span style="color: grey;">Windows search for RStudio</span> <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png" style="width:50.0%"><br><br><br></p>
 </div>
 </div>
 <div class="section level2">
@@ -179,11 +169,10 @@
 </h4>
 <p>mdJSONdictio requires other packages to work properly. R may prompt you to update these dependent packages during installation. To update all, type “1” in the Console pane and hit Enter. If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes.</p>
 <div class="section level6">
-<h6 id="package-update-prompt-in-rstudio">
-<span style="color: grey;">Package update prompt in RStudio</span><a class="anchor" aria-label="anchor" href="#package-update-prompt-in-rstudio"></a>
+<h6 id="update-packages-prompt-in-rstudio">
+<span style="color: grey;">Update packages prompt in RStudio</span><a class="anchor" aria-label="anchor" href="#update-packages-prompt-in-rstudio"></a>
 </h6>
-<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png"><br> If package updates fail, installation of mdJSONdictio may halt. See <a href="https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#if-dependent-package-updates-fail">Troubleshooting Tips</a> for an alternative way to update dependent packages.</p>
-<p><br></p>
+<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png"><br><br> If package updates fail, installation of mdJSONdictio may halt. See <a href="https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#if-dependent-package-updates-fail">Troubleshooting Tips</a> for an alternative way to update dependent packages. <br></p>
 </div>
 </div>
 <div class="section level4">
@@ -210,7 +199,6 @@
 <code class="sourceCode R"><span class="co"># Install mdJSONdictio with compiled code only for sub-architecture used by R CMD INSTALL</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hdvincelette/mdJSONdictio"</span>,
                          INSTALL_opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"--no-multiarch"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><br></p>
 </div>
 <div class="section level5">
 <h5 id="solution-2">Solution 2<a class="anchor" aria-label="anchor" href="#solution-2"></a>
@@ -248,8 +236,8 @@
 <p>Restart the R session: Session -&gt; Restart R.</p>
 </div>
 <div class="section level6">
-<h6 id="restarting-session-in-rstudio">
-<span style="color: grey;">Restarting session in RStudio</span><a class="anchor" aria-label="anchor" href="#restarting-session-in-rstudio"></a>
+<h6 id="restarting-rstudio-session">
+<span style="color: grey;">Restarting RStudio session</span><a class="anchor" aria-label="anchor" href="#restarting-rstudio-session"></a>
 </h6>
 <p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Restart.png"><br><br></p>
 <p>Reinstall the package: Packages tab -&gt; Install -&gt; type in the package name -&gt; Install</p>
