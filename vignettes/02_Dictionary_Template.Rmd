@@ -46,7 +46,9 @@ library(rjson)
 ```
 
 
-```build.mdJSON()``` only reads data frames formatted to a data dictionary template, which can be downloaded [here](https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true). While csv is a more flexible file format, this template is in xlsx format because it contains validation rules that prevent incorrect values from being entered, resulting in errors when using ```build.mdJSON()``` or creating the Dictionary record in mdEditor.
+```build.mdJSON()``` only reads data frames formatted to a data dictionary template, which can be downloaded [here](https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true). Guidelines for using this template are outlined below.
+
+*While csv is a more flexible file format, this template is in xlsx format because it contains validation rules that prevent incorrect values from being entered, resulting in errors when using ```build.mdJSON()``` or creating the Dictionary record in mdEditor.*
 <br />
 
 ##### <span style="color: grey;">Data Dictionary Template in Excel</span>
