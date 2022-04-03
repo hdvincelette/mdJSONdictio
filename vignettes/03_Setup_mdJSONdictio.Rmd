@@ -61,7 +61,7 @@ The following describes how to setup a working space to use the mdJSONdictio fun
 <br />
 
 # Install R and RStudio on a Windows PC
-***Note: These instructions are catered to U.S. Fish & Wildlife employees, but may be adapted to those with similar operating systems. Visit the [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download) download pages to find desktop installation instructions for Windows, Mac, and Linux.***
+*Note: These instructions are catered to U.S. Fish & Wildlife employees, but may be adapted to those with similar operating systems. Visit the [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download) download pages to find desktop installation instructions for Windows, Mac, and Linux.*
 <br />
 
 ### Open FWS-Apps-to-Go in Windows
@@ -113,7 +113,7 @@ The Console pane is where code is executed. Code can be submitted directly to th
 <br />
 
 # Install mdJSONdictio R package
-***Note: These instructions apply any computer system with R and RStudio.***
+*Note: These instructions apply any computer system with R and RStudio.*
 
 ### Run installation code in RStudio
 
@@ -155,7 +155,7 @@ If the R simply prints the executed code in the Console pane, then installation 
 <br />
 
 # Troubleshooting tips
-***Note: These instructions apply any computer system with R and RStudio.***
+*Note: These instructions apply any computer system with R and RStudio.*
 <br />
 
 ## Failed mdJSONdictio installation
