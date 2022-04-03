@@ -75,7 +75,7 @@ Transforms a tabular data dictionary into an R list that can be subsequently con
 <br />
 <br />
 
-#### A tabular data dictionary imported as a data frame in R:
+#### Tabular data dictionary imported as a data frame in R
 
 ```{r, echo=FALSE}
 
@@ -86,7 +86,7 @@ print(readxl::read_excel(system.file("extdata", "e.g.dictionary.xlsx", package =
 ```
 <br />
 
-#### The function return value in R:
+#### ```build.mdJSON()``` return value in R
 
 ```{r, echo=FALSE}
 print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary.json", package = "mdJSONdictio")))
@@ -102,14 +102,14 @@ Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a dat
 <br />
 <br />
 
-#### An mdJSON data dictionary imported as a list in R:
+#### mdJSON data dictionary imported as a list in R
 
 ```{r, echo=FALSE}
 print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")))
 ```
 <br />
 
-#### The function return value in R:
+#### ```build.table()``` return value in R
 
 ```{r, echo=FALSE}
 
