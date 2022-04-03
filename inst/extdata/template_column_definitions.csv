@@ -1,15 +1,15 @@
-﻿Column,DataType,Definition,Required
-codeName,character varying,Attribute name; the code used to identify this attribute; most often this will be the table or spreadsheet column name.,Attributes; Entry values
-domainItem_name,character varying,A descriptive name associated with the Domain Item value; Default is to use the Domain Item Value; Colum name rows are 'colname',Attributes; Entry values
-domainItem_value,character varying,The Domain Item value; the value in the table; colum name rows are 'colname',Attributes; Entry values
-definition,character varying,A succinct but comprehensive definition for the attribute or Domain Item,Attributes; Entry values
+﻿Column,Type,Definition,Required
+codeName,character varying,Attribute name; the code used to identify this attribute; most often this will be the table or spreadsheet column name,Attributes; Entry values
+domainItem_name,character varying,A descriptive name associated with the domain item value; Default is to use the domain item value; rows regarding attributes are 'colname',Attributes; Entry values
+domainItem_value,character varying,The domain item value; the entry value in the table; rows regarding attributes are 'colname',Attributes; Entry values
+definition,character varying,A succinct but comprehensive definition for the attribute or domain item,Attributes; Entry values
 dataType,character varying,The datatype or format of the entry values for an attribute; choose from drop down,Attributes
 allowNull,binary,Indicates whether null values are permitted as the attribute value (yes/no),Attributes
 units,character varying,"A unit-of-measure for the attribute. E.g. 'meters', 'atmospheres', 'liters'; Unrestricted, though SI units are recommended; lowercase only",No
-unitsResolution,decimal,The smallest unit increment to which an attribute value is measured.,No
+unitsResolution,decimal,The smallest unit increment to which an attribute value is measured,No
 isCaseSensitive,binary,Indicates if the content of the data set is encoded in case-sensitive ASCII (yes/no),No
-fieldWidth,integer,The number of characters in the data field.,No
-missingValue,character varying,The code which represents missing data.,No
-minValue,character varying,The minimum range value permissible for this attribute. The minimum value may be either numeric or character.,No
-maxValue,character varying,The maximum range value permissible for this attribute. The maximum value may be either numeric or character.,No
-notes,character varying,Anything entered here will be excluded from the JSON dictionary,No
+fieldWidth,integer,The number of characters in the data field,No
+missingValue,character varying,The code which represents missing data,No
+minValue,character varying,The minimum range value permissible for this attribute; this may be a numeric or character,No
+maxValue,character varying,The maximum range value permissible for this attribute; this may be a numeric or character,No
+notes,character varying,Anything entered here will be excluded from the mdJSON data dictionary,No
