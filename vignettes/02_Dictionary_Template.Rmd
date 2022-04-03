@@ -52,9 +52,11 @@ library(rjson)
 ##### Data Dictionary Template in Excel
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Dictionary_Template.png)
 <br />
+<br />
 
-##### Example dataset and the completed data dictionary
+##### Example dataset and data dictionary in Excel
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Dataset_and_Dictionary.png)
+<br />
 <br />
 
 # Attributes and entry values
@@ -62,7 +64,7 @@ library(rjson)
 The two main components of the tabular data dictionary template are attributes and entry values, each of which are represented as a row. Entry values are known as "domain items" which collectively make up the "domain" of an attribute. It is important to remember that while entry values are associated with a certain attribute, not all attributes have defined entry values. For example, the attribute "Sex" may have three defined entry values ("F","M", and "U"), where as the attribute "Year" does not have defined entry values since an unlimited number of years can be entered.
 <br />
 <br />
-The table below describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. "Definition" describes the template column. Many of these definitions are derived from the [mdEditor User Manual](https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html). "DataType" indicates the type of value allowed in the template column. "Required" indicates whether the template column is required by attributes and/or entry values ("No" indicates it is not required by either attributes or entry values). 
+The table below describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. "Definition" describes the template column. These definitions are derived from the [mdEditor User Manual](https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html). "DataType" indicates the type of value allowed in the template column. "Required" indicates whether the template column is required by attributes and/or entry values ("No" indicates it is not required by either attributes or entry values). 
 <br />
 *Note: The template columns "codeName," "domainItem_name," "domainItem_value," and "definition" are all required by attributes and entry values. The template columns "dataType" and "allowNull" are required by attributes*
 <br />
