@@ -101,9 +101,9 @@
 </h2>
 <p><em>Note: These instructions are catered to U.S. Fish &amp; Wildlife employees, but may be adapted to those with similar operating systems. Visit the <a href="https://www.r-project.org/" class="external-link">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/#download" class="external-link">RStudio</a> download pages to find desktop installation instructions for Windows, Mac, and Linux.</em> <br></p>
 <div class="section level4">
-<h4 id="open-fws-apps-to-go-in-windows">Open FWS-Apps-to-Go in Windows<a class="anchor" aria-label="anchor" href="#open-fws-apps-to-go-in-windows"></a>
+<h4 id="open-fws-apps-to-go">Open FWS-Apps-to-Go<a class="anchor" aria-label="anchor" href="#open-fws-apps-to-go"></a>
 </h4>
-<p>Search “FWS-Apps-to-Go” in the Windows search box</p>
+<p>Search “FWS-Apps-to-Go” in the Windows search box.</p>
 <div class="section level6">
 <h6 id="windows-search-for-fws-apps-to-go">
 <span style="color: grey;">Windows search for FWS-Apps-to-Go</span><a class="anchor" aria-label="anchor" href="#windows-search-for-fws-apps-to-go"></a>
@@ -114,7 +114,7 @@
 <div class="section level4">
 <h4 id="locate-r-and-rstudio-in-fws-apps-to-go">Locate R and RStudio in FWS-Apps-to-Go<a class="anchor" aria-label="anchor" href="#locate-r-and-rstudio-in-fws-apps-to-go"></a>
 </h4>
-<p>Search “IFW-R” in the Applications search box.Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for <a href="https://cran.r-project.org/bin/windows/base/" class="external-link">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">RStudio</a>.</p>
+<p>Search “IFW-R” in the Applications search box. Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for <a href="https://cran.r-project.org/bin/windows/base/" class="external-link">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/" class="external-link">RStudio</a>.</p>
 <div class="section level6">
 <h6 id="fws-apps-to-go-search-for-r-and-rstudio">
 <span style="color: grey;">FWS-Apps-to-Go search for R and RStudio</span><a class="anchor" aria-label="anchor" href="#fws-apps-to-go-search-for-r-and-rstudio"></a>
@@ -123,9 +123,15 @@
 </div>
 </div>
 <div class="section level4">
-<h4 id="open-rstudio-in-windows">Open RStudio in Windows<a class="anchor" aria-label="anchor" href="#open-rstudio-in-windows"></a>
+<h4 id="open-rstudio">Open RStudio<a class="anchor" aria-label="anchor" href="#open-rstudio"></a>
 </h4>
-<p>Search “RStudio” in the Windows search box. ##### <span style="color: grey;">Windows search for RStudio</span> <img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png" style="width:50.0%"><br><br><br></p>
+<p>Search “RStudio” in the Windows search box.</p>
+<div class="section level6">
+<h6 id="windows-search-for-rstudio">
+<span style="color: grey;">Windows search for RStudio</span><a class="anchor" aria-label="anchor" href="#windows-search-for-rstudio"></a>
+</h6>
+<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png" style="width:50.0%"><br><br><br></p>
+</div>
 </div>
 </div>
 <div class="section level2">
@@ -159,7 +165,7 @@
 <div class="section level4">
 <h4 id="run-installation-code-in-rstudio">Run installation code in RStudio<a class="anchor" aria-label="anchor" href="#run-installation-code-in-rstudio"></a>
 </h4>
-<p>Paste the following code in the RStudio Source pane and run each line. Run the code chunks separately to ensure each is successfully executed.</p>
+<p>Paste the following in the RStudio Source pane and run each line of code. Run the code chunks separately to ensure each is successfully executed.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install devtools from CRAN</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
@@ -200,7 +206,7 @@
 <div class="section level5">
 <h5 id="solution-1">Solution 1<a class="anchor" aria-label="anchor" href="#solution-1"></a>
 </h5>
-<p>Paste the following code in the RStudio Source pane and run each line.</p>
+<p>Paste the following in the RStudio Source pane and run the line of code.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install mdJSONdictio with compiled code only for sub-architecture used by R CMD INSTALL</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hdvincelette/mdJSONdictio"</span>,
@@ -222,7 +228,7 @@
 <span style="color: grey;">Setting the working directory in RStudio</span><a class="anchor" aria-label="anchor" href="#setting-the-working-directory-in-rstudio"></a>
 </h6>
 <p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_setwd.png"><br><br></p>
-<p>Paste the following in the RStudio Source pane and run each line of code.</p>
+<p>Paste the following in the RStudio Source pane and run the line of code.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install mdJSONdictio from zip source</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mdJSONdictio-master"</span><span class="op">)</span></code></pre></div>
