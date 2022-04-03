@@ -1,5 +1,5 @@
 ---
-title: "Setup mdJSONdictio"
+title: "How to Setup mdJSONdictio"
 output: 
   # html_document:
   #   theme: readable
@@ -49,12 +49,12 @@ library(rjson)
 The following describes how to setup a working space to use the mdJSONdictio functions, including how to install R, RStudio, and the mdJSONdictio package.
 <br />
 
-#### What is R?
+##### What is R?
 
 ["R is a language and environment for statistical computing and graphics." - R Core Team Team](https://www.r-project.org/about.html)
 <br />
 
-#### What is RStudio? 
+##### What is RStudio? 
 
 ["RStudio is an integrated development environment (IDE) for R." RStudio Team](https://www.rstudio.com/products/rstudio/)
 <br />
@@ -64,24 +64,26 @@ The following describes how to setup a working space to use the mdJSONdictio fun
 *Note: These instructions are catered to U.S. Fish & Wildlife employees, but may be adapted to those with similar operating systems. Visit the [R](https://www.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/#download) download pages to find desktop installation instructions for Windows, Mac, and Linux.*
 <br />
 
-### Open FWS-Apps-to-Go in Windows
+### Open FWS-Apps-to-Go
+Search "FWS-Apps-to-Go" in the Windows search box.
 
-##### Searching "FWS-Apps-to-Go" in the Windows search box
+##### <span style="color: grey;">Windows search for FWS-Apps-to-Go</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/FWS_Apps_Search.png){width=50%}
 <br />
 <br />
 
-### Locate R and RStudio in FWS-Apps-to-Go
-Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the current release webpages for [R](https://cran.r-project.org/bin/windows/base/) and [RStudio](https://www.rstudio.com/products/rstudio/download/).
+### Install R and RStudio
+Search “IFW-R” in the Applications search box and install the latest versions of R and RStudio. Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. If it is not clear which is the most recent, reference the [R](https://cran.r-project.org/bin/windows/base/) and [RStudio](https://www.rstudio.com/products/rstudio/download/) release pages.
 
-##### Searching “IFW-R” in the Applications search box
+##### <span style="color: grey;">FWS-Apps-to-Go search for R and RStudio</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Install_R.png)
 <br />
 <br />
 
-### Open RStudio in Windows
+### Open RStudio
+Search "RStudio" in the Windows search box.
 
-##### Searching "RStudio" in the Windows search box
+##### <span style="color: grey;">Windows search for RStudio</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Search.png){width=50%}
 <br />
 <br />
@@ -91,7 +93,7 @@ Sometimes more than one release of R or RStudio is available in FWS-Apps-to-Go. 
 
 There are four main panes in RStudio: Source (upper left), Console (lower left), Environment, History, Connections, Tutorial (upper right), and Files, Plots, Packages, Help, Viewer (lower right). Expand the Source pane with Ctrl + 1 or by clicking the double window icon in the upper right corner of the Console pane.
 
-##### RStudio window
+##### <span style="color: grey;">RStudio window</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Open.png)
 <br />
 <br />
@@ -107,7 +109,7 @@ The Console pane is where code is executed. Code can be submitted directly to th
 * A blue **>** at the bottom of the Console pane indicates R finished processing the code.
 <br />
 
-*For a more thorough instructions on R and RStudio, visit the Tutorial tab in the Environment, History, Connections, Tutorial pane, or refer to the [Hands-On Programming with R website](https://rstudio-education.github.io/hopr/).*
+For more information on how to use R and RStudio, visit the Tutorial tab in the Environment, History, Connections, Tutorial pane, or refer to the [Hands-On Programming with R website](https://rstudio-education.github.io/hopr/).
 <br />
 <br />
 <br />
@@ -117,7 +119,7 @@ The Console pane is where code is executed. Code can be submitted directly to th
 
 ### Run installation code in RStudio
 
-Paste the following code in the RStudio Source pane and run each line. Run the code chunks separately to ensure each is successfully executed.
+Paste the following in the RStudio Source pane and run each line of code. Run the code chunks separately to ensure each is successfully executed.
 
 ```{r, include=TRUE, eval=FALSE}
 # Install devtools from CRAN
@@ -134,11 +136,11 @@ library(mdJSONdictio)
 
 mdJSONdictio requires other packages to work properly. R may prompt you to update these dependent packages during installation. To update all, type "1" in the Console pane and hit Enter. If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes.
 
-##### Package update prompt in RStudio
+##### <span style="color: grey;">Update packages prompt in RStudio</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png)
 <br />
+<br />
 If package updates fail, installation of mdJSONdictio may halt. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#if-dependent-package-updates-fail) for an alternative way to update dependent packages.
-
 <br />
 
 
@@ -161,32 +163,31 @@ If the R simply prints the executed code in the Console pane, then installation 
 ## Failed mdJSONdictio installation
 
 #### Solution 1
-Paste the following code in the RStudio Source pane and run each line.
+Paste the following in the RStudio Source pane and run the line of code.
 
 ```{r, include=TRUE, eval=FALSE}
 # Install mdJSONdictio with compiled code only for sub-architecture used by R CMD INSTALL
 devtools::install_github("hdvincelette/mdJSONdictio",
                          INSTALL_opts = c("--no-multiarch"))
 ```
-<br />                         
                          
 #### Solution 2
 
 Navigate to the [mdJSONdictio GitHub repository](https://github.com/hdvincelette/mdJSONdictio) and download the package zip: Code -> Download ZIP.
 
-##### mdJSONdictio GitHub repository
+##### <span style="color: grey;">mdJSONdictio GitHub repository</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/GitHub_Repo.png)
 <br />
 <br />
 
 In RStudio, set the working directory to the zip location: Session -> Set Working Directory -> Choose Directory.
 
-##### Setting the working directory in RStudio
+##### <span style="color: grey;">Setting the working directory in RStudio</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_setwd.png)
 <br />
 <br />
 
-Paste the following in the RStudio Source pane and run each line of code.
+Paste the following in the RStudio Source pane and run the line of code.
 
 ```{r, include=TRUE, eval=FALSE}
 # Install mdJSONdictio from zip source
@@ -198,21 +199,21 @@ install.packages("mdJSONdictio-master")
 
 Uninstall the package in the Files, Plots, Packages, Help Viewer pane: Packages tab -> click the "x" next to the package. When a pop-up asks "Are you sure?", click Yes.
 
-##### Deleting a package in RStudio
+##### <span style="color: grey;">Deleting a package in RStudio</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Uninstall.png)
 <br />
 <br />
 
 Restart the R session: Session -> Restart R.
 
-##### Restarting session in RStudio
+##### <span style="color: grey;">Restarting RStudio session</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Restart.png)
 <br />
 <br />
 
 Reinstall the package: Packages tab -> Install -> type in the package name -> Install
 
-##### Reinstalling a package in RStudio
+##### <span style="color: grey;">Reinstalling a package in RStudio</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Install.png)
 <br />
 <br />
