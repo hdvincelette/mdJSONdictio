@@ -49,12 +49,12 @@ library(rjson)
 ```build.mdJSON()``` only reads data frames formatted to a data dictionary template, which can be downloaded [here](https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true). While csv is a more flexible file format, this template is in xlsx format because it contains validation rules that prevent incorrect values from being entered, resulting in errors when using ```build.mdJSON()``` or creating the Dictionary record in mdEditor.
 <br />
 
-##### Data Dictionary Template in Excel
+##### <span style="color: grey;">Data Dictionary Template in Excel</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Dictionary_Template.png)
 <br />
 <br />
 
-##### Example dataset and data dictionary in Excel
+##### <span style="color: grey;">Example dataset and data dictionary in Excel</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Dataset_and_Dictionary.png)
 <br />
 <br />
@@ -81,7 +81,7 @@ kable(read.csv(path<-system.file("extdata", "template_column_definitions.csv", p
 <br />
 <br />
 
-# Attribute data Types
+# Attribute data types
 Attributes require a defined data type. The "dataType" template column accepts  numerous values as shown in the table below. These are derived from the mdEditor web application, and the definitions were acquired from the [mdCodes Viewer](https://adiwg.github.io/mdTools/#codes-page) in the mdTools interface.
 <br />
 <br />
