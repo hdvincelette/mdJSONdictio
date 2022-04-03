@@ -45,7 +45,7 @@ library(utils)
 library(rjson)
 ```
 
-mdJSONdictio functions are built to work in concert with the [mdEditor](https://go.mdeditor.org/#/dashboard) web application. These steps describe how to finish an mdJSON data dictionary after using ```build.mdJSON()```, as well how to prepare an mdJSON data dictionary before using ```build.table()```.
+mdJSONdictio functions are built to work in concert with the [mdEditor](https://go.mdeditor.org/#/dashboard) web application. The following describes how to finish an mdJSON data dictionary after using ```build.mdJSON()```, as well how to prepare an mdJSON data dictionary before using ```build.table()```.
 <br />
 <br />
 
