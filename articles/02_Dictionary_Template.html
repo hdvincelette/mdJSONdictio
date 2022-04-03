@@ -103,7 +103,8 @@
 <div class="section level2">
 <h2 id="attributes-and-entry-values">Attributes and entry values<a class="anchor" aria-label="anchor" href="#attributes-and-entry-values"></a>
 </h2>
-<p>The two main components of the tabular data dictionary template are attributes and entry values, each of which are represented as a row. Entry values are known as “domain items” which collectively make up the “domain” of an attribute. It is important to remember that while entry values are associated with a certain attribute, not all attributes have defined entry values. For example, the attribute “Sex” may have three defined entry values (“F”,“M”, and “U”), where as the attribute “Year” does not have defined entry values since an unlimited number of years can be entered. <br><br> The table below describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. “Definition” describes the template column. These definitions are derived from the <a href="https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html" class="external-link">mdEditor User Manual</a>. “DataType” indicates the type of value allowed in the template column. “Required” indicates whether the template column is required by attributes and/or entry values (“No” indicates it is not required by either attributes or entry values). <br><em>Note: The template columns “codeName,” “domainItem_name,” “domainItem_value,” and “definition” are all required by attributes and entry values. The template columns “dataType” and “allowNull” are required by attributes</em> <br><br></p>
+<p>The two main components of the tabular data dictionary template are attributes and entry values, each of which are represented as a row. Entry values are known as “domain items” which collectively make up the “domain” of an attribute. It is important to remember that while entry values are associated with a certain attribute, not all attributes have defined entry values. For example, the attribute “Sex” may have three defined entry values (“F”,“M”, and “U”), where as the attribute “Year” does not since an unlimited number of years can be entered. <br><br> The table below describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. “Definition” describes the template column. These definitions are derived from the <a href="https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html" class="external-link">mdEditor User Manual</a>. “Type” indicates the type of value allowed in the template column. “Required” indicates whether the template column is required by attributes and/or entry values (“No” indicates it is not required by either attributes or entry values). <br></p>
+<p><em>Note: The template columns “codeName,” “domainItem_name,” “domainItem_value,” and “definition” are all required by attributes and entry values. The template columns “dataType” and “allowNull” are required by attributes</em> <br><br></p>
 <div class="section level5">
 <h5 id="data-dictionary-template-column-descriptions">Data dictionary template column descriptions<a class="anchor" aria-label="anchor" href="#data-dictionary-template-column-descriptions"></a>
 </h5>
@@ -114,7 +115,7 @@
 Column
 </th>
 <th style="text-align:left;">
-DataType
+Type
 </th>
 <th style="text-align:left;">
 Definition
@@ -132,7 +133,7 @@ codeName
 character varying
 </td>
 <td style="text-align:left;">
-Attribute name; the code used to identify this attribute; most often this will be the table or spreadsheet column name.
+Attribute name; the code used to identify this attribute; most often this will be the table or spreadsheet column name
 </td>
 <td style="text-align:left;">
 Attributes; Entry values
@@ -146,7 +147,7 @@ domainItem_name
 character varying
 </td>
 <td style="text-align:left;">
-A descriptive name associated with the Domain Item value; Default is to use the Domain Item Value; Colum name rows are ‘colname’
+A descriptive name associated with the domain item value; Default is to use the domain item value; rows regarding attributes are ‘colname’
 </td>
 <td style="text-align:left;">
 Attributes; Entry values
@@ -160,7 +161,7 @@ domainItem_value
 character varying
 </td>
 <td style="text-align:left;">
-The Domain Item value; the value in the table; colum name rows are ‘colname’
+The domain item value; the entry value in the table; rows regarding attributes are ‘colname’
 </td>
 <td style="text-align:left;">
 Attributes; Entry values
@@ -174,7 +175,7 @@ definition
 character varying
 </td>
 <td style="text-align:left;">
-A succinct but comprehensive definition for the attribute or Domain Item
+A succinct but comprehensive definition for the attribute or domain item
 </td>
 <td style="text-align:left;">
 Attributes; Entry values
@@ -230,7 +231,7 @@ unitsResolution
 decimal
 </td>
 <td style="text-align:left;">
-The smallest unit increment to which an attribute value is measured.
+The smallest unit increment to which an attribute value is measured
 </td>
 <td style="text-align:left;">
 No
@@ -258,7 +259,7 @@ fieldWidth
 integer
 </td>
 <td style="text-align:left;">
-The number of characters in the data field.
+The number of characters in the data field
 </td>
 <td style="text-align:left;">
 No
@@ -272,7 +273,7 @@ missingValue
 character varying
 </td>
 <td style="text-align:left;">
-The code which represents missing data.
+The code which represents missing data
 </td>
 <td style="text-align:left;">
 No
@@ -286,7 +287,7 @@ minValue
 character varying
 </td>
 <td style="text-align:left;">
-The minimum range value permissible for this attribute. The minimum value may be either numeric or character.
+The minimum range value permissible for this attribute; this may be a numeric or character
 </td>
 <td style="text-align:left;">
 No
@@ -300,7 +301,7 @@ maxValue
 character varying
 </td>
 <td style="text-align:left;">
-The maximum range value permissible for this attribute. The maximum value may be either numeric or character.
+The maximum range value permissible for this attribute; this may be a numeric or character
 </td>
 <td style="text-align:left;">
 No
@@ -314,7 +315,7 @@ notes
 character varying
 </td>
 <td style="text-align:left;">
-Anything entered here will be excluded from the JSON dictionary
+Anything entered here will be excluded from the mdJSON data dictionary
 </td>
 <td style="text-align:left;">
 No
