@@ -67,6 +67,12 @@ if (any(installed_packages == FALSE)) {
   install.packages(packages[!installed_packages])
 }
 
+installed_packages <- packages %in% rownames(installed.packages())
+if ((all(installed_packages == TRUE))) {
+  print("All dependent packages installed")
+} else stop (
+  "One or more dependent packages did not install\n", toString(packages[installed_packages == FALSE]))
+
 
 devtools::install_github("hdvincelette/mdJSONdictio")
 devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts = c("--no-multiarch"))
