@@ -49,14 +49,7 @@ library(mdJSONdictio)
 devtools::install_github("hdvincelette/mdJSONdictio",
                          INSTALL_opts = c("--no-multiarch"))
 
-# OR
 
-# Download mdJSONdictio zip from GitHub repository
-browseURL("https://github.com/hdvincelette/mdJSONdictio/archive/refs/heads/master.zip")
-
-# Set working directory to zip location - Session->Set Working Directory->Choose Directory
-# Install mdJSONdictio from zip source
-install.packages("mdJSONdictio-master")
 
 ```
 
