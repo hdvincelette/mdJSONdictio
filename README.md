@@ -20,7 +20,7 @@ library(mdJSONdictio)
 
 # If mdJSONdictio installation fails:
 
-# Install dependent packages seperately
+# Install dependent packages
 packages<-c(
   "purrr",
   "readxl",
