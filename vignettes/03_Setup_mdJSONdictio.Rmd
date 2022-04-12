@@ -132,6 +132,8 @@ library(mdJSONdictio)
 ```
 <br />
 
+If an error or warning message occurs, then installation failed. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#failed-mdJSONdictio-installation-due-to-multiple-sub-architectures) for alternative ways to install mdJSONdictio.
+
 ### Install or update dependent packages
 
 mdJSONdictio requires other packages to work properly. R will automatically install any dependent packages not currently in your library during installation. R may also prompt you to update dependent packages already in your library. To update all, type "1" in the Console pane and hit Enter. If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes.
@@ -140,16 +142,16 @@ mdJSONdictio requires other packages to work properly. R will automatically inst
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png)
 <br />
 <br />
-If package updates fail, installation of mdJSONdictio may halt and you may see a warning message as shown below. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#failed-mdJSONdictio-installation-due-to-dependent-packages) for alternative ways to update dependent packages.
+If dependent package installations or updates fail, mdJSONdictio installation may halt and you will see a warning message as shown below. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#failed-mdJSONdictio-installation-due-to-dependent-packages) for alternative ways to update dependent packages.
 
 ##### <span style="color: grey;">Failed installation warning message in RStudio</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/mdJSONdictio_Failed_Install.png)
 <br />
 
-If package updates, installation of mdJSONdictio may halt and you may see a warning message as shown below. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#failed-mdJSONdictio-installation-due-to-dependent-packages) for alternative ways to update dependent packages.
+If dependent package are successfully installed and updated, mdJSONdictio installation should complete with a "DONE" message as shown.
 
 ##### <span style="color: grey;">Failed installation warning message in RStudio</span>
-![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/mdJSONdictio_Failed_Install.png)
+![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/mdJSONdictio_Successful_Install.png)
 
 
 ### Verify mdJSONdictio installation
@@ -160,7 +162,7 @@ Re-run the following code to verify mdJSONdictio was successfully installed.
 library(mdJSONdictio)
 ```
 
-If the R simply prints the executed code in the Console pane, then installation was successful. If R returns the Error message “there is no package called ‘mdJSONdictio’,” then installation failed. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#troubleshooting-tips) for alternative ways to update dependent packages.
+If the R simply prints the executed code in the Console pane, then installation was successful. If R returns the Error message “there is no package called ‘mdJSONdictio’,” then installation failed. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#failed-mdJSONdictio-installation-due-to-multiple-sub-architectures) for alternative ways to install mdJSONdictio.
 <br />
 <br />
 
