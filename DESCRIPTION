@@ -10,13 +10,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2.9000
 Depends:
-    R (>= 4.00)
-LazyData: true
-URL: https://github.com/hdvincelette/mdJSONdictio,
-    https://hdvincelette.github.io/mdJSONdictio/
-BugReports: https://github.com/hdvincelette/mdJSONdictio/issues
-VignetteBuilder: knitr
-Imports: 
+    R (>= 4.00),
     purrr,
     readxl,
     rjson,
@@ -28,3 +22,8 @@ Imports:
     knitr,
     rmarkdown,
     plyr
+LazyData: true
+URL: https://github.com/hdvincelette/mdJSONdictio,
+    https://hdvincelette.github.io/mdJSONdictio/
+BugReports: https://github.com/hdvincelette/mdJSONdictio/issues
+VignetteBuilder: knitr
