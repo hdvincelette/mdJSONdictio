@@ -5,10 +5,12 @@ library(roxygen2)
 library(pkgdown)
 
 
-
 # Reload package with local changes
 setwd("~/GitHub/mdJSONdictio")
 setwd("~/Documents/GitHub/mdJSONdictio")
+
+remove.packages("mdJSONdictio")
+
 document()
 load_all()
 install()
@@ -28,7 +30,7 @@ deploy_to_branch()
 
 # Add...
 
-usethis::use_package("purrr", "Depends")
+usethis::use_package("plyr")
 usethis::use_build_ignore()
 
 # Check which packages used in function
@@ -134,7 +136,7 @@ library(mdJSONdictio)
 ## Standard run ##
 # Import mdJSON data dictionary as an R list
 path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-e.g.dictionary2 <- fromJSON(file = path)
+e.g.dictionary2 <- rjson::fromJSON(file = path)
 
 # Transform R list to a data frame
 newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1, entity_num = 1)
