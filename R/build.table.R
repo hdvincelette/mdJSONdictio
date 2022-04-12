@@ -11,7 +11,7 @@
 #' @examples
 #' # Import mdJSON data dictionary as an R list
 #' path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-#' e.g.dictionary2 <- fromJSON(file = path)
+#' e.g.dictionary2 <- rjson::fromJSON(file = path)
 #'
 #' # Transform R list to a data frame
 #' newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1, entity_num = 1)
@@ -21,6 +21,8 @@
 
 
 build.table <- function(x, entity_num, dictionary_num) {
+
+  `%>%` <- magrittr::`%>%`
 
 
   JSONdictionary <- x
@@ -61,7 +63,7 @@ build.table <- function(x, entity_num, dictionary_num) {
 
 
   # Extract domain and entity string lists
-  newlist = fromJSON(dictionarystring)
+  newlist = rjson::fromJSON(dictionarystring)
 
   entitylist <- newlist[["dataDictionary"]][["entity"]]
   domainlist <- newlist[["dataDictionary"]][["domain"]]
@@ -69,7 +71,7 @@ build.table <- function(x, entity_num, dictionary_num) {
 
   # Create blank output table
 
-  blanktable <- setNames(
+  blanktable <- stats::setNames(
     data.frame(matrix(ncol = 16, nrow = 0)),
     c(
       "entityNum",
@@ -97,7 +99,7 @@ build.table <- function(x, entity_num, dictionary_num) {
 
     domaincount <- 0
 
-    blanktable <- setNames(
+    blanktable <- stats::setNames(
       data.frame(matrix(ncol = 16, nrow = 0)),
       c(
         "entityNum",
@@ -174,13 +176,13 @@ build.table <- function(x, entity_num, dictionary_num) {
 
     ## Fix table structure
     blanktable <- blanktable %>%
-      arrange(codeName, dataType, domainNum) %>%
-      select(-one_of(c("domainNum", "entityNum"))) %>%
-      rename("domainItem_name" = "name",
+      dplyr::arrange(codeName, dataType, domainNum) %>%
+      dplyr::select(-dplyr::one_of(c("domainNum", "entityNum"))) %>%
+      dplyr::rename("domainItem_name" = "name",
              "domainItem_value" = "value") %>%
-      mutate_at(vars(allowNull, isCaseSensitive),
+      dplyr::mutate_at(dplyr::vars(allowNull, isCaseSensitive),
                 ~ replace(., which(. == "TRUE"), "yes")) %>%
-      mutate_at(vars(allowNull, isCaseSensitive),
+      dplyr::mutate_at(dplyr::vars(allowNull, isCaseSensitive),
                 ~ replace(., which(. == "FALSE"), "no"))
 
     assign(paste0("newtable", a), blanktable)
