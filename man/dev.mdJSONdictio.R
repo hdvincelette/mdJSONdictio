@@ -47,6 +47,27 @@ update_packages()
 remove.packages("mdJSONdictio")
 
 options(download.file.method = "curl")
+
+
+# Install packages not yet installed
+packages<-c(
+  "purrr",
+  "readxl",
+  "rjson",
+  "stats",
+  "tibble",
+  "stringr",
+  "uuid",
+  "dplyr",
+  "plyr"
+)
+
+installed_packages <- packages %in% rownames(installed.packages())
+if (any(installed_packages == FALSE)) {
+  install.packages(packages[!installed_packages])
+}
+
+
 devtools::install_github("hdvincelette/mdJSONdictio")
 devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts = c("--no-multiarch"))
 devtools::install_github("hdvincelette/mdJSONdictio", build_vignettes = TRUE)
