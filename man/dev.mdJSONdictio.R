@@ -71,7 +71,7 @@ if (any(installed_packages == FALSE)) {
 devtools::install_github("hdvincelette/mdJSONdictio")
 devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts = c("--no-multiarch"))
 devtools::install_github("hdvincelette/mdJSONdictio", build_vignettes = TRUE)
-## build_vignettes= TRUE
+
 
 # View package info
 library(mdJSONdictio)
