@@ -22,7 +22,7 @@ Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a dat
 \examples{
 # Import mdJSON data dictionary as an R list
 path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-e.g.dictionary2 <- fromJSON(file = path)
+e.g.dictionary2 <- rjson::fromJSON(file = path)
 
 # Transform R list to a data frame
 newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1, entity_num = 1)
