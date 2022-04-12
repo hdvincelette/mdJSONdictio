@@ -132,18 +132,24 @@ library(mdJSONdictio)
 ```
 <br />
 
-### Update dependent packages
+### Install or update dependent packages
 
-mdJSONdictio requires other packages to work properly. R may prompt you to update these dependent packages during installation. To update all, type "1" in the Console pane and hit Enter. If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes.
+mdJSONdictio requires other packages to work properly. R will automatically install any dependent packages not currently in your library. If may prompt you to update these dependent packages during installation. To update all, type "1" in the Console pane and hit Enter. If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes.
 
 ##### <span style="color: grey;">Update packages prompt in RStudio</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png)
 <br />
 <br />
-If package updates fail, installation of mdJSONdictio may halt. In this case, the following warning message may appear: 'installation of package...had non-zero exit status'.
+If package updates fail, installation of mdJSONdictio may halt and you may see a warning message as shown below. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#failed-mdJSONdictio-installation-due-to-dependent-packages) for alternative ways to update dependent packages.
 
-See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#failed-dependent-package-update) for an alternative way to update dependent packages.
+##### <span style="color: grey;">Failed installation warning message in RStudio</span>
+![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/mdJSONdictio_Failed_Install.png)
 <br />
+
+If package updates, installation of mdJSONdictio may halt and you may see a warning message as shown below. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#failed-mdJSONdictio-installation-due-to-dependent-packages) for alternative ways to update dependent packages.
+
+##### <span style="color: grey;">Failed installation warning message in RStudio</span>
+![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/mdJSONdictio_Failed_Install.png)
 
 
 ### Verify mdJSONdictio installation
@@ -154,7 +160,7 @@ Re-run the following code to verify mdJSONdictio was successfully installed.
 library(mdJSONdictio)
 ```
 
-If the R simply prints the executed code in the Console pane, then installation was successful. If R returns the Error message “there is no package called ‘mdJSONdictio’,” then installation failed. 
+If the R simply prints the executed code in the Console pane, then installation was successful. If R returns the Error message “there is no package called ‘mdJSONdictio’,” then installation failed. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#troubleshooting-tips) for alternative ways to update dependent packages.
 <br />
 <br />
 
@@ -162,7 +168,65 @@ If the R simply prints the executed code in the Console pane, then installation 
 *Note: These instructions apply any computer system with R and RStudio.*
 <br />
 
-## Failed mdJSONdictio installation
+## Failed mdJSONdictio installation due to dependent packages
+
+#### Solution 1
+Paste the following in the RStudio Source pane and run each line of code.
+
+```{r, include=TRUE, eval=FALSE}
+# Install dependent packages seperately
+packages<-c(
+  "purrr",
+  "readxl",
+  "rjson",
+  "stats",
+  "tibble",
+  "stringr",
+  "uuid",
+  "dplyr",
+  "plyr"
+)
+
+installed_packages <- packages %in% rownames(installed.packages())
+if (any(installed_packages == FALSE)) {
+  install.packages(packages[!installed_packages])
+}
+
+installed_packages <- packages %in% rownames(installed.packages())
+if ((all(installed_packages == TRUE))) {
+  print("All dependent packages installed")
+} else stop (
+  "One or more dependent packages did not install\n", toString(packages[installed_packages == FALSE]))
+
+```
+               
+If you see the the message "All dependent packages installed", rerun the [mdJSONdictio installation code](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#run-installation-code-in-rstudio). If you see the message "Error: One or more dependent packages did not install", install each of the listed packages manually as described in Solution 2 below.
+
+#### Solution 2
+Uninstall the package in the Files, Plots, Packages, Help Viewer pane: Packages tab -> click the "x" next to the package. When a pop-up asks "Are you sure?", click Yes.
+
+##### <span style="color: grey;">Deleting a package in RStudio</span>
+![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Uninstall.png)
+<br />
+<br />
+
+Restart the R session: Session -> Restart R.
+
+##### <span style="color: grey;">Restarting RStudio session</span>
+![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Restart.png)
+<br />
+<br />
+
+Reinstall the package: Packages tab -> Install -> type in the package name -> Install
+
+##### <span style="color: grey;">Reinstalling a package in RStudio</span>
+![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Install.png)
+<br />
+<br />
+Rerun the [mdJSONdictio installation code](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#run-installation-code-in-rstudio). 
+<br />
+
+## Failed mdJSONdictio installation due to multiple sub-architectures
 
 #### Solution 1
 Paste the following in the RStudio Source pane and run the line of code.
@@ -172,6 +236,8 @@ Paste the following in the RStudio Source pane and run the line of code.
 devtools::install_github("hdvincelette/mdJSONdictio",
                          INSTALL_opts = c("--no-multiarch"))
 ```
+ 
+If mdJSONdictio installation fails again, install the package manually as described in Solution 2 below.                    
                          
 #### Solution 2
 
@@ -197,55 +263,4 @@ install.packages("mdJSONdictio-master")
 ```
 <br />
 
-## Failed dependent package update
 
-#### Solution 1
-Paste the following in the RStudio Source pane and run the line of code.
-
-```{r, include=TRUE, eval=FALSE}
-# Install dependent packages seperately
-packages<-c(
-  "purrr",
-  "readxl",
-  "rjson",
-  "stats",
-  "tibble",
-  "stringr",
-  "uuid",
-  "dplyr",
-  "plyr"
-)
-
-installed_packages <- packages %in% rownames(installed.packages())
-if (any(installed_packages == FALSE)) {
-  install.packages(packages[!installed_packages])
-}
-
-# Install mdJSONdictio from GitHub
-devtools::install_github("hdvincelette/mdJSONdictio")
-library(mdJSONdictio)
-```
-               
-
-#### Solution 2
-Uninstall the package in the Files, Plots, Packages, Help Viewer pane: Packages tab -> click the "x" next to the package. When a pop-up asks "Are you sure?", click Yes.
-
-##### <span style="color: grey;">Deleting a package in RStudio</span>
-![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Uninstall.png)
-<br />
-<br />
-
-Restart the R session: Session -> Restart R.
-
-##### <span style="color: grey;">Restarting RStudio session</span>
-![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Restart.png)
-<br />
-<br />
-
-Reinstall the package: Packages tab -> Install -> type in the package name -> Install
-
-##### <span style="color: grey;">Reinstalling a package in RStudio</span>
-![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Install.png)
-<br />
-<br />
-Rerun the [mdJSONdictio installation code](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#run-installation-code-in-rstudio) if failed package updates previously halted the process. 
