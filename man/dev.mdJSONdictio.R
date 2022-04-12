@@ -46,6 +46,12 @@ update_packages()
 # Install package from GitHub
 remove.packages("mdJSONdictio")
 
+
+devtools::install_github("hdvincelette/mdJSONdictio")
+devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts = c("--no-multiarch"))
+devtools::install_github("hdvincelette/mdJSONdictio", build_vignettes = TRUE)
+
+
 options(download.file.method = "curl")
 
 
@@ -72,11 +78,6 @@ if ((all(installed_packages == TRUE))) {
   print("All dependent packages installed")
 } else stop (
   "One or more dependent packages did not install\n", toString(packages[installed_packages == FALSE]))
-
-
-devtools::install_github("hdvincelette/mdJSONdictio")
-devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts = c("--no-multiarch"))
-devtools::install_github("hdvincelette/mdJSONdictio", build_vignettes = TRUE)
 
 
 # View package info
