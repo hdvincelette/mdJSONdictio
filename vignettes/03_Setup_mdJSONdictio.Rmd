@@ -134,7 +134,7 @@ library(mdJSONdictio)
 
 ### Install or update dependent packages
 
-mdJSONdictio requires other packages to work properly. R will automatically install any dependent packages not currently in your library. If may prompt you to update these dependent packages during installation. To update all, type "1" in the Console pane and hit Enter. If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes.
+mdJSONdictio requires other packages to work properly. R will automatically install any dependent packages not currently in your library during installation. R may also prompt you to update dependent packages already in your library. To update all, type "1" in the Console pane and hit Enter. If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes.
 
 ##### <span style="color: grey;">Update packages prompt in RStudio</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png)
