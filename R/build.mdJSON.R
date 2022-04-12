@@ -25,6 +25,8 @@
 
 build.mdJSON <- function(x, title) {
 
+  `%>%` <- magrittr::`%>%`
+
   # Prepare the dictionary
 
   Data.Dictionary <- x
@@ -144,13 +146,13 @@ build.mdJSON <- function(x, title) {
 
   ## Replace values and add domain column
   Data.Dictionary <- Data.Dictionary %>%
-    mutate_if(is.character, str_replace_all, "\"", "'") %>%
-    mutate_at(vars(allowNull, isCaseSensitive),
+    dplyr::mutate_if(is.character, stringr::str_replace_all, "\"", "'") %>%
+    dplyr::mutate_at(dplyr::vars(allowNull, isCaseSensitive),
               ~ replace(., which(. == "yes"), "true")) %>%
-    mutate_at(vars(allowNull, isCaseSensitive),
+    dplyr::mutate_at(dplyr::vars(allowNull, isCaseSensitive),
               ~ replace(., which(. == "no"), "false")) %>%
-    select(-notes) %>%
-    add_column(domainId = NA)
+    dplyr::select(-notes) %>%
+    tibble::add_column(domainId = NA)
 
   for (b in 1:nrow(Data.Dictionary)) {
     if (Data.Dictionary$domainItem_name[b] != "colname") {
@@ -165,11 +167,11 @@ build.mdJSON <- function(x, title) {
 
 
   ## Generate uuids
-  id <- UUIDgenerate(use.time = FALSE, n = 1)
+  id <- uuid::UUIDgenerate(use.time = FALSE, n = 1)
   id <- sub("\\-.*", "", id)
 
-  dictionaryId <- UUIDgenerate(use.time = FALSE, n = 1)
-  entityId <- UUIDgenerate(use.time = FALSE, n = 1)
+  dictionaryId <- uuid::UUIDgenerate(use.time = FALSE, n = 1)
+  entityId <- uuid::UUIDgenerate(use.time = FALSE, n = 1)
 
   ## Create date in IOS format
   ## "2019-10-16T20:13:48.641Z"
@@ -180,13 +182,13 @@ build.mdJSON <- function(x, title) {
   ## Add domain ids to original file
   ## Isolate colname rows with domain notations
   domaincolumns <- Data.Dictionary %>%
-    filter(domainItem_value == "colname") %>%
-    filter(domainId == "true") %>%
-    select(codeName, domainId)
+    dplyr::filter(domainItem_value == "colname") %>%
+    dplyr::filter(domainId == "true") %>%
+    dplyr::select(codeName, domainId)
 
   ## Fill domain column with uuids
   domaincolumns$domainId <-
-    UUIDgenerate(use.time = FALSE, n = nrow(domaincolumns))
+    uuid::UUIDgenerate(use.time = FALSE, n = nrow(domaincolumns))
 
   ## Join domainIds with origianl data frame
   for (e in 1:nrow(domaincolumns)) {
@@ -225,8 +227,8 @@ build.mdJSON <- function(x, title) {
 
 
   domainref.A <- Data.Dictionary %>%
-    filter(domainItem_name == "colname", is.na(domainId) == FALSE) %>%
-    select(-domainItem_name, domainItem_value)
+    dplyr::filter(domainItem_name == "colname", is.na(domainId) == FALSE) %>%
+    dplyr::select(-domainItem_name, domainItem_value)
 
 
   for (i in 1:nrow(Data.Dictionary)) {
@@ -242,11 +244,11 @@ build.mdJSON <- function(x, title) {
   }
 
   domainref.I <- Data.Dictionary %>%
-    filter(domainNum != 0)
+    dplyr::filter(domainNum != 0)
 
   entityref <- Data.Dictionary %>%
-    filter(domainItem_name == "colname") %>%
-    select(-domainItem_name, domainItem_value)
+    dplyr::filter(domainItem_name == "colname") %>%
+    dplyr::select(-domainItem_name, domainItem_value)
 
 
 
@@ -264,7 +266,7 @@ build.mdJSON <- function(x, title) {
   # Add attributes
 
   dictionarylist <-
-    fromJSON(blankjson[["data"]][[1]][["attributes"]][["json"]])
+    rjson::fromJSON(blankjson[["data"]][[1]][["attributes"]][["json"]])
 
   dictionarylist[["dataDictionary"]][["entity"]][[1]][["entityId"]] <-
     entityId
@@ -295,8 +297,8 @@ build.mdJSON <- function(x, title) {
 
     dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[m]] <-
       dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[m]] %>%
-      map(discard, is.na) %>%
-      compact()
+      purrr::map(purrr::discard, is.na) %>%
+      plyr::compact()
 
   }
 
@@ -320,8 +322,8 @@ build.mdJSON <- function(x, title) {
     }
     dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[1]] <-
       dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[1]] %>%
-      map(discard, is.na) %>%
-      compact()
+      purrr::map(purrr::discard, is.na) %>%
+      plyr::compact()
   }
 
 
@@ -356,7 +358,7 @@ build.mdJSON <- function(x, title) {
     e.reference <- domainref.A$entityNum[p]
 
     items <- domainref.I %>%
-      filter(entityNum == e.reference)
+      dplyr::filter(entityNum == e.reference)
 
     ### Duplicate first (empty) domain item and update the addition
 
@@ -383,7 +385,7 @@ build.mdJSON <- function(x, title) {
 
 
   items <- domainref.I %>%
-    filter(entityNum == e.reference)
+    dplyr::filter(entityNum == e.reference)
 
   dictionarylist[["dataDictionary"]][["domain"]][[1]][["codeName"]] <-
     as.character(domainref.A$codeName[1])
@@ -415,7 +417,7 @@ build.mdJSON <- function(x, title) {
   blankjson[["data"]][[1]][["attributes"]][["date-updated"]] <-
     as.character(date)
 
-  newstring <- toJSON(dictionarylist)
+  newstring <- rjson::toJSON(dictionarylist)
 
   oldsubject <- paste0('\"', 'subject', '\":\"', 'dataDictionary', '\"')
   newsubject <- paste0('\"', 'subject', '\":[\"', 'dataDictionary', '\"]')
