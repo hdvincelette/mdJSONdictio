@@ -140,7 +140,9 @@ mdJSONdictio requires other packages to work properly. R may prompt you to updat
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png)
 <br />
 <br />
-If package updates fail, installation of mdJSONdictio may halt. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#if-dependent-package-updates-fail) for an alternative way to update dependent packages.
+If package updates fail, installation of mdJSONdictio may halt. In this case, the following warning message may appear: 'installation of package...had non-zero exit status'.
+
+See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#failed-dependent-package-update) for an alternative way to update dependent packages.
 <br />
 
 
@@ -197,6 +199,35 @@ install.packages("mdJSONdictio-master")
 
 ## Failed dependent package update
 
+#### Solution 1
+Paste the following in the RStudio Source pane and run the line of code.
+
+```{r, include=TRUE, eval=FALSE}
+# Install dependent packages seperately
+packages<-c(
+  "purrr",
+  "readxl",
+  "rjson",
+  "stats",
+  "tibble",
+  "stringr",
+  "uuid",
+  "dplyr",
+  "plyr"
+)
+
+installed_packages <- packages %in% rownames(installed.packages())
+if (any(installed_packages == FALSE)) {
+  install.packages(packages[!installed_packages])
+}
+
+# Install mdJSONdictio from GitHub
+devtools::install_github("hdvincelette/mdJSONdictio")
+library(mdJSONdictio)
+```
+               
+
+#### Solution 2
 Uninstall the package in the Files, Plots, Packages, Help Viewer pane: Packages tab -> click the "x" next to the package. When a pop-up asks "Are you sure?", click Yes.
 
 ##### <span style="color: grey;">Deleting a package in RStudio</span>
