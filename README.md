@@ -18,7 +18,7 @@ library(mdJSONdictio)
 
 
 
-# If mdJSONdictio installation fails due to package updates:
+# If mdJSONdictio installation fails due to dependent packages:
 
 # Install dependent packages
 packages<-c(
@@ -44,7 +44,7 @@ library(mdJSONdictio)
 
 
 
-# If mdJSONdictio installation fails due to multiple sub-architectures:
+# If mdJSONdictio installation fails due to command line settings:
 
 # Install mdJSONdictio with compiled code only for sub-architecture used by R CMD INSTALL
 devtools::install_github("hdvincelette/mdJSONdictio",
