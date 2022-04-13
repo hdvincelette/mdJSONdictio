@@ -144,6 +144,7 @@ If dependent package are successfully installed and updated, mdJSONdictio instal
 ##### <span style="color: grey;">Successful installation message in RStudio</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/mdJSONdictio_Successful_Install.png)
 <br />
+<br />
 
 ### Verify mdJSONdictio installation
 
@@ -202,6 +203,7 @@ if ((all(installed_packages == TRUE))) {
 ```
                
 If you see the the message "All dependent packages installed", rerun the [mdJSONdictio installation code](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#run-installation-code-in-rstudio). If you see the message "Error: One or more dependent packages did not install", install each of the listed packages manually as described in Solution 2 below.
+<br />
 
 #### Solution 2
 Uninstall the package in the Files, Plots, Packages, Help Viewer pane: Packages tab -> click the "x" next to the package. When a pop-up asks "Are you sure?", click Yes.
@@ -226,6 +228,7 @@ Reinstall the package: Packages tab -> Install -> type in the package name -> In
 <br />
 Rerun the [mdJSONdictio installation code](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#run-installation-code-in-rstudio). 
 <br />
+<br />
 
 ## Failed installation due to command line settings
 
@@ -238,7 +241,8 @@ devtools::install_github("hdvincelette/mdJSONdictio",
                          INSTALL_opts = c("--no-multiarch"))
 ```
  
-If mdJSONdictio installation fails again, install the package manually as described in Solution 2 below.                    
+If mdJSONdictio installation fails again, install the package manually as described in Solution 2 below.  
+<br />
                          
 #### Solution 2
 
@@ -260,7 +264,7 @@ Paste the following in the RStudio Source pane and run the line of code.
 
 ```{r, include=TRUE, eval=FALSE}
 # Install mdJSONdictio from zip source
-install.packages("mdJSONdictio-master")
+install_local(path = "mdJSONdictio-master.zip")
 ```
 <br />
 
