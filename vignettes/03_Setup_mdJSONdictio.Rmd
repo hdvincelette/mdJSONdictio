@@ -167,9 +167,9 @@ Package installation can be a fickle process, particularly when using GitHub. Wh
 ##### <span style="color: grey;">Failed installation warning message in RStudio</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/mdJSONdictio_Failed_Install.png)
 <br />
+<br />
 
-
-## Failed mdJSONdictio installation due to dependent packages
+## Failed installation due to dependent packages
 
 #### Solution 1
 Paste the following in the RStudio Source pane and run each line of code.
@@ -227,7 +227,7 @@ Reinstall the package: Packages tab -> Install -> type in the package name -> In
 Rerun the [mdJSONdictio installation code](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#run-installation-code-in-rstudio). 
 <br />
 
-## Failed mdJSONdictio installation due to command line settings
+## Failed installation due to command line settings
 
 #### Solution 1
 Paste the following in the RStudio Source pane and run the line of code.
