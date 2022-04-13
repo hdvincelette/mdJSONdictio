@@ -177,14 +177,20 @@
 <p><br></p>
 </div>
 <div class="section level4">
-<h4 id="update-dependent-packages">Update dependent packages<a class="anchor" aria-label="anchor" href="#update-dependent-packages"></a>
+<h4 id="install-or-update-dependent-packages">Install or update dependent packages<a class="anchor" aria-label="anchor" href="#install-or-update-dependent-packages"></a>
 </h4>
-<p>mdJSONdictio requires other packages to work properly. R may prompt you to update these dependent packages during installation. To update all, type “1” in the Console pane and hit Enter. If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes.</p>
+<p>mdJSONdictio requires other packages to work properly. R will automatically install any dependent packages not currently in your library during installation. R may also prompt you to update dependent packages already in your library. To update all, type “1” in the Console pane and hit Enter. If a pop-up asks “Do you want to install from sources the packages which need compilation?”, click Yes.</p>
 <div class="section level6">
 <h6 id="update-packages-prompt-in-rstudio">
 <span style="color: grey;">Update packages prompt in RStudio</span><a class="anchor" aria-label="anchor" href="#update-packages-prompt-in-rstudio"></a>
 </h6>
-<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png"><br><br> If package updates fail, installation of mdJSONdictio may halt. See <a href="https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#if-dependent-package-updates-fail">Troubleshooting Tips</a> for an alternative way to update dependent packages. <br></p>
+<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Update.png"><br> If dependent package are successfully installed and updated, mdJSONdictio installation should complete and R will return a “DONE” message.</p>
+</div>
+<div class="section level6">
+<h6 id="successful-installation-message-in-rstudio">
+<span style="color: grey;">Successful installation message in RStudio</span><a class="anchor" aria-label="anchor" href="#successful-installation-message-in-rstudio"></a>
+</h6>
+<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/mdJSONdictio_Successful_Install.png"><br></p>
 </div>
 </div>
 <div class="section level4">
@@ -193,52 +199,56 @@
 <p>Re-run the following code to verify mdJSONdictio was successfully installed.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hdvincelette/mdJSONdictio" class="external-link">mdJSONdictio</a></span><span class="op">)</span></code></pre></div>
-<p>If the R simply prints the executed code in the Console pane, then installation was successful. If R returns the Error message “there is no package called ‘mdJSONdictio’,” then installation failed. <br><br></p>
+<p>If the R simply prints the executed code in the Console pane, then installation was successful. If R returns the Error message “there is no package called ‘mdJSONdictio’,” then installation failed. See <a href="https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#troubleshooting-tips">Troubleshooting Tips</a> for more help. <br><br></p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="troubleshooting-tips">Troubleshooting tips<a class="anchor" aria-label="anchor" href="#troubleshooting-tips"></a>
 </h2>
 <p><em>Note: These instructions apply any computer system with R and RStudio.</em> <br></p>
+<p>Package installation can be a fickle process, particularly when using GitHub. When a package fails to install, R returns Warning and Error messages which are often not descriptive or intuitive enough to understand the cause of failure. The most frequent reasons mdJSONdictio installation fail are because dependent packages are not installed and updated, or command line settings are unsuitable. Solutions to these issues are described below. If you are not sure what the current problem is, work through each solution until mdJSONdictio installs successfully.</p>
+<div class="section level6">
+<h6 id="failed-installation-warning-message-in-rstudio">
+<span style="color: grey;">Failed installation warning message in RStudio</span><a class="anchor" aria-label="anchor" href="#failed-installation-warning-message-in-rstudio"></a>
+</h6>
+<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/mdJSONdictio_Failed_Install.png"><br></p>
+</div>
 <div class="section level3">
-<h3 id="failed-mdjsondictio-installation">Failed mdJSONdictio installation<a class="anchor" aria-label="anchor" href="#failed-mdjsondictio-installation"></a>
+<h3 id="failed-mdjsondictio-installation-due-to-dependent-packages">Failed mdJSONdictio installation due to dependent packages<a class="anchor" aria-label="anchor" href="#failed-mdjsondictio-installation-due-to-dependent-packages"></a>
 </h3>
 <div class="section level5">
 <h5 id="solution-1">Solution 1<a class="anchor" aria-label="anchor" href="#solution-1"></a>
 </h5>
-<p>Paste the following in the RStudio Source pane and run the line of code.</p>
+<p>Paste the following in the RStudio Source pane and run each line of code.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Install mdJSONdictio with compiled code only for sub-architecture used by R CMD INSTALL</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hdvincelette/mdJSONdictio"</span>,
-                         INSTALL_opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"--no-multiarch"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># Install dependent packages seperately</span>
+<span class="va">packages</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
+  <span class="st">"purrr"</span>,
+  <span class="st">"readxl"</span>,
+  <span class="st">"rjson"</span>,
+  <span class="st">"stats"</span>,
+  <span class="st">"tibble"</span>,
+  <span class="st">"stringr"</span>,
+  <span class="st">"uuid"</span>,
+  <span class="st">"dplyr"</span>,
+  <span class="st">"plyr"</span>
+<span class="op">)</span>
+
+<span class="va">installed_packages</span> <span class="op">&lt;-</span> <span class="va">packages</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="va">installed_packages</span> <span class="op">==</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="va">packages</span><span class="op">[</span><span class="op">!</span><span class="va">installed_packages</span><span class="op">]</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="va">installed_packages</span> <span class="op">&lt;-</span> <span class="va">packages</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">installed_packages</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"All dependent packages installed"</span><span class="op">)</span>
+<span class="op">}</span> <span class="kw">else</span> <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span> <span class="op">(</span>
+  <span class="st">"One or more dependent packages did not install\n"</span>, <span class="fu"><a href="https://rdrr.io/r/base/toString.html" class="external-link">toString</a></span><span class="op">(</span><span class="va">packages</span><span class="op">[</span><span class="va">installed_packages</span> <span class="op">==</span> <span class="cn">FALSE</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>If you see the the message “All dependent packages installed”, rerun the <a href="https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#run-installation-code-in-rstudio">mdJSONdictio installation code</a>. If you see the message “Error: One or more dependent packages did not install”, install each of the listed packages manually as described in Solution 2 below.</p>
 </div>
 <div class="section level5">
 <h5 id="solution-2">Solution 2<a class="anchor" aria-label="anchor" href="#solution-2"></a>
 </h5>
-<p>Navigate to the <a href="https://github.com/hdvincelette/mdJSONdictio" class="external-link">mdJSONdictio GitHub repository</a> and download the package zip: Code -&gt; Download ZIP.</p>
-<div class="section level6">
-<h6 id="mdjsondictio-github-repository">
-<span style="color: grey;">mdJSONdictio GitHub repository</span><a class="anchor" aria-label="anchor" href="#mdjsondictio-github-repository"></a>
-</h6>
-<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/GitHub_Repo.png"><br><br></p>
-<p>In RStudio, set the working directory to the zip location: Session -&gt; Set Working Directory -&gt; Choose Directory.</p>
-</div>
-<div class="section level6">
-<h6 id="setting-the-working-directory-in-rstudio">
-<span style="color: grey;">Setting the working directory in RStudio</span><a class="anchor" aria-label="anchor" href="#setting-the-working-directory-in-rstudio"></a>
-</h6>
-<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_setwd.png"><br><br></p>
-<p>Paste the following in the RStudio Source pane and run the line of code.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Install mdJSONdictio from zip source</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mdJSONdictio-master"</span><span class="op">)</span></code></pre></div>
-<p><br></p>
-</div>
-</div>
-</div>
-<div class="section level3">
-<h3 id="failed-dependent-package-update">Failed dependent package update<a class="anchor" aria-label="anchor" href="#failed-dependent-package-update"></a>
-</h3>
 <p>Uninstall the package in the Files, Plots, Packages, Help Viewer pane: Packages tab -&gt; click the “x” next to the package. When a pop-up asks “Are you sure?”, click Yes.</p>
 <div class="section level6">
 <h6 id="deleting-a-package-in-rstudio">
@@ -258,7 +268,45 @@
 <h6 id="reinstalling-a-package-in-rstudio">
 <span style="color: grey;">Reinstalling a package in RStudio</span><a class="anchor" aria-label="anchor" href="#reinstalling-a-package-in-rstudio"></a>
 </h6>
-<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Install.png"><br><br> Rerun the <a href="https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#run-installation-code-in-rstudio">mdJSONdictio installation code</a> if failed package updates previously halted the process.</p>
+<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Install.png"><br><br> Rerun the <a href="https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#run-installation-code-in-rstudio">mdJSONdictio installation code</a>. <br></p>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="failed-mdjsondictio-installation-due-to-command-line-settings">Failed mdJSONdictio installation due to command line settings<a class="anchor" aria-label="anchor" href="#failed-mdjsondictio-installation-due-to-command-line-settings"></a>
+</h3>
+<div class="section level5">
+<h5 id="solution-1-1">Solution 1<a class="anchor" aria-label="anchor" href="#solution-1-1"></a>
+</h5>
+<p>Paste the following in the RStudio Source pane and run the line of code.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Install mdJSONdictio with compiled code only for sub-architecture used by R CMD INSTALL</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hdvincelette/mdJSONdictio"</span>,
+                         INSTALL_opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"--no-multiarch"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>If mdJSONdictio installation fails again, install the package manually as described in Solution 2 below.</p>
+</div>
+<div class="section level5">
+<h5 id="solution-2-1">Solution 2<a class="anchor" aria-label="anchor" href="#solution-2-1"></a>
+</h5>
+<p>Navigate to the <a href="https://github.com/hdvincelette/mdJSONdictio" class="external-link">mdJSONdictio GitHub repository</a> and download the package zip: Code -&gt; Download ZIP.</p>
+<div class="section level6">
+<h6 id="mdjsondictio-github-repository">
+<span style="color: grey;">mdJSONdictio GitHub repository</span><a class="anchor" aria-label="anchor" href="#mdjsondictio-github-repository"></a>
+</h6>
+<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/GitHub_Repo.png"><br><br></p>
+<p>In RStudio, set the working directory to the zip location: Session -&gt; Set Working Directory -&gt; Choose Directory.</p>
+</div>
+<div class="section level6">
+<h6 id="setting-the-working-directory-in-rstudio">
+<span style="color: grey;">Setting the working directory in RStudio</span><a class="anchor" aria-label="anchor" href="#setting-the-working-directory-in-rstudio"></a>
+</h6>
+<p><img src="https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_setwd.png"><br><br></p>
+<p>Paste the following in the RStudio Source pane and run the line of code.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Install mdJSONdictio from zip source</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mdJSONdictio-master"</span><span class="op">)</span></code></pre></div>
+<p><br></p>
+</div>
 </div>
 </div>
 </div>
