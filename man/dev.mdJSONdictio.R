@@ -48,7 +48,6 @@ remove.packages("mdJSONdictio")
 
 options(download.file.method = "curl")
 
-
 devtools::install_github("hdvincelette/mdJSONdictio")
 devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts = c("--no-multiarch"))
 devtools::install_github("hdvincelette/mdJSONdictio", build_vignettes = TRUE)
