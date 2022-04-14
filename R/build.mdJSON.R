@@ -1,9 +1,9 @@
 #' Build mdJSON Data Dictionaries
 #'
-#' Transforms a tabular data dictionary (read as a data frame) into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
+#' Translates a data frame of the tabular data dictionary into an list object that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
 #' @param x  A data frame of the tabular data dictionary.
 #' @param title A string designating the title of the Dictionary record in mdEditor.
-#' @return Returns an R list corresponding to the tabular data dictionary.
+#' @return Returns a list object corresponding to the tabular data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```build.table()```
 #' @export
@@ -12,8 +12,8 @@
 #' path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 #' input.table<-readxl::read_excel(path = path)
 #'
-#' # Transform data frame to list
-#' new.list<- build.mdJSON(x = input.table, title = "Example Dictionary")
+#' # Translate data frame to list
+#' new.list<- mdJSONdictio::build.mdJSON(x = input.table, title = "Example Dictionary")
 #'
 #' # Convert list to JSON
 #' new.json = rjson::toJSON(x = new.list)
