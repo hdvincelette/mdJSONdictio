@@ -2,22 +2,22 @@
 #'
 #' Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a data frame.
 #' @param x An R list converted from an mdJSON data dictionary file.
-#' @param entity_num Default=1. An integer indicating the entity if there is more than one in the mdJSON file.
 #' @param dictionary_num Default=1. An integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).
+#' @param entity_num Default=1. An integer indicating the entity if there is more than one in the mdJSON file.
 #' @return Returns a data frame corresponding to the mdJSON data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```build.mdJSON()```
 #' @export
 #' @examples
-#' # Import mdJSON data dictionary as an R list
+#' # Import mdJSON data dictionary as list
 #' path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-#' e.g.dictionary2 <- rjson::fromJSON(file = path)
+#' input.json <- rjson::fromJSON(file = path)
 #'
 #' # Transform R list to a data frame
-#' newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1, entity_num = 1)
+#' new.table<- build.table(x = input.json, dictionary_num = 1, entity_num = 1)
 #'
 #' # Export table to disk
-#' write.csv(newtable, "e.g.dictionary2.csv",na="",row.names = FALSE)
+#' write.csv(x = new.table, file = "e.g.dictionary2.csv", na="", row.names = FALSE)
 
 
 build.table <- function(x, entity_num, dictionary_num) {
