@@ -222,7 +222,7 @@
 </h5>
 <p>Paste the following in the RStudio Source pane and run each line of code.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Install dependent packages seperately</span>
+<code class="sourceCode R"><span class="co"># Create list of dependent packages</span>
 <span class="va">packages</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>
   <span class="st">"purrr"</span>,
   <span class="st">"readxl"</span>,
@@ -235,11 +235,13 @@
   <span class="st">"plyr"</span>
 <span class="op">)</span>
 
+<span class="co"># Install/re-install packages</span>
 <span class="va">installed_packages</span> <span class="op">&lt;-</span> <span class="va">packages</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="va">installed_packages</span> <span class="op">==</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="va">packages</span><span class="op">[</span><span class="op">!</span><span class="va">installed_packages</span><span class="op">]</span><span class="op">)</span>
 <span class="op">}</span>
 
+<span class="co"># Check all packages installed</span>
 <span class="va">installed_packages</span> <span class="op">&lt;-</span> <span class="va">packages</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/installed.packages.html" class="external-link">installed.packages</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="kw">if</span> <span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">installed_packages</span> <span class="op">==</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"All dependent packages installed"</span><span class="op">)</span>
