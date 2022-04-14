@@ -120,10 +120,10 @@ pre code {
 <h2 id="build-mdjson-build-an-mdjson-data-dictionary">
 <code>build.mdJSON</code>: Build an mdJSON data dictionary<a class="anchor" aria-label="anchor" href="#build-mdjson-build-an-mdjson-data-dictionary"></a>
 </h2>
-<p>Before getting started, prep the R workspace as indicated above. <br></p>
-<div class="section level4">
-<h4 id="create-the-json">Create the JSON<a class="anchor" aria-label="anchor" href="#create-the-json"></a>
-</h4>
+<p>Before getting started, make sure to <a href="https://hdvincelette.github.io/mdJSONdictio/articles/04_mdJSONdictio_Tutorial.html#prep-up-the-r-workspace">prep the R workspace</a>. <br></p>
+<div class="section level3">
+<h3 id="create-the-json">Create the JSON<a class="anchor" aria-label="anchor" href="#create-the-json"></a>
+</h3>
 <p>Read the xlsx file into R using <code>read_excel()</code>. <strong>Enter the file name of the tabular data dictionary after <code>path =</code>.</strong> Make sure to surround the name with quotes and include the file extension. This function will save the xlsx table as a data frame object in the Environment window.</p>
 <p><em>Note: Since the tabular data dictionary template is in xlsx format, the <code>read_excel()</code> function is used. Files in other formats require different functions to be read into R.</em></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -628,9 +628,9 @@ pre code {
 <span class="co">#&gt; [1] "dictionaries"</span></code></pre>
 </div>
 </div>
-<div class="section level4">
-<h4 id="export-the-json">Export the JSON<a class="anchor" aria-label="anchor" href="#export-the-json"></a>
-</h4>
+<div class="section level3">
+<h3 id="export-the-json">Export the JSON<a class="anchor" aria-label="anchor" href="#export-the-json"></a>
+</h3>
 <p>Convert the new list object to JSON using <code>toJSON()</code>. This will create another data frame object in the Environment window.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">new.json</span> <span class="op">=</span> <span class="fu">rjson</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rjson/man/toJSON.html" class="external-link">toJSON</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">new.list</span><span class="op">)</span></code></pre></div>
@@ -639,9 +639,9 @@ pre code {
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/write.html" class="external-link">write</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">new.json</span>, file <span class="op">=</span> <span class="st">"e.g.dictionary.json"</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 </div>
-<div class="section level4">
-<h4 id="example-run">Example run<a class="anchor" aria-label="anchor" href="#example-run"></a>
-</h4>
+<div class="section level3">
+<h3 id="example-run">Example run<a class="anchor" aria-label="anchor" href="#example-run"></a>
+</h3>
 <p>Process an example tabular data dictionary into mdJSON. Paste the following in the RStudio Source pane and run each line of code to see how <code><a href="../reference/build.mdJSON.html">build.mdJSON()</a></code> works. It is recommended to <a href="https://hdvincelette.github.io/mdJSONdictio/articles/04_mdJSONdictio_Tutorial.html#prep-up-the-r-workspace">set the working directory</a> to a navigable location before exporting the table.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Import tabular data dictionary as data frame</span>
@@ -663,10 +663,10 @@ pre code {
 <h2 id="build-table-build-a-tabular-data-dictionary">
 <code>build.table()</code>: Build a tabular data dictionary<a class="anchor" aria-label="anchor" href="#build-table-build-a-tabular-data-dictionary"></a>
 </h2>
-<p>Before getting started, prep the R workspace as indicated above. <br></p>
-<div class="section level4">
-<h4 id="create-the-table">Create the table<a class="anchor" aria-label="anchor" href="#create-the-table"></a>
-</h4>
+<p>Before getting started, make sure to <a href="https://hdvincelette.github.io/mdJSONdictio/articles/04_mdJSONdictio_Tutorial.html#prep-up-the-r-workspace">prep the R workspace</a>. <br></p>
+<div class="section level3">
+<h3 id="create-the-table">Create the table<a class="anchor" aria-label="anchor" href="#create-the-table"></a>
+</h3>
 <p>Read the JSON file into R using <code>fromJSON()</code>. <strong>Enter the file name of the mdJSON data dictionary after <code>x =</code>.</strong> Make sure to surround the name with quotes and include the file extension. This function will save the JSON file as a list object in the Environment window.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">input.json</span> <span class="op">&lt;-</span> <span class="fu">rjson</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rjson/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"e.g.dictionary2.json"</span><span class="op">)</span></code></pre></div>
@@ -967,18 +967,18 @@ pre code {
 <span class="co">#&gt; <span style="color: #BCBCBC;">257</span> Zone               colname         colname          State Plane Coordinate System zone of capture location                                                        <span style="color: #949494;">"</span>integer<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>yes<span style="color: #949494;">"</span>     <span style="color: #949494;">""</span>                <span style="color: #BB0000;">NA</span>              <span style="color: #949494;">""</span>              <span style="color: #BB0000;">NA</span>         <span style="color: #BB0000;">NA</span>                 <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span> <span style="color: #949494;">""</span></span></code></pre>
 </div>
 </div>
-<div class="section level4">
-<h4 id="export-the-table">Export the table<a class="anchor" aria-label="anchor" href="#export-the-table"></a>
-</h4>
+<div class="section level3">
+<h3 id="export-the-table">Export the table<a class="anchor" aria-label="anchor" href="#export-the-table"></a>
+</h3>
 <p>Export the data frame using <code><a href="https://rdrr.io/r/base/write.html" class="external-link">write()</a></code>. <strong>Enter the desired name of the tabular data dictionary file after <code>file =</code>.</strong></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Export table to disk</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">new.table</span>, <span class="st">"e.g.dictionary2.csv"</span>, na<span class="op">=</span><span class="st">""</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 </div>
-<div class="section level4">
-<h4 id="example-run-1">Example run<a class="anchor" aria-label="anchor" href="#example-run-1"></a>
-</h4>
+<div class="section level3">
+<h3 id="example-run-1">Example run<a class="anchor" aria-label="anchor" href="#example-run-1"></a>
+</h3>
 <p>Process an example mdJSON data dictionary into a table. Paste the following in the RStudio Source pane and run each line of code to see how <code><a href="../reference/build.table.html">build.table()</a></code> works. It is recommended to set the working directory to a navigable location before exporting the table.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Import mdJSON data dictionary as list</span>
