@@ -1,7 +1,7 @@
 
 # mdJSONdictio
 
-Tools to Build and Transform mdEditor mdJSON Data Dictionaries
+Tools to Build and Translate mdEditor mdJSON Data Dictionaries
 
 ## Installation
 
@@ -15,8 +15,6 @@ library(devtools)
 # Install mdJSONdictio from GitHub
 devtools::install_github("hdvincelette/mdJSONdictio")
 library(mdJSONdictio)
-
-
 ```
 
 ## Usage
