@@ -29,7 +29,7 @@ vignette: >
 # }
 
 pre {
-  max-height: 300px !important;
+  max-height: 350px !important;
   overflow-y: auto !important;
   overflow-x: scroll !important;
 }
@@ -141,6 +141,9 @@ write(x = new.json, file = "e.g.dictionary.json")
 Process an example tabular data dictionary into mdJSON. Paste the following in the RStudio Source pane and run each line of code to see how ```build.mdJSON()``` works. This code will save the JSON to the current working directory, so it is recommended to [set the working directory](https://hdvincelette.github.io/mdJSONdictio/articles/04_mdJSONdictio_Tutorial.html#prep-up-the-r-workspace) to a navigable location before getting started.
 
 ```{r, include=TRUE, eval=FALSE}
+# Load mdJSONdictio
+library(mdJSONdictio)
+
 # Import tabular data dictionary as data frame
 path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 input.table<-readxl::read_excel(path = path)
@@ -212,6 +215,9 @@ Process an example mdJSON data dictionary into a table. Paste the following in t
 
 
 ```{r, include=TRUE, eval=FALSE}
+# Load mdJSONdictio
+library(mdJSONdictio)
+
 # Import mdJSON data dictionary as list
 path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
 input.json <- rjson::fromJSON(file = path)
