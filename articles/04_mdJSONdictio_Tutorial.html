@@ -45,7 +45,7 @@
     <a class="dropdown-item" href="../articles/02_Dictionary_Template.html">Tabular Data Dictionary Template</a>
     <a class="dropdown-item" href="../articles/03_Setup_mdJSONdictio.html">How to Setup mdJSONdictio</a>
     <a class="dropdown-item" href="../articles/04_mdJSONdictio_Tutorial.html">mdJSONdictio Tutorial</a>
-    <a class="dropdown-item" href="../articles/05_mdEditor_Reference.html">mdEditor Reference</a>
+    <a class="dropdown-item" href="../articles/05_Next_Steps_mdEditor.html">mdEditor Reference</a>
   </div>
 </li>
       </ul>
@@ -99,8 +99,7 @@ pre code {
   white-space: pre
 }
 </style>
-<p>Learn how to build and transform mdJSON data dictionaries using mdJSONdictio with examples. The steps below illustrate how to use <code><a href="../reference/build.mdJSON.html">build.mdJSON()</a></code> and <code><a href="../reference/build.table.html">build.table()</a></code>. To follow along, paste each line of code in the RStudio Source pane, alter text when indicated, and click Run.</p>
-<p><br><br></p>
+<p>Learn how to build and transform mdJSON data dictionaries using mdJSONdictio with examples. The steps below illustrate how to use <code><a href="../reference/build.mdJSON.html">build.mdJSON()</a></code> and <code><a href="../reference/build.table.html">build.table()</a></code>. To follow along, paste each line of code in the RStudio Source pane, alter text when indicated, and click Run. <br></p>
 <div class="section level2">
 <h2 id="prep-up-the-r-workspace">Prep up the R workspace<a class="anchor" aria-label="anchor" href="#prep-up-the-r-workspace"></a>
 </h2>
@@ -109,7 +108,7 @@ pre code {
 <code class="sourceCode R"><span class="co"># load the package</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hdvincelette/mdJSONdictio" class="external-link">mdJSONdictio</a></span><span class="op">)</span></code></pre></div>
 <p>If R returns the Error message “there is no package called ‘mdJSONdictio’,” then mdJSONdictio is not installed. See <a href="https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#install-mdjsondictio-r-package">Install mdJSONdictio R package</a> for help. <br></p>
-<p><strong>Set the working directory to the location of the tabular data dictionary.</strong> Click Session -&gt; Set Working Directory -&gt; Choose Directory.</p>
+<p><strong>Set the working directory to the location of the input file(s) to be processed in the steps below.</strong> Click Session -&gt; Set Working Directory -&gt; Choose Directory.</p>
 <div class="section level6">
 <h6 id="setting-the-working-directory-in-rstudio">
 <span style="color: grey;">Setting the working directory in RStudio</span><a class="anchor" aria-label="anchor" href="#setting-the-working-directory-in-rstudio"></a>
@@ -118,9 +117,10 @@ pre code {
 </div>
 </div>
 <div class="section level2">
-<h2 id="build-an-mdjson-data-dictionary-with-build-mdjson">Build an mdJSON data dictionary with <code>build.mdJSON()</code><a class="anchor" aria-label="anchor" href="#build-an-mdjson-data-dictionary-with-build-mdjson"></a>
+<h2 id="build-an-mdjson-data-dictionary">Build an mdJSON data dictionary<a class="anchor" aria-label="anchor" href="#build-an-mdjson-data-dictionary"></a>
 </h2>
-<p><em>View the function reference page <a href="https://hdvincelette.github.io/mdJSONdictio/reference/build.mdJSON.html">here</a></em> <br></p>
+<p>Before getting started, prep the R workspace as indicated above.</p>
+<p><em>View the <code><a href="../reference/build.mdJSON.html">build.mdJSON()</a></code> function reference page <a href="https://hdvincelette.github.io/mdJSONdictio/reference/build.mdJSON.html">here</a></em> <br></p>
 <div class="section level4">
 <h4 id="create-the-json">Create the JSON<a class="anchor" aria-label="anchor" href="#create-the-json"></a>
 </h4>
@@ -659,9 +659,10 @@ pre code {
 </div>
 </div>
 <div class="section level2">
-<h2 id="build-a-tabular-data-dictionary-with-build-table">Build a tabular data dictionary with <code>build.table()</code><a class="anchor" aria-label="anchor" href="#build-a-tabular-data-dictionary-with-build-table"></a>
+<h2 id="build-a-tabular-data-dictionary">Build a tabular data dictionary<a class="anchor" aria-label="anchor" href="#build-a-tabular-data-dictionary"></a>
 </h2>
-<p><em>View the function reference page <a href="https://hdvincelette.github.io/mdJSONdictio/reference/build.table.html">here</a></em> <br></p>
+<p>Before getting started, prep the R workspace as indicated above.</p>
+<p><em>View the <code><a href="../reference/build.table.html">build.table()</a></code> function reference page <a href="https://hdvincelette.github.io/mdJSONdictio/reference/build.table.html">here</a></em> <br></p>
 <div class="section level4">
 <h4 id="create-the-table">Create the table<a class="anchor" aria-label="anchor" href="#create-the-table"></a>
 </h4>
