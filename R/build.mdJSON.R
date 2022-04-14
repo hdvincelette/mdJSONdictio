@@ -10,16 +10,16 @@
 #' @examples
 #' # Import tabular data dictionary as data frame
 #' path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
-#' e.g.dictionary<-readxl::read_excel(path)
+#' input.table<-readxl::read_excel(path = path)
 #'
-#' # Transform data frame to R list
-#' newjson<- build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
+#' # Transform data frame to list
+#' new.list<- build.mdJSON(x = input.table, title = "Example Dictionary")
 #'
-#' # Convert R list to JSON
-#' e.g.dictionary = rjson::toJSON(newjson)
+#' # Convert list to JSON
+#' new.json = rjson::toJSON(x = new.list)
 #'
 #' # Export JSON to disk
-#' write(e.g.dictionary, "e.g.dictionary.json")
+#' write(x = new.json, file = "e.g.dictionary.json")
 
 
 
