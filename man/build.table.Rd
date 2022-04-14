@@ -20,15 +20,15 @@ Returns a data frame corresponding to the mdJSON data dictionary.
 Transforms an mdEditor mdJSON data dictionary (imported as an R list) into a data frame.
 }
 \examples{
-# Import mdJSON data dictionary as an R list
+# Import mdJSON data dictionary as list
 path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-e.g.dictionary2 <- rjson::fromJSON(file = path)
+input.json <- rjson::fromJSON(file = path)
 
 # Transform R list to a data frame
-newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1, entity_num = 1)
+new.table<- build.table(x = input.json, dictionary_num = 1, entity_num = 1)
 
 # Export table to disk
-write.csv(newtable, "e.g.dictionary2.csv",na="",row.names = FALSE)
+write.csv(x = new.table, file = "e.g.dictionary2.csv", na="", row.names = FALSE)
 }
 \seealso{
 \code{build.mdJSON()}
