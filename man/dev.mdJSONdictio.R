@@ -19,9 +19,9 @@ install()
 # Write markdown
 rmarkdown::render('vignettes/01_Intro_mdJSONdictio.Rmd')
 rmarkdown::render('vignettes/02_Dictionary_Template.Rmd')
-rmarkdown::render('vignettes/03_Setup_mdJSONdictio.Rmd')
-rmarkdown::render('vignettes/04_mdEditor_Reference.Rmd')
-
+rmarkdown::render('vigne ttes/03_Setup_mdJSONdictio.Rmd')
+rmarkdown::render('vignettes/04_mdJSONdictio_Tutorial.Rmd')
+rmarkdown::render('vignettes/05_Next_Steps_mdEditor.Rmd')
 
 # Update site
 # pkgdown::build_site()
@@ -95,23 +95,18 @@ setwd("C:/Users/hvincelette/Desktop")
 
 library(mdJSONdictio)
 
-# Import tabular dictionary
-path <-
-  system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
+# Import tabular data dictionary as data frame
+path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
+input.table<-readxl::read_excel(path = path)
 
-e.g.dictionary <- readxl::read_excel(path)
+# Translate data frame to list
+new.list<- mdJSONdictio::build.mdJSON(x = input.table, title = "Example Dictionary")
 
+# Convert list to JSON
+new.json = rjson::toJSON(x = new.list)
 
-# Run function to create an R object
-newjson <-
-  build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
-
-# Convert R object to JSON
-e.g.dictionary = rjson::toJSON(newjson)
-
-# Export JSON
-write(e.g.dictionary, "e.g.dictionary.json")
-
+# Export JSON to disk
+write(x = new.json, file = "e.g.dictionary.json")
 
 
 ## Error check ##
@@ -158,16 +153,15 @@ setwd("C:/Users/hvincelette/Desktop")
 library(mdJSONdictio)
 
 ## Standard run ##
-# Import mdJSON data dictionary as an R list
+# Import mdJSON data dictionary as list
 path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-e.g.dictionary2 <- rjson::fromJSON(file = path)
+input.json <- rjson::fromJSON(file = path)
 
-# Transform R list to a data frame
-newtable<- build.table(x = e.g.dictionary2, dictionary_num = 1, entity_num = 1)
+# Translate list to data frame
+new.table<- mdJSONdictio::build.table(x = input.json, dictionary_num = 1, entity_num = 1)
 
 # Export table to disk
-write.csv(newtable, "e.g.dictionary2.csv",na="",row.names = FALSE)
-
+write.csv(x = new.table, file = "e.g.dictionary2.csv", na="", row.names = FALSE)
 
 
 
