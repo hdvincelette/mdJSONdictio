@@ -148,13 +148,13 @@ If dependent package are successfully installed and updated, mdJSONdictio instal
 
 ### Verify mdJSONdictio installation
 
-Re-run the following code to verify mdJSONdictio was successfully installed.
+Run the following code to verify mdJSONdictio was successfully installed.
 
 ```{r, include=TRUE, eval=FALSE}
 library(mdJSONdictio)
 ```
 
-If the R simply prints the executed code in the Console pane, then installation was successful. If R returns the Error message “there is no package called ‘mdJSONdictio’,” then installation failed. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#troubleshooting-tips) for more help.
+If R simply prints the executed code in the Console pane, then installation was successful. If R returns the Error message “there is no package called ‘mdJSONdictio’,” then installation failed. See [Troubleshooting Tips](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#troubleshooting-tips) for more help.
 <br />
 <br />
 
