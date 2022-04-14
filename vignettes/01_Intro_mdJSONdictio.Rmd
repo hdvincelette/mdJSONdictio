@@ -71,7 +71,7 @@ The R package mdJSONdictio aims to streamline the process of creating mdEditor d
 
 ## ```build.mdJSON()``` 
 
-Translates a tabular data dictionary into an R list that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a template as described in the [Tabular Data Dictionary Template article](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html). A required parameter is ```title```, which accepts a string to designate the title of the Dictionary record in mdEditor.
+Translates a data frame of the tabular data dictionary into an list object that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a template as described in the [Tabular Data Dictionary Template article](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html). A required parameter is ```title```, which accepts a string to designate the title of the Dictionary record in mdEditor.
 <br />
 <br />
 
@@ -96,7 +96,7 @@ print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary.json", packag
 
 ## ```build.table()``` 
 
-Translates an mdEditor mdJSON data dictionary (imported as an R list) into a data frame to be used as a human-readable reference. The output is formatted to the template described in the [Tabular Data Dictionary Template] section. Optional parameters are ```entity_num``` and ```dictionary_num```, which accept integers to indicate the dictionary and entity to be processed if more than one exists in the mdJSON file. This is useful when multiple entities are created in the Entity tab of a Dictionary record or multiple dictionaries are exported together in mdEditor. By default, ```entity_num = 1``` and ```dictionary_num = 1```, so if the mdJSON file only has one entity and dictionary, these parameters can be ignored.
+Translates a list object converted from an mdEditor mdJSON data dictionary file into a data frame to be used as a human-readable reference. The output is formatted to the template described in the [Tabular Data Dictionary Template] section. Optional parameters are ```entity_num``` and ```dictionary_num```, which accept integers to indicate the dictionary and entity to be processed if more than one exists in the mdJSON file. This is useful when multiple entities are created in the Entity tab of a Dictionary record or multiple dictionaries are exported together in mdEditor. By default, ```entity_num = 1``` and ```dictionary_num = 1```, so if the mdJSON file only has one entity and dictionary, these parameters can be ignored.
 
 <em>Note: Depending on how the Dictionary record was completed in mdEditor, an mdJSON file processed by this function may output a table with additional columns other than those in the tabular data dictionary template. Refer to the [mdJSON Data Dictionary](https://mdbook.adiwg.org/appendix/mdjson_data_dictionary.html) to translate these and other mdEditor terms</em>.
 <br />
