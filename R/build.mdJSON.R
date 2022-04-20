@@ -1,8 +1,8 @@
 #' Build mdJSON Data Dictionaries
 #'
-#' Translates a data frame of the tabular data dictionary into an list object that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
+#' Translates a data frame of the tabular data dictionary into an list object that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary Record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
 #' @param x  A data frame of the tabular data dictionary.
-#' @param title A string designating the title of the Dictionary record in mdEditor.
+#' @param title A string designating the title of the Dictionary Record in mdEditor.
 #' @return Returns a list object corresponding to the tabular data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```build.table()```
