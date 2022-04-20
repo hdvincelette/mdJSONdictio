@@ -1,8 +1,8 @@
 ﻿Column,Type,Definition,Required
-codeName,character varying,Attribute name; the code used to identify this attribute; most often this will be the table or spreadsheet column name,Attributes; Entry values
-domainItem_name,character varying,A descriptive name associated with the domain item value; Default is to use the domain item value; rows regarding attributes are 'colname',Attributes; Entry values
-domainItem_value,character varying,The domain item value; the entry value in the table; rows regarding attributes are 'colname',Attributes; Entry values
-definition,character varying,A succinct but comprehensive definition for the attribute or domain item,Attributes; Entry values
+codeName,character varying,Attribute name; the code used to identify this attribute; most often this will be the table or spreadsheet column name,Attributes; Domain items
+domainItem_name,character varying,A descriptive name associated with the domain item value; Default is to use the domain item value; rows regarding attributes are 'dataElement',Attributes; Domain items
+domainItem_value,character varying,The domain item value; the entry value in the table; rows regarding attributes are 'dataElement',Attributes; Domain items
+definition,character varying,A succinct but comprehensive definition for the attribute or domain item,Attributes; Domain items
 dataType,character varying,The datatype or format of the entry values for an attribute; choose from drop down,Attributes
 allowNull,binary,Indicates whether null values are permitted as the attribute value (yes/no),Attributes
 units,character varying,"A unit-of-measure for the attribute. E.g. 'meters', 'atmospheres', 'liters'; Unrestricted, though SI units are recommended; lowercase only",No
