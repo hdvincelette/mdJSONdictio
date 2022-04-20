@@ -1,258 +1,258 @@
 "codeName","domainItem_name","domainItem_value","definition","dataType","allowNull","units","unitsResolution","isCaseSensitive","fieldWidth","missingValue","minValue","maxValue","domainId"
-"Age","colname","colname","Age description of the captured bird","character varying","yes",,,"yes",,,,,"bad05f26-d932-4bd0-9583-41478a7f062c"
+"Age","dataElement","dataElement","Age description of the captured bird","character varying","yes",,,"yes",,,,,"bad05f26-d932-4bd0-9583-41478a7f062c"
 "Age","U","U","Unknown",,,,,,,,,,"bad05f26-d932-4bd0-9583-41478a7f062c"
 "Age","U","U","Unknown",,,,,,,,,,"bad05f26-d932-4bd0-9583-41478a7f062c"
 "Age","U","U","Unknown",,,,,,,,,,"bad05f26-d932-4bd0-9583-41478a7f062c"
 "Age","U","U","Unknown",,,,,,,,,,"bad05f26-d932-4bd0-9583-41478a7f062c"
-"Area","colname","colname","Area of capture location; more specific than state or province, though not a city or town","character varying","yes",,,"yes",,,,,"6a5ffd27-6027-4579-82c9-5f30089fcccc"
+"Area","dataElement","dataElement","Area of capture location; more specific than state or province, though not a city or town","character varying","yes",,,"yes",,,,,"6a5ffd27-6027-4579-82c9-5f30089fcccc"
 "Area","Eareckson","Eareckson","Eareckson Air Station, Shemya Island, Alaska",,,,,,,,,,"6a5ffd27-6027-4579-82c9-5f30089fcccc"
 "Area","Eareckson","Eareckson","Eareckson Air Station, Shemya Island, Alaska",,,,,,,,,,"6a5ffd27-6027-4579-82c9-5f30089fcccc"
 "Area","Eareckson","Eareckson","Eareckson Air Station, Shemya Island, Alaska",,,,,,,,,,"6a5ffd27-6027-4579-82c9-5f30089fcccc"
 "Area","Eareckson","Eareckson","Eareckson Air Station, Shemya Island, Alaska",,,,,,,,,,"6a5ffd27-6027-4579-82c9-5f30089fcccc"
-"BanderID","colname","colname","Code of the bander, or bird handler for recaptures; often first initial, middle initial, and last name","character varying","yes",,,"yes",,,,,
-"BandNumberIn","colname","colname","The 9-digit number on the federal metal band attached to the bird when captured","integer","yes",,,,,,,,
-"BandNumberOut","colname","colname","The 9-digit number on the federal metal band attached to the bird when released","integer","yes",,,,,,,,
-"BandSize","colname","colname","The BBL Size code describing the size of the federal metal band attached to the captured bird","character varying","yes",,,"yes",,,,,
-"BBLCondition","colname","colname","The BBL Condition code describing the condition of the captured bird and the federal metal band","integer","yes",,,,,,,,"e8c6e964-da11-4ca0-82c9-ab03ed92f9ce"
+"BanderID","dataElement","dataElement","Code of the bander, or bird handler for recaptures; often first initial, middle initial, and last name","character varying","yes",,,"yes",,,,,
+"BandNumberIn","dataElement","dataElement","The 9-digit number on the federal metal band attached to the bird when captured","integer","yes",,,,,,,,
+"BandNumberOut","dataElement","dataElement","The 9-digit number on the federal metal band attached to the bird when released","integer","yes",,,,,,,,
+"BandSize","dataElement","dataElement","The BBL Size code describing the size of the federal metal band attached to the captured bird","character varying","yes",,,"yes",,,,,
+"BBLCondition","dataElement","dataElement","The BBL Condition code describing the condition of the captured bird and the federal metal band","integer","yes",,,,,,,,"e8c6e964-da11-4ca0-82c9-ab03ed92f9ce"
 "BBLCondition","11","11","Alive - In captivity; Band removed",,,,,,,,,,"e8c6e964-da11-4ca0-82c9-ab03ed92f9ce"
 "BBLCondition","11","11","Alive - In captivity; Band removed",,,,,,,,,,"e8c6e964-da11-4ca0-82c9-ab03ed92f9ce"
 "BBLCondition","11","11","Alive - In captivity; Band removed",,,,,,,,,,"e8c6e964-da11-4ca0-82c9-ab03ed92f9ce"
 "BBLCondition","11","11","Alive - In captivity; Band removed",,,,,,,,,,"e8c6e964-da11-4ca0-82c9-ab03ed92f9ce"
-"BBLDisposition","colname","colname","The BBL Disposition code describing the disposition of the federal metal band attached to the captured bird","character","yes",,,"yes",,,,,"ae21b097-8d6c-4c56-a3a0-57d61274c482"
+"BBLDisposition","dataElement","dataElement","The BBL Disposition code describing the disposition of the federal metal band attached to the captured bird","character","yes",,,"yes",,,,,"ae21b097-8d6c-4c56-a3a0-57d61274c482"
 "BBLDisposition","X","X","Banding Mortality",,,,,,,,,,"ae21b097-8d6c-4c56-a3a0-57d61274c482"
 "BBLDisposition","X","X","Banding Mortality",,,,,,,,,,"ae21b097-8d6c-4c56-a3a0-57d61274c482"
 "BBLDisposition","X","X","Banding Mortality",,,,,,,,,,"ae21b097-8d6c-4c56-a3a0-57d61274c482"
 "BBLDisposition","X","X","Banding Mortality",,,,,,,,,,"ae21b097-8d6c-4c56-a3a0-57d61274c482"
-"BBLHowAged","colname","colname","The BBL HowAged code describing how the captured bird was aged; multiple methods seperated by ','","character varying","yes",,,"yes",,,,,"455d2586-0790-4412-839e-b21da78b5466"
+"BBLHowAged","dataElement","dataElement","The BBL HowAged code describing how the captured bird was aged; multiple methods seperated by ','","character varying","yes",,,"yes",,,,,"455d2586-0790-4412-839e-b21da78b5466"
 "BBLHowAged","TS","TS","Tail shape or wear",,,,,,,,,,"455d2586-0790-4412-839e-b21da78b5466"
 "BBLHowAged","TS","TS","Tail shape or wear",,,,,,,,,,"455d2586-0790-4412-839e-b21da78b5466"
 "BBLHowAged","TS","TS","Tail shape or wear",,,,,,,,,,"455d2586-0790-4412-839e-b21da78b5466"
 "BBLHowAged","TS","TS","Tail shape or wear",,,,,,,,,,"455d2586-0790-4412-839e-b21da78b5466"
-"BBLHowSexed","colname","colname","The BBL HowSexed code describing how the captured bird was sexed; multiple methods seperated by ','","character varying","yes",,,"yes",,,,,"81f93b32-fb29-4a87-8685-2cc45d8c6ec1"
+"BBLHowSexed","dataElement","dataElement","The BBL HowSexed code describing how the captured bird was sexed; multiple methods seperated by ','","character varying","yes",,,"yes",,,,,"81f93b32-fb29-4a87-8685-2cc45d8c6ec1"
 "BBLHowSexed","WL","WL","Wing length",,,,,,,,,,"81f93b32-fb29-4a87-8685-2cc45d8c6ec1"
 "BBLHowSexed","WL","WL","Wing length",,,,,,,,,,"81f93b32-fb29-4a87-8685-2cc45d8c6ec1"
 "BBLHowSexed","WL","WL","Wing length",,,,,,,,,,"81f93b32-fb29-4a87-8685-2cc45d8c6ec1"
 "BBLHowSexed","WL","WL","Wing length",,,,,,,,,,"81f93b32-fb29-4a87-8685-2cc45d8c6ec1"
-"BBLStatus","colname","colname","The BBL Status code describing the status of the captured bird and what was done before it was released","character varying","yes",,,,,,,,"23e68641-119f-4b3d-971d-efab8666f01b"
+"BBLStatus","dataElement","dataElement","The BBL Status code describing the status of the captured bird and what was done before it was released","character varying","yes",,,,,,,,"23e68641-119f-4b3d-971d-efab8666f01b"
 "BBLStatus","390","390","Normal wild bird, Datalogger (i.e. geolocator)",,,,,,,,,,"23e68641-119f-4b3d-971d-efab8666f01b"
 "BBLStatus","390","390","Normal wild bird, Datalogger (i.e. geolocator)",,,,,,,,,,"23e68641-119f-4b3d-971d-efab8666f01b"
 "BBLStatus","390","390","Normal wild bird, Datalogger (i.e. geolocator)",,,,,,,,,,"23e68641-119f-4b3d-971d-efab8666f01b"
 "BBLStatus","390","390","Normal wild bird, Datalogger (i.e. geolocator)",,,,,,,,,,"23e68641-119f-4b3d-971d-efab8666f01b"
-"Blood","colname","colname","Whether a blood sample was collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
-"BloodFilter","colname","colname","Whether a blood filter sample was collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
-"BloodGenetics","colname","colname","Whether blood was collected from the captured bird for genetic testing (Y/N)","binary","yes",,,"yes",,,,,
-"BloodHg","colname","colname","Whether blood was collected from the captured bird for mercury (Hg) contamination testing (Y/N)","binary","yes",,,"yes",,,,,
-"BloodIsotope","colname","colname","Whether blood was collected from the captured bird for isotope analysis (Y/N)","binary","yes",,,"yes",,,,,
-"BloodSmear","colname","colname","Whether a blood smear was collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
-"BodyCover_dec","colname","colname","Estimated cover of body feathers on the captured bird; percent formatted as a decimal","numeric","yes",,,,,,"0","1",
-"BodyMolt","colname","colname","Body molt score of the captured bird","integer","yes",,,,,,,,"58e2889b-261a-44c9-a7e4-a110423ee303"
+"Blood","dataElement","dataElement","Whether a blood sample was collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
+"BloodFilter","dataElement","dataElement","Whether a blood filter sample was collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
+"BloodGenetics","dataElement","dataElement","Whether blood was collected from the captured bird for genetic testing (Y/N)","binary","yes",,,"yes",,,,,
+"BloodHg","dataElement","dataElement","Whether blood was collected from the captured bird for mercury (Hg) contamination testing (Y/N)","binary","yes",,,"yes",,,,,
+"BloodIsotope","dataElement","dataElement","Whether blood was collected from the captured bird for isotope analysis (Y/N)","binary","yes",,,"yes",,,,,
+"BloodSmear","dataElement","dataElement","Whether a blood smear was collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
+"BodyCover_dec","dataElement","dataElement","Estimated cover of body feathers on the captured bird; percent formatted as a decimal","numeric","yes",,,,,,"0","1",
+"BodyMolt","dataElement","dataElement","Body molt score of the captured bird","integer","yes",,,,,,,,"58e2889b-261a-44c9-a7e4-a110423ee303"
 "BodyMolt","4","4","Heavy; More than two-thirds of the contour feathers on the bird are in molt.",,,,,,,,,,"58e2889b-261a-44c9-a7e4-a110423ee303"
 "BodyMolt","4","4","Heavy; More than two-thirds of the contour feathers on the bird are in molt.",,,,,,,,,,"58e2889b-261a-44c9-a7e4-a110423ee303"
 "BodyMolt","4","4","Heavy; More than two-thirds of the contour feathers on the bird are in molt.",,,,,,,,,,"58e2889b-261a-44c9-a7e4-a110423ee303"
 "BodyMolt","4","4","Heavy; More than two-thirds of the contour feathers on the bird are in molt.",,,,,,,,,,"58e2889b-261a-44c9-a7e4-a110423ee303"
-"BroodPatch","colname","colname","Brood patch score of captured bird","character","yes",,,"yes",,,,,"58fb24a0-cf46-43b4-80f3-24b68ebd0c83"
+"BroodPatch","dataElement","dataElement","Brood patch score of captured bird","character","yes",,,"yes",,,,,"58fb24a0-cf46-43b4-80f3-24b68ebd0c83"
 "BroodPatch","P","P","Present",,,,,,,,,,"58fb24a0-cf46-43b4-80f3-24b68ebd0c83"
 "BroodPatch","P","P","Present",,,,,,,,,,"58fb24a0-cf46-43b4-80f3-24b68ebd0c83"
 "BroodPatch","P","P","Present",,,,,,,,,,"58fb24a0-cf46-43b4-80f3-24b68ebd0c83"
 "BroodPatch","P","P","Present",,,,,,,,,,"58fb24a0-cf46-43b4-80f3-24b68ebd0c83"
-"Buccal","colname","colname","Whether a buccal swab sample was collected from captured bird (Y/N)","binary","yes",,,"yes",,,,,
-"CaptureMethod","colname","colname","Method used to capture the bird","character varying","yes",,,"yes",,,,,"d22dd5c5-3626-46da-93d4-cc701fd2256b"
+"Buccal","dataElement","dataElement","Whether a buccal swab sample was collected from captured bird (Y/N)","binary","yes",,,"yes",,,,,
+"CaptureMethod","dataElement","dataElement","Method used to capture the bird","character varying","yes",,,"yes",,,,,"d22dd5c5-3626-46da-93d4-cc701fd2256b"
 "CaptureMethod","NG","NG","Net Gun",,,,,,,,,,"d22dd5c5-3626-46da-93d4-cc701fd2256b"
 "CaptureMethod","NG","NG","Net Gun",,,,,,,,,,"d22dd5c5-3626-46da-93d4-cc701fd2256b"
 "CaptureMethod","NG","NG","Net Gun",,,,,,,,,,"d22dd5c5-3626-46da-93d4-cc701fd2256b"
 "CaptureMethod","NG","NG","Net Gun",,,,,,,,,,"d22dd5c5-3626-46da-93d4-cc701fd2256b"
-"CaptureTime","colname","colname","Time of bird capture; 24:00","time","yes",,,,,,,,
-"City","colname","colname","City or town of capture location","character varying","yes",,,"yes",,,,,"ba31f755-0870-49b1-aea8-cb17fa858597"
+"CaptureTime","dataElement","dataElement","Time of bird capture; 24:00","time","yes",,,,,,,,
+"City","dataElement","dataElement","City or town of capture location","character varying","yes",,,"yes",,,,,"ba31f755-0870-49b1-aea8-cb17fa858597"
 "City","Tok","Tok","Tok, Alaska",,,,,,,,,,"ba31f755-0870-49b1-aea8-cb17fa858597"
 "City","Tok","Tok","Tok, Alaska",,,,,,,,,,"ba31f755-0870-49b1-aea8-cb17fa858597"
 "City","Tok","Tok","Tok, Alaska",,,,,,,,,,"ba31f755-0870-49b1-aea8-cb17fa858597"
 "City","Tok","Tok","Tok, Alaska",,,,,,,,,,"ba31f755-0870-49b1-aea8-cb17fa858597"
-"CloacalProtub","colname","colname","Cloacal protuberance score on captured bird","integer","yes",,,,,,,,"d0fbc3bb-7745-42e1-b849-ae3288a099e2"
+"CloacalProtub","dataElement","dataElement","Cloacal protuberance score on captured bird","integer","yes",,,,,,,,"d0fbc3bb-7745-42e1-b849-ae3288a099e2"
 "CloacalProtub","3","3","Large; Cloacal protuberance very large and bulbous",,,,,,,,,,"d0fbc3bb-7745-42e1-b849-ae3288a099e2"
 "CloacalProtub","3","3","Large; Cloacal protuberance very large and bulbous",,,,,,,,,,"d0fbc3bb-7745-42e1-b849-ae3288a099e2"
 "CloacalProtub","3","3","Large; Cloacal protuberance very large and bulbous",,,,,,,,,,"d0fbc3bb-7745-42e1-b849-ae3288a099e2"
 "CloacalProtub","3","3","Large; Cloacal protuberance very large and bulbous",,,,,,,,,,"d0fbc3bb-7745-42e1-b849-ae3288a099e2"
-"Country","colname","colname","Country of capture location","character varying","yes",,,"yes",,,,,
-"CulmenDepth_mm","colname","colname","Culmen depth of the of the captured brid in millimeters; measured at the distal end of the nares","numeric","yes","millimeters",,,,,,,
-"CulmenLength_mm","colname","colname","Culmen length of the captured bird in millimeters; measured from tip of bill to base of bill","numeric","yes","millimeters",,,,,,,
-"CulmenWidth_mm","colname","colname","Culmen width of the captured bird in millimeters; measured at the distal end of the nares","numeric","yes","millimeters",,,,,,,
-"Day","colname","colname","1-2-number day of capture; D or DD","integer","yes",,,,,,"1","31",
-"Downy","colname","colname","Whether downy feathers were collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
-"Easting","colname","colname","Easting of capture location","numeric","yes",,,,,,,,
-"FatScore","colname","colname","Fat score of captured bird (0-7)","integer","yes",,,,,,,,"5008a03f-8002-4c0d-b7e4-4ada1bc920d6"
+"Country","dataElement","dataElement","Country of capture location","character varying","yes",,,"yes",,,,,
+"CulmenDepth_mm","dataElement","dataElement","Culmen depth of the of the captured brid in millimeters; measured at the distal end of the nares","numeric","yes","millimeters",,,,,,,
+"CulmenLength_mm","dataElement","dataElement","Culmen length of the captured bird in millimeters; measured from tip of bill to base of bill","numeric","yes","millimeters",,,,,,,
+"CulmenWidth_mm","dataElement","dataElement","Culmen width of the captured bird in millimeters; measured at the distal end of the nares","numeric","yes","millimeters",,,,,,,
+"Day","dataElement","dataElement","1-2-number day of capture; D or DD","integer","yes",,,,,,"1","31",
+"Downy","dataElement","dataElement","Whether downy feathers were collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
+"Easting","dataElement","dataElement","Easting of capture location","numeric","yes",,,,,,,,
+"FatScore","dataElement","dataElement","Fat score of captured bird (0-7)","integer","yes",,,,,,,,"5008a03f-8002-4c0d-b7e4-4ada1bc920d6"
 "FatScore","7","7","Very excessive;  fat pads of the furculum, 'wingpit,' and abdomen are bulging so that they join",,,,,,,,,,"5008a03f-8002-4c0d-b7e4-4ada1bc920d6"
 "FatScore","7","7","Very excessive;  fat pads of the furculum, 'wingpit,' and abdomen are bulging so that they join",,,,,,,,,,"5008a03f-8002-4c0d-b7e4-4ada1bc920d6"
 "FatScore","7","7","Very excessive;  fat pads of the furculum, 'wingpit,' and abdomen are bulging so that they join",,,,,,,,,,"5008a03f-8002-4c0d-b7e4-4ada1bc920d6"
 "FatScore","7","7","Very excessive;  fat pads of the furculum, 'wingpit,' and abdomen are bulging so that they join",,,,,,,,,,"5008a03f-8002-4c0d-b7e4-4ada1bc920d6"
-"Feather","colname","colname","Whether a feather sample was collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
-"FeatherContrast","colname","colname","Whether there is color contrast on the underwing coverts of the captured bird (Y/N)","binary","yes",,,"yes",,,,,
-"FeatherIsotope","colname","colname","Whether a feather sample was collected from the captured bird for isotope analysis (Y/N)","binary","yes",,,"yes",,,,,
-"FeatherType","colname","colname","Code identifying type of feather collected from the captured bird; specific feather number provided, if known","character varying","yes",,,"yes",,,,,"8b06b2c6-e76a-4965-8e2b-370662db1e03"
+"Feather","dataElement","dataElement","Whether a feather sample was collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
+"FeatherContrast","dataElement","dataElement","Whether there is color contrast on the underwing coverts of the captured bird (Y/N)","binary","yes",,,"yes",,,,,
+"FeatherIsotope","dataElement","dataElement","Whether a feather sample was collected from the captured bird for isotope analysis (Y/N)","binary","yes",,,"yes",,,,,
+"FeatherType","dataElement","dataElement","Code identifying type of feather collected from the captured bird; specific feather number provided, if known","character varying","yes",,,"yes",,,,,"8b06b2c6-e76a-4965-8e2b-370662db1e03"
 "FeatherType","bristle","bristle","bristle feather",,,,,,,,,,"8b06b2c6-e76a-4965-8e2b-370662db1e03"
 "FeatherType","bristle","bristle","bristle feather",,,,,,,,,,"8b06b2c6-e76a-4965-8e2b-370662db1e03"
 "FeatherType","bristle","bristle","bristle feather",,,,,,,,,,"8b06b2c6-e76a-4965-8e2b-370662db1e03"
 "FeatherType","bristle","bristle","bristle feather",,,,,,,,,,"8b06b2c6-e76a-4965-8e2b-370662db1e03"
-"Fecal","colname","colname","Whether a fecal sample was collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
-"FlagCodeIn","colname","colname","Alpha-numeric code on plastic, field-readable flag placed on the bird's leg when captured","character varying","yes",,,"yes",,,,,
-"FlagCodeOut","colname","colname","Alpha-numeric code on plastic, field-readable flag placed on the bird's leg when released","character varying","yes",,,"yes",,,,,
-"FlagColorIn","colname","colname","Color of plastic, field-readable flag placed on the bird's leg when captured","character varying","yes",,,"yes",,,,,"336e5556-87b0-4391-ac9c-f78715b26c41"
+"Fecal","dataElement","dataElement","Whether a fecal sample was collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
+"FlagCodeIn","dataElement","dataElement","Alpha-numeric code on plastic, field-readable flag placed on the bird's leg when captured","character varying","yes",,,"yes",,,,,
+"FlagCodeOut","dataElement","dataElement","Alpha-numeric code on plastic, field-readable flag placed on the bird's leg when released","character varying","yes",,,"yes",,,,,
+"FlagColorIn","dataElement","dataElement","Color of plastic, field-readable flag placed on the bird's leg when captured","character varying","yes",,,"yes",,,,,"336e5556-87b0-4391-ac9c-f78715b26c41"
 "FlagColorIn","Y","Y","Yellow",,,,,,,,,,"336e5556-87b0-4391-ac9c-f78715b26c41"
 "FlagColorIn","Y","Y","Yellow",,,,,,,,,,"336e5556-87b0-4391-ac9c-f78715b26c41"
 "FlagColorIn","Y","Y","Yellow",,,,,,,,,,"336e5556-87b0-4391-ac9c-f78715b26c41"
 "FlagColorIn","Y","Y","Yellow",,,,,,,,,,"336e5556-87b0-4391-ac9c-f78715b26c41"
-"FlagColorOut","colname","colname","Color of plastic, field-readable flag placed on the bird's leg when released","character varying","yes",,,"yes",,,,,"31f25d0a-4af0-474b-88e6-a3982e68819c"
+"FlagColorOut","dataElement","dataElement","Color of plastic, field-readable flag placed on the bird's leg when released","character varying","yes",,,"yes",,,,,"31f25d0a-4af0-474b-88e6-a3982e68819c"
 "FlagColorOut","Y","Y","Yellow",,,,,,,,,,"31f25d0a-4af0-474b-88e6-a3982e68819c"
 "FlagColorOut","Y","Y","Yellow",,,,,,,,,,"31f25d0a-4af0-474b-88e6-a3982e68819c"
 "FlagColorOut","Y","Y","Yellow",,,,,,,,,,"31f25d0a-4af0-474b-88e6-a3982e68819c"
 "FlagColorOut","Y","Y","Yellow",,,,,,,,,,"31f25d0a-4af0-474b-88e6-a3982e68819c"
-"FlightFeatherMolt","colname","colname","Code describing the type of molt occuring in the flight feathers of the captured bird","character","yes",,,"yes",,,,,"c5bf25f6-fd1b-4fb7-bcfa-5c28e0c8a5e8"
+"FlightFeatherMolt","dataElement","dataElement","Code describing the type of molt occuring in the flight feathers of the captured bird","character","yes",,,"yes",,,,,"c5bf25f6-fd1b-4fb7-bcfa-5c28e0c8a5e8"
 "FlightFeatherMolt","J","J","Juvininle Growth",,,,,,,,,,"c5bf25f6-fd1b-4fb7-bcfa-5c28e0c8a5e8"
 "FlightFeatherMolt","J","J","Juvininle Growth",,,,,,,,,,"c5bf25f6-fd1b-4fb7-bcfa-5c28e0c8a5e8"
 "FlightFeatherMolt","J","J","Juvininle Growth",,,,,,,,,,"c5bf25f6-fd1b-4fb7-bcfa-5c28e0c8a5e8"
 "FlightFeatherMolt","J","J","Juvininle Growth",,,,,,,,,,"c5bf25f6-fd1b-4fb7-bcfa-5c28e0c8a5e8"
-"FlightFeatherWear","colname","colname","The degree of feather wear on the captured bird (0-5)","integer","yes",,,,,,,,"5d31ef61-e000-40ca-9861-004b5b75e452"
+"FlightFeatherWear","dataElement","dataElement","The degree of feather wear on the captured bird (0-5)","integer","yes",,,,,,,,"5d31ef61-e000-40ca-9861-004b5b75e452"
 "FlightFeatherWear","5","5","Excessive",,,,,,,,,,"5d31ef61-e000-40ca-9861-004b5b75e452"
 "FlightFeatherWear","5","5","Excessive",,,,,,,,,,"5d31ef61-e000-40ca-9861-004b5b75e452"
 "FlightFeatherWear","5","5","Excessive",,,,,,,,,,"5d31ef61-e000-40ca-9861-004b5b75e452"
 "FlightFeatherWear","5","5","Excessive",,,,,,,,,,"5d31ef61-e000-40ca-9861-004b5b75e452"
-"Gape_mm","colname","colname","Gape length of the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
-"Hem","colname","colname","Hemisphere of capture location","character","yes",,,"yes",,,,,"370cb732-1cda-4391-ad2b-31a3f85d0b1e"
+"Gape_mm","dataElement","dataElement","Gape length of the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
+"Hem","dataElement","dataElement","Hemisphere of capture location","character","yes",,,"yes",,,,,"370cb732-1cda-4391-ad2b-31a3f85d0b1e"
 "Hem","S","S","Southern",,,,,,,,,,"370cb732-1cda-4391-ad2b-31a3f85d0b1e"
 "Hem","S","S","Southern",,,,,,,,,,"370cb732-1cda-4391-ad2b-31a3f85d0b1e"
 "Hem","S","S","Southern",,,,,,,,,,"370cb732-1cda-4391-ad2b-31a3f85d0b1e"
 "Hem","S","S","Southern",,,,,,,,,,"370cb732-1cda-4391-ad2b-31a3f85d0b1e"
-"JuvPlumage","colname","colname","The presence of juvenal body plumage on captured bird","integer","yes",,,,,,,,"6d075770-0f57-4b1c-8741-8eb3f8dfaac4"
+"JuvPlumage","dataElement","dataElement","The presence of juvenal body plumage on captured bird","integer","yes",,,,,,,,"6d075770-0f57-4b1c-8741-8eb3f8dfaac4"
 "JuvPlumage","3","3","Full juvenal body plumage.",,,,,,,,,,"6d075770-0f57-4b1c-8741-8eb3f8dfaac4"
 "JuvPlumage","3","3","Full juvenal body plumage.",,,,,,,,,,"6d075770-0f57-4b1c-8741-8eb3f8dfaac4"
 "JuvPlumage","3","3","Full juvenal body plumage.",,,,,,,,,,"6d075770-0f57-4b1c-8741-8eb3f8dfaac4"
 "JuvPlumage","3","3","Full juvenal body plumage.",,,,,,,,,,"6d075770-0f57-4b1c-8741-8eb3f8dfaac4"
-"Latitude_dec","colname","colname","Latitude of capture location in decimal degrees","numeric","yes","decimal degrees",,,,,,,
-"LLIn","colname","colname","Lower left leg; combination of bands, flags, and data loggers attached when captured; seperated by '-'","character varying","yes",,,"yes",,,,,"80ae4b5e-632e-4dad-bcdf-487c42628611"
+"Latitude_dec","dataElement","dataElement","Latitude of capture location in decimal degrees","numeric","yes","decimal degrees",,,,,,,
+"LLIn","dataElement","dataElement","Lower left leg; combination of bands, flags, and data loggers attached when captured; seperated by '-'","character varying","yes",,,"yes",,,,,"80ae4b5e-632e-4dad-bcdf-487c42628611"
 "LLIn","Y","Y","Yellow  colorband",,,,,,,,,,"80ae4b5e-632e-4dad-bcdf-487c42628611"
 "LLIn","Y","Y","Yellow  colorband",,,,,,,,,,"80ae4b5e-632e-4dad-bcdf-487c42628611"
 "LLIn","Y","Y","Yellow  colorband",,,,,,,,,,"80ae4b5e-632e-4dad-bcdf-487c42628611"
 "LLIn","Y","Y","Yellow  colorband",,,,,,,,,,"80ae4b5e-632e-4dad-bcdf-487c42628611"
-"LLOut","colname","colname","Lower left leg; combination of bands, flags, and data loggers attached when released; seperated by '-'","character varying","yes",,,"yes",,,,,"939b4ba3-cef4-446e-abc3-b30a90c09a1c"
+"LLOut","dataElement","dataElement","Lower left leg; combination of bands, flags, and data loggers attached when released; seperated by '-'","character varying","yes",,,"yes",,,,,"939b4ba3-cef4-446e-abc3-b30a90c09a1c"
 "LLOut","Y","Y","Yellow  colorband",,,,,,,,,,"939b4ba3-cef4-446e-abc3-b30a90c09a1c"
 "LLOut","Y","Y","Yellow  colorband",,,,,,,,,,"939b4ba3-cef4-446e-abc3-b30a90c09a1c"
 "LLOut","Y","Y","Yellow  colorband",,,,,,,,,,"939b4ba3-cef4-446e-abc3-b30a90c09a1c"
 "LLOut","Y","Y","Yellow  colorband",,,,,,,,,,"939b4ba3-cef4-446e-abc3-b30a90c09a1c"
-"LongestPrimary_mm","colname","colname","Length of longest primary of the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
-"Longitude_dec","colname","colname","Longitude of capture location in decimal degrees","numeric","yes","decimal degrees",,,,,,,
-"LRIn","colname","colname","Lower right leg; combination of bands, flags, and data loggers attached when captured; seperated by '-'","character varying","yes",,,"yes",,,,,"10437534-a2a6-4008-989b-9403d8cd7367"
+"LongestPrimary_mm","dataElement","dataElement","Length of longest primary of the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
+"Longitude_dec","dataElement","dataElement","Longitude of capture location in decimal degrees","numeric","yes","decimal degrees",,,,,,,
+"LRIn","dataElement","dataElement","Lower right leg; combination of bands, flags, and data loggers attached when captured; seperated by '-'","character varying","yes",,,"yes",,,,,"10437534-a2a6-4008-989b-9403d8cd7367"
 "LRIn","Y","Y","Yellow  colorband",,,,,,,,,,"10437534-a2a6-4008-989b-9403d8cd7367"
 "LRIn","Y","Y","Yellow  colorband",,,,,,,,,,"10437534-a2a6-4008-989b-9403d8cd7367"
 "LRIn","Y","Y","Yellow  colorband",,,,,,,,,,"10437534-a2a6-4008-989b-9403d8cd7367"
 "LRIn","Y","Y","Yellow  colorband",,,,,,,,,,"10437534-a2a6-4008-989b-9403d8cd7367"
-"LROut","colname","colname","Lower right leg; combination of bands, flags, and data loggers attached when released; seperated by '-'","character varying","yes",,,"yes",,,,,"0cfba0a0-b35f-4e28-baf5-6df1d31b23fc"
+"LROut","dataElement","dataElement","Lower right leg; combination of bands, flags, and data loggers attached when released; seperated by '-'","character varying","yes",,,"yes",,,,,"0cfba0a0-b35f-4e28-baf5-6df1d31b23fc"
 "LROut","Y","Y","Yellow  colorband",,,,,,,,,,"0cfba0a0-b35f-4e28-baf5-6df1d31b23fc"
 "LROut","Y","Y","Yellow  colorband",,,,,,,,,,"0cfba0a0-b35f-4e28-baf5-6df1d31b23fc"
 "LROut","Y","Y","Yellow  colorband",,,,,,,,,,"0cfba0a0-b35f-4e28-baf5-6df1d31b23fc"
 "LROut","Y","Y","Yellow  colorband",,,,,,,,,,"0cfba0a0-b35f-4e28-baf5-6df1d31b23fc"
-"Mass_g","colname","colname","Mass of captured brid in grams","numeric","yes","grams",,,,,,,
-"MoltLimit","colname","colname","Code indicating the region where molt limits (two generations of feathers) are present on the captured bird","character","yes",,,"yes",,,,,"0ff3c279-5e34-4739-8b47-dd2b661a38b5"
+"Mass_g","dataElement","dataElement","Mass of captured brid in grams","numeric","yes","grams",,,,,,,
+"MoltLimit","dataElement","dataElement","Code indicating the region where molt limits (two generations of feathers) are present on the captured bird","character","yes",,,"yes",,,,,"0ff3c279-5e34-4739-8b47-dd2b661a38b5"
 "MoltLimit","B","B","Body Feathers",,,,,,,,,,"0ff3c279-5e34-4739-8b47-dd2b661a38b5"
 "MoltLimit","B","B","Body Feathers",,,,,,,,,,"0ff3c279-5e34-4739-8b47-dd2b661a38b5"
 "MoltLimit","B","B","Body Feathers",,,,,,,,,,"0ff3c279-5e34-4739-8b47-dd2b661a38b5"
 "MoltLimit","B","B","Body Feathers",,,,,,,,,,"0ff3c279-5e34-4739-8b47-dd2b661a38b5"
-"Month","colname","colname","1-2-number month of capture; M or MM","integer","yes",,,,,,"1","12",
-"Nails","colname","colname","Whether a nail sample was collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
-"NaresTip_mm","colname","colname","Length from nares to tip of the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
-"NestID","colname","colname","Unique nest identifier associated with captured bird; based on person who found nest or nest location","character varying","yes",,,"yes",,,,,
-"Northing","colname","colname","Northing of capture location","numeric","yes",,,,,,,,
-"Notes","colname","colname","Additional notes","character varying","yes",,,,,,,,
-"P10_mm","colname","colname","Length of the primary 10 feather on the captured bird in millimeters; measured from skin to tip of feather","numeric","yes","millimeters",,,,,,,
-"P10Exposed_mm","colname","colname","Length of the exposed primary 10 feather (out of sheathing) on the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
-"P1Length_mm","colname","colname","Length of primary 1 feather of the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
-"P1LessCov_mm","colname","colname","Length from primary 1 feather to lesser cover feather of the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
-"Photos","colname","colname","Whether photos of the captured bird were collected (Y/N)","binary","yes",,,"yes",,,,,
-"PlatformID1","colname","colname","Platform identification number of the device attached to the captured bird","character varying","yes",,,,,,,,
-"PlatformID2","colname","colname","Platform identification number of the second device attached to the captured bird","character varying","yes",,,,,,,,
-"PlotID","colname","colname","Plot ID of capture location; more specific than LocCity or LocArea; refer to 'Master_Locations .csv'","character varying","yes",,,"yes",,,,,
-"PlotName","colname","colname","Plot name of capture location; more specific than LocCity or LocArea; refer to 'Master_Locations.csv'","character varying","yes",,,"yes",,,,,
-"R1Length_mm","colname","colname","Length of rectrix 1 feather of the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
-"RadioFrequency_mHz","colname","colname","The original radio frequency of the radio tag attached to the captured bird  in millihertz.","numeric","yes","megahertz",,,,,,,
-"RectMolt","colname","colname","The presence and characteristics of active rectrix feather molt on the captured bird","integer","yes",,,,,,,,"0b6aa5f7-e119-466c-87c8-0f5377dce29d"
+"Month","dataElement","dataElement","1-2-number month of capture; M or MM","integer","yes",,,,,,"1","12",
+"Nails","dataElement","dataElement","Whether a nail sample was collected from the captured bird (Y/N)","binary","yes",,,"yes",,,,,
+"NaresTip_mm","dataElement","dataElement","Length from nares to tip of the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
+"NestID","dataElement","dataElement","Unique nest identifier associated with captured bird; based on person who found nest or nest location","character varying","yes",,,"yes",,,,,
+"Northing","dataElement","dataElement","Northing of capture location","numeric","yes",,,,,,,,
+"Notes","dataElement","dataElement","Additional notes","character varying","yes",,,,,,,,
+"P10_mm","dataElement","dataElement","Length of the primary 10 feather on the captured bird in millimeters; measured from skin to tip of feather","numeric","yes","millimeters",,,,,,,
+"P10Exposed_mm","dataElement","dataElement","Length of the exposed primary 10 feather (out of sheathing) on the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
+"P1Length_mm","dataElement","dataElement","Length of primary 1 feather of the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
+"P1LessCov_mm","dataElement","dataElement","Length from primary 1 feather to lesser cover feather of the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
+"Photos","dataElement","dataElement","Whether photos of the captured bird were collected (Y/N)","binary","yes",,,"yes",,,,,
+"PlatformID1","dataElement","dataElement","Platform identification number of the device attached to the captured bird","character varying","yes",,,,,,,,
+"PlatformID2","dataElement","dataElement","Platform identification number of the second device attached to the captured bird","character varying","yes",,,,,,,,
+"PlotID","dataElement","dataElement","Plot ID of capture location; more specific than LocCity or LocArea; refer to 'Master_Locations .csv'","character varying","yes",,,"yes",,,,,
+"PlotName","dataElement","dataElement","Plot name of capture location; more specific than LocCity or LocArea; refer to 'Master_Locations.csv'","character varying","yes",,,"yes",,,,,
+"R1Length_mm","dataElement","dataElement","Length of rectrix 1 feather of the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
+"RadioFrequency_mHz","dataElement","dataElement","The original radio frequency of the radio tag attached to the captured bird  in millihertz.","numeric","yes","megahertz",,,,,,,
+"RectMolt","dataElement","dataElement","The presence and characteristics of active rectrix feather molt on the captured bird","integer","yes",,,,,,,,"0b6aa5f7-e119-466c-87c8-0f5377dce29d"
 "RectMolt","3","3","Adventitious",,,,,,,,,,"0b6aa5f7-e119-466c-87c8-0f5377dce29d"
 "RectMolt","3","3","Adventitious",,,,,,,,,,"0b6aa5f7-e119-466c-87c8-0f5377dce29d"
 "RectMolt","3","3","Adventitious",,,,,,,,,,"0b6aa5f7-e119-466c-87c8-0f5377dce29d"
 "RectMolt","3","3","Adventitious",,,,,,,,,,"0b6aa5f7-e119-466c-87c8-0f5377dce29d"
-"RectShape","colname","colname","Degree of rectrix feather roundness on the captured bird (0-3)","integer","yes",,,,,,,,"db787e39-7167-4ed8-bf65-480d653367ef"
+"RectShape","dataElement","dataElement","Degree of rectrix feather roundness on the captured bird (0-3)","integer","yes",,,,,,,,"db787e39-7167-4ed8-bf65-480d653367ef"
 "RectShape","3","3","Rounded",,,,,,,,,,"db787e39-7167-4ed8-bf65-480d653367ef"
 "RectShape","3","3","Rounded",,,,,,,,,,"db787e39-7167-4ed8-bf65-480d653367ef"
 "RectShape","3","3","Rounded",,,,,,,,,,"db787e39-7167-4ed8-bf65-480d653367ef"
 "RectShape","3","3","Rounded",,,,,,,,,,"db787e39-7167-4ed8-bf65-480d653367ef"
-"RectWear","colname","colname","The degree of rectrix feather wear on the captured bird","integer","yes",,,,,,,,"692dcca7-41b2-4e00-812a-8f9d59fb26a6"
+"RectWear","dataElement","dataElement","The degree of rectrix feather wear on the captured bird","integer","yes",,,,,,,,"692dcca7-41b2-4e00-812a-8f9d59fb26a6"
 "RectWear","5","5","Excessive",,,,,,,,,,"692dcca7-41b2-4e00-812a-8f9d59fb26a6"
 "RectWear","5","5","Excessive",,,,,,,,,,"692dcca7-41b2-4e00-812a-8f9d59fb26a6"
 "RectWear","5","5","Excessive",,,,,,,,,,"692dcca7-41b2-4e00-812a-8f9d59fb26a6"
 "RectWear","5","5","Excessive",,,,,,,,,,"692dcca7-41b2-4e00-812a-8f9d59fb26a6"
-"ReleaseTime","colname","colname","Time of bird release; 24:00","time","yes",,,,,,,,
-"ScribeID","colname","colname","Code of the scribe; often first initial, middle initial, and last name","character varying","yes",,,"yes",,,,,
-"Sex","colname","colname","Code describing the sex of the captured bird as determined in the field","character","yes",,,"yes",,,,,"2de6220d-d118-41fe-a739-3ccd8e45816a"
+"ReleaseTime","dataElement","dataElement","Time of bird release; 24:00","time","yes",,,,,,,,
+"ScribeID","dataElement","dataElement","Code of the scribe; often first initial, middle initial, and last name","character varying","yes",,,"yes",,,,,
+"Sex","dataElement","dataElement","Code describing the sex of the captured bird as determined in the field","character","yes",,,"yes",,,,,"2de6220d-d118-41fe-a739-3ccd8e45816a"
 "Sex","U","U","Unknown",,,,,,,,,,"2de6220d-d118-41fe-a739-3ccd8e45816a"
 "Sex","U","U","Unknown",,,,,,,,,,"2de6220d-d118-41fe-a739-3ccd8e45816a"
 "Sex","U","U","Unknown",,,,,,,,,,"2de6220d-d118-41fe-a739-3ccd8e45816a"
 "Sex","U","U","Unknown",,,,,,,,,,"2de6220d-d118-41fe-a739-3ccd8e45816a"
-"SpeciesCode","colname","colname","4-letter American Ornithological Union (AOU) species code of the captured bird","character varying","no",,,"yes",,,,,"9262772c-12f0-4936-9ff7-7b331f196fcb"
+"SpeciesCode","dataElement","dataElement","4-letter American Ornithological Union (AOU) species code of the captured bird","character varying","no",,,"yes",,,,,"9262772c-12f0-4936-9ff7-7b331f196fcb"
 "SpeciesCode","BALO","BALO","Band Lost",,,,,,,,,,"9262772c-12f0-4936-9ff7-7b331f196fcb"
 "SpeciesCode","BALO","BALO","Band Lost",,,,,,,,,,"9262772c-12f0-4936-9ff7-7b331f196fcb"
 "SpeciesCode","BALO","BALO","Band Lost",,,,,,,,,,"9262772c-12f0-4936-9ff7-7b331f196fcb"
 "SpeciesCode","BALO","BALO","Band Lost",,,,,,,,,,"9262772c-12f0-4936-9ff7-7b331f196fcb"
-"StateProvince","colname","colname","State or province code of capture location","character varying","yes",,,"yes",,,,,"7597f689-6488-4394-a003-85cfa3dede9b"
+"StateProvince","dataElement","dataElement","State or province code of capture location","character varying","yes",,,"yes",,,,,"7597f689-6488-4394-a003-85cfa3dede9b"
 "StateProvince","QUE","QUE","Quebec, Canada",,,,,,,,,,"7597f689-6488-4394-a003-85cfa3dede9b"
 "StateProvince","QUE","QUE","Quebec, Canada",,,,,,,,,,"7597f689-6488-4394-a003-85cfa3dede9b"
 "StateProvince","QUE","QUE","Quebec, Canada",,,,,,,,,,"7597f689-6488-4394-a003-85cfa3dede9b"
 "StateProvince","QUE","QUE","Quebec, Canada",,,,,,,,,,"7597f689-6488-4394-a003-85cfa3dede9b"
-"TagAttachment1","colname","colname","Description of how the device is attached to the captured bird","character varying","yes",,,"yes",,,,,
-"TagAttachment2","colname","colname","Description of how the second device is attached to the captured bird","character varying","yes",,,"yes",,,,,
-"TagID1","colname","colname","Identification number of the device attached to the captured bird","character varying","yes",,,"yes",,,,,
-"TagID2","colname","colname","Identification number of the second device attached to the captured bird","character varying","yes",,,"yes",,,,,
-"TagMass1_g","colname","colname","Mass of the device attached to the captured bird in grams","numeric","yes","grams",,,,,,,
-"TagMass2_g","colname","colname","Mass of the second device attached to the captured bird in grams","numeric","yes","grams",,,,,,,
-"TagStatus1","colname","colname","Status of the device attached to the captured bird","character varying","yes",,,"yes",,,,,"9f56e825-b009-45f8-b163-707c70e7d046"
+"TagAttachment1","dataElement","dataElement","Description of how the device is attached to the captured bird","character varying","yes",,,"yes",,,,,
+"TagAttachment2","dataElement","dataElement","Description of how the second device is attached to the captured bird","character varying","yes",,,"yes",,,,,
+"TagID1","dataElement","dataElement","Identification number of the device attached to the captured bird","character varying","yes",,,"yes",,,,,
+"TagID2","dataElement","dataElement","Identification number of the second device attached to the captured bird","character varying","yes",,,"yes",,,,,
+"TagMass1_g","dataElement","dataElement","Mass of the device attached to the captured bird in grams","numeric","yes","grams",,,,,,,
+"TagMass2_g","dataElement","dataElement","Mass of the second device attached to the captured bird in grams","numeric","yes","grams",,,,,,,
+"TagStatus1","dataElement","dataElement","Status of the device attached to the captured bird","character varying","yes",,,"yes",,,,,"9f56e825-b009-45f8-b163-707c70e7d046"
 "TagStatus1","Lost","Lost","Lost tag",,,,,,,,,,"9f56e825-b009-45f8-b163-707c70e7d046"
 "TagStatus1","Lost","Lost","Lost tag",,,,,,,,,,"9f56e825-b009-45f8-b163-707c70e7d046"
 "TagStatus1","Lost","Lost","Lost tag",,,,,,,,,,"9f56e825-b009-45f8-b163-707c70e7d046"
 "TagStatus1","Lost","Lost","Lost tag",,,,,,,,,,"9f56e825-b009-45f8-b163-707c70e7d046"
-"TagStatus2","colname","colname","Status of the second device attached to the captured bird","character varying","yes",,,"yes",,,,,"63c51131-8ef6-445f-b117-1ae09049d46f"
+"TagStatus2","dataElement","dataElement","Status of the second device attached to the captured bird","character varying","yes",,,"yes",,,,,"63c51131-8ef6-445f-b117-1ae09049d46f"
 "TagStatus2","Lost","Lost","Lost tag",,,,,,,,,,"63c51131-8ef6-445f-b117-1ae09049d46f"
 "TagStatus2","Lost","Lost","Lost tag",,,,,,,,,,"63c51131-8ef6-445f-b117-1ae09049d46f"
 "TagStatus2","Lost","Lost","Lost tag",,,,,,,,,,"63c51131-8ef6-445f-b117-1ae09049d46f"
 "TagStatus2","Lost","Lost","Lost tag",,,,,,,,,,"63c51131-8ef6-445f-b117-1ae09049d46f"
-"TagType1","colname","colname","Type of device attached to the captured bird","character varying","yes",,,"yes",,,,,"8ccdd20d-a02a-4bc9-9b7e-3b94a61b968e"
+"TagType1","dataElement","dataElement","Type of device attached to the captured bird","character varying","yes",,,"yes",,,,,"8ccdd20d-a02a-4bc9-9b7e-3b94a61b968e"
 "TagType1","Radio","Radio","Radio tag",,,,,,,,,,"8ccdd20d-a02a-4bc9-9b7e-3b94a61b968e"
 "TagType1","Radio","Radio","Radio tag",,,,,,,,,,"8ccdd20d-a02a-4bc9-9b7e-3b94a61b968e"
 "TagType1","Radio","Radio","Radio tag",,,,,,,,,,"8ccdd20d-a02a-4bc9-9b7e-3b94a61b968e"
 "TagType1","Radio","Radio","Radio tag",,,,,,,,,,"8ccdd20d-a02a-4bc9-9b7e-3b94a61b968e"
-"TagType2","colname","colname","Type of second device attached to the captured bird","character varying","yes",,,"yes",,,,,"d3c1a634-592b-4b4a-989d-421590d02d93"
+"TagType2","dataElement","dataElement","Type of second device attached to the captured bird","character varying","yes",,,"yes",,,,,"d3c1a634-592b-4b4a-989d-421590d02d93"
 "TagType2","Radio","Radio","Radio tag",,,,,,,,,,"d3c1a634-592b-4b4a-989d-421590d02d93"
 "TagType2","Radio","Radio","Radio tag",,,,,,,,,,"d3c1a634-592b-4b4a-989d-421590d02d93"
 "TagType2","Radio","Radio","Radio tag",,,,,,,,,,"d3c1a634-592b-4b4a-989d-421590d02d93"
 "TagType2","Radio","Radio","Radio tag",,,,,,,,,,"d3c1a634-592b-4b4a-989d-421590d02d93"
-"Tail_mm","colname","colname","Length of central rectrices on the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
-"Tarsus_mm","colname","colname","Length of the tarsometatarsus on the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
-"TotalHead_mm","colname","colname","Length of the head of the captured bird in millimeters; measured from tip of bill to back of head","numeric","yes","millimeters",,,,,,,
-"ULIn","colname","colname","Upper left leg; combination of bands, flags, and data loggers attached when captured; seperated by '-'","character varying","yes",,,"yes",,,,,"f7ded43b-e64a-4442-bb77-8bcee546cfaf"
+"Tail_mm","dataElement","dataElement","Length of central rectrices on the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
+"Tarsus_mm","dataElement","dataElement","Length of the tarsometatarsus on the captured bird in millimeters","numeric","yes","millimeters",,,,,,,
+"TotalHead_mm","dataElement","dataElement","Length of the head of the captured bird in millimeters; measured from tip of bill to back of head","numeric","yes","millimeters",,,,,,,
+"ULIn","dataElement","dataElement","Upper left leg; combination of bands, flags, and data loggers attached when captured; seperated by '-'","character varying","yes",,,"yes",,,,,"f7ded43b-e64a-4442-bb77-8bcee546cfaf"
 "ULIn","Y","Y","Yellow  colorband",,,,,,,,,,"f7ded43b-e64a-4442-bb77-8bcee546cfaf"
 "ULIn","Y","Y","Yellow  colorband",,,,,,,,,,"f7ded43b-e64a-4442-bb77-8bcee546cfaf"
 "ULIn","Y","Y","Yellow  colorband",,,,,,,,,,"f7ded43b-e64a-4442-bb77-8bcee546cfaf"
 "ULIn","Y","Y","Yellow  colorband",,,,,,,,,,"f7ded43b-e64a-4442-bb77-8bcee546cfaf"
-"ULOut","colname","colname","Upper left leg; combination of bands, flags, and data loggers attached when released; seperated by '-'","character varying","yes",,,"yes",,,,,"d93c7be7-2542-4ea4-9c00-598b9a00123b"
+"ULOut","dataElement","dataElement","Upper left leg; combination of bands, flags, and data loggers attached when released; seperated by '-'","character varying","yes",,,"yes",,,,,"d93c7be7-2542-4ea4-9c00-598b9a00123b"
 "ULOut","Y","Y","Yellow  colorband",,,,,,,,,,"d93c7be7-2542-4ea4-9c00-598b9a00123b"
 "ULOut","Y","Y","Yellow  colorband",,,,,,,,,,"d93c7be7-2542-4ea4-9c00-598b9a00123b"
 "ULOut","Y","Y","Yellow  colorband",,,,,,,,,,"d93c7be7-2542-4ea4-9c00-598b9a00123b"
 "ULOut","Y","Y","Yellow  colorband",,,,,,,,,,"d93c7be7-2542-4ea4-9c00-598b9a00123b"
-"URIn","colname","colname","Upper right leg; combination of bands, flags, and data loggers attached when captured; seperated by '-'","character varying","yes",,,"yes",,,,,"8eb93ff3-f2fc-44c2-9eaa-a729bf5df47c"
+"URIn","dataElement","dataElement","Upper right leg; combination of bands, flags, and data loggers attached when captured; seperated by '-'","character varying","yes",,,"yes",,,,,"8eb93ff3-f2fc-44c2-9eaa-a729bf5df47c"
 "URIn","Y","Y","Yellow  colorband",,,,,,,,,,"8eb93ff3-f2fc-44c2-9eaa-a729bf5df47c"
 "URIn","Y","Y","Yellow  colorband",,,,,,,,,,"8eb93ff3-f2fc-44c2-9eaa-a729bf5df47c"
 "URIn","Y","Y","Yellow  colorband",,,,,,,,,,"8eb93ff3-f2fc-44c2-9eaa-a729bf5df47c"
 "URIn","Y","Y","Yellow  colorband",,,,,,,,,,"8eb93ff3-f2fc-44c2-9eaa-a729bf5df47c"
-"UROut","colname","colname","Upper right leg; combination of bands, flags, and data loggers attached when released; seperated by '-'","character varying","yes",,,"yes",,,,,"1770a391-192d-4b06-a01e-8a3477006bdf"
+"UROut","dataElement","dataElement","Upper right leg; combination of bands, flags, and data loggers attached when released; seperated by '-'","character varying","yes",,,"yes",,,,,"1770a391-192d-4b06-a01e-8a3477006bdf"
 "UROut","Y","Y","Yellow  colorband",,,,,,,,,,"1770a391-192d-4b06-a01e-8a3477006bdf"
 "UROut","Y","Y","Yellow  colorband",,,,,,,,,,"1770a391-192d-4b06-a01e-8a3477006bdf"
 "UROut","Y","Y","Yellow  colorband",,,,,,,,,,"1770a391-192d-4b06-a01e-8a3477006bdf"
 "UROut","Y","Y","Yellow  colorband",,,,,,,,,,"1770a391-192d-4b06-a01e-8a3477006bdf"
-"Wing_mm","colname","colname","Length of the folded wing of the captured bird in millimeters.","numeric","yes","millimeters",,,,,,,
-"Year","colname","colname","4-number year of capture; YYYY","year","yes",,,,,,,,
-"Zone","colname","colname","State Plane Coordinate System zone of capture location","integer","yes",,,,,,,,
+"Wing_mm","dataElement","dataElement","Length of the folded wing of the captured bird in millimeters.","numeric","yes","millimeters",,,,,,,
+"Year","dataElement","dataElement","4-number year of capture; YYYY","year","yes",,,,,,,,
+"Zone","dataElement","dataElement","State Plane Coordinate System zone of capture location","integer","yes",,,,,,,,
