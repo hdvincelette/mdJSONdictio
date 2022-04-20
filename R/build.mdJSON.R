@@ -85,8 +85,8 @@ build.mdJSON <- function(x, title) {
           aa,
           '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
         )
-      if (Data.Dictionary$domainItem_name[aa] == "dataElement" &
-          Data.Dictionary$domainItem_value[aa] != "dataElement")
+      if (Data.Dictionary$domainItem_name[aa] == "dataField" &
+          Data.Dictionary$domainItem_value[aa] != "dataField")
         stop(
           'Data frame contains conflicting entries.',
           '\n  Row ',
@@ -97,8 +97,8 @@ build.mdJSON <- function(x, title) {
           Data.Dictionary$domainItem_value[aa],
           '" for domainItem_value.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
         )
-      if (Data.Dictionary$domainItem_name[aa] != "dataElement" &
-          Data.Dictionary$domainItem_value[aa] == "dataElement")
+      if (Data.Dictionary$domainItem_name[aa] != "dataField" &
+          Data.Dictionary$domainItem_value[aa] == "dataField")
         stop(
           'Data frame contains conflicting entries.\n  domainItem_name=="',
           Data.Dictionary$domainItem_name[aa],
@@ -109,7 +109,7 @@ build.mdJSON <- function(x, title) {
           '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
         )
 
-      if (Data.Dictionary$domainItem_name[aa] == "dataElement" &
+      if (Data.Dictionary$domainItem_name[aa] == "dataField" &
           is.na(Data.Dictionary$dataType[aa]))
         stop(
           'Required field incomplete. \n  dataType==NA in row ',
@@ -117,7 +117,7 @@ build.mdJSON <- function(x, title) {
           '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
         )
 
-      if (Data.Dictionary$domainItem_name[aa] == "dataElement" &
+      if (Data.Dictionary$domainItem_name[aa] == "dataField" &
           is.na(Data.Dictionary$allowNull[aa]))
         stop(
           'Required field incomplete. \n  allowNull==NA in row ',
@@ -155,7 +155,7 @@ build.mdJSON <- function(x, title) {
     tibble::add_column(domainId = NA)
 
   for (b in 1:nrow(Data.Dictionary)) {
-    if (Data.Dictionary$domainItem_name[b] != "dataElement") {
+    if (Data.Dictionary$domainItem_name[b] != "dataField") {
       next
     }
     else if (sum(Data.Dictionary$codeName == Data.Dictionary$codeName[b]) >
@@ -180,9 +180,9 @@ build.mdJSON <- function(x, title) {
 
 
   ## Add domain ids to original file
-  ## Isolate dataElement rows with domain notations
+  ## Isolate dataField rows with domain notations
   domaincolumns <- Data.Dictionary %>%
-    dplyr::filter(domainItem_value == "dataElement") %>%
+    dplyr::filter(domainItem_value == "dataField") %>%
     dplyr::filter(domainId == "true") %>%
     dplyr::select(codeName, domainId)
 
@@ -194,7 +194,7 @@ build.mdJSON <- function(x, title) {
   for (e in 1:nrow(domaincolumns)) {
     for (d in 1:nrow(Data.Dictionary)) {
       if (domaincolumns$codeName[e] == Data.Dictionary$codeName[d] &
-          Data.Dictionary$domainItem_value[d] == "dataElement") {
+          Data.Dictionary$domainItem_value[d] == "dataField") {
         Data.Dictionary$domainId[d] = domaincolumns$domainId[e]
       }
     }
@@ -212,7 +212,7 @@ build.mdJSON <- function(x, title) {
 
 
   for (h in 1:nrow(Data.Dictionary)) {
-    if (Data.Dictionary$domainItem_name[h] == "dataElement") {
+    if (Data.Dictionary$domainItem_name[h] == "dataField") {
       entitycount = entitycount + 1
       Data.Dictionary$entityNum[h] <-
         entitycount
@@ -227,13 +227,13 @@ build.mdJSON <- function(x, title) {
 
 
   domainref.A <- Data.Dictionary %>%
-    dplyr::filter(domainItem_name == "dataElement", is.na(domainId) == FALSE) %>%
+    dplyr::filter(domainItem_name == "dataField", is.na(domainId) == FALSE) %>%
     dplyr::select(-domainItem_name, domainItem_value)
 
 
   for (i in 1:nrow(Data.Dictionary)) {
     for (k in 1:nrow(domainref.A)) {
-      if (Data.Dictionary$domainItem_name[i] != "dataElement" &
+      if (Data.Dictionary$domainItem_name[i] != "dataField" &
           Data.Dictionary$codeName[i] == domainref.A$codeName[k]) {
         domaincount = domaincount + 1
         Data.Dictionary$entityNum[i] <- domainref.A$entityNum[k]
@@ -247,7 +247,7 @@ build.mdJSON <- function(x, title) {
     dplyr::filter(domainNum != 0)
 
   entityref <- Data.Dictionary %>%
-    dplyr::filter(domainItem_name == "dataElement") %>%
+    dplyr::filter(domainItem_name == "dataField") %>%
     dplyr::select(-domainItem_name, domainItem_value)
 
 
