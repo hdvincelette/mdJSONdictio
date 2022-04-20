@@ -61,15 +61,15 @@ library(rjson)
 <br />
 <br />
 
-# Attributes and entry values
+# Attributes and domain items
 
-The two main components of the tabular data dictionary template are attributes and entry values, each of which are represented as a row. Entry values are known as "domain items" which collectively make up the "domain" of an attribute. It is important to remember that while entry values are associated with a certain attribute, not all attributes have defined entry values. For example, the attribute "Sex" may have three defined entry values ("F","M", and "U"), where as the attribute "Year" does not since an unlimited number of years can be entered.
+The two main components of the tabular data dictionary template are attributes and domain items, each of which are represented as a row. Attributes are units of information (metadata) describing data elements (e.g. columns in a table). Domain items are accepted entry values for a data element, which collectively make up the domain of an attribute. It is important to remember that not all attribute domains are defined. For example, the attribute "Sex" may have a domain comprised of three domain items ("F","M", and "U"), where as the attribute "Year" does not have a defined domain since an unlimited number of years can be entered.
 <br />
 <br />
-The table below describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. "Definition" describes the template column. These definitions are derived from the [mdEditor User Manual](https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html). "Type" indicates the type of value allowed in the template column. "Required" indicates whether the template column is required by attributes and/or entry values ("No" indicates it is not required by either attributes or entry values). 
+The table below describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. "Definition" describes the template column. These definitions are derived from the [mdEditor User Manual](https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html). "Type" indicates the type of value allowed in the template column. "Required" indicates whether the template column is required by attributes and/or domain items ("No" indicates it is not required by either attributes or domain items). 
 <br />
 
-*Note: The template columns "codeName," "domainItem_name," "domainItem_value," and "definition" are all required by attributes and entry values. The template columns "dataType" and "allowNull" are required by attributes*
+*Note: The template columns "codeName," "domainItem_name," "domainItem_value," and "definition" are all required by attributes and domain items. The template columns "dataType" and "allowNull" are required by attributes*
 <br />
 <br />
 
