@@ -147,28 +147,28 @@ build.table <- function(x, entity_num, dictionary_num) {
 
     if (is.null(domainlist) == FALSE) {
       for (d in 1:length(domainlist)) {
-        for (e in 1:length(domainlist[[d]])) {
-          blanktable[nrow(blanktable) + 1, ] <- NA
+        for (f in 1:length(domainlist[[d]][["domainItem"]])) {
+          blanktable[nrow(blanktable) + 1,] <- NA
           blanktable$domainId[nrow(blanktable)] <-
             domainlist[[d]][["domainId"]]
           blanktable$codeName[nrow(blanktable)] <-
             domainlist[[d]][["codeName"]]
 
-          blanktable$domainNum[nrow(blanktable)] <- e
+          blanktable$domainNum[nrow(blanktable)] <- d
           blanktable$entityNum[nrow(blanktable)] <- b
 
           if (is.null(domainlist[[d]][["domainItem"]]) == TRUE) {
             next
           }
 
-          for (f in 1:length(domainlist[[d]][["domainItem"]])) {
-            for (g in 1:length(domainlist[[d]][["domainItem"]][[f]])) {
-              column <- names(domainlist[[d]][["domainItem"]][[f]])[[g]]
-              entry <- domainlist[[d]][["domainItem"]][[f]][[g]]
+          for (g in 1:length(domainlist[[d]][["domainItem"]][[f]])) {
+            column <- names(domainlist[[d]][["domainItem"]][[f]])[[g]]
+            entry <- domainlist[[d]][["domainItem"]][[f]][[g]]
 
-              blanktable[[paste0(column)]][nrow(blanktable)] <- entry
+            blanktable[[paste0(column)]][nrow(blanktable)] <-
+              entry
 
-            }
+
           }
         }
       }
