@@ -142,8 +142,8 @@ build.table <- function(x, entity_num, dictionary_num) {
         blanktable$entityNum[b] <- b
       }
     }
-    blanktable$name <- "colname"
-    blanktable$value <- "colname"
+    blanktable$name <- "dataElement"
+    blanktable$value <- "dataElement"
 
     if (is.null(domainlist) == FALSE) {
       for (d in 1:length(domainlist)) {
