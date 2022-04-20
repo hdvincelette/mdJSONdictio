@@ -184,9 +184,9 @@ print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary2.json", packa
 
 **Translate the list object into a data frame using ```build.table()```.**
 
-Multiple Dictionary records can be exported together in mdEditor. **Indicate which dictionary to process with ```dictionary_num =```.** If there is only one dictionary in the input JSON (most often the case), leave the default value ```1```. If there is more than one dictionary, indicate which to process by typing an integer after ```dictionary_num =```.
+Multiple Dictionary Records can be exported together in mdEditor. **Indicate which dictionary to process with ```dictionary_num =```.** If there is only one dictionary in the input JSON (most often the case), leave the default value ```1```. If there is more than one dictionary, indicate which to process by typing an integer after ```dictionary_num =```.
 
-mdEditor Dictionary records can include more than one entity. **Indicate which entity to process with ```entity_num =```.** If there is only one entity in the dictionary (most often the case), leave the default value ```1```. If there is more than one entity, indicate which to process by typing an integer after ```entity_num =```.
+mdEditor Dictionary Records can include more than one entity. **Indicate which entity to process with ```entity_num =```.** If there is only one entity in the dictionary (most often the case), leave the default value ```1```. If there is more than one entity, indicate which to process by typing an integer after ```entity_num =```.
 
 ```{r, include=TRUE, eval=FALSE}
 # Translate list to data frame
