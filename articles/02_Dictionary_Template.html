@@ -104,7 +104,7 @@
 <div class="section level2">
 <h2 id="attributes-and-domain-items">Attributes and domain items<a class="anchor" aria-label="anchor" href="#attributes-and-domain-items"></a>
 </h2>
-<p>The two main components of the tabular data dictionary template are attributes and domain items, each of which are represented as a row. Attributes are units of information (metadata) describing data elements (e.g. columns in a table). Domain items are accepted entry values for a data element, which collectively make up the domain of an attribute. It is important to remember that not all attribute domains are defined. For example, the attribute “Sex” may have a domain comprised of three domain items (“F”,“M”, and “U”), where as the attribute “Year” does not have a defined domain since an unlimited number of years can be entered. <br><br> The table below describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. “Definition” describes the template column. These definitions are derived from the <a href="https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html" class="external-link">mdEditor User Manual</a>. “Type” indicates the type of value allowed in the template column. “Required” indicates whether the template column is required by attributes and/or domain items (“No” indicates it is not required by either attributes or domain items). <br></p>
+<p>The two main components of the tabular data dictionary template are attributes and domain items, each of which are represented as a row. Attributes are units of information (metadata) describing data fields (e.g. columns in a table). Domain items are accepted entry values for a data field, which collectively make up the domain of an attribute. It is important to remember that not all attribute domains are defined. For example, the attribute “Sex” may have a domain comprised of three domain items (“F”,“M”, and “U”), where as the attribute “Year” does not have a defined domain since an unlimited number of years can be entered. <br><br> The table below describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary records. “Definition” describes the template column. These definitions are derived from the <a href="https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html" class="external-link">mdEditor User Manual</a>. “Type” indicates the type of value allowed in the template column. “Required” indicates whether the template column is required by attributes and/or domain items (“No” indicates it is not required by either attributes or domain items). <br></p>
 <p><em>Note: The template columns “codeName,” “domainItem_name,” “domainItem_value,” and “definition” are all required by attributes and domain items. The template columns “dataType” and “allowNull” are required by attributes</em> <br><br></p>
 <div class="section level5">
 <h5 id="data-dictionary-template-column-descriptions">Data dictionary template column descriptions<a class="anchor" aria-label="anchor" href="#data-dictionary-template-column-descriptions"></a>
@@ -113,213 +113,78 @@
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
-Column
-</th>
-<th style="text-align:left;">
-Type
-</th>
-<th style="text-align:left;">
-Definition
-</th>
-<th style="text-align:left;">
-Required
+Column.Type.Definition.Required
 </th>
 </tr></thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-codeName
-</td>
-<td style="text-align:left;">
-character varying
-</td>
-<td style="text-align:left;">
-Attribute name; the code used to identify this attribute; most often this will be the table or spreadsheet column name
-</td>
-<td style="text-align:left;">
-Attributes; Domain items
+codeName character varying Attribute name; the code used to identify this attribute; most often this will be the table or spreadsheet column name Attributes; Domain items
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-domainItem_name
-</td>
-<td style="text-align:left;">
-character varying
-</td>
-<td style="text-align:left;">
-A descriptive name associated with the domain item value; Default is to use the domain item value; rows regarding attributes are ‘dataElement’
-</td>
-<td style="text-align:left;">
-Attributes; Domain items
+domainItem_name character varying A descriptive name associated with the<a0>domain item<a0>value; Default is to use the domain item value; rows regarding attributes are ‘dataField’ Attributes; Domain items </a0></a0>
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-domainItem_value
-</td>
-<td style="text-align:left;">
-character varying
-</td>
-<td style="text-align:left;">
-The domain item value; the entry value in the table; rows regarding attributes are ‘dataElement’
-</td>
-<td style="text-align:left;">
-Attributes; Domain items
+domainItem_value character varying The&lt;a0&gt;domain item&lt;a0&gt;value; the entry value in the table; rows regarding attributes are ‘dataField’ Attributes; Domain items
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-definition
-</td>
-<td style="text-align:left;">
-character varying
-</td>
-<td style="text-align:left;">
-A succinct but comprehensive definition for the attribute or domain item
-</td>
-<td style="text-align:left;">
-Attributes; Domain items
+definition character varying A succinct but comprehensive definition for the attribute or domain item Attributes; Domain items
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-dataType
-</td>
-<td style="text-align:left;">
-character varying
-</td>
-<td style="text-align:left;">
-The datatype or format of the entry values for an attribute; choose from drop down
-</td>
-<td style="text-align:left;">
-Attributes
+dataType character varying The datatype or format of the entry values for an attribute; choose from drop down Attributes
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-allowNull
-</td>
-<td style="text-align:left;">
-binary
-</td>
-<td style="text-align:left;">
-Indicates whether null values are permitted as the attribute value (yes/no)
-</td>
-<td style="text-align:left;">
-Attributes
+allowNull binary Indicates whether null values are permitted as the attribute value (yes/no) Attributes
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-units
-</td>
-<td style="text-align:left;">
-character varying
-</td>
-<td style="text-align:left;">
-A unit-of-measure for the attribute. E.g. ‘meters’, ‘atmospheres’, ‘liters’; Unrestricted, though SI units are recommended; lowercase only
-</td>
-<td style="text-align:left;">
-No
+units character varying A unit-of-measure for the attribute. E.g. ‘meters’, ‘atmospheres’, ‘liters’; Unrestricted, though SI units are recommended; lowercase only No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-unitsResolution
-</td>
-<td style="text-align:left;">
-decimal
-</td>
-<td style="text-align:left;">
-The smallest unit increment to which an attribute value is measured
-</td>
-<td style="text-align:left;">
-No
+unitsResolution decimal The smallest unit increment to which an attribute value is measured No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-isCaseSensitive
-</td>
-<td style="text-align:left;">
-binary
-</td>
-<td style="text-align:left;">
-Indicates if the content of the data set is encoded in case-sensitive ASCII (yes/no)
-</td>
-<td style="text-align:left;">
-No
+isCaseSensitive binary Indicates if the content of the data set is encoded in case-sensitive ASCII (yes/no) No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-fieldWidth
-</td>
-<td style="text-align:left;">
-integer
-</td>
-<td style="text-align:left;">
-The number of characters in the data field
-</td>
-<td style="text-align:left;">
-No
+fieldWidth integer The number of characters in the data field No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-missingValue
-</td>
-<td style="text-align:left;">
-character varying
-</td>
-<td style="text-align:left;">
-The code which represents missing data
-</td>
-<td style="text-align:left;">
-No
+missingValue character varying The code which represents missing data No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-minValue
-</td>
-<td style="text-align:left;">
-character varying
-</td>
-<td style="text-align:left;">
-The minimum range value permissible for this attribute; this may be a numeric or character
-</td>
-<td style="text-align:left;">
-No
+minValue character varying The minimum range value permissible for this attribute; this may be a numeric or character No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-maxValue
-</td>
-<td style="text-align:left;">
-character varying
-</td>
-<td style="text-align:left;">
-The maximum range value permissible for this attribute; this may be a numeric or character
-</td>
-<td style="text-align:left;">
-No
+maxValue character varying The maximum range value permissible for this attribute; this may be a numeric or character No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-notes
-</td>
-<td style="text-align:left;">
-character varying
-</td>
-<td style="text-align:left;">
-Anything entered here will be excluded from the mdJSON data dictionary
-</td>
-<td style="text-align:left;">
-No
+notes character varying Anything entered here will be excluded from the mdJSON data dictionary No
 </td>
 </tr>
 </tbody>
