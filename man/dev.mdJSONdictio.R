@@ -27,6 +27,9 @@ rmarkdown::render('vignettes/05_Next_Steps_mdEditor.Rmd')
 # pkgdown::build_site()
 deploy_to_branch()
 
+# Update token
+library(gitcreds)
+gitcreds_set()
 
 # Add...
 
