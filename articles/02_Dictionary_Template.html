@@ -113,78 +113,213 @@
 <table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
-Column.Type.Definition.Required
+Column
+</th>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:left;">
+Definition
+</th>
+<th style="text-align:left;">
+Required
 </th>
 </tr></thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-codeName character varying Attribute name; the code used to identify this attribute; most often this will be the table or spreadsheet column name Attributes; Domain items
+codeName
+</td>
+<td style="text-align:left;">
+character varying
+</td>
+<td style="text-align:left;">
+Attribute name; the code used to identify this attribute; most often this will be the table or spreadsheet column name
+</td>
+<td style="text-align:left;">
+Attributes; Domain items
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-domainItem_name character varying A descriptive name associated with the<a0>domain item<a0>value; Default is to use the domain item value; rows regarding attributes are ‘dataField’ Attributes; Domain items </a0></a0>
+domainItem_name
+</td>
+<td style="text-align:left;">
+character varying
+</td>
+<td style="text-align:left;">
+A descriptive name associated with the domain item value; Default is to use the domain item value; rows regarding attributes are ‘dataField’
+</td>
+<td style="text-align:left;">
+Attributes; Domain items
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-domainItem_value character varying The&lt;a0&gt;domain item&lt;a0&gt;value; the entry value in the table; rows regarding attributes are ‘dataField’ Attributes; Domain items
+domainItem_value
+</td>
+<td style="text-align:left;">
+character varying
+</td>
+<td style="text-align:left;">
+The domain item value; the entry value in the table; rows regarding attributes are ‘dataField’
+</td>
+<td style="text-align:left;">
+Attributes; Domain items
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-definition character varying A succinct but comprehensive definition for the attribute or domain item Attributes; Domain items
+definition
+</td>
+<td style="text-align:left;">
+character varying
+</td>
+<td style="text-align:left;">
+A succinct but comprehensive definition for the attribute or domain item
+</td>
+<td style="text-align:left;">
+Attributes; Domain items
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-dataType character varying The datatype or format of the entry values for an attribute; choose from drop down Attributes
+dataType
+</td>
+<td style="text-align:left;">
+character varying
+</td>
+<td style="text-align:left;">
+The datatype or format of the entry values for an attribute; choose from drop down
+</td>
+<td style="text-align:left;">
+Attributes
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-allowNull binary Indicates whether null values are permitted as the attribute value (yes/no) Attributes
+allowNull
+</td>
+<td style="text-align:left;">
+binary
+</td>
+<td style="text-align:left;">
+Indicates whether null values are permitted as the attribute value (yes/no)
+</td>
+<td style="text-align:left;">
+Attributes
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-units character varying A unit-of-measure for the attribute. E.g. ‘meters’, ‘atmospheres’, ‘liters’; Unrestricted, though SI units are recommended; lowercase only No
+units
+</td>
+<td style="text-align:left;">
+character varying
+</td>
+<td style="text-align:left;">
+A unit-of-measure for the attribute; e.g. ‘meters’
+</td>
+<td style="text-align:left;">
+No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-unitsResolution decimal The smallest unit increment to which an attribute value is measured No
+unitsResolution
+</td>
+<td style="text-align:left;">
+decimal
+</td>
+<td style="text-align:left;">
+The smallest unit increment to which an attribute value is measured
+</td>
+<td style="text-align:left;">
+No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-isCaseSensitive binary Indicates if the content of the data set is encoded in case-sensitive ASCII (yes/no) No
+isCaseSensitive
+</td>
+<td style="text-align:left;">
+binary
+</td>
+<td style="text-align:left;">
+Indicates if the content of the data set is encoded in case-sensitive ASCII (yes/no)
+</td>
+<td style="text-align:left;">
+No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-fieldWidth integer The number of characters in the data field No
+fieldWidth
+</td>
+<td style="text-align:left;">
+integer
+</td>
+<td style="text-align:left;">
+The number of characters in the data field
+</td>
+<td style="text-align:left;">
+No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-missingValue character varying The code which represents missing data No
+missingValue
+</td>
+<td style="text-align:left;">
+character varying
+</td>
+<td style="text-align:left;">
+The code which represents missing data
+</td>
+<td style="text-align:left;">
+No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-minValue character varying The minimum range value permissible for this attribute; this may be a numeric or character No
+minValue
+</td>
+<td style="text-align:left;">
+character varying
+</td>
+<td style="text-align:left;">
+The minimum range value permissible for this attribute; this may be a numeric or character
+</td>
+<td style="text-align:left;">
+No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-maxValue character varying The maximum range value permissible for this attribute; this may be a numeric or character No
+maxValue
+</td>
+<td style="text-align:left;">
+character varying
+</td>
+<td style="text-align:left;">
+The maximum range value permissible for this attribute; this may be a numeric or character
+</td>
+<td style="text-align:left;">
+No
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-notes character varying Anything entered here will be excluded from the mdJSON data dictionary No
+notes
+</td>
+<td style="text-align:left;">
+character varying
+</td>
+<td style="text-align:left;">
+Anything entered here will be excluded from the mdJSON data dictionary
+</td>
+<td style="text-align:left;">
+No
 </td>
 </tr>
 </tbody>
