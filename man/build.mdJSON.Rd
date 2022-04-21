@@ -9,13 +9,13 @@ build.mdJSON(x, title)
 \arguments{
 \item{x}{A data frame of the tabular data dictionary.}
 
-\item{title}{A string designating the title of the Dictionary record in mdEditor.}
+\item{title}{A string designating the title of the Dictionary Record in mdEditor.}
 }
 \value{
 Returns a list object corresponding to the tabular data dictionary.
 }
 \description{
-Translates a data frame of the tabular data dictionary into an list object that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
+Translates a data frame of the tabular data dictionary into an list object that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary Record. The input data frame must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
 }
 \examples{
 # Import tabular data dictionary as data frame
