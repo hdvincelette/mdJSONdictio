@@ -132,7 +132,7 @@ print(as_tibble(read.csv(system.file("extdata", "e.g.dictionary2.csv", package =
 
 [mdEditor User Manual](https://guide.mdeditor.org/)
 
-[ADIwg Metadata Toolkit](https://mdbook.adiwg.org/)
+[mdJSON Data Dictionary](https://mdbook.adiwg.org/appendix/mdjson_data_dictionary.html)
 
 [mdCodes Viewer](https://adiwg.github.io/mdTools/)
 
