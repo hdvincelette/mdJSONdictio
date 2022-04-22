@@ -4,16 +4,25 @@
 Tools to Build and Translate mdEditor mdJSON Data Dictionaries
 
 ## Installation
-
-You can install the development version of mdJSONdictio from [GitHub](https://github.com/) with:
-
+You can install the released version of mdJSONdictio from [GitHub](https://github.com/) with:
 ```
 # Install devtools from CRAN
 install.packages("devtools")
 library(devtools)
 
 # Install mdJSONdictio from GitHub
-devtools::install_github("hdvincelette/mdJSONdictio")
+devtools::install_github("hdvincelette/mdJSONdictio", ref = 'v0.0.1')
+library(mdJSONdictio)
+```
+
+You can install the development version of mdJSONdictio from [GitHub](https://github.com/) with:
+```
+# Install devtools from CRAN
+install.packages("devtools")
+library(devtools)
+
+# Install mdJSONdictio from GitHub
+devtools::install_github("hdvincelette/mdJSONdictio", ref = 'master')
 library(mdJSONdictio)
 ```
 
