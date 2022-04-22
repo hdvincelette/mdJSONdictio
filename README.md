@@ -13,7 +13,7 @@ install.packages("devtools")
 devtools::install_github("hdvincelette/mdJSONdictio", ref = 'v0.0.1')
 ```
 
-You can install the development version of mdJSONdictio from [GitHub](https://github.com/) with:
+And the development version of mdJSONdictio from [GitHub](https://github.com/) with:
 ```
 # Install devtools from CRAN
 install.packages("devtools")
