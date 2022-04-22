@@ -237,7 +237,7 @@ If you see the the message "All dependent packages installed", rerun the [mdJSON
 
 ```{r, include=TRUE, eval=FALSE}
 # Install mdJSONdictio with compiled code only for sub-architecture used by R CMD INSTALL
-devtools::install_github("hdvincelette/mdJSONdictio", ref = 'v0.0.1', INSTALL_opts = c("--no-multiarch"))
+devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts = c("--no-multiarch"))
 ```
  
 If mdJSONdictio installation fails again, install the package manually as described in Solution 2 below.  
