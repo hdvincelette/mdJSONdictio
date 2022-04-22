@@ -8,22 +8,18 @@ You can install the released version of mdJSONdictio from [GitHub](https://githu
 ```
 # Install devtools from CRAN
 install.packages("devtools")
-library(devtools)
 
 # Install mdJSONdictio from GitHub
 devtools::install_github("hdvincelette/mdJSONdictio", ref = 'v0.0.1')
-library(mdJSONdictio)
 ```
 
 You can install the development version of mdJSONdictio from [GitHub](https://github.com/) with:
 ```
 # Install devtools from CRAN
 install.packages("devtools")
-library(devtools)
 
 # Install mdJSONdictio from GitHub
 devtools::install_github("hdvincelette/mdJSONdictio", ref = 'master')
-library(mdJSONdictio)
 ```
 
 For more detailed instructions and troubleshooting tips, see [Install mdJSONdictio R package](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#install-mdjsondictio-r-package).
