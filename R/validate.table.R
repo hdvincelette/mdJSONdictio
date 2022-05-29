@@ -76,8 +76,7 @@ validate.table <- function(x, y) {
           Variable = colnames(input.data[a]),
           Category = "domainItem_value",
           Message =  paste0(
-            'Dataset contains variable not listed under "CodeName" in dictionary: ',
-            colnames(input.data[a])
+            'Dataset variable not listed under "CodeName" in dictionary'
           )
         )
     }
