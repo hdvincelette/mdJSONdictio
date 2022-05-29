@@ -98,7 +98,7 @@ validate.table <- function(x, y) {
             Variable = colnames(input.data[a]),
             Category = "domainItem_value",
             Message =  paste0(
-              'Dataset variable contains entry value not listed under "domainItem_Value" in dictionary: ',
+              'Dataset variable contains entry value(s) not listed under "domainItem_Value" in dictionary: ',
               paste(setdiff(
                 na.omit(input.data[, a]), dict.domain[[b]][["domainItem_value"]]
               ),
@@ -234,7 +234,7 @@ validate.table <- function(x, y) {
                   Variable = colnames(input.data[a]),
                   Category = "dataType",
                   Message =  paste0(
-                    'Dataset variable has a greater max length (',
+                    'Dataset variable has entry value(s) with a greater length (',
                     MaxLength,
                     ') than allowed for the datatype (',
                     datatype.rules$MaxLength[cc],
@@ -282,7 +282,7 @@ validate.table <- function(x, y) {
                   Variable = colnames(input.data[a]),
                   Category = "dataType",
                   Message =  paste0(
-                    'Dataset variable has a greater max precision (',
+                    'Dataset variable has entry value(s) greater precision (',
                     MaxPrecision,
                     ') than allowed for the datatype (',
                     datatype.rules$MaxPrecision[cc],
@@ -327,7 +327,7 @@ validate.table <- function(x, y) {
                   Variable = colnames(input.data[a]),
                   Category = "dataType",
                   Message =  paste0(
-                    'Dataset variable has a smaller min value (',
+                    'Dataset variable has entry value(s) with a smaller value (',
                     MinValue,
                     ') than allowed for the datatype (',
                     datatype.rules$MinValue_unsigned[cc],
@@ -372,7 +372,7 @@ validate.table <- function(x, y) {
                   Variable = colnames(input.data[a]),
                   Category = "dataType",
                   Message =  paste0(
-                    'Dataset variable has a greater max value (',
+                    'Dataset variable has entry value(s) with a greater value (',
                     MaxValue,
                     ') than allowed for the datatype (',
                     datatype.rules$MaxValue_unsigned[cc],
@@ -464,7 +464,7 @@ validate.table <- function(x, y) {
                   Variable = colnames(input.data[a]),
                   Category = "dataType",
                   Message =  paste0(
-                    'Dataset variable has values with more than one distinct length (',
+                    'Dataset variable has entry values with more than one length (',
                     DistinctLength,
                     ') while the datatype indicates values should be "fixed length"'
                   )
@@ -524,7 +524,7 @@ validate.table <- function(x, y) {
           Variable = colnames(input.data[a]),
           Category = "unitsResolution",
           Message =  paste0(
-            'Dataset variable contains values with lower resolution than "unitsResolution" in dictionary'
+            'Dataset variable contains entry value(s) with lower resolution than "unitsResolution" in dictionary'
           )
         )
     }
@@ -537,7 +537,7 @@ validate.table <- function(x, y) {
           Variable = colnames(input.data[a]),
           Category = "unitsResolution",
           Message =  paste0(
-            'Dataset variable contains values with higher resolution than "unitsResolution" in dictionary'
+            'Dataset variable contains entry value(s) with higher resolution than "unitsResolution" in dictionary'
           )
         )
     }
@@ -586,7 +586,7 @@ validate.table <- function(x, y) {
           Variable = colnames(input.data[a]),
           Category = "fieldWidth",
           Message =  paste0(
-            'Dataset variable contains value that exceeds "fieldWidth" in dictionary'
+            'Dataset variable contains entry value(s) that exceeds "fieldWidth" in dictionary'
           )
         )
     }
@@ -638,7 +638,7 @@ validate.table <- function(x, y) {
             Variable = colnames(input.data[a]),
             Category = "minValue",
             Message =  paste0(
-              'Dataset variable contains value less than "minValue" in dictionary'
+              'Dataset variable contains entry value(s) less than "minValue" in dictionary'
             )
           )
       }
@@ -665,7 +665,7 @@ validate.table <- function(x, y) {
             Variable = colnames(input.data[a]),
             Category = "maxValue",
             Message =  paste0(
-              'Dataset variable contains value greater than "maxValue" in dictionary'
+              'Dataset variable contains entry value(s) greater than "maxValue" in dictionary'
             )
           )
       }
