@@ -32,7 +32,7 @@ library(gitcreds)
 gitcreds_set()
 
 # Add...
-
+save(datatype.rules, file = "data/datatype.rules.rda")
 usethis::use_package("plyr")
 usethis::use_build_ignore()
 
@@ -199,4 +199,79 @@ test <- fromJSON(fromJSON(file = "~/Desktop/mdeditor-20220328-010342.json")[["da
 test2<- build.table(x = test, dictionary_num = 1, entity_num = 1)
 
 
+# validate.table()
+
+## Standard run ##
+setwd("~/Desktop")
+setwd("C:/Users/hvincelette/Desktop")
+
+library(mdJSONdictio)
+
+# Import tabular data dictionary as data frame
+path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
+input.dict<-readxl::read_excel(path = path)
+
+# Import dataset as data frame
+path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
+input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
+
+# Validate dataset against dictionary
+all.warnings<- validate.table(input.dict, input.data)
+
+# Export table to disk
+write(x = all.warnings, file = "e.g.validate.table.json")
+
+
+path<-"inst/extdata/e.g.dictionary.xlsx"
+input.dict<-readxl::read_excel(path = path)
+
+path<-"inst/extdata/e.g.dataset.csv"
+input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
+
+# Update data type rules
+datatype.rules <-
+  read.csv("inst/extdata/validate_datatype.csv", na.strings = "")
+save(datatype.rules, file = "data/datatype.rules.rda")
+
+all.warnings<- validate.table(input.dict, input.data)
+
+#############################################################################
+
+# markobj <- c('---',
+#              'title: "test"',
+#              'output: html_document',
+#              '---',
+#              '',
+#              '## R Markdown',
+#              '',
+#              'This is an R Markdown document.',
+#              '```{r}',
+#              'print("Test Message")',
+#              '```')
+#
+# markdown::markdownToHTML(text = knitr::knit(text = markobj), output = 'test.html')
+#
+#
+# input.dict[is.na(input.dict)] <- ""
+# input.data[is.na(input.data)] <- ""
+#
+#
+# # Check date, time, datetime
+#
+# %Y-%m-%d
+# T%H:%M:%S%z
+# %Y-%m-%dT%H:%M:%S%z
+#
+#
+# lubridate::POSIXct()
+#
+#
+# is.ISO <- function(x, date.format = c("%H:%M", "%H:%M:%S")) {
+#   tryCatch(!is.na(as.Date(x, date.format)),
+#            error = function(err) {FALSE})
+# }
+#
+# is.ISO("6:46")
+#
+# !is.na(lubridate::parse_date_time(c('12/05/2016','35/11/2067','12/52/1000'),orders="dmy"))
 
