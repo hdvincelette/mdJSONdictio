@@ -7,13 +7,13 @@
 validate.mdJSON(x, y, dictionary_num = 1, entity_num = 1)
 }
 \arguments{
-\item{x}{A list object converted from an mdJSON data dictionary file.}
+\item{x}{List object converted from an mdJSON data dictionary file.}
 
-\item{y}{A data frame of a dataset.}
+\item{y}{Data frame of a dataset.}
 
-\item{dictionary_num}{Default=1. An integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).}
+\item{dictionary_num}{Default=1. Integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).}
 
-\item{entity_num}{Default=1. An integer indicating the entity if there is more than one in the mdJSON file.}
+\item{entity_num}{Default=1. Integer indicating the entity if there is more than one in the mdJSON file.}
 }
 \value{
 Returns a data frame comprised of warning messages about and the mdJSON data dictionary.
