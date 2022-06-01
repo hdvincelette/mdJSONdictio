@@ -1,11 +1,11 @@
 #' Validate mdJSON Data Dictionaries
 #'
-#'
+#' Compares an mdJSON data dictionary against a dataset and summarizes discrepancies in a data frame.
 #' @param x A list object converted from an mdJSON data dictionary file.
 #' @param y A data frame of the dataset.
 #' @param dictionary_num Default=1. An integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).
 #' @param entity_num Default=1. An integer indicating the entity if there is more than one in the mdJSON file.
-#' @return
+#' @return Returns a data frame comprised of warning messages about and the mdJSON data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```validate.mdJSON()```
 #' @export
