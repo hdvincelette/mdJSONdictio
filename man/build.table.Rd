@@ -12,6 +12,8 @@ build.table(x, entity_num, dictionary_num)
 \item{entity_num}{Default=1. An integer indicating the entity if there is more than one in the mdJSON file.}
 
 \item{dictionary_num}{Default=1. An integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).}
+
+\item{y}{A data frame of a dataset.}
 }
 \value{
 Returns a data frame corresponding to the mdJSON data dictionary.
