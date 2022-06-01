@@ -7,9 +7,9 @@
 validate.table(x, y)
 }
 \arguments{
-\item{x}{A data frame of a tabular data dictionary.}
+\item{x}{Data frame of a tabular data dictionary.}
 
-\item{y}{A data frame of a dataset.}
+\item{y}{Data frame of a dataset.}
 }
 \value{
 Returns a data frame comprised of warning messages about the tabular data dictionary.
