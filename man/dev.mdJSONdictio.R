@@ -219,7 +219,7 @@ input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 all.warnings<- validate.table(input.dict, input.data)
 
 # Export table to disk
-write(x = all.warnings, file = "e.g.validate.table.json")
+write.csv(x = all.warnings, file = "e.g.warnings.csv")
 
 
 path<-"inst/extdata/e.g.dictionary.xlsx"
@@ -235,6 +235,29 @@ save(datatype.rules, file = "data/datatype.rules.rda")
 
 all.warnings<- validate.table(input.dict, input.data)
 
+
+
+# validate.mdJSON()
+
+## Standard run ##
+setwd("~/Desktop")
+setwd("C:/Users/hvincelette/Desktop")
+
+library(mdJSONdictio)
+
+# Import mdJSON data dictionary as list
+path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
+input.dict <- rjson::fromJSON(file = path)
+
+# Import dataset as data frame
+path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
+input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
+
+# Validate dataset against dictionary
+all.warnings<- validate.mdJSON(input.dict, input.data)
+
+# Export table to disk
+write.csv(x = all.warnings, file = "e.g.warnings.csv")
 
 
 
