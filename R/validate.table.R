@@ -1,8 +1,8 @@
 #' Validate Tabular Data Dictionaries
 #'
 #' Compares a tabular data dictionary against a dataset and summarizes discrepancies in a data frame. The input data dictionary must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
-#' @param x  A data frame of a tabular data dictionary.
-#' @param y A data frame of a dataset.
+#' @param x  Data frame of a tabular data dictionary.
+#' @param y Data frame of a dataset.
 #' @return Returns a data frame comprised of warning messages about the tabular data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```validate.table()```
