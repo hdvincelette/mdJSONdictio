@@ -18,7 +18,19 @@ validate.table(x, y)
 Validate Tabular Data Dictionaries
 }
 \examples{
-#
+# Import tabular data dictionary as data frame
+path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
+input.dict<-readxl::read_excel(path = path)
+
+# Import dataset as data frame
+path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
+input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
+
+# Validate dataset against dictionary
+all.warnings<- validate.table(input.dict, input.data)
+
+# Export table to disk
+write.csv(x = all.warnings, file = "e.g.warnings.json")
 }
 \seealso{
 \code{validate.table()}
