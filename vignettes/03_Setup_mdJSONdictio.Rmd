@@ -160,7 +160,7 @@ If R simply prints the executed code in the Console pane, then installation was 
 *Note: These instructions apply any computer system with R and RStudio.*
 <br />
 
-Package installation can be a fickle process, particularly when using GitHub. When a package fails to install, R returns Warning and Error messages which are often not descriptive or intuitive enough to understand the cause of failure. The most frequent reasons mdJSONdictio installation fail are because dependent packages are not installed and updated, or command line settings are unsuitable. Solutions to these issues are described below. If you are not sure what the current problem is, work through each solution until mdJSONdictio installs successfully. 
+Package installation can be a fickle process, particularly when using GitHub. When a package fails to install, R returns Warning and Error messages which are often not descriptive or intuitive enough to understand the cause of failure. Most frequently, mdJSONdictio installation fails because dependent packages are not installed and updated, or command line settings are unsuitable. Solutions to these issues are described below. If you are not sure what the current problem is, work through each solution until mdJSONdictio installs successfully. 
 
 
 ##### <span style="color: grey;">Failed installation warning message in RStudio</span>
