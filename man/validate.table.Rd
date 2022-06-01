@@ -7,15 +7,15 @@
 validate.table(x, y)
 }
 \arguments{
-\item{x}{A data frame of the tabular data dictionary.}
+\item{x}{A data frame of a tabular data dictionary.}
 
-\item{y}{A data frame of the dataset.}
+\item{y}{A data frame of a dataset.}
 }
 \value{
-
+Returns a data frame comprised of warning messages about the tabular data dictionary.
 }
 \description{
-Validate Tabular Data Dictionaries
+Compares a tabular data dictionary against a dataset and summarizes discrepancies in a data frame. The input data dictionary must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
 }
 \examples{
 # Import tabular data dictionary as data frame
