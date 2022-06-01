@@ -7,9 +7,9 @@
 build.mdJSON(x, title)
 }
 \arguments{
-\item{x}{A data frame of the tabular data dictionary.}
+\item{x}{Data frame of the tabular data dictionary.}
 
-\item{title}{A string designating the title of the Dictionary Record in mdEditor.}
+\item{title}{String designating the title of the Dictionary Record in mdEditor.}
 }
 \value{
 Returns a list object corresponding to the tabular data dictionary.
