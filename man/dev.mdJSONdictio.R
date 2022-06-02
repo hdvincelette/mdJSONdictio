@@ -222,15 +222,16 @@ all.warnings<- validate.table(input.dict, input.data)
 write.csv(x = all.warnings, file = "e.g.warnings.csv")
 
 
+## Load local files
 path<-"inst/extdata/e.g.dictionary.xlsx"
 input.dict<-readxl::read_excel(path = path)
 
 path<-"inst/extdata/e.g.dataset.csv"
 input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 
-# Update data type rules
+## Update data type rules
 datatype.rules <-
-  read.csv("inst/extdata/validate_datatype.csv", na.strings = "")
+  read.csv("inst/extdata/datatype.rules.csv", na.strings = "")
 save(datatype.rules, file = "data/datatype.rules.rda")
 
 all.warnings<- validate.table(input.dict, input.data)
@@ -281,23 +282,87 @@ write.csv(x = all.warnings, file = "e.g.warnings.csv")
 # input.dict[is.na(input.dict)] <- ""
 # input.data[is.na(input.data)] <- ""
 #
-#
-# # Check date, time, datetime
-#
-# %Y-%m-%d
-# T%H:%M:%S%z
-# %Y-%m-%dT%H:%M:%S%z
+# parsedate::parse_iso_8601("2013-02-08 09")
 #
 #
-# lubridate::POSIXct()
-#
-#
-# is.ISO <- function(x, date.format = c("%H:%M", "%H:%M:%S")) {
-#   tryCatch(!is.na(as.Date(x, date.format)),
-#            error = function(err) {FALSE})
-# }
-#
-# is.ISO("6:46")
-#
-# !is.na(lubridate::parse_date_time(c('12/05/2016','35/11/2067','12/52/1000'),orders="dmy"))
+
+
+# RDatatype: time
+
+ISO.time <- function(x,
+                     time.format = c("%H")) {
+  tryCatch(
+    !is.na(as.Date(paste0("0",x), time.format)),
+    error = function(err) {
+      FALSE
+    }
+  )
+}
+
+is.ISO.time<-function(x){
+  TRUE %in% ISO.time(x)
+}
+
+sapply(c("13:45","745","20100607", "74535.5","074535.5","2010-06-07"),is.ISO.time)
+
+
+## Find problematic values
+
+for(a in 1:nrow(data.NA)){
+  if(is.ISO.datetime(data.NA[a, "Date2"])==FALSE &
+     is.na(data.NA[a, "Date2"])==FALSE){
+    print(data.NA[a, "Date2"])
+  }
+}
+
+for(a in 1:nrow(data.NA)){
+  if(is.other.datetime(data.NA[a, "Date2"])==TRUE &
+     is.na(data.NA[a, "Date2"])==FALSE){
+    print(data.NA[a, "Date2"])
+  }
+}
+
+for(a in 1:nrow(data.NA)){
+  if(is.ISO.time(data.NA[a, "CaptureTime"])==FALSE &
+     is.na(data.NA[a, "CaptureTime"])==FALSE){
+    print(data.NA[a, "CaptureTime"])
+  }
+}
+
+
+TRUE %in% is.ISO.datetime('2020-02-08')
+TRUE %in% is.ISO.datetime('2020-W06-5')
+TRUE %in% is.ISO.datetime('2020-039')
+TRUE %in% is.ISO.datetime('20200208')
+TRUE %in% is.ISO.datetime('2020W065')
+TRUE %in% is.ISO.datetime('2020W06')
+TRUE %in% is.ISO.datetime('2020039')
+TRUE %in% is.ISO.datetime('2020-02-08T09')
+TRUE %in% is.ISO.datetime('2020-02-08 09')
+TRUE %in% is.ISO.datetime('2020-02-08 09:30')
+TRUE %in% is.ISO.datetime('2020-02-08 09:30:26')
+TRUE %in% is.ISO.datetime('2020-02-08 09:30:26.123')
+TRUE %in% is.ISO.datetime('20200208T080910,123')
+TRUE %in% is.ISO.datetime('20200208T080910.123')
+TRUE %in% is.ISO.datetime('20200208T080910')
+TRUE %in% is.ISO.datetime('20200208T0809')
+TRUE %in% is.ISO.datetime('20200208T08')
+TRUE %in% is.ISO.datetime('2020-W06-5 09')
+TRUE %in% is.ISO.datetime('2020-039 09')
+TRUE %in% is.ISO.datetime('2020-02-08 09+07:00')
+TRUE %in% is.ISO.datetime('2020-02-08 09-0100')
+TRUE %in% is.ISO.datetime('2020-02-08 09Z')
+TRUE %in% is.ISO.datetime('7:45')
+
+
+TRUE %in% is.ISO.time('09')
+TRUE %in% is.ISO.time('9')
+TRUE %in% is.ISO.time('09Z')
+TRUE %in% is.ISO.time('09+07:00')
+TRUE %in% is.ISO.time('09-0100')
+TRUE %in% is.ISO.time('09:30')
+TRUE %in% is.ISO.time('09:30:26')
+TRUE %in% is.ISO.time('09:30:26.123')
+TRUE %in% is.ISO.time('080910,123')
+TRUE %in% is.ISO.time('080910.123')
 
