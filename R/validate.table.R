@@ -67,6 +67,9 @@ validate.table <- function(x, y) {
     stringsAsFactors = FALSE
   )
 
+
+  #### Required fields: codeName, domainItem_value, allowNull ####
+
   # Check codeName
   for (a in 1:ncol(input.data)) {
     if (!colnames(input.data[a]) %in% dict.vars) {
@@ -82,8 +85,6 @@ validate.table <- function(x, y) {
     }
 
   }
-
-
 
 
   # Check domainItem_value
@@ -111,11 +112,6 @@ validate.table <- function(x, y) {
   }
 
 
-
-
-
-
-
   # Check allowNull
   for (a in 1:ncol(input.data)) {
     for (bb in 1:nrow(dict.datafield))
@@ -135,15 +131,9 @@ validate.table <- function(x, y) {
   }
 
 
+  #### Required fields: dataType ####
 
-
-  ##############################################################################
-
-
-
-  # Check dataType
-
-  ## Change missingValue to NA
+  # Change missingValue to NA
   #!# missingValue must be correct
 
   dict.miss <- dict.datafield %>%
@@ -164,16 +154,16 @@ validate.table <- function(x, y) {
 
 
 
-  ## RDatatype
+  # RDatatype: all
   #!# Excluding date, time, datetime, xml
 
   for (a in 1:ncol(data.NA)) {
     for (bb in 1:nrow(dict.datafield)) {
       for (cc in 1:nrow(datatype.rules)) {
+        RDatatype <- NULL
+
         if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
             dict.datafield$dataType[bb] == datatype.rules$Value[cc]) {
-          RDatatype <- NULL
-
           if (is.na(datatype.rules$RDatatype[cc]) == FALSE) {
             RDatatype <- match.fun(datatype.rules$RDatatype[cc])
           }
@@ -202,6 +192,122 @@ validate.table <- function(x, y) {
       }
     }
   }
+
+
+  # RDatatype: date, datetime
+
+  ISO.datetime <- function(x,
+                           datetime.format = c("%Y-%m-%d",
+                                               "%Y-W%U-%u",
+                                               "%Y-%j",
+                                               "%Y%m%d",
+                                               "%YW%U%u",
+                                               "%YW%U",
+                                               "%Y%j")) {
+    tryCatch(
+      !is.na(as.Date(x, datetime.format)),
+      error = function(err) {
+        FALSE
+      }
+    )
+  }
+
+  is.ISO.datetime<-function(x){
+    TRUE %in% ISO.datetime(x)
+  }
+
+
+  other.datetime <- function(x,
+                             datetime.format = c("%d-%m-%Y",
+                                                 "%m-%d-%Y",
+                                                 "%d%m%Y",
+                                                 "%m%d%Y")) {
+    tryCatch(
+      !is.na(as.Date(x, datetime.format)),
+      error = function(err) {
+        FALSE
+      }
+    )
+  }
+
+  is.other.datetime<-function(x){
+    TRUE %in% other.datetime(x)
+  }
+
+  for (a in 1:ncol(data.NA)) {
+    datetime<-NA
+    for (bb in 1:nrow(dict.datafield)) {
+      if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
+          dict.datafield$dataType[bb] %in%  c("datetime", "date")) {
+        # print(paste0("data.NA: ", colnames(data.NA[a])))
+        # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
+        # print(paste0("datatype: ", dict.datafield$dataType[bb]))
+
+        if (!NA %in% unique(data.NA[, a]) |
+            NA %in% unique(data.NA[, a]) &
+            length(unique(data.NA[, a])) > 1) {
+          # print(unique(data.NA[, a]))
+
+          datetime<-na.omit(data.NA[, a])
+
+          if (FALSE %in% sapply(datetime, is.ISO.datetime) |
+              TRUE %in% sapply(datetime, is.other.datetime) |
+              TRUE %in% sapply("/", grepl, datetime) |
+              TRUE %in% sapply("AM", grepl, datetime) |
+              TRUE %in% sapply("PM", grepl, datetime)) {
+            warnings.df <- warnings.df %>%
+              dplyr::add_row(
+                Num = nrow(warnings.df) + 1,
+                Variable = colnames(input.data[a]),
+                Category = "dataType",
+                Message =  paste0(
+                  'Dataset variable has entry value(s) not in standard ISO 1806 datetime format'
+                )
+              )
+          }
+
+        }
+      }
+    }
+  }
+
+
+  # RDatatype: time
+
+  for (a in 1:ncol(data.NA)) {
+    time<-NA
+    for (bb in 1:nrow(dict.datafield)) {
+      if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
+          dict.datafield$dataType[bb] %in%  c("time")) {
+        # print(paste0("data.NA: ", colnames(data.NA[a])))
+        # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
+        # print(paste0("datatype: ", dict.datafield$dataType[bb]))
+
+        if (!NA %in% unique(data.NA[, a]) |
+            NA %in% unique(data.NA[, a]) &
+            length(unique(data.NA[, a])) > 1) {
+          # print(unique(data.NA[, a]))
+
+          time<-na.omit(data.NA[, a])
+
+          if (TRUE %in% sapply("AM", grepl, time) |
+              TRUE %in% sapply("PM", grepl, time)) {
+            warnings.df <- warnings.df %>%
+              dplyr::add_row(
+                Num = nrow(warnings.df) + 1,
+                Variable = colnames(input.data[a]),
+                Category = "dataType",
+                Message =  paste0(
+                  'Dataset variable has entry value(s) not in standard ISO 1806 time format'
+                )
+              )
+          }
+
+        }
+      }
+    }
+  }
+
 
   ## MaxLength
   #!# R only stores up to 32,767 characters
@@ -479,7 +585,7 @@ validate.table <- function(x, y) {
   }
 
 
-  ##############################################################################
+  #### Optional fields ####
 
   # Check unitsResolution
 
