@@ -262,6 +262,33 @@ write.csv(x = all.warnings, file = "e.g.warnings.csv")
 
 
 
+# Test dictionaries
+
+# Import dataset as data frame
+path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
+input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
+
+
+library(mdJSONdictio)
+
+setwd("C:/Users/hvincelette/OneDrive - DOI/Data_management/mdJSONdictio/test_dictionaries")
+path = "C:/Users/hvincelette/OneDrive - DOI/Data_management/mdJSONdictio/test_dictionaries"
+files <- list.files(path = path, pattern = ".json")
+
+test.json <- NA
+
+for (a in 20:length(files)) {
+  test.json <- rjson::fromJSON(file = files[a])
+  test.json <- validate.mdJSON(x = test.json,y=input.data, 1, 1)
+  name <- gsub("\\.json$", "", paste0(files[a]))
+  write.csv(test.json,paste0("validate_",name,".csv"), na="",row.names = FALSE)
+  print(files[a])
+}
+
+test.json <- fromJSON(file = files[10])
+newtable <- build.table(test.json)
+
+
 #############################################################################
 
 # markobj <- c('---',
