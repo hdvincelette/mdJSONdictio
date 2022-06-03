@@ -19,14 +19,14 @@ validate.mdJSON(x, y, dictionary_num = 1, entity_num = 1)
 Returns a data frame comprised of warning messages about and the mdJSON data dictionary.
 }
 \description{
-Compares an mdJSON data dictionary to a dataset and summarizes discrepancies in a data frame.
+Compares an mdJSON data dictionary to a tabular dataset and summarizes discrepancies in a data frame.
 }
 \examples{
 # Import mdJSON data dictionary as list
 path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
 input.dict <- rjson::fromJSON(file = path)
 
-# Import dataset as data frame
+# Import tabular dataset as data frame
 path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 
