@@ -1,6 +1,6 @@
 #' Validate mdJSON Data Dictionaries
 #'
-#' Compares an mdJSON data dictionary to a dataset and summarizes discrepancies in a data frame.
+#' Compares an mdJSON data dictionary to a tabular dataset and summarizes discrepancies in a data frame.
 #' @param x List object converted from an mdJSON data dictionary file.
 #' @param y Data frame of a dataset.
 #' @param dictionary_num Default=1. Integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).
@@ -14,7 +14,7 @@
 #' path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
 #' input.dict <- rjson::fromJSON(file = path)
 #'
-#' # Import dataset as data frame
+#' # Import tabular dataset as data frame
 #' path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 #' input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 #'
