@@ -141,16 +141,14 @@ print(as_tibble(read.csv(system.file("extdata", "e.g.dataset.csv", package = "md
 #### ```validate.mdJSON()``` return value in R
 
 ```{r, echo=FALSE}
-
 print(as_tibble(read.csv(system.file("extdata", "e.g.warnings.csv", package = "mdJSONdictio"))), n = 1e3)
-
 ```
 <br />
 
 
 ## ```validate.table()``` 
 
-Compares a tabular data dictionary against a dataset and summarizes discrepancies in a data frame. The input data dictionary must be formatted to a template as described in the [Tabular Data Dictionary Template article](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html).
+Compares a tabular data dictionary to a dataset and summarizes discrepancies in a data frame. The input data dictionary must be formatted to a template as described in the [Tabular Data Dictionary Template article](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html).
 <br />
 <br />
 
