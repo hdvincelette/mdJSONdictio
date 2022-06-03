@@ -1,6 +1,6 @@
 #' Validate Tabular Data Dictionaries
 #'
-#' Compares a tabular data dictionary to a dataset and summarizes discrepancies in a data frame. The input data dictionary must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
+#' Compares a tabular data dictionary to a tabular dataset and summarizes discrepancies in a data frame. The input data dictionary must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
 #' @param x  Data frame of a tabular data dictionary.
 #' @param y Data frame of a dataset.
 #' @return Returns a data frame comprised of warning messages about the tabular data dictionary.
@@ -12,7 +12,7 @@
 #' path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 #' input.dict<-readxl::read_excel(path = path)
 #'
-#' # Import dataset as data frame
+#' # Import tabular dataset as data frame
 #' path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 #' input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 #'
