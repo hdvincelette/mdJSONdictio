@@ -34,7 +34,7 @@ input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 all.warnings<- validate.mdJSON(input.dict, input.data, dictionary_num = 1, entity_num = 1)
 
 # Export table to disk
-write.csv(x = all.warnings, file = "e.g.warnings2.json")
+write.csv(x = all.warnings, file = "e.g.warnings.json")
 }
 \seealso{
 \code{validate.mdJSON()}
