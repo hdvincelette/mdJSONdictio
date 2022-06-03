@@ -219,7 +219,7 @@ input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 all.warnings<- validate.table(input.dict, input.data)
 
 # Export table to disk
-write.csv(x = all.warnings, file = "e.g.warnings.csv")
+write.csv(x = all.warnings2, file = "e.g.warnings.csv")
 
 
 ## Load local files
