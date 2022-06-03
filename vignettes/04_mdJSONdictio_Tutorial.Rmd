@@ -88,7 +88,7 @@ If R returns the Error message “there is no package called ‘mdJSONdictio’,
 Before getting started, make sure to [prep the R workspace](https://hdvincelette.github.io/mdJSONdictio/articles/04_mdJSONdictio_Tutorial.html#prep-up-the-r-workspace).
 <br />
 
-## Import table 
+## Import tablular data dictionary 
 
 **Read the xlsx file into R using ```read_excel()```. Enter the file name of the tabular data dictionary after ```path =```.** Make sure to surround the name with quotes and include the file extension. This function will save the xlsx table as a data frame object in the Environment window.
 
@@ -103,12 +103,10 @@ Select the object in the Environment window to view and verify.
 
 ##### <span style="color: grey;">Tabular data dictionary imported as a data frame in R</span>
 ```{r, echo=FALSE}
-
 print(readxl::read_excel(system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")), n = 1e3)
-
 ```
 
-## Build JSON 
+## Build mdJSON data dictionary 
 
 **Translate the data frame object into a list using ```build.mdJSON()```. Enter the desired title of the mdJSON data dictionary after```title =```.** The title will be displayed in the mdEditor web application when the mdJSON data dictionary is imported. The output is a list object, which will be saved to the Environment window.
 
@@ -123,14 +121,14 @@ Select the object in the Environment window to view.
 print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary.json", package = "mdJSONdictio")))
 ```
 
-## Export JSON
+## Export mdJSON data dictionary
 **Convert the new list object to JSON using ```toJSON()```.** This will create another data frame object in the Environment window.
 
 ```{r, include=TRUE, eval=FALSE}
 new.json = rjson::toJSON(x = new.list)
 ```
 
-**Export the JSON using ```write()```. Enter the desired name of the mdJSON data dictionary file after ```file =```.**
+**Export the JSON using ```write()```. Enter the desired name of the mdJSON data dictionary file after ```x =```.**
 
 ```{r, include=TRUE, eval=FALSE}
 write(x = new.json, file = "e.g.dictionary.json")
@@ -165,7 +163,7 @@ write(x = new.json, file = "e.g.dictionary.json")
 Before getting started, make sure to [prep the R workspace](https://hdvincelette.github.io/mdJSONdictio/articles/04_mdJSONdictio_Tutorial.html#prep-up-the-r-workspace).
 <br />
 
-## Import JSON 
+## Import mdJSON data dictionary
 
 **Read the JSON file into R using ```fromJSON()```. Enter the file name of the mdJSON data dictionary after ```x =```.** Make sure to surround the name with quotes and include the file extension. This function will save the JSON file as a list object in the Environment window. 
 
@@ -180,7 +178,7 @@ Select the object in the Environment window to view.
 print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")))
 ```
 
-## Build table 
+## Build tablular data dictionary
 
 **Translate the list object into a data frame using ```build.table()```.**
 
@@ -200,13 +198,13 @@ Select the object in the Environment window to view and verify.
 print(as_tibble(read.csv(system.file("extdata", "e.g.dictionary2.csv", package = "mdJSONdictio"))), n = 1e3)
 ```
 
-## Export table
+## Export tablular data dictionary
 
-**Export the data frame using ```write()```. Enter the desired name of the tabular data dictionary file after ```file =```.**
+**Export the data frame using ```write.csv()```. Enter the desired name of the tabular data dictionary file after ```file =```.**
 
 ```{r, include=TRUE, eval=FALSE}
 # Export table to disk
-write.csv(x = new.table, "e.g.dictionary2.csv", na="", row.names = FALSE)
+write.csv(x = new.table, file = "e.g.dictionary2.csv", na="", row.names = FALSE)
 ```
 <br />
 
@@ -227,4 +225,183 @@ new.table<- mdJSONdictio::build.table(x = input.json, dictionary_num = 1, entity
 
 # Export table to disk
 write.csv(x = new.table, file = "e.g.dictionary2.csv", na="", row.names = FALSE)
+```
+<br />
+<br />
+
+# ```validate.mdJSON()```: Validate mdJSON data dictionaries
+
+Before getting started, make sure to [prep the R workspace](https://hdvincelette.github.io/mdJSONdictio/articles/04_mdJSONdictio_Tutorial.html#prep-up-the-r-workspace).
+<br />
+
+## Import mdJSON data dictionary
+
+**Read the JSON file into R using ```fromJSON()```. Enter the file name of the mdJSON data dictionary after ```x =```.** Make sure to surround the name with quotes and include the file extension. This function will save the JSON file as a list object in the Environment window. 
+
+```{r, include=TRUE, eval=FALSE}
+input.dict <- rjson::fromJSON(file = "e.g.dictionary2.json")
+```
+
+Select the object in the Environment window to view.
+
+##### <span style="color: grey;">mdJSON data dictionary imported as a list in R</span>
+```{r, echo=FALSE}
+print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")))
+```
+
+## Import tablular dataset
+
+**Read the csv file into R using ```read.csv`()```. Enter the file name of the dataset after ```file =```.** Make sure to surround the name with quotes and include the file extension. This function will save the csv file as a data frame in the Environment window. 
+
+```{r, include=TRUE, eval=FALSE}
+input.data<-read.csv(file = "e.g.dataset.csv", na.strings = "", stringsAsFactors = FALSE)
+```
+
+Select the object in the Environment window to view.
+
+##### <span style="color: grey;">mdJSON data dictionary imported as a list in R</span>
+```{r, echo=FALSE}
+print(as_tibble(read.csv(system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio"), na.strings = "", stringsAsFactors = FALSE)), n = 1e3)
+```
+
+## Validate mdJSON data dictionary 
+
+**Compare the list object and data frame using ```validate.mdJSON()```.**
+
+Multiple Dictionary Records can be exported together in mdEditor. **Indicate which dictionary to process with ```dictionary_num =```.** If there is only one dictionary in the input JSON (most often the case), leave the default value ```1```. If there is more than one dictionary, indicate which to process by typing an integer after ```dictionary_num =```.
+
+mdEditor Dictionary Records can include more than one entity. **Indicate which entity to process with ```entity_num =```.** If there is only one entity in the dictionary (most often the case), leave the default value ```1```. If there is more than one entity, indicate which to process by typing an integer after ```entity_num =```.
+
+```{r, include=TRUE, eval=FALSE}
+# Translate list to data frame
+all.warnings<- mdJSONdictio::validate.mdJSON(x = input.dict, y = input.data, dictionary_num = 1, entity_num = 1)
+```
+
+Select the object in the Environment window to view and verify.
+
+##### <span style="color: grey;"> ```build.table()``` return value in R</span>
+```{r, echo=FALSE}
+print(as_tibble(read.csv(system.file("extdata", "e.g.warnings.csv", package = "mdJSONdictio"))), n = 1e3)
+```
+
+## Export validation table 
+
+**Export the data frame using ```write.csv()```. Enter the desired name of the tabular data dictionary file after ```file =```.**
+
+```{r, include=TRUE, eval=FALSE}
+# Export table to disk
+write.csv(x = all.warnings, file = "e.g.warnings.csv", na="", row.names = FALSE)
+```
+<br />
+
+## Example run
+To see how ```validate.mdJSON()``` works, compare an example mdJSON data dictionary to a dataset. **Paste the following in the RStudio Source pane and run each line of code.** This code will save the table to the current working directory, so it is recommended to [set the working directory](https://hdvincelette.github.io/mdJSONdictio/articles/04_mdJSONdictio_Tutorial.html#prep-up-the-r-workspace) to a navigable location before getting started.
+
+
+```{r, include=TRUE, eval=FALSE}
+# Load mdJSONdictio
+library(mdJSONdictio)
+
+# Import mdJSON data dictionary as list
+path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
+input.dict <- rjson::fromJSON(file = path)
+
+# Import dataset as data frame
+path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
+input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
+
+# Validate list against data frame
+all.warnings<- validate.mdJSON(input.dict, input.data, dictionary_num = 1, entity_num = 1)
+
+# Export table to disk
+write.csv(x = all.warnings, file = "e.g.warnings.csv")
+```
+<br />
+<br />
+
+# ```validate.table()```: Validate tabular data dictionaries
+
+Before getting started, make sure to [prep the R workspace](https://hdvincelette.github.io/mdJSONdictio/articles/04_mdJSONdictio_Tutorial.html#prep-up-the-r-workspace).
+<br />
+
+## Import tablular data dictionary 
+
+**Read the xlsx file into R using ```read_excel()```. Enter the file name of the tabular data dictionary after ```path =```.** Make sure to surround the name with quotes and include the file extension. This function will save the xlsx table as a data frame object in the Environment window.
+
+*Note: Since the tabular data dictionary template is in xlsx format, the ```read_excel()``` function is used. Files in other formats require different functions to be read into R.*
+
+
+```{r, include=TRUE, eval=FALSE}
+input.dict<-readxl::read_excel(path = "e.g.dictionary.xlsx")
+```
+
+Select the object in the Environment window to view and verify.
+
+##### <span style="color: grey;">Tabular data dictionary imported as a data frame in R</span>
+```{r, echo=FALSE}
+print(readxl::read_excel(system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")), n = 1e3)
+```
+
+## Import tablular dataset
+
+**Read the csv file into R using ```read.csv`()```. Enter the file name of the dataset after ```file =```.** Make sure to surround the name with quotes and include the file extension. This function will save the csv file as a data frame in the Environment window. 
+
+```{r, include=TRUE, eval=FALSE}
+input.data<-read.csv(file = "e.g.dataset.csv", na.strings = "", stringsAsFactors = FALSE)
+```
+
+Select the object in the Environment window to view.
+
+##### <span style="color: grey;">mdJSON data dictionary imported as a list in R</span>
+```{r, echo=FALSE}
+print(as_tibble(read.csv(system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio"), na.strings = "", stringsAsFactors = FALSE)), n = 1e3)
+```
+
+## Validate tabluar data dictionary
+
+**Compare the data frames using ```validate.table()```.**
+
+```{r, include=TRUE, eval=FALSE}
+# Translate list to data frame
+all.warnings<- mdJSONdictio::validate.table(x = input.dict, y = input.data)
+```
+
+Select the object in the Environment window to view and verify.
+
+##### <span style="color: grey;"> ```build.table()``` return value in R</span>
+```{r, echo=FALSE}
+print(as_tibble(read.csv(system.file("extdata", "e.g.warnings2.csv", package = "mdJSONdictio"))), n = 1e3)
+```
+
+## Export validation table
+
+**Export the data frame using ```write.csv()```. Enter the desired name of the tabular data dictionary file after ```file =```.**
+
+```{r, include=TRUE, eval=FALSE}
+# Export table to disk
+write.csv(x = all.warnings, file = "e.g.warnings2.csv", na="", row.names = FALSE)
+```
+<br />
+
+## Example run
+To see how ```validate.table()``` works, compare an example tabular data dictionary to a dataset. **Paste the following in the RStudio Source pane and run each line of code.** This code will save the table to the current working directory, so it is recommended to [set the working directory](https://hdvincelette.github.io/mdJSONdictio/articles/04_mdJSONdictio_Tutorial.html#prep-up-the-r-workspace) to a navigable location before getting started.
+
+
+```{r, include=TRUE, eval=FALSE}
+# Load mdJSONdictio
+library(mdJSONdictio)
+
+# Import tabular data dictionary as data frame
+path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
+input.dict<-readxl::read_excel(path = path)
+
+# Import dataset as data frame
+path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
+input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
+
+# Validate data frames
+all.warnings<- validate.table(input.dict, input.data)
+
+# Export table to disk
+write.csv(x = all.warnings, file = "e.g.warnings2.csv")
 ```
