@@ -26,5 +26,5 @@ For more detailed instructions and troubleshooting tips, see [Install mdJSONdict
 
 ## Usage
 
-```build.mdJSON()``` builds an mdJSON data dictionary that can be imported to mdEditor to create a Dictionary Record. The input file must be formatted to a [tabular data dictionary template](https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true). ```build.table()``` builds a tabular data dictionary from an mdEditor mdJSON data dictionary. Tabular and mdJSON formatted data dictionaries can be validated against a dataset with ```validate.table()``` and ```validate.mdJSON()```, respectively.
+```build.mdJSON()``` builds an mdJSON data dictionary that can be imported to mdEditor to create a Dictionary Record. The input file must be formatted to a [tabular data dictionary template](https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true). ```build.table()``` builds a tabular data dictionary from an mdEditor mdJSON data dictionary. mdJSON and tabular data dictionaries can be validated against a dataset with ```validate.mdJSON()``` and ```validate.table()```, respectively.
 
