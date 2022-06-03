@@ -26,7 +26,7 @@ input.dict<-readxl::read_excel(path = path)
 path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 
-# Validate data frames
+# Validate one data frame against the other
 all.warnings<- validate.table(input.dict, input.data)
 
 # Export table to disk
