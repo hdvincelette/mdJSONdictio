@@ -77,7 +77,7 @@ validate.table <- function(x, y) {
         dplyr::add_row(
           Num = nrow(warnings.df) + 1,
           Variable = colnames(input.data[a]),
-          Category = "domainItem_value",
+          Category = "CodeName",
           Message =  paste0(
             'Dataset variable not listed under "CodeName" in dictionary'
           )
@@ -88,6 +88,7 @@ validate.table <- function(x, y) {
 
 
   # Check domainItem_value
+  if(length(unique(input.dict$domainItem_value))!=1){
   for (a in 1:ncol(input.data)) {
     for (b in 1:length(dict.domain)) {
       if (colnames(input.data[a]) == names(dict.domain[b]) &
@@ -110,7 +111,7 @@ validate.table <- function(x, y) {
 
     }
   }
-
+}
 
   # Check allowNull
   for (a in 1:ncol(input.data)) {
