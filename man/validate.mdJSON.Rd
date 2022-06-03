@@ -19,7 +19,7 @@ validate.mdJSON(x, y, dictionary_num = 1, entity_num = 1)
 Returns a data frame comprised of warning messages about and the mdJSON data dictionary.
 }
 \description{
-Compares an mdJSON data dictionary against a dataset and summarizes discrepancies in a data frame.
+Compares an mdJSON data dictionary to a dataset and summarizes discrepancies in a data frame.
 }
 \examples{
 # Import mdJSON data dictionary as list
@@ -30,11 +30,11 @@ input.dict <- rjson::fromJSON(file = path)
 path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 
-# Validate dataset against dictionary
+# Validate list against data frame
 all.warnings<- validate.mdJSON(input.dict, input.data, dictionary_num = 1, entity_num = 1)
 
 # Export table to disk
-write.csv(x = all.warnings, file = "e.g.warnings.json")
+write.csv(x = all.warnings, file = "e.g.warnings.csv")
 }
 \seealso{
 \code{validate.mdJSON()}
