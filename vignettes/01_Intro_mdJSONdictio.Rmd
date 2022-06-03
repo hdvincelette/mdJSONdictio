@@ -134,7 +134,7 @@ print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary2.json", packa
 
 #### Dataset imported as a data frame in R
 ```{r, echo=FALSE}
-print(read.csv(system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio"), na.strings = "", stringsAsFactors = FALSE))
+print(as_tibble(read.csv(system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio"), na.strings = "", stringsAsFactors = FALSE)), n = 1e3)
 ```
 <br />
 
@@ -163,7 +163,7 @@ print(readxl::read_excel(system.file("extdata", "e.g.dictionary.xlsx", package =
 
 #### Dataset imported as a data frame in R
 ```{r, echo=FALSE}
-print(read.csv(system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio"), na.strings = "", stringsAsFactors = FALSE))
+print(as_tibble(read.csv(system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio"), na.strings = "", stringsAsFactors = FALSE)), n = 1e3)
 ```
 <br />
 
