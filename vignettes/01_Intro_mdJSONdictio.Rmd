@@ -121,7 +121,7 @@ print(as_tibble(read.csv(system.file("extdata", "e.g.dictionary2.csv", package =
 
 ## ```validate.mdJSON()``` 
 
-Compares an mdJSON data dictionary against a dataset and summarizes discrepancies in a data frame. Optional parameters are ```entity_num``` and ```dictionary_num```, which accept integers to indicate the dictionary and entity to be processed if more than one exists in the mdJSON file. This is useful when multiple entities are created in the Entity tab of a Dictionary Record or multiple dictionaries are exported together in mdEditor. By default, ```entity_num = 1``` and ```dictionary_num = 1```, so if the mdJSON file only has one entity and dictionary, these parameters can be ignored.
+Compares an mdJSON data dictionary to a tabular dataset and summarizes discrepancies in a data frame. Optional parameters are ```entity_num``` and ```dictionary_num```, which accept integers to indicate the dictionary and entity to be processed if more than one exists in the mdJSON file. This is useful when multiple entities are created in the Entity tab of a Dictionary Record or multiple dictionaries are exported together in mdEditor. By default, ```entity_num = 1``` and ```dictionary_num = 1```, so if the mdJSON file only has one entity and dictionary, these parameters can be ignored.
 <br />
 <br />
 
@@ -148,7 +148,7 @@ print(as_tibble(read.csv(system.file("extdata", "e.g.warnings.csv", package = "m
 
 ## ```validate.table()``` 
 
-Compares a tabular data dictionary to a dataset and summarizes discrepancies in a data frame. The input data dictionary must be formatted to a template as described in the [Tabular Data Dictionary Template article](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html).
+Compares a tabular data dictionary to a tabular dataset and summarizes discrepancies in a data frame. The input data dictionary must be formatted to a template as described in the [Tabular Data Dictionary Template article](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html).
 <br />
 <br />
 
