@@ -20,7 +20,7 @@
 #' all.warnings<- validate.table(input.dict, input.data)
 #'
 #' # Export table to disk
-#' write.csv(x = all.warnings, file = "e.g.warnings.json")
+#' write.csv(x = all.warnings, file = "e.g.warnings2.json")
 
 
 
