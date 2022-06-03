@@ -129,7 +129,7 @@ Compares an mdJSON data dictionary against a dataset and summarizes discrepancie
 #### mdJSON data dictionary imported as a list in R
 
 ```{r, echo=FALSE}
-print(read.csv(system.file("extdata", "e.g.dictionary.csv", package = "mdJSONdictio"), na.strings = "", stringsAsFactors = FALSE))
+print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")))
 ```
 <br />
 
