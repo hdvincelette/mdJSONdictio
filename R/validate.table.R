@@ -14,10 +14,10 @@
 #'
 #' # Import tabular dataset as data frame
 #' path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
-#' input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
+#' input.data<-read.csv(file = path, na.strings = "", stringsAsFactors = FALSE)
 #'
-#' # Validate one data frame against the other
-#' all.warnings<- validate.table(input.dict, input.data)
+#' # Validate data frame against data frame
+#' all.warnings<- validate.table(x = input.dict, y = input.data)
 #'
 #' # Export table to disk
 #' write.csv(x = all.warnings, file = "e.g.warnings2.csv")
