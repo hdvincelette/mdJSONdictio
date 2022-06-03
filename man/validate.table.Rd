@@ -30,7 +30,7 @@ input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 all.warnings<- validate.table(input.dict, input.data)
 
 # Export table to disk
-write.csv(x = all.warnings, file = "e.g.warnings.json")
+write.csv(x = all.warnings, file = "e.g.warnings2.json")
 }
 \seealso{
 \code{validate.table()}
