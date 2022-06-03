@@ -253,6 +253,8 @@ print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary2.json", packa
 
 **Read the csv file into R using ```read.csv`()```. Enter the file name of the dataset after ```file =```.** Make sure to surround the name with quotes and include the file extension. This function will save the csv file as a data frame in the Environment window. 
 
+*Note: Since the tabular dataset is in csv format, the ```read.csv()``` function is used. Files in other formats require different functions to be read into R.*
+
 ```{r, include=TRUE, eval=FALSE}
 input.data<-read.csv(file = "e.g.dataset.csv", na.strings = "", stringsAsFactors = FALSE)
 ```
@@ -306,7 +308,7 @@ library(mdJSONdictio)
 path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
 input.dict <- rjson::fromJSON(file = path)
 
-# Import dataset as data frame
+# Import tabular dataset as data frame
 path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 
@@ -345,6 +347,8 @@ print(readxl::read_excel(system.file("extdata", "e.g.dictionary.xlsx", package =
 ## Import tablular dataset
 
 **Read the csv file into R using ```read.csv`()```. Enter the file name of the dataset after ```file =```.** Make sure to surround the name with quotes and include the file extension. This function will save the csv file as a data frame in the Environment window. 
+
+*Note: Since the tabular dataset is in csv format, the ```read.csv()``` function is used. Files in other formats require different functions to be read into R.*
 
 ```{r, include=TRUE, eval=FALSE}
 input.data<-read.csv(file = "e.g.dataset.csv", na.strings = "", stringsAsFactors = FALSE)
@@ -395,7 +399,7 @@ library(mdJSONdictio)
 path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 input.dict<-readxl::read_excel(path = path)
 
-# Import dataset as data frame
+# Import tabular dataset as data frame
 path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 
