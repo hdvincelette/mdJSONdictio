@@ -46,6 +46,10 @@ build.table <- function(x, entity_num, dictionary_num) {
 
 
   # Check validity of the R list
+
+  if (JSONdictionary[["data"]][[n]][["type"]] != "dictionaries")
+    stop('Dictionary not detected.')
+
   dictionarystring <-
     JSONdictionary[["data"]][[n]][["attributes"]][["json"]]
 
