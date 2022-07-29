@@ -48,6 +48,7 @@ update_packages()
 
 # Install package from GitHub
 install.packages("devtools")
+install.packages("shiny")
 
 remove.packages("mdJSONdictio")
 
