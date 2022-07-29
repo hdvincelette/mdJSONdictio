@@ -68,71 +68,6 @@ validate.table <- function(x, y) {
   )
 
 
-  #### Required fields: codeName, domainItem_value, allowNull ####
-
-  # Check codeName
-  for (a in 1:ncol(input.data)) {
-    if (!colnames(input.data[a]) %in% dict.vars) {
-      warnings.df <- warnings.df %>%
-        dplyr::add_row(
-          Num = nrow(warnings.df) + 1,
-          Variable = colnames(input.data[a]),
-          Category = "CodeName",
-          Message =  paste0(
-            'Dataset variable not listed under "CodeName" in dictionary'
-          )
-        )
-    }
-
-  }
-
-
-  # Check domainItem_value
-  if(length(unique(input.dict$domainItem_value))!=1){
-  for (a in 1:ncol(input.data)) {
-    for (b in 1:length(dict.domain)) {
-      if (colnames(input.data[a]) == names(dict.domain[b]) &
-          length(setdiff(na.omit(input.data[, a]), dict.domain[[b]][["domainItem_value"]])) !=
-          0) {
-        warnings.df <- warnings.df %>%
-          dplyr::add_row(
-            Num = nrow(warnings.df) + 1,
-            Variable = colnames(input.data[a]),
-            Category = "domainItem_value",
-            Message =  paste0(
-              'Dataset variable contains entry value(s) not listed under "domainItem_Value" in dictionary: ',
-              paste(setdiff(
-                na.omit(input.data[, a]), dict.domain[[b]][["domainItem_value"]]
-              ),
-              collapse = ", ")
-            )
-          )
-      }
-
-    }
-  }
-}
-
-  # Check allowNull
-  for (a in 1:ncol(input.data)) {
-    for (bb in 1:nrow(dict.datafield))
-      if (colnames(input.data[a]) == dict.datafield$codeName[bb] &
-          dict.datafield$allowNull[bb] == "no" &
-          NA %in% (unique(input.data[, a]))) {
-        warnings.df <- warnings.df %>%
-          dplyr::add_row(
-            Num = nrow(warnings.df) + 1,
-            Variable = colnames(input.data[a]),
-            Category = "allowNull",
-            Message =  paste0(
-              'Dataset variable contains blank values, which is not consistent with "allowNull" in dictionary '
-            )
-          )
-      }
-  }
-
-
-  #### Required fields: dataType ####
 
   # Change missingValue to NA
   #!# missingValue must be correct
@@ -154,6 +89,73 @@ validate.table <- function(x, y) {
   }
 
 
+
+  #### Required fields: codeName, domainItem_value, allowNull ####
+
+  # Check codeName
+  for (a in 1:ncol(data.NA)) {
+    if (!colnames(data.NA[a]) %in% dict.vars) {
+      warnings.df <- warnings.df %>%
+        dplyr::add_row(
+          Num = nrow(warnings.df) + 1,
+          Variable = colnames(data.NA[a]),
+          Category = "CodeName",
+          Message =  paste0(
+            'Dataset variable not listed under "CodeName" in dictionary'
+          )
+        )
+    }
+
+  }
+
+
+
+  # Check domainItem_value
+  if(length(unique(input.dict$domainItem_value))!=1){
+  for (a in 1:ncol(data.NA)) {
+    for (b in 1:length(dict.domain)) {
+      if (colnames(data.NA[a]) == names(dict.domain[b]) &
+          length(setdiff(na.omit(data.NA[, a]), dict.domain[[b]][["domainItem_value"]])) !=
+          0) {
+        warnings.df <- warnings.df %>%
+          dplyr::add_row(
+            Num = nrow(warnings.df) + 1,
+            Variable = colnames(data.NA[a]),
+            Category = "domainItem_value",
+            Message =  paste0(
+              'Dataset variable contains entry value(s) not listed under "domainItem_Value" in dictionary: ',
+              paste(setdiff(
+                na.omit(data.NA[, a]), dict.domain[[b]][["domainItem_value"]]
+              ),
+              collapse = ", ")
+            )
+          )
+      }
+
+    }
+  }
+}
+
+  # Check allowNull
+  for (a in 1:ncol(data.NA)) {
+    for (bb in 1:nrow(dict.datafield))
+      if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
+          dict.datafield$allowNull[bb] == "no" &
+          NA %in% (unique(data.NA[, a]))) {
+        warnings.df <- warnings.df %>%
+          dplyr::add_row(
+            Num = nrow(warnings.df) + 1,
+            Variable = colnames(data.NA[a]),
+            Category = "allowNull",
+            Message =  paste0(
+              'Dataset variable contains blank values, which is not consistent with "allowNull" in dictionary '
+            )
+          )
+      }
+  }
+
+
+  #### Required fields: dataType ####
 
   # RDatatype: all
   #!# Excluding date, time, datetime, xml
@@ -177,7 +179,7 @@ validate.table <- function(x, y) {
             warnings.df <- warnings.df %>%
               dplyr::add_row(
                 Num = nrow(warnings.df) + 1,
-                Variable = colnames(input.data[a]),
+                Variable = colnames(data.NA[a]),
                 Category = "dataType",
                 Message =  paste0(
                   'Dataset variable is detected as a different datatype (',
@@ -259,7 +261,7 @@ validate.table <- function(x, y) {
             warnings.df <- warnings.df %>%
               dplyr::add_row(
                 Num = nrow(warnings.df) + 1,
-                Variable = colnames(input.data[a]),
+                Variable = colnames(data.NA[a]),
                 Category = "dataType",
                 Message =  paste0(
                   'Dataset variable has entry value(s) not in standard ISO 1806 datetime format'
@@ -296,7 +298,7 @@ validate.table <- function(x, y) {
             warnings.df <- warnings.df %>%
               dplyr::add_row(
                 Num = nrow(warnings.df) + 1,
-                Variable = colnames(input.data[a]),
+                Variable = colnames(data.NA[a]),
                 Category = "dataType",
                 Message =  paste0(
                   'Dataset variable has entry value(s) not in standard ISO 1806 time format'
@@ -339,7 +341,7 @@ validate.table <- function(x, y) {
               warnings.df <- warnings.df %>%
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
-                  Variable = colnames(input.data[a]),
+                  Variable = colnames(data.NA[a]),
                   Category = "dataType",
                   Message =  paste0(
                     'Dataset variable has entry value(s) with a greater length (',
@@ -387,7 +389,7 @@ validate.table <- function(x, y) {
               warnings.df <- warnings.df %>%
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
-                  Variable = colnames(input.data[a]),
+                  Variable = colnames(data.NA[a]),
                   Category = "dataType",
                   Message =  paste0(
                     'Dataset variable has entry value(s) greater precision (',
@@ -432,7 +434,7 @@ validate.table <- function(x, y) {
               warnings.df <- warnings.df %>%
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
-                  Variable = colnames(input.data[a]),
+                  Variable = colnames(data.NA[a]),
                   Category = "dataType",
                   Message =  paste0(
                     'Dataset variable has entry value(s) with a smaller value (',
@@ -477,7 +479,7 @@ validate.table <- function(x, y) {
               warnings.df <- warnings.df %>%
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
-                  Variable = colnames(input.data[a]),
+                  Variable = colnames(data.NA[a]),
                   Category = "dataType",
                   Message =  paste0(
                     'Dataset variable has entry value(s) with a greater value (',
@@ -522,7 +524,7 @@ validate.table <- function(x, y) {
               warnings.df <- warnings.df %>%
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
-                  Variable = colnames(input.data[a]),
+                  Variable = colnames(data.NA[a]),
                   Category = "dataType",
                   Message =  paste0(
                     'Dataset variable has a greater number of distinct values (',
@@ -569,7 +571,7 @@ validate.table <- function(x, y) {
               warnings.df <- warnings.df %>%
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
-                  Variable = colnames(input.data[a]),
+                  Variable = colnames(data.NA[a]),
                   Category = "dataType",
                   Message =  paste0(
                     'Dataset variable has entry values with more than one length (',
@@ -602,16 +604,16 @@ validate.table <- function(x, y) {
 
 
 
-  for (a in 1:ncol(input.data)) {
-    # print(colnames(input.data[a]))
+  for (a in 1:ncol(data.NA)) {
+    # print(colnames(data.NA[a]))
     data.ndecimal <- NULL
     dict.ndecimal <- NULL
 
     for (bb in 1:nrow(input.dict)) {
-      if (colnames(input.data[a]) == input.dict$codeName[bb] &
+      if (colnames(data.NA[a]) == input.dict$codeName[bb] &
           is.na(input.dict$unitsResolution[bb]) == FALSE) {
         data.ndecimal <-
-          nchar(gsub(".*\\.|^[^.]+$", "", as.character(input.data[, a])))
+          nchar(gsub(".*\\.|^[^.]+$", "", as.character(data.NA[, a])))
 
         dict.ndecimal <-
           nchar(gsub(
@@ -633,7 +635,7 @@ validate.table <- function(x, y) {
             warnings.df <- warnings.df %>%
               dplyr::add_row(
                 Num = nrow(warnings.df) + 1,
-                Variable = colnames(input.data[a]),
+                Variable = colnames(data.NA[a]),
                 Category = "unitsResolution",
                 Message =  paste0(
                   'Dataset variable contains entry value(s) with lower resolution than "unitsResolution" in dictionary'
@@ -646,7 +648,7 @@ validate.table <- function(x, y) {
               warnings.df <- warnings.df %>%
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
-                  Variable = colnames(input.data[a]),
+                  Variable = colnames(data.NA[a]),
                   Category = "unitsResolution",
                   Message =  paste0(
                     'Dataset variable contains entry value(s) with higher resolution than "unitsResolution" in dictionary'
@@ -663,15 +665,15 @@ validate.table <- function(x, y) {
 
   # Check fieldWidth
 
-  for (a in 1:ncol(input.data)) {
-    # print(colnames(input.data[a]))
+  for (a in 1:ncol(data.NA)) {
+    # print(colnames(data.NA[a]))
     data.nchar <- NULL
     dict.nchar <- NULL
 
     for (bb in 1:nrow(input.dict)) {
-      if (colnames(input.data[a]) == input.dict$codeName[bb] &
+      if (colnames(data.NA[a]) == input.dict$codeName[bb] &
           is.na(input.dict$fieldWidth[bb]) == FALSE) {
-        data.nchar <-  nchar(as.character(input.data[, a]))
+        data.nchar <-  nchar(as.character(data.NA[, a]))
 
         dict.nchar <- input.dict$fieldWidth[bb]
 
@@ -685,7 +687,7 @@ validate.table <- function(x, y) {
             warnings.df <- warnings.df %>%
               dplyr::add_row(
                 Num = nrow(warnings.df) + 1,
-                Variable = colnames(input.data[a]),
+                Variable = colnames(data.NA[a]),
                 Category = "fieldWidth",
                 Message =  paste0(
                   'Dataset variable contains entry value(s) that exceeds "fieldWidth" in dictionary'
@@ -727,18 +729,18 @@ validate.table <- function(x, y) {
 
   # Check minValue
 
-  for (a in 1:ncol(input.data)) {
+  for (a in 1:ncol(data.NA)) {
     for (bb in 1:nrow(input.dict))
-      if (colnames(input.data[a]) == input.dict$codeName[bb] &
+      if (colnames(data.NA[a]) == input.dict$codeName[bb] &
           is.na(input.dict$minValue[bb]) == FALSE) {
-        if (!NA %in% unique(input.data[, a]) |
-            NA %in% unique(input.data[, a]) &
-            length(unique(input.data[, a])) > 1) {
-          if (min(unique(input.data[, a]), na.rm = TRUE) < input.dict$minValue[bb]) {
+        if (!NA %in% unique(data.NA[, a]) |
+            NA %in% unique(data.NA[, a]) &
+            length(unique(data.NA[, a])) > 1) {
+          if (min(unique(data.NA[, a]), na.rm = TRUE) < input.dict$minValue[bb]) {
             warnings.df <- warnings.df %>%
               dplyr::add_row(
                 Num = nrow(warnings.df) + 1,
-                Variable = colnames(input.data[a]),
+                Variable = colnames(data.NA[a]),
                 Category = "minValue",
                 Message =  paste0(
                   'Dataset variable contains entry value(s) less than "minValue" in dictionary'
@@ -753,18 +755,18 @@ validate.table <- function(x, y) {
 
   # Check maxValue
 
-  for (a in 1:ncol(input.data)) {
+  for (a in 1:ncol(data.NA)) {
     for (bb in 1:nrow(input.dict))
-      if (colnames(input.data[a]) == input.dict$codeName[bb] &
+      if (colnames(data.NA[a]) == input.dict$codeName[bb] &
           is.na(input.dict$maxValue[bb]) == FALSE) {
-        if (!NA %in% unique(input.data[, a]) |
-            NA %in% unique(input.data[, a]) &
-            length(unique(input.data[, a])) > 1) {
-          if (max(unique(input.data[, a]), na.rm = TRUE) > input.dict$maxValue[bb]) {
+        if (!NA %in% unique(data.NA[, a]) |
+            NA %in% unique(data.NA[, a]) &
+            length(unique(data.NA[, a])) > 1) {
+          if (max(unique(data.NA[, a]), na.rm = TRUE) > input.dict$maxValue[bb]) {
             warnings.df <- warnings.df %>%
               dplyr::add_row(
                 Num = nrow(warnings.df) + 1,
-                Variable = colnames(input.data[a]),
+                Variable = colnames(data.NA[a]),
                 Category = "maxValue",
                 Message =  paste0(
                   'Dataset variable contains entry value(s) greater than "maxValue" in dictionary'
