@@ -47,6 +47,8 @@ build()
 update_packages()
 
 # Install package from GitHub
+install.packages("devtools")
+
 remove.packages("mdJSONdictio")
 
 options(download.file.method = "curl")
