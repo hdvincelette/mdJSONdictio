@@ -53,6 +53,7 @@ install.packages("shiny")
 remove.packages("mdJSONdictio")
 
 options(download.file.method = "curl")
+options(download.file.method = "wininet")
 
 devtools::install_github("hdvincelette/mdJSONdictio")
 devtools::install_github("hdvincelette/mdJSONdictio", INSTALL_opts = c("--no-multiarch"))
