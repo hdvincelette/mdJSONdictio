@@ -224,6 +224,14 @@ If you see the the message "All dependent packages installed", rerun the [mdJSON
 
 ##### <span style="color: grey;">Reinstalling a package in RStudio</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/RStudio_Package_Install.png)
+
+If you see the the message "cannot remove prior installation of package," you will have to remove the package manually. Find the path to the package by running the following code:
+
+```{r, include=TRUE, eval=FALSE}
+# Get path to local R package library
+.libPaths() 
+```
+Paste the file path in File Explorer, navigate to the package folder and delete it. You may need to close R Studio in order to do so. Follow the steps above to re-install the package.
 <br />
 <br />
 **Rerun the [mdJSONdictio installation code](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#run-installation-code-in-rstudio).**
