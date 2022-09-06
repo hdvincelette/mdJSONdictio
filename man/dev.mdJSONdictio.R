@@ -3,6 +3,7 @@
 library(devtools)
 library(roxygen2)
 library(pkgdown)
+library(bookdown)
 
 
 # Reload package with local changes
