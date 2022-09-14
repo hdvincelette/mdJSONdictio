@@ -20,7 +20,7 @@ install()
 # Write markdown
 rmarkdown::render('vignettes/01_Intro_mdJSONdictio.Rmd')
 rmarkdown::render('vignettes/02_Dictionary_Template.Rmd')
-rmarkdown::render('vigne ttes/03_Setup_mdJSONdictio.Rmd')
+rmarkdown::render('vignettes/03_Setup_mdJSONdictio.Rmd')
 rmarkdown::render('vignettes/04_mdJSONdictio_Tutorial.Rmd')
 rmarkdown::render('vignettes/05_Next_Steps_mdEditor.Rmd')
 
