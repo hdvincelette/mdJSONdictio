@@ -247,7 +247,7 @@ Paste the file path in File Explorer, navigate to the package folder and delete 
 # Install packages using alternative method
 options(download.file.method = "wininet")
 ```
-Note, "wininet" is a Windows only download method. If using a different operating system, refer to https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file to view alternative methods.
+Note, "wininet" is a Windows only download method. If using a different operating system, refer to https://www.rdocumentation.org/packages/utils/versions/3.6.2/topics/download.file for alternative methods.
 <br />
 <br />
 **Rerun the [mdJSONdictio installation code](https://hdvincelette.github.io/mdJSONdictio/articles/03_Setup_mdJSONdictio.html#run-installation-code-in-rstudio).**
