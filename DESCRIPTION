@@ -1,5 +1,5 @@
 Package: mdJSONdictio
-Title: Tools to Build and Transform mdEditor mdJSON Data Dictionaries
+Title: Tools to Build, Transform, and Validate mdEditor mdJSON Data Dictionaries
 Version: 0.0.1
 Authors@R: 
     person(given = "Hannah Vincelette", email = "hdvincelette@gmail.com", role = c("aut", "cre"),
