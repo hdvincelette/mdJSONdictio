@@ -25,12 +25,12 @@ rmarkdown::render('vignettes/04_mdJSONdictio_Tutorial.Rmd')
 rmarkdown::render('vignettes/05_Next_Steps_mdEditor.Rmd')
 
 # Update site
+usethis::use_pkgdown()
 pkgdown::build_site()
 deploy_to_branch()
 
 # Update token
-library(gitcreds)
-gitcreds_set()
+gitcreds::gitcreds_set()
 
 # Add...
 save(datatype.rules, file = "data/datatype.rules.rda")
