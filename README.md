@@ -1,7 +1,7 @@
 
 # mdJSONdictio
 
-Tools to Build and Translate mdEditor mdJSON Data Dictionaries
+Tools to Build, Translate, and Validate mdEditor mdJSON Data Dictionaries
 
 ## Installation
 You can install the released version of mdJSONdictio from [GitHub](https://github.com/) with:
