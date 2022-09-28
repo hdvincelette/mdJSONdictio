@@ -249,7 +249,7 @@ print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary2.json", packa
 
 ## Import tablular dataset
 
-**Read the csv file into R using ```read.csv`()```. Enter the file name of the dataset after ```file =```.** Make sure to surround the name with quotes and include the file extension. This function will save the csv file as a data frame in the Environment window. 
+**Read the csv file into R using ```read.csv()```. Enter the file name of the dataset after ```file =```.** Make sure to surround the name with quotes and include the file extension. This function will save the csv file as a data frame in the Environment window. 
 
 *Note: Since the tabular dataset is in csv format, the ```read.csv()``` function is used. Files in other formats require different functions to be read into R.*
 
@@ -342,7 +342,7 @@ print(readxl::read_excel(system.file("extdata", "e.g.dictionary.xlsx", package =
 
 ## Import tablular dataset
 
-**Read the csv file into R using ```read.csv`()```. Enter the file name of the dataset after ```file =```.** Make sure to surround the name with quotes and include the file extension. This function will save the csv file as a data frame in the Environment window. 
+**Read the csv file into R using ```read.csv()```. Enter the file name of the dataset after ```file =```.** Make sure to surround the name with quotes and include the file extension. This function will save the csv file as a data frame in the Environment window. 
 
 *Note: Since the tabular dataset is in csv format, the ```read.csv()``` function is used. Files in other formats require different functions to be read into R.*
 
