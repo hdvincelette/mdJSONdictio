@@ -126,7 +126,7 @@ For more information on how to use R and RStudio, visit the Tutorial tab in the 
 install.packages("devtools")
 
 # Install mdJSONdictio from GitHub
-devtools::install_github("hdvincelette/mdJSONdictio", ref = 'v0.0.2')
+devtools::install_github("hdvincelette/mdJSONdictio", ref = 'v0.1.0')
 ```
 <br />
 
