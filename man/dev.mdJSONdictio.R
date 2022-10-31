@@ -32,6 +32,7 @@ pkgdown::build_site()
 gitcreds::gitcreds_set()
 
 # Add...
+usethis::use_version("minor")
 save(datatype.rules, file = "data/datatype.rules.rda")
 usethis::use_package("plyr")
 usethis::use_build_ignore()
