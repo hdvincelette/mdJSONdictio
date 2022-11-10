@@ -309,7 +309,7 @@ build.mdJSON <- function(x, title) {
   for (n in 1:ncol(entityref)) {
     for (o in 1:length(names)) {
       if (colnames(entityref[1, n]) == names[o]) {
-        value <- entityref[[paste0(names[o])]][1]
+        value <- as.character(entityref[[paste0(names[o])]][1])
 
         if (!names[o] %in% c("fieldWidth", "unitsResolution")) {
           value <- as.character(value)
@@ -324,6 +324,15 @@ build.mdJSON <- function(x, title) {
       dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[1]] %>%
       purrr::map(purrr::discard, is.na) %>%
       plyr::compact()
+  }
+
+  ## Correct data types for unitsResolution and fieldWidth
+
+  for (nn in 1:length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]])) {
+    dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[nn]][["unitsResolution"]] <-
+      as.numeric(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[nn]][["unitsResolution"]])
+    dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[nn]][["fieldWidth"]] <-
+      as.numeric(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[nn]][["fieldWidth"]])
   }
 
 
