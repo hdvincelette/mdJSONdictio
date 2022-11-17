@@ -351,18 +351,15 @@ build.mdJSON <- function(x, title) {
   ## Duplicate first (empty) domain and update the addition
 
   for (p in 2:length(e.count)) {
-    dictionarylist[["dataDictionary"]][["domain"]][[length(dictionarylist[["dataDictionary"]][["domain"]]) +
-                                                      1]] <-
+    dictionarylist[["dataDictionary"]][["domain"]][[length(dictionarylist[["dataDictionary"]][["domain"]]) + 1]] <-
       dictionarylist[["dataDictionary"]][["domain"]][[1]]
 
-    for (q in 2:nrow(domainref.I)) {
       dictionarylist[["dataDictionary"]][["domain"]][[p]][["codeName"]] <-
         as.character(domainref.A$codeName[p])
       dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainId"]] <-
         as.character(domainref.A$domainId[p])
       dictionarylist[["dataDictionary"]][["domain"]][[p]][["description"]] <-
         as.character(domainref.A$definition[p])
-    }
 
     e.reference <- domainref.A$entityNum[p]
 
@@ -372,16 +369,25 @@ build.mdJSON <- function(x, title) {
     ### Duplicate first (empty) domain item and update the addition
 
     for (t in 1:nrow(items)) {
-      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[length(dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]]) +
-                                                                             1]] <-
-        dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]]
+      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]][["name"]] <-
+        as.character(items$domainItem_name[1])
+      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]][["value"]] <-
+        as.character(items$domainItem_value[1])
+      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]][["definition"]] <-
+        as.character(items$definition[1])
 
-      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["name"]] <-
-        as.character(items$domainItem_name[t])
-      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["value"]] <-
-        as.character(items$domainItem_value[t])
-      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["definition"]] <-
-        as.character(items$definition[t])
+      if (nrow(items) > 1 & t > 1) {
+        dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[length(dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]]) +
+                                                                               1]] <-
+          dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]]
+
+        dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["name"]] <-
+          as.character(items$domainItem_name[t])
+        dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["value"]] <-
+          as.character(items$domainItem_value[t])
+        dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["definition"]] <-
+          as.character(items$definition[t])
+      }
 
     }
 
@@ -403,12 +409,28 @@ build.mdJSON <- function(x, title) {
   dictionarylist[["dataDictionary"]][["domain"]][[1]][["description"]] <-
     as.character(domainref.A$definition[1])
 
-  dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]][["name"]] <-
-    as.character(items$domainItem_name[1])
-  dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]][["value"]] <-
-    as.character(items$domainItem_value[1])
-  dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]][["definition"]] <-
-    as.character(items$definition[1])
+  for (t in 1:nrow(items)) {
+    dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]][["name"]] <-
+      as.character(items$domainItem_name[1])
+    dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]][["value"]] <-
+      as.character(items$domainItem_value[1])
+    dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]][["definition"]] <-
+      as.character(items$definition[1])
+
+    if (nrow(items) > 1 & t > 1) {
+      dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[length(dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]]) +
+                                                                             1]] <-
+        dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]]
+
+      dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[t]][["name"]] <-
+        as.character(items$domainItem_name[t])
+      dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[t]][["value"]] <-
+        as.character(items$domainItem_value[t])
+      dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[t]][["definition"]] <-
+        as.character(items$definition[t])
+    }
+
+  }
 
 
   # Update fields
