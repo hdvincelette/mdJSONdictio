@@ -34,10 +34,14 @@ validate.table <- function(x, y) {
 
 
   # Prep files
-  input.data <- input.data %>% dplyr::mutate_all(dplyr::na_if, "")
-  input.dict <- input.dict %>% dplyr::mutate_all(dplyr::na_if, "")
+  input.data <-
+    input.data %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
+
+  input.dict <-
+    input.dict %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
+
   datatype.rules <-
-    datatype.rules %>% dplyr::mutate_all(dplyr::na_if, "")
+    datatype.rules %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
 
 
   # Create dictionary references
