@@ -127,14 +127,15 @@ build.table <- function(x, entity_num, dictionary_num) {
     )
 
     for (b in 1:length(entitylist[[a]][["attribute"]])) {
-      blanktable[nrow(blanktable) + 1,] <- NA
+      blanktable[nrow(blanktable) + 1, ] <- NA
 
       for (c in 1:length(entitylist[[a]][["attribute"]][[b]])) {
         column <- names(entitylist[[a]][["attribute"]][[b]])[c]
         entry <- entitylist[[a]][["attribute"]][[b]][[c]]
 
-
-        blanktable[[paste0(column)]][b] <- entry
+        if (length(entry) != 0) {
+          blanktable[[paste0(column)]][b] <- entry
+        }
 
         if (is.na(blanktable$domainId[b]) == FALSE) {
           domaincount = domaincount + 1
