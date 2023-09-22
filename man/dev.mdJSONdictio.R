@@ -7,8 +7,7 @@ library(bookdown)
 
 
 # Reload package with local changes
-setwd("~/GitHub/mdJSONdictio")
-setwd("~/Documents/GitHub/mdJSONdictio")
+setwd("C:/Users/hvincelette/OneDrive - DOI/Documents/GitHub/mdJSONdictio")
 
 remove.packages("mdJSONdictio")
 
@@ -293,6 +292,22 @@ for (a in 20:length(files)) {
 test.json <- fromJSON(file = files[10])
 newtable <- build.table(test.json)
 
+
+
+# Find multibyte characters
+
+find_offending_character <- function(x, maxStringLength=256){
+  print(x)
+  for (c in 1:maxStringLength){
+    offendingChar <- substr(x,c,c)
+    #print(offendingChar) #uncomment if you want the indiv characters printed
+    #the next character is the offending multibyte Character
+  }
+}
+
+string_vector <-input.data$Notes
+
+lapply(string_vector, find_offending_character)
 
 #############################################################################
 
