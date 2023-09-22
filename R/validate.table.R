@@ -33,6 +33,21 @@ validate.table <- function(x, y) {
   input.data <- y
 
 
+  # Check for multibyte strings in data file
+  for (a in 1:ncol(input.data)) {
+    for (b in 1:nrow(input.data)) {
+      if (validEnc(as.character(input.data[b, a])) == FALSE)
+        stop(
+          'Data contains multibyte strings.',
+          '\nColumn: ', colnames(input.data[a]),
+          '\nRow: ',b + 1,
+          '\nString: ', input.data[b, a],
+          '\n\nPrint `help(package = "mdJSONdictio")` for Help Pages.'
+        )
+    }
+  }
+
+
   # Prep files
   input.data <-
     input.data %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
@@ -61,6 +76,7 @@ validate.table <- function(x, y) {
 
   dict.datafield <- input.dict %>%
     dplyr::filter(domainItem_value == "dataField")
+
 
   # Create data frame for warnings
   warnings.df <- data.frame(
@@ -95,6 +111,7 @@ validate.table <- function(x, y) {
 
 
   #### Required fields: codeName, domainItem_value, allowNull ####
+
 
   # Check codeName
   for (a in 1:ncol(data.NA)) {
@@ -740,7 +757,7 @@ validate.table <- function(x, y) {
         if (!NA %in% unique(data.NA[, a]) |
             NA %in% unique(data.NA[, a]) &
             length(unique(data.NA[, a])) > 1) {
-          if (min(unique(data.NA[, a]), na.rm = TRUE) < input.dict$minValue[bb]) {
+          if (min(unique(data.NA[, a]), na.rm = TRUE) < as.numeric(input.dict$minValue[bb])) {
             warnings.df <- warnings.df %>%
               dplyr::add_row(
                 Num = nrow(warnings.df) + 1,
@@ -766,7 +783,7 @@ validate.table <- function(x, y) {
         if (!NA %in% unique(data.NA[, a]) |
             NA %in% unique(data.NA[, a]) &
             length(unique(data.NA[, a])) > 1) {
-          if (max(unique(data.NA[, a]), na.rm = TRUE) > input.dict$maxValue[bb]) {
+          if (max(unique(data.NA[, a]), na.rm = TRUE) > as.numeric(input.dict$maxValue[bb])) {
             warnings.df <- warnings.df %>%
               dplyr::add_row(
                 Num = nrow(warnings.df) + 1,
