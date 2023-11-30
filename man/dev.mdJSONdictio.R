@@ -26,7 +26,6 @@ rmarkdown::render('vignettes/05_Next_Steps_mdEditor.Rmd')
 # Update site
 pkgdown::build_site()
 
-
 # Update token
 gitcreds::gitcreds_set()
 
