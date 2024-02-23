@@ -59,8 +59,6 @@ validate.table <- function(x, y) {
     input.dict <-
       input.dict %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
 
-    datatype.rules <- get0("datatype.rules", envir = asNamespace("mdJSONdictio"))
-
     datatype.rules <-
       datatype.rules %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
 
