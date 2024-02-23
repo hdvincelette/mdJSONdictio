@@ -164,7 +164,7 @@ path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
 input.json <- rjson::fromJSON(file = path)
 
 # Translate list to data frame
-new.table<- mdJSONdictio::build.table(x = input.json, dictionary_num = 1, entity_num = 2)
+new.table<- mdJSONdictio::build.table(x = input.json, dictionary_num = 1, entity_num = 1)
 
 # Export table to disk
 write.csv(x = new.table, file = "e.g.dictionary2.csv", na="", row.names = FALSE)
