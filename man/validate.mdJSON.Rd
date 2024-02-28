@@ -16,7 +16,7 @@ validate.mdJSON(x, y, dictionary_num = 1, entity_num = 1)
 \item{entity_num}{Default=1. Integer indicating the entity if there is more than one in the mdJSON file.}
 }
 \value{
-Returns a data frame comprised of warning messages about and the mdJSON data dictionary.
+Returns a data frame comprised of warning messages about the mdJSON data dictionary.
 }
 \description{
 Compares an mdJSON data dictionary to a tabular dataset and summarizes discrepancies in a data frame.
