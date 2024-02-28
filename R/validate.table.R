@@ -124,9 +124,9 @@ validate.table <- function(x, y) {
           dplyr::add_row(
             Num = nrow(warnings.df) + 1,
             Variable = colnames(data.NA[a]),
-            Category = "CodeName",
+            Category = "codeName",
             Message =  paste0(
-              'Dataset variable not listed under "CodeName" in dictionary'
+              'Dataset variable not listed under "codeName" in dictionary'
             )
           )
       }
