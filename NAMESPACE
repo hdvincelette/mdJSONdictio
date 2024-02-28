@@ -2,5 +2,6 @@
 
 export(build.mdJSON)
 export(build.table)
+export(modify.mdJSON)
 export(validate.mdJSON)
 export(validate.table)
