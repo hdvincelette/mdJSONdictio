@@ -5,7 +5,7 @@
 #' @param y Data frame of a dataset.
 #' @param dictionary_num Default=1. Integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).
 #' @param entity_num Default=1. Integer indicating the entity if there is more than one in the mdJSON file.
-#' @return Returns a data frame comprised of warning messages about and the mdJSON data dictionary.
+#' @return Returns a data frame comprised of warning messages about the mdJSON data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```validate.mdJSON()```
 #' @export
