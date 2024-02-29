@@ -11,16 +11,16 @@
 #' @examples
 #' # Import mdJSON data dictionary as list
 #' path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-#' input.json <- rjson::fromJSON(file = path)
+#' input.dxnry <- rjson::fromJSON(file = path)
 #'
 #' # Add an attribute
-#' modified.json<- modify.mdJSON(x = input.json, how = "add_attribute", codeName = "WingArea")
+#' modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_attribute", codeName = "WingArea")
 #'
 #' #' # Add a domain
-#' modified.json<- modify.mdJSON(x = input.json, how = "add_domain")
+#' modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domain")
 #'
 #' # Convert list to JSON
-#' new.json = rjson::toJSON(x = new.list)
+#' new.json = rjson::toJSON(x = modified.dxnry)
 #'
 #' # Export JSON to disk
 #' write(x = new.json, file = "e.g.dictionary.json")
@@ -53,7 +53,7 @@ modify.mdJSON <-
 
     `%>%` <- magrittr::`%>%`
 
-    input.dict <- x
+    input.dxnry <- x
 
     if (missing("codeName")) {
       codeName <- ""
@@ -66,7 +66,7 @@ modify.mdJSON <-
     }
 
     dictionarylist <-
-      rjson::fromJSON(input.dict[["data"]][[1]][["attributes"]][["json"]])
+      rjson::fromJSON(input.dxnry[["data"]][[1]][["attributes"]][["json"]])
 
 
     #### Add an attribute (and domain - optional) ####
@@ -692,8 +692,8 @@ modify.mdJSON <-
       }
     }
 
-    # input.dict[["data"]][[1]][["attributes"]][["json"]] <-
+    # input.dxnry[["data"]][[1]][["attributes"]][["json"]] <-
     #   rjson::toJSON(dictionarylist)
 
-    return(input.dict)
+    return(input.dxnry)
   }
