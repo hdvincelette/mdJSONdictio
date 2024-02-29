@@ -239,9 +239,23 @@ modify.mdJSON <-
             "'."
           )
         ))
-        fieldWidth.input <- as.character(readline(prompt =))
-        newattribute[[1]][["fieldWidth"]] <- fieldWidth.input
+        fieldWidth.input <- as.character(readline(prompt = ))
 
+        while (!grepl("[^[:digit:]]",
+                      format(fieldWidth.input,  digits = 20, scientific = FALSE)) == FALSE) {
+          message(cat(
+            paste0(
+              "\nfieldWidth must be an integer value. Enter 'skip' to omit this information."
+            )
+          ))
+          fieldWidth.input <- as.character(readline(prompt =))
+
+          if (fieldWidth.input == "skip") {
+            fieldWidth.input <- ""
+          }
+        }
+
+        newattribute[[1]][["fieldWidth"]] <- fieldWidth.input
 
         ## Add attribute to dictionary list
         dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]]) +
