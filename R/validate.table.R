@@ -10,14 +10,14 @@
 #' @examples
 #' # Import tabular data dictionary as data frame
 #' path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
-#' input.dict<-readxl::read_excel(path = path)
+#' input.dxnry<-readxl::read_excel(path = path)
 #'
 #' # Import tabular dataset as data frame
 #' path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 #' input.data<-read.csv(file = path, na.strings = "", stringsAsFactors = FALSE)
 #'
 #' # Validate data frame against data frame
-#' all.warnings<- validate.table(x = input.dict, y = input.data)
+#' all.warnings<- validate.table(x = input.dxnry, y = input.data)
 #'
 #' # Export table to disk
 #' write.csv(x = all.warnings, file = "e.g.warnings2.csv")
@@ -30,7 +30,7 @@ validate.table <- function(x, y) {
 
     `%>%` <- magrittr::`%>%`
 
-    input.dict <- x
+    input.dxnry <- x
     input.data <- y
 
 
@@ -56,29 +56,29 @@ validate.table <- function(x, y) {
     input.data <-
       input.data %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
 
-    input.dict <-
-      input.dict %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
+    input.dxnry <-
+      input.dxnry %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
 
     datatype.rules <-
       datatype.rules %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
 
 
     # Create dictionary references
-    dict.vars <- unique(input.dict$codeName)
+    dict.vars <- unique(input.dxnry$codeName)
 
-    dict.domain <- input.dict %>%
+    dict.domain <- input.dxnry %>%
       dplyr::filter(domainItem_value != "dataField") %>%
       dplyr::select(codeName, domainItem_value) %>%
       dplyr::group_by(codeName) %>%
       dplyr::group_map(~ .x)
 
-    names(dict.domain) <- input.dict %>%
+    names(dict.domain) <- input.dxnry %>%
       dplyr::filter(domainItem_value != "dataField") %>%
       dplyr::group_by(codeName) %>%
       dplyr::group_map(~ .y) %>%
       unlist()
 
-    dict.datafield <- input.dict %>%
+    dict.datafield <- input.dxnry %>%
       dplyr::filter(domainItem_value == "dataField")
 
 
@@ -136,7 +136,7 @@ validate.table <- function(x, y) {
 
 
     # Check domainItem_value
-    if (length(unique(input.dict$domainItem_value)) != 1) {
+    if (length(unique(input.dxnry$domainItem_value)) != 1) {
       for (a in 1:ncol(data.NA)) {
         for (b in 1:length(dict.domain)) {
           if (colnames(data.NA[a]) == names(dict.domain[b]) &
@@ -617,7 +617,7 @@ validate.table <- function(x, y) {
 
     # Check unitsResolution
 
-    # dict.res <- input.dict %>%
+    # dict.res <- input.dxnry %>%
     #   dplyr::filter(!is.na(unitsResolution))
     #
     # data.res <- input.data %>%
@@ -634,9 +634,9 @@ validate.table <- function(x, y) {
       data.ndecimal <- NULL
       dict.ndecimal <- NULL
 
-      for (bb in 1:nrow(input.dict)) {
-        if (colnames(data.NA[a]) == input.dict$codeName[bb] &
-            is.na(input.dict$unitsResolution[bb]) == FALSE) {
+      for (bb in 1:nrow(input.dxnry)) {
+        if (colnames(data.NA[a]) == input.dxnry$codeName[bb] &
+            is.na(input.dxnry$unitsResolution[bb]) == FALSE) {
           data.ndecimal <-
             nchar(gsub(".*\\.|^[^.]+$", "", as.character(data.NA[, a])))
 
@@ -644,7 +644,7 @@ validate.table <- function(x, y) {
             nchar(gsub(
               ".*\\.",
               "",
-              as.character(input.dict$unitsResolution[bb])
+              as.character(input.dxnry$unitsResolution[bb])
             ))
 
           # print(paste0(min(data.ndecimal, na.rm = TRUE), " (min)"))
@@ -695,14 +695,14 @@ validate.table <- function(x, y) {
       data.nchar <- NULL
       dict.nchar <- NULL
 
-      for (bb in 1:nrow(input.dict)) {
-        if (colnames(data.NA[a]) == input.dict$codeName[bb] &
-            is.na(input.dict$fieldWidth[bb]) == FALSE &
+      for (bb in 1:nrow(input.dxnry)) {
+        if (colnames(data.NA[a]) == input.dxnry$codeName[bb] &
+            is.na(input.dxnry$fieldWidth[bb]) == FALSE &
             NA %in% unique(data.NA[, a]) &
             length(unique(data.NA[, a]))!=1) {
           data.nchar <-  nchar(as.character(data.NA[, a]))
 
-          dict.nchar <- input.dict$fieldWidth[bb]
+          dict.nchar <- input.dxnry$fieldWidth[bb]
 
           if (is.null(data.nchar) == FALSE) {
             # print(paste0(max(data.nchar, na.rm = TRUE), " (max)"))
@@ -732,12 +732,12 @@ validate.table <- function(x, y) {
     # Check missingValue
 
     for (a in 1:ncol(input.data)) {
-      for (bb in 1:nrow(input.dict))
-        if (colnames(input.data[a]) == input.dict$codeName[bb] &
-            is.na(input.dict$missingValue[bb]) == FALSE &
+      for (bb in 1:nrow(input.dxnry))
+        if (colnames(input.data[a]) == input.dxnry$codeName[bb] &
+            is.na(input.dxnry$missingValue[bb]) == FALSE &
             NA %in% (unique(input.data[, a]))) {
           # print(paste0(colnames(input.data[a]) ))
-          # print(paste0(input.dict$missingValue[bb]))
+          # print(paste0(input.dxnry$missingValue[bb]))
 
           warnings.df <- warnings.df %>%
             dplyr::add_row(
@@ -746,7 +746,7 @@ validate.table <- function(x, y) {
               Category = "missingValue",
               Message =  paste0(
                 'Dataset variable contains blank values rather than "missingValue" in dictionary: ',
-                input.dict$missingValue[bb]
+                input.dxnry$missingValue[bb]
               )
             )
         }
@@ -756,13 +756,13 @@ validate.table <- function(x, y) {
     # Check minValue
 
     for (a in 1:ncol(data.NA)) {
-      for (bb in 1:nrow(input.dict))
-        if (colnames(data.NA[a]) == input.dict$codeName[bb] &
-            is.na(input.dict$minValue[bb]) == FALSE) {
+      for (bb in 1:nrow(input.dxnry))
+        if (colnames(data.NA[a]) == input.dxnry$codeName[bb] &
+            is.na(input.dxnry$minValue[bb]) == FALSE) {
           if (!NA %in% unique(data.NA[, a]) |
               NA %in% unique(data.NA[, a]) &
               length(unique(data.NA[, a])) > 1) {
-            if (min(unique(data.NA[, a]), na.rm = TRUE) < as.numeric(input.dict$minValue[bb])) {
+            if (min(unique(data.NA[, a]), na.rm = TRUE) < as.numeric(input.dxnry$minValue[bb])) {
               warnings.df <- warnings.df %>%
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
@@ -782,13 +782,13 @@ validate.table <- function(x, y) {
     # Check maxValue
 
     for (a in 1:ncol(data.NA)) {
-      for (bb in 1:nrow(input.dict))
-        if (colnames(data.NA[a]) == input.dict$codeName[bb] &
-            is.na(input.dict$maxValue[bb]) == FALSE) {
+      for (bb in 1:nrow(input.dxnry))
+        if (colnames(data.NA[a]) == input.dxnry$codeName[bb] &
+            is.na(input.dxnry$maxValue[bb]) == FALSE) {
           if (!NA %in% unique(data.NA[, a]) |
               NA %in% unique(data.NA[, a]) &
               length(unique(data.NA[, a])) > 1) {
-            if (max(unique(data.NA[, a]), na.rm = TRUE) > as.numeric(input.dict$maxValue[bb])) {
+            if (max(unique(data.NA[, a]), na.rm = TRUE) > as.numeric(input.dxnry$maxValue[bb])) {
               warnings.df <- warnings.df %>%
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
