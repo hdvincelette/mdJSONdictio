@@ -12,14 +12,14 @@
 #' @examples
 #' # Import mdJSON data dictionary as list
 #' path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-#' input.dict <- rjson::fromJSON(file = path)
+#' input.dxnry <- rjson::fromJSON(file = path)
 #'
 #' # Import tabular dataset as data frame
 #' path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 #' input.data<-read.csv(file = path, na.strings = "", stringsAsFactors = FALSE)
 #'
 #' # Validate list against data frame
-#' all.warnings<- validate.mdJSON(x = input.dict, y = input.data, dictionary_num = 1, entity_num = 1)
+#' all.warnings<- validate.mdJSON(x = input.dxnry, y = input.data, dictionary_num = 1, entity_num = 1)
 #'
 #' # Export table to disk
 #' write.csv(x = all.warnings, file = "e.g.warnings.csv")
@@ -49,10 +49,10 @@ validate.mdJSON <- function(x, y, dictionary_num = 1, entity_num = 1) {
 
 
 
-  input.dict2<- mdJSONdictio::build.table(x = x, dictionary_num = n, entity_num = a)
+  input.dxnry2<- mdJSONdictio::build.table(x = x, dictionary_num = n, entity_num = a)
   input.data2 <- y
 
-  all.warnings<- validate.table(input.dict2, input.data2)
+  all.warnings<- validate.table(input.dxnry2, input.data2)
 
 
 }
