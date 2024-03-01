@@ -33,23 +33,7 @@ modify.mdJSON <-
                    "add_domainItem",
                    "update_attribute"),
            codeName) {
-    blankjson <- blankjson
-    blankdictionarylist <-
-      rjson::fromJSON(blankjson[["data"]][[1]][["attributes"]][["json"]])
-    blankattribute <-
-      blankdictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]]
-    blankdomain <-
-      blankdictionarylist[["dataDictionary"]][["domain"]]
-    blankdomainItem <- blankdomain[[1]][["domainItem"]]
 
-    # dataType.vector <- dplyr::pull(
-    #   readxl::read_excel(
-    #     "inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx",
-    #     sheet = 3,
-    #     col_names = FALSE
-    #   ) ,
-    #   1
-    # )
 
     `%>%` <- magrittr::`%>%`
 
