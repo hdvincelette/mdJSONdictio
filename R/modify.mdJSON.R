@@ -181,7 +181,22 @@ modify.mdJSON <-
             "' is measured (e.g., 1, .1, .01)."
           )
         ))
-        unitsResolution.input <- as.character(readline(prompt =))
+        unitsResolution.input <- as.character(readline(prompt = ))
+
+        while (!grepl("[A-Za-z^A-Za-z]", unitsResolution.input) == FALSE |
+               !grepl("[^[:alnum:]]", unitsResolution.input) == FALSE) {
+          message(cat(
+            paste0(
+              "\nunitsResolution must be numeric. Enter 'skip' to omit this information."
+            )
+          ))
+          unitsResolution.input <- as.character(readline(prompt = ))
+
+          if (unitsResolution.input == "skip") {
+            unitsResolution.input <- ""
+          }
+        }
+
         newattribute[[1]][["unitsResolution"]] <-
           unitsResolution.input
 
@@ -264,7 +279,7 @@ modify.mdJSON <-
                       )) == FALSE) {
           message(cat(
             paste0(
-              "\nfieldWidth must be an integer value. Enter 'skip' to omit this information."
+              "\nfieldWidth must be an integer. Enter 'skip' to omit this information."
             )
           ))
           fieldWidth.input <- as.character(readline(prompt =))
