@@ -29,14 +29,14 @@ validate.mdJSON <- function(x, y, entity_num = 1) {
 
   `%>%` <- magrittr::`%>%`
 
-  if (length(x[["data"]]) > 1) {
-    input.dxnry <-
-      extract.mdJSON(x = x,
-                     record.type = "dictionaries",
-                     multiple = FALSE)
-  } else {
-    input.dxnry <- x
-  }
+  # if (length(x[["data"]]) > 1) {
+  #   input.dxnry <-
+  #     extract.mdJSON(x = x,
+  #                    record.type = "dictionaries",
+  #                    multiple = FALSE)
+  # } else {
+  #   input.dxnry <- x
+  # }
 
   a <- 1
 
