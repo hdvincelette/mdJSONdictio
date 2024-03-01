@@ -33,23 +33,14 @@ build.table <- function(x, entity_num) {
     JSONdictionary <- x
   }
 
-  a <- 1
-
-
-  ## Parameter arguments
-  if (missing(entity_num))
-    a <- 1
-  else
-    a <- entity_num
-
 
   # Check validity of the R list
 
-  if (JSONdictionary[["data"]][[n]][["type"]] != "dictionaries")
+  if (JSONdictionary[["data"]][[1]][["type"]] != "dictionaries")
     stop('Dictionary not detected.')
 
   dictionarystring <-
-    JSONdictionary[["data"]][[n]][["attributes"]][["json"]]
+    JSONdictionary[["data"]][[1]][["attributes"]][["json"]]
 
   if (grepl("entity", dictionarystring) == FALSE)
     stop('No Entity detected.\n  Print `help(package = "mdJSONdictio")` for Help Pages.')
@@ -67,6 +58,34 @@ build.table <- function(x, entity_num) {
 
   # Extract domain and entity string lists
   newlist = rjson::fromJSON(dictionarystring)
+
+
+  # Make entity selection, if necessary
+  if (length(newlist[["dataDictionary"]][["entity"]]) > 1) {
+    entity.names <- c()
+    for (a in 1:length(newlist[["dataDictionary"]][["entity"]])) {
+      entity.names <-
+        c(entity.names, newlist[["dataDictionary"]][["entity"]][[1]][["codeName"]])
+    }
+
+    entity.choice <- utils::select.list(
+      c(entity.names),
+      title = cat(
+        paste0("The mdJSON data dictionary contains more than one entity")
+      ),
+      multiple = FALSE,
+      graphics = TRUE
+    )
+
+    entity_num <- which(entity.choice == entity.names)
+
+  } else {
+
+    if (missing(entity_num))
+      entity_num <- 1
+  }
+
+
 
   entitylist <- newlist[["dataDictionary"]][["entity"]]
   domainlist <- newlist[["dataDictionary"]][["domain"]]
@@ -124,12 +143,12 @@ build.table <- function(x, entity_num) {
       )
     )
 
-    for (b in 1:length(entitylist[[a]][["attribute"]])) {
+    for (b in 1:length(entitylist[[entity_num]][["attribute"]])) {
       blanktable[nrow(blanktable) + 1, ] <- NA
 
-      for (c in 1:length(entitylist[[a]][["attribute"]][[b]])) {
-        column <- names(entitylist[[a]][["attribute"]][[b]])[c]
-        entry <- entitylist[[a]][["attribute"]][[b]][[c]]
+      for (c in 1:length(entitylist[[entity_num]][["attribute"]][[b]])) {
+        column <- names(entitylist[[entity_num]][["attribute"]][[b]])[c]
+        entry <- entitylist[[entity_num]][["attribute"]][[b]][[c]]
 
         if (length(entry) != 0) {
           blanktable[[paste0(column)]][b] <- entry
