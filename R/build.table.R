@@ -1,9 +1,8 @@
 #' Build Tabular Data Dictionaries
 #'
 #' Translates a list object converted from an mdEditor mdJSON data dictionary file into a data frame.
-#' @param x List object converted from an mdJSON data dictionary file.
+#' @param x List object converted from an mdJSON file.
 #' @param y Data frame of a dataset.
-#' @param dictionary_num Default=1. Integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).
 #' @param entity_num Default=1. Integer indicating the entity if there is more than one in the mdJSON file.
 #' @return Returns a data frame corresponding to the mdJSON data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
@@ -21,24 +20,23 @@
 #' write.csv(x = new.table, file = "e.g.dictionary2.csv", na="", row.names = FALSE)
 
 
-build.table <- function(x, entity_num, dictionary_num) {
+build.table <- function(x, entity_num) {
 
   `%>%` <- magrittr::`%>%`
 
+  if (length(x[["data"]]) > 1) {
+    JSONdictionary <-
+      extract.mdJSON(x = x,
+                     record.type = "dictionaries",
+                     multiple = FALSE)
+  } else {
+    JSONdictionary <- x
+  }
 
-  JSONdictionary <- x
-
-  n <- 1
   a <- 1
 
 
   ## Parameter arguments
-  if (missing(dictionary_num))
-    n <- 1
-  else
-    n <- dictionary_num
-
-
   if (missing(entity_num))
     a <- 1
   else
