@@ -1,7 +1,7 @@
 #' Modify mdJSON Data Dictionaries
 #'
 #' Amends an mdJSON data dictionary, including adding/updating attributes and domains.
-#' @param x List object converted from an mdJSON data dictionary file.
+#' @param x List object converted from an mdJSON file.
 #' @param how character string matching one of the modification options: see ‘Details’.
 #' @param codeName a string representing the attribute to add or modify.
 #' @return Returns a modified list object corresponding to the mdJSON data dictionary file.
@@ -53,7 +53,22 @@ modify.mdJSON <-
 
     `%>%` <- magrittr::`%>%`
 
-    input.dxnry <- x
+    if (length(x[["data"]]) > 1) {
+      input.dxnry <-
+        extract.mdJSON(x = x,
+                       record.type = "dictionaries",
+                       multiple = FALSE)
+
+      for (a in 1:length(x[["data"]])) {
+        if (x[["data"]][[a]][["id"]] == input.dxnry[["data"]][[1]][["id"]]) {
+          record.num <- a
+        }
+      }
+
+    } else {
+      input.dxnry <- x
+    }
+
 
     if (missing("codeName")) {
       codeName <- ""
@@ -242,7 +257,11 @@ modify.mdJSON <-
         fieldWidth.input <- as.character(readline(prompt = ))
 
         while (!grepl("[^[:digit:]]",
-                      format(fieldWidth.input,  digits = 20, scientific = FALSE)) == FALSE) {
+                      format(
+                        fieldWidth.input,
+                        digits = 20,
+                        scientific = FALSE
+                      )) == FALSE) {
           message(cat(
             paste0(
               "\nfieldWidth must be an integer value. Enter 'skip' to omit this information."
@@ -692,8 +711,14 @@ modify.mdJSON <-
       }
     }
 
-    # input.dxnry[["data"]][[1]][["attributes"]][["json"]] <-
-    #   rjson::toJSON(dictionarylist)
+    input.dxnry[["data"]][[1]][["attributes"]][["json"]] <-
+      rjson::toJSON(dictionarylist)
 
-    return(input.dxnry)
+    if (length(x[["data"]]) > 1) {
+      x[["data"]][[record.num]] <- input.dxnry[["data"]][[1]]
+
+      return(x)
+    } else {
+      return(input.dxnry)
+    }
   }
