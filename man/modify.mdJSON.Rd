@@ -11,7 +11,7 @@ modify.mdJSON(
 )
 }
 \arguments{
-\item{x}{List object converted from an mdJSON data dictionary file.}
+\item{x}{List object converted from an mdJSON file.}
 
 \item{how}{character string matching one of the modification options: see ‘Details’.}
 
@@ -26,16 +26,16 @@ Amends an mdJSON data dictionary, including adding/updating attributes and domai
 \examples{
 # Import mdJSON data dictionary as list
 path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-input.json <- rjson::fromJSON(file = path)
+input.dxnry <- rjson::fromJSON(file = path)
 
 # Add an attribute
-modified.json<- modify.mdJSON(x = input.json, how = "add_attribute", codeName = "WingArea")
+modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_attribute", codeName = "WingArea")
 
 #' # Add a domain
-modified.json<- modify.mdJSON(x = input.json, how = "add_domain")
+modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domain")
 
 # Convert list to JSON
-new.json = rjson::toJSON(x = new.list)
+new.json = rjson::toJSON(x = modified.dxnry)
 
 # Export JSON to disk
 write(x = new.json, file = "e.g.dictionary.json")

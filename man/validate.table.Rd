@@ -20,14 +20,14 @@ Compares a tabular data dictionary to a tabular dataset and summarizes discrepan
 \examples{
 # Import tabular data dictionary as data frame
 path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
-input.dict<-readxl::read_excel(path = path)
+input.dxnry<-readxl::read_excel(path = path)
 
 # Import tabular dataset as data frame
 path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 input.data<-read.csv(file = path, na.strings = "", stringsAsFactors = FALSE)
 
 # Validate data frame against data frame
-all.warnings<- validate.table(x = input.dict, y = input.data)
+all.warnings<- validate.table(x = input.dxnry, y = input.data)
 
 # Export table to disk
 write.csv(x = all.warnings, file = "e.g.warnings2.csv")

@@ -4,6 +4,7 @@
 #' @param x List object converted from an mdJSON file.
 #' @param how character string matching one of the modification options: see ‘Details’.
 #' @param codeName a string representing the attribute to add or modify.
+#' @param domainItem a string representing the domain item (entry value) to add to an attribute's domain.
 #' @return Returns a modified list object corresponding to the mdJSON data dictionary file.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```modify.mdJSON()```
@@ -32,7 +33,8 @@ modify.mdJSON <-
                    "add_domain",
                    "add_domainItem",
                    "update_attribute"),
-           codeName) {
+           codeName,
+           domainItem) {
 
 
     `%>%` <- magrittr::`%>%`
@@ -54,7 +56,7 @@ modify.mdJSON <-
     }
 
 
-    if (missing("codeName")) {
+    if (missing(codeName)) {
       codeName <- ""
       while (codeName == "") {
         message(cat(
@@ -62,6 +64,12 @@ modify.mdJSON <-
         ))
         codeName <- as.character(readline(prompt =))
       }
+    }
+
+    if (missing("domainItem")) {
+      domainItem_name.input <- ""
+    } else {
+      domainItem_name.input <- domainItem
     }
 
     dictionarylist <-
@@ -709,6 +717,21 @@ modify.mdJSON <-
         }
       }
     }
+
+    #### Update attribute info ####
+
+    if(how == "update_attribute"){
+
+
+
+
+
+
+    }
+
+
+
+
 
     input.dxnry[["data"]][[1]][["attributes"]][["json"]] <-
       rjson::toJSON(dictionarylist)

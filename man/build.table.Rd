@@ -4,14 +4,12 @@
 \alias{build.table}
 \title{Build Tabular Data Dictionaries}
 \usage{
-build.table(x, entity_num, dictionary_num)
+build.table(x, entity_num)
 }
 \arguments{
-\item{x}{List object converted from an mdJSON data dictionary file.}
+\item{x}{List object converted from an mdJSON file.}
 
 \item{entity_num}{Default=1. Integer indicating the entity if there is more than one in the mdJSON file.}
-
-\item{dictionary_num}{Default=1. Integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).}
 
 \item{y}{Data frame of a dataset.}
 }
@@ -24,10 +22,10 @@ Translates a list object converted from an mdEditor mdJSON data dictionary file 
 \examples{
 # Import mdJSON data dictionary as list
 path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-input.json <- rjson::fromJSON(file = path)
+input.list <- rjson::fromJSON(file = path)
 
 # Translate list to data frame
-new.table<- mdJSONdictio::build.table(x = input.json, dictionary_num = 1, entity_num = 1)
+new.table<- mdJSONdictio::build.table(x = input.list, dictionary_num = 1, entity_num = 1)
 
 # Export table to disk
 write.csv(x = new.table, file = "e.g.dictionary2.csv", na="", row.names = FALSE)

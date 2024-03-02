@@ -4,14 +4,12 @@
 \alias{validate.mdJSON}
 \title{Validate mdJSON Data Dictionaries}
 \usage{
-validate.mdJSON(x, y, dictionary_num = 1, entity_num = 1)
+validate.mdJSON(x, y, entity_num = 1)
 }
 \arguments{
-\item{x}{List object converted from an mdJSON data dictionary file.}
+\item{x}{List object converted from an mdJSON file.}
 
 \item{y}{Data frame of a dataset.}
-
-\item{dictionary_num}{Default=1. Integer indicating the dictionary if there is more than one in the mdJSON file (i.e. if multiple dictionaries are exported together in mdEditor).}
 
 \item{entity_num}{Default=1. Integer indicating the entity if there is more than one in the mdJSON file.}
 }
@@ -24,14 +22,14 @@ Compares an mdJSON data dictionary to a tabular dataset and summarizes discrepan
 \examples{
 # Import mdJSON data dictionary as list
 path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-input.dict <- rjson::fromJSON(file = path)
+input.dxnry <- rjson::fromJSON(file = path)
 
 # Import tabular dataset as data frame
 path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 input.data<-read.csv(file = path, na.strings = "", stringsAsFactors = FALSE)
 
 # Validate list against data frame
-all.warnings<- validate.mdJSON(x = input.dict, y = input.data, dictionary_num = 1, entity_num = 1)
+all.warnings<- validate.mdJSON(x = input.dxnry, y = input.data, entity_num = 1)
 
 # Export table to disk
 write.csv(x = all.warnings, file = "e.g.warnings.csv")
