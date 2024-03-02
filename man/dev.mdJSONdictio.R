@@ -1,15 +1,16 @@
 
+# Reload package with local changes
+setwd("C:/Users/hvincelette/OneDrive - DOI/Documents/GitHub/mdJSONdictio")
+
+remove.packages("mdJSONdictio")
+.rs.restartR()
+
+
 #### Update ####
 library(devtools)
 library(roxygen2)
 library(pkgdown)
 library(bookdown)
-
-
-# Reload package with local changes
-setwd("C:/Users/hvincelette/OneDrive - DOI/Documents/GitHub/mdJSONdictio")
-
-remove.packages("mdJSONdictio")
 
 document()
 load_all()
@@ -24,7 +25,8 @@ rmarkdown::render('vignettes/04_mdJSONdictio_Tutorial.Rmd')
 rmarkdown::render('vignettes/05_Next_Steps_mdEditor.Rmd')
 
 # Update site
-pkgdown::build_site()
+pkgdown::build_site_github_pages(examples = FALSE)
+pkgdown::build_site(examples = FALSE)
 
 # Update token
 gitcreds::gitcreds_set()

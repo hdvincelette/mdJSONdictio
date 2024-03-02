@@ -7,7 +7,8 @@
 modify.mdJSON(
   x,
   how = c("add_attribute", "add_domain", "add_domainItem", "update_attribute"),
-  codeName
+  codeName,
+  domainItem
 )
 }
 \arguments{
@@ -16,6 +17,8 @@ modify.mdJSON(
 \item{how}{character string matching one of the modification options: see ‘Details’.}
 
 \item{codeName}{a string representing the attribute to add or modify.}
+
+\item{domainItem}{a string representing the domain item (entry value) to add to an attribute's domain.}
 }
 \value{
 Returns a modified list object corresponding to the mdJSON data dictionary file.
