@@ -61,14 +61,15 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">modify.mdJSON</span><span class="op">(</span></span>
 <span>  <span class="va">x</span>,</span>
 <span>  how <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"add_attribute"</span>, <span class="st">"add_domain"</span>, <span class="st">"add_domainItem"</span>, <span class="st">"update_attribute"</span><span class="op">)</span>,</span>
-<span>  <span class="va">codeName</span></span>
+<span>  <span class="va">codeName</span>,</span>
+<span>  <span class="va">domainItem</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
-<dd><p>List object converted from an mdJSON data dictionary file.</p></dd>
+<dd><p>List object converted from an mdJSON file.</p></dd>
 
 
 <dt>how</dt>
@@ -77,6 +78,10 @@
 
 <dt>codeName</dt>
 <dd><p>a string representing the attribute to add or modify.</p></dd>
+
+
+<dt>domainItem</dt>
+<dd><p>a string representing the domain item (entry value) to add to an attribute's domain.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -94,16 +99,16 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># Import mdJSON data dictionary as list</span></span>
 <span><span class="va">path</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"e.g.dictionary2.json"</span>, package <span class="op">=</span> <span class="st">"mdJSONdictio"</span><span class="op">)</span></span>
-<span><span class="va">input.json</span> <span class="op">&lt;-</span> <span class="fu">rjson</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rjson/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">path</span><span class="op">)</span></span>
+<span><span class="va">input.dxnry</span> <span class="op">&lt;-</span> <span class="fu">rjson</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rjson/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">path</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Add an attribute</span></span>
-<span><span class="va">modified.json</span><span class="op">&lt;-</span> <span class="fu">modify.mdJSON</span><span class="op">(</span>x <span class="op">=</span> <span class="va">input.json</span>, how <span class="op">=</span> <span class="st">"add_attribute"</span>, codeName <span class="op">=</span> <span class="st">"WingArea"</span><span class="op">)</span></span>
+<span><span class="va">modified.dxnry</span><span class="op">&lt;-</span> <span class="fu">modify.mdJSON</span><span class="op">(</span>x <span class="op">=</span> <span class="va">input.dxnry</span>, how <span class="op">=</span> <span class="st">"add_attribute"</span>, codeName <span class="op">=</span> <span class="st">"WingArea"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co">#' # Add a domain</span></span>
-<span><span class="va">modified.json</span><span class="op">&lt;-</span> <span class="fu">modify.mdJSON</span><span class="op">(</span>x <span class="op">=</span> <span class="va">input.json</span>, how <span class="op">=</span> <span class="st">"add_domain"</span><span class="op">)</span></span>
+<span><span class="va">modified.dxnry</span><span class="op">&lt;-</span> <span class="fu">modify.mdJSON</span><span class="op">(</span>x <span class="op">=</span> <span class="va">input.dxnry</span>, how <span class="op">=</span> <span class="st">"add_domain"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Convert list to JSON</span></span>
-<span><span class="va">new.json</span> <span class="op">=</span> <span class="fu">rjson</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rjson/man/toJSON.html" class="external-link">toJSON</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">new.list</span><span class="op">)</span></span>
+<span><span class="va">new.json</span> <span class="op">=</span> <span class="fu">rjson</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rjson/man/toJSON.html" class="external-link">toJSON</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">modified.dxnry</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Export JSON to disk</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/write.html" class="external-link">write</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">new.json</span>, file <span class="op">=</span> <span class="st">"e.g.dictionary.json"</span><span class="op">)</span></span></code></pre></div>
