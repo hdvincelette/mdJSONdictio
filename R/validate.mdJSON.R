@@ -38,14 +38,13 @@ validate.mdJSON <- function(x, y, entity_num = 1) {
   #   input.dxnry <- x
   # }
 
-  a <- 1
-
 
   ## Parameter arguments
-  if (missing(entity_num))
+  if (missing(entity_num)) {
     a <- 1
-  else
+  }  else {
     a <- entity_num
+  }
 
 
 
