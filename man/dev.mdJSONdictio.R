@@ -25,6 +25,15 @@ rmarkdown::render('vignettes/04_mdJSONdictio_Tutorial.Rmd')
 rmarkdown::render('vignettes/05_Next_Steps_mdEditor.Rmd')
 
 # Update site
+pkgdown::deploy_to_branch(
+  clean = TRUE,
+  branch = "gh-pages",
+  remote = "origin",
+  github_pages = (branch == "gh-pages"),
+  subdir = NULL,
+  examples = FALSE
+)
+
 pkgdown::build_site_github_pages(examples = FALSE)
 pkgdown::build_site(examples = FALSE)
 
