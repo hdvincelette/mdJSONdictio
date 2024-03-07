@@ -287,7 +287,7 @@ validate.table <- function(x, y) {
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
                   Variable = colnames(data.NA[a]),
-                  Category = "dataType",
+                  Category = "dataType_datetime",
                   Message =  paste0(
                     'Dataset variable has entry value(s) not in standard ISO 1806 datetime format'
                   )
@@ -324,7 +324,7 @@ validate.table <- function(x, y) {
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
                   Variable = colnames(data.NA[a]),
-                  Category = "dataType",
+                  Category = "dataType_datetime",
                   Message =  paste0(
                     'Dataset variable has entry value(s) not in standard ISO 1806 time format'
                   )
@@ -367,7 +367,7 @@ validate.table <- function(x, y) {
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
                     Variable = colnames(data.NA[a]),
-                    Category = "dataType",
+                    Category = "dataType_maxLength",
                     Message =  paste0(
                       'Dataset variable has entry value(s) with a greater length (',
                       MaxLength,
@@ -415,9 +415,9 @@ validate.table <- function(x, y) {
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
                     Variable = colnames(data.NA[a]),
-                    Category = "dataType",
+                    Category = "dataType_maxPrecision",
                     Message =  paste0(
-                      'Dataset variable has entry value(s) greater precision (',
+                      'Dataset variable has entry value(s) with greater precision (',
                       MaxPrecision,
                       ') than allowed for the datatype (',
                       datatype.rules$MaxPrecision[cc],
@@ -460,7 +460,7 @@ validate.table <- function(x, y) {
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
                     Variable = colnames(data.NA[a]),
-                    Category = "dataType",
+                    Category = "dataType_minValue",
                     Message =  paste0(
                       'Dataset variable has entry value(s) with a smaller value (',
                       MinValue,
@@ -505,7 +505,7 @@ validate.table <- function(x, y) {
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
                     Variable = colnames(data.NA[a]),
-                    Category = "dataType",
+                    Category = "dataType_maxValue",
                     Message =  paste0(
                       'Dataset variable has entry value(s) with a greater value (',
                       MaxValue,
@@ -550,7 +550,7 @@ validate.table <- function(x, y) {
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
                     Variable = colnames(data.NA[a]),
-                    Category = "dataType",
+                    Category = "dataType_distinctValue",
                     Message =  paste0(
                       'Dataset variable has a greater number of distinct values (',
                       DistinctValue,
@@ -597,7 +597,7 @@ validate.table <- function(x, y) {
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
                     Variable = colnames(data.NA[a]),
-                    Category = "dataType",
+                    Category = "dataType_distinctLength",
                     Message =  paste0(
                       'Dataset variable has entry values with more than one length (',
                       DistinctLength,
