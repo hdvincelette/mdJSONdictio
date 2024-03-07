@@ -4,7 +4,7 @@
 #' @param x List object converted from an mdJSON file.
 #' @param how character string matching one of the modification options: see ‘Details’.
 #' @param codeName a string representing the attribute to add or modify.
-#' @param domainItem a string representing the domain item (entry value) to add to an attribute's domain.
+#' @param domainItem_value a string representing the domain item (entry value) to add to an attribute's domain.
 #' @return Returns a modified list object corresponding to the mdJSON data dictionary file.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```modify.mdJSON()```
@@ -17,8 +17,11 @@
 #' # Add an attribute
 #' modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_attribute", codeName = "WingArea")
 #'
-#' #' # Add a domain
+#' # Add a domain
 #' modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domain")
+#'
+#' # Add a domain item
+#' modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domainItem", codeName = "WingArea", domainItem_value = "U")
 #'
 #' # Convert list to JSON
 #' new.json = rjson::toJSON(x = modified.dxnry)
@@ -34,7 +37,15 @@ modify.mdJSON <-
                    "add_domainItem",
                    "update_attribute"),
            codeName,
-           domainItem) {
+           domainItem,
+           allowNull,
+           dataType,
+           unitsResolution,
+           fieldWidth,
+           missingValue,
+           minValue,
+           maxValue) {
+
 
 
     `%>%` <- magrittr::`%>%`
@@ -66,11 +77,49 @@ modify.mdJSON <-
       }
     }
 
-    if (missing("domainItem")) {
-      domainItem_name.input <- ""
+    if (missing(domainItem)) {
+      domainItem_value.input <- ""
     } else {
-      domainItem_name.input <- domainItem
+      domainItem_value.input <- domainItem
     }
+    if (missing(allowNull)) {
+      allowNull.input <- ""
+    } else {
+      allowNull.input <- allowNull
+    }
+    if (missing(dataType)) {
+      dataType.input <- ""
+    } else {
+      dataType.input <- dataType
+    }
+    if (missing(unitsResolution)) {
+      unitsResolution.input <- ""
+    } else {
+      unitsResolution.input <- unitsResolution
+    }
+    if (missing(fieldWidth)) {
+      fieldWidth.input <- ""
+    } else {
+      fieldWidth.input <- fieldWidth
+    }
+    if (missing(missingValue)) {
+      missingValue.input <- ""
+    } else {
+      missingValue.input <- missingValue
+    }
+    if (missing(minValue)) {
+      minValue.input <- ""
+    } else {
+      minValue.input <- minValue
+    }
+    if (missing(maxValue)) {
+      maxValue.input <- ""
+    } else {
+      maxValue.input <- maxValue
+    }
+
+
+
 
     dictionarylist <-
       rjson::fromJSON(input.dxnry[["data"]][[1]][["attributes"]][["json"]])
@@ -369,7 +418,7 @@ modify.mdJSON <-
               while (domainItem_value.input == "") {
                 message(cat(
                   paste0(
-                    "\nREQUIRED: Provide a value (entry value) for the domain item '",
+                    "\nREQUIRED: Provide an entry value for the domain item '",
                     domainItem_name.input,
                     "'."
                   )
@@ -508,7 +557,7 @@ modify.mdJSON <-
             while (domainItem_value.input == "") {
               message(cat(
                 paste0(
-                  "\nREQUIRED: Provide a value (entry value) for the domain item '",
+                  "\nREQUIRED: Provide an entry value for the domain item '",
                   domainItem_name.input,
                   "'."
                 )
@@ -647,36 +696,40 @@ modify.mdJSON <-
             domainItem.num <- 1
           }
 
-          ## domainItem name
-          domainItem_name.input <- ""
-
-          while (domainItem_name.input == "") {
-            message(cat(
-              paste0("\nREQUIRED: Provide a name for the new domain item.")
-            ))
-            domainItem_name.input <-
-              as.character(readline(prompt = ))
-          }
-          newdomainItems[[domainItem.num]][["name"]] <-
-            domainItem_name.input
-
-
           ## domainItem value
-          domainItem_value.input <- ""
+          if (domainItem_value.input == "") {
+            domainItem_value.input <- ""
 
-          while (domainItem_value.input == "") {
-            message(cat(
-              paste0(
-                "\nREQUIRED: Provide a value (entry value) for the domain item '",
-                domainItem_name.input,
-                "'."
-              )
-            ))
-            domainItem_value.input <-
-              as.character(readline(prompt =))
+            while (domainItem_value.input == "") {
+              message(cat(
+                paste0(
+                  "\nREQUIRED: Provide the new entry value for the attribute '",
+                  codeName,
+                  "'."
+                )
+              ))
+              domainItem_value.input <-
+                as.character(readline(prompt =))
+            }
           }
           newdomainItems[[domainItem.num]][["value"]] <-
             domainItem_value.input
+
+
+          ## domainItem name
+            domainItem_name.input <- ""
+
+            while (domainItem_name.input == "") {
+              message(cat(paste0(
+                "\nREQUIRED: Provide a name for the new entry value '",
+                domainItem_value.input,
+                "'."
+              )))
+              domainItem_name.input <-
+                as.character(readline(prompt =))
+            }
+          newdomainItems[[domainItem.num]][["name"]] <-
+            domainItem_name.input
 
 
           ## domainItem definition
@@ -720,7 +773,58 @@ modify.mdJSON <-
 
     #### Update attribute info ####
 
-    if(how == "update_attribute"){
+    if (how == "update_attribute") {
+      ## Find attribute number
+      attribute.num <- c()
+      for (a in 1:length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]])) {
+        if (dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[a]][["codeName"]] ==
+            codeName) {
+          attribute.num <- c(attribute.num, a)
+        }
+      }
+
+      ## Check if a single attribute exists
+      if (length(attribute.num) > 1) {
+        message(cat(
+          paste0(
+            "Operation canceled. More than one attribute with the codeName '",
+            codeName,
+            "' was found. Correct one or both attributes before proceeding."
+          )
+        ))
+      } else if (length(attribute.num) == 0) {
+        message(cat(
+          paste0(
+            "Operation canceled. No attribute with the codeName '",
+            codeName,
+            "' was found."
+          )
+        ))
+
+      }
+
+      ## allowNull
+      # change to yes or no
+
+      ## dataType
+      # update to input dataType or choose from the dataType vector
+
+      ## unitsResolution
+      # update to input or enter a numeric value
+
+      ## fieldWidth
+      # update to input or enter an integer
+
+      ## missingValue
+      # update to input or enter a new value
+
+      ## minValue
+      # update to input or enter a new value
+
+      ## maxValue
+      # update to input or enter a new value
+
+
 
 
 
