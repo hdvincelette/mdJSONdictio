@@ -62,7 +62,14 @@
 <span>  <span class="va">x</span>,</span>
 <span>  how <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"add_attribute"</span>, <span class="st">"add_domain"</span>, <span class="st">"add_domainItem"</span>, <span class="st">"update_attribute"</span><span class="op">)</span>,</span>
 <span>  <span class="va">codeName</span>,</span>
-<span>  <span class="va">domainItem</span></span>
+<span>  <span class="va">domainItem</span>,</span>
+<span>  <span class="va">allowNull</span>,</span>
+<span>  <span class="va">dataType</span>,</span>
+<span>  <span class="va">unitsResolution</span>,</span>
+<span>  <span class="va">fieldWidth</span>,</span>
+<span>  <span class="va">missingValue</span>,</span>
+<span>  <span class="va">minValue</span>,</span>
+<span>  <span class="va">maxValue</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -80,7 +87,7 @@
 <dd><p>a string representing the attribute to add or modify.</p></dd>
 
 
-<dt>domainItem</dt>
+<dt>domainItem_value</dt>
 <dd><p>a string representing the domain item (entry value) to add to an attribute's domain.</p></dd>
 
 </dl></div>
@@ -104,8 +111,11 @@
 <span><span class="co"># Add an attribute</span></span>
 <span><span class="va">modified.dxnry</span><span class="op">&lt;-</span> <span class="fu">modify.mdJSON</span><span class="op">(</span>x <span class="op">=</span> <span class="va">input.dxnry</span>, how <span class="op">=</span> <span class="st">"add_attribute"</span>, codeName <span class="op">=</span> <span class="st">"WingArea"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#' # Add a domain</span></span>
+<span><span class="co"># Add a domain</span></span>
 <span><span class="va">modified.dxnry</span><span class="op">&lt;-</span> <span class="fu">modify.mdJSON</span><span class="op">(</span>x <span class="op">=</span> <span class="va">input.dxnry</span>, how <span class="op">=</span> <span class="st">"add_domain"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Add a domain item</span></span>
+<span><span class="va">modified.dxnry</span><span class="op">&lt;-</span> <span class="fu">modify.mdJSON</span><span class="op">(</span>x <span class="op">=</span> <span class="va">input.dxnry</span>, how <span class="op">=</span> <span class="st">"add_domainItem"</span>, codeName <span class="op">=</span> <span class="st">"WingArea"</span>, domainItem_value <span class="op">=</span> <span class="st">"U"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Convert list to JSON</span></span>
 <span><span class="va">new.json</span> <span class="op">=</span> <span class="fu">rjson</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rjson/man/toJSON.html" class="external-link">toJSON</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">modified.dxnry</span><span class="op">)</span></span>
