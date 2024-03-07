@@ -120,7 +120,6 @@ modify.mdJSON <-
 
 
 
-
     dictionarylist <-
       rjson::fromJSON(input.dxnry[["data"]][[1]][["attributes"]][["json"]])
 
@@ -803,7 +802,9 @@ modify.mdJSON <-
 
       }
 
+
       ## allowNull
+      if(allowNull == "")
       # change to yes or no
 
       ## dataType
