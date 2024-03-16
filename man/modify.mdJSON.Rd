@@ -8,7 +8,14 @@ modify.mdJSON(
   x,
   how = c("add_attribute", "add_domain", "add_domainItem", "update_attribute"),
   codeName,
-  domainItem
+  domainItem,
+  allowNull,
+  dataType,
+  unitsResolution,
+  fieldWidth,
+  missingValue,
+  minValue,
+  maxValue
 )
 }
 \arguments{
@@ -18,7 +25,7 @@ modify.mdJSON(
 
 \item{codeName}{a string representing the attribute to add or modify.}
 
-\item{domainItem}{a string representing the domain item (entry value) to add to an attribute's domain.}
+\item{domainItem_value}{a string representing the domain item (entry value) to add to an attribute's domain.}
 }
 \value{
 Returns a modified list object corresponding to the mdJSON data dictionary file.
@@ -34,8 +41,11 @@ input.dxnry <- rjson::fromJSON(file = path)
 # Add an attribute
 modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_attribute", codeName = "WingArea")
 
-#' # Add a domain
+# Add a domain
 modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domain")
+
+# Add a domain item
+modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domainItem", codeName = "WingArea", domainItem_value = "U")
 
 # Convert list to JSON
 new.json = rjson::toJSON(x = modified.dxnry)
