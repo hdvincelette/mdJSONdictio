@@ -52,11 +52,12 @@
 # add summary an prompts to cancel or approve
 # parameter to turn off update prompts
 
-# add_attribute: link to an existing domain based on domainName
-# update_attribute: link to an existing domain based on domainName
 # remove domain item, attribute, domain
 
 # double quote - readline
+# test<- as.character(readline(prompt =))
+# test<- stringr::str_remove_all(test, "\"")
+
 
 
 modify.mdJSON <-
@@ -87,6 +88,8 @@ modify.mdJSON <-
            domainItem_definition = NULL) {
     `%>%` <- magrittr::`%>%`
 
+
+    #### Extract dictionary list ####
     if (length(x[["data"]]) > 1) {
       input.dxnry <-
         extract.mdJSON(x = x,
@@ -108,7 +111,7 @@ modify.mdJSON <-
       rjson::fromJSON(input.dxnry[["data"]][[1]][["attributes"]][["json"]])
 
 
-
+    #### Check parameters ####
     definedparam <- c()
 
     if (missing(codeName)) {
@@ -120,7 +123,7 @@ modify.mdJSON <-
           message(cat(paste0(
             "\nREQUIRED: Provide the attribute codeName."
           )))
-          codeName.input <- as.character(readline(prompt = ))
+          codeName.input <- as.character(readline(prompt =))
         }
         definedparam <- c(definedparam, "codeName")
       }
@@ -221,7 +224,7 @@ modify.mdJSON <-
             "\nREQUIRED: Provide the domain name."
           )))
 
-          domainName.input <- as.character(readline(prompt =))
+          domainName.input <- as.character(readline(prompt = ))
 
         }
         definedparam <- c(definedparam, "domainName")
@@ -332,7 +335,7 @@ modify.mdJSON <-
                 "'."
               )
             ))
-            definition.input <- as.character(readline(prompt = ))
+            definition.input <- as.character(readline(prompt =))
           }
         }
         newattribute[[1]][["definition"]] <- definition.input
@@ -347,7 +350,7 @@ modify.mdJSON <-
               "' (e.g., meters, atmospheres, liters).\nPress Enter to omit this information."
             )
           ))
-          units.input <- as.character(readline(prompt =))
+          units.input <- as.character(readline(prompt = ))
         }
         newattribute[[1]][["units"]] <- units.input
 
@@ -361,7 +364,7 @@ modify.mdJSON <-
               "' is measured (e.g., 1, .1, .01).\nPress Enter to omit this information."
             )
           ))
-          unitsResolution.input <- as.character(readline(prompt = ))
+          unitsResolution.input <- as.character(readline(prompt =))
         }
 
         if (unitsResolution.input != "") {
@@ -372,7 +375,7 @@ modify.mdJSON <-
               )
             ))
             unitsResolution.input <-
-              as.character(readline(prompt =))
+              as.character(readline(prompt = ))
 
             if (unitsResolution.input == "")
             {
@@ -419,7 +422,7 @@ modify.mdJSON <-
                 "' (e.g., NA, na, -).\nPress Enter to omit this information."
               )
             ))
-            missingValue.input <- as.character(readline(prompt = ))
+            missingValue.input <- as.character(readline(prompt =))
             newattribute[[1]][["missingValue"]] <-
               missingValue.input
           }
@@ -435,7 +438,7 @@ modify.mdJSON <-
               "'.\nPress Enter to omit this information."
             )
           ))
-          minValue.input <- as.character(readline(prompt = ))
+          minValue.input <- as.character(readline(prompt =))
         }
         newattribute[[1]][["minValue"]] <- minValue.input
 
@@ -449,7 +452,7 @@ modify.mdJSON <-
               "'.\nPress Enter to omit this information."
             )
           ))
-          maxValue.input <- as.character(readline(prompt =))
+          maxValue.input <- as.character(readline(prompt = ))
         }
         newattribute[[1]][["maxValue"]] <- maxValue.input
 
@@ -462,7 +465,7 @@ modify.mdJSON <-
               "'.\nPress Enter to omit this information."
             )
           ))
-          fieldWidth.input <- as.character(readline(prompt = ))
+          fieldWidth.input <- as.character(readline(prompt =))
         }
 
         while (!grepl("[^[:digit:]]",
@@ -476,7 +479,7 @@ modify.mdJSON <-
               "\nThe field width must be an integer.\nPress Enter to omit this information."
             )
           ))
-          fieldWidth.input <- as.character(readline(prompt = ))
+          fieldWidth.input <- as.character(readline(prompt =))
 
         }
 
@@ -525,7 +528,7 @@ modify.mdJSON <-
               "'. Press Enter to omit this information."
             )
           ))
-          domainId.input <- as.character(readline(prompt =))
+          domainId.input <- as.character(readline(prompt = ))
 
           if (domainId.input != "") {
             if (domainId.input %in% sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "domainId")) {
@@ -600,7 +603,7 @@ modify.mdJSON <-
                   paste0("\nREQUIRED: Provide a name for the domain.")
                 ))
                 domainName.input <-
-                  as.character(readline(prompt =))
+                  as.character(readline(prompt = ))
               }
             }
             newdomain[[1]][["codeName"]] <-
@@ -617,7 +620,7 @@ modify.mdJSON <-
                   )
                 ))
                 domainDescription.input <-
-                  as.character(readline(prompt =))
+                  as.character(readline(prompt = ))
               }
             }
             newdomain[[1]][["description"]] <-
@@ -664,7 +667,7 @@ modify.mdJSON <-
                   )
                 ))
                 domainItem_name.input <-
-                  as.character(readline(prompt = ))
+                  as.character(readline(prompt =))
               }
               newdomain[[1]][["domainItem"]][[domainItem.num]][["name"]] <-
                 domainItem_name.input
@@ -682,7 +685,7 @@ modify.mdJSON <-
                   )
                 ))
                 domainItem_value.input <-
-                  as.character(readline(prompt =))
+                  as.character(readline(prompt = ))
               }
               newdomain[[1]][["domainItem"]][[domainItem.num]][["value"]] <-
                 domainItem_value.input
@@ -700,7 +703,7 @@ modify.mdJSON <-
                   )
                 ))
                 domainItem_defintion.input <-
-                  as.character(readline(prompt = ))
+                  as.character(readline(prompt =))
               }
               newdomain[[1]][["domainItem"]][[domainItem.num]][["definition"]] <-
                 domainItem_defintion.input
@@ -841,7 +844,7 @@ modify.mdJSON <-
                 "\nREQUIRED: Provide a name for the domain."
               )))
               domainName.input <-
-                as.character(readline(prompt = ))
+                as.character(readline(prompt =))
             }
           }
           newdomain[[1]][["codeName"]] <-
@@ -858,7 +861,7 @@ modify.mdJSON <-
                 )
               ))
               domainDescription.input <-
-                as.character(readline(prompt = ))
+                as.character(readline(prompt =))
             }
           }
           newdomain[[1]][["description"]] <-
@@ -903,7 +906,7 @@ modify.mdJSON <-
                 paste0("\nREQUIRED: Provide a name for the new domain item.")
               ))
               domainItem_name.input <-
-                as.character(readline(prompt =))
+                as.character(readline(prompt = ))
             }
             newdomain[[1]][["domainItem"]][[domainItem.num]][["name"]] <-
               domainItem_name.input
@@ -921,7 +924,7 @@ modify.mdJSON <-
                 )
               ))
               domainItem_value.input <-
-                as.character(readline(prompt = ))
+                as.character(readline(prompt =))
             }
             newdomain[[1]][["domainItem"]][[domainItem.num]][["value"]] <-
               domainItem_value.input
@@ -939,7 +942,7 @@ modify.mdJSON <-
                 )
               ))
               domainItem_defintion.input <-
-                as.character(readline(prompt =))
+                as.character(readline(prompt = ))
             }
             newdomain[[1]][["domainItem"]][[domainItem.num]][["definition"]] <-
               domainItem_defintion.input
@@ -1073,7 +1076,7 @@ modify.mdJSON <-
                 )
               ))
               domainItem_value.input <-
-                as.character(readline(prompt = ))
+                as.character(readline(prompt =))
             }
           }
           newdomainItems[[domainItem.num]][["value"]] <-
@@ -1092,7 +1095,7 @@ modify.mdJSON <-
               )
             ))
             domainItem_name.input <-
-              as.character(readline(prompt = ))
+              as.character(readline(prompt =))
           }
           newdomainItems[[domainItem.num]][["name"]] <-
             domainItem_name.input
@@ -1110,7 +1113,7 @@ modify.mdJSON <-
               )
             ))
             domainItem_defintion.input <-
-              as.character(readline(prompt =))
+              as.character(readline(prompt = ))
           }
           newdomainItems[[domainItem.num]][["definition"]] <-
             domainItem_defintion.input
@@ -1403,7 +1406,8 @@ modify.mdJSON <-
                 "'\nEnter 'rm()' to remove the current value. Press Enter to abort changes."
               )
             ))
-            unitsResolution.input <- as.character(readline(prompt =))
+            unitsResolution.input <-
+              as.character(readline(prompt =))
 
             if (unitsResolution.input == "rm()") {
               newattribute[["unitsResolution"]] <-
@@ -1475,7 +1479,8 @@ modify.mdJSON <-
                   "'.\nEnter 'rm()' to remove the current value. Press Enter to abort changes."
                 )
               ))
-              missingValue.input <- as.character(readline(prompt =))
+              missingValue.input <-
+                as.character(readline(prompt =))
 
               if (missingValue.input == "rm()") {
                 newattribute[["missingValue"]] <- ""
@@ -1647,15 +1652,19 @@ modify.mdJSON <-
 
         }
       }
-
-      input.dxnry[["data"]][[1]][["attributes"]][["json"]] <-
-        rjson::toJSON(dictionarylist)
-
-      if (length(x[["data"]]) > 1) {
-        x[["data"]][[record.num]] <- input.dxnry[["data"]][[1]]
-
-        return(x)
-      } else {
-        return(input.dxnry)
-      }
     }
+
+    #### Update domain info ####
+
+    #### Reattach dictionary list ####
+    input.dxnry[["data"]][[1]][["attributes"]][["json"]] <-
+      rjson::toJSON(dictionarylist)
+
+    if (length(x[["data"]]) > 1) {
+      x[["data"]][[record.num]] <- input.dxnry[["data"]][[1]]
+
+      return(x)
+    } else {
+      return(input.dxnry)
+    }
+  }
