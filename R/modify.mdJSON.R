@@ -2,9 +2,24 @@
 #'
 #' Amends an mdJSON data dictionary, including adding/updating attributes and domains.
 #' @param x List object converted from an mdJSON file.
-#' @param how character string matching one of the modification options: see ‘Details’.
-#' @param codeName a string representing the attribute to add or modify.
-#' @param domainItem_value a string representing the domain item (entry value) to add to an attribute's domain.
+#' @param how Character string matching one of the modification options: see ‘Details’.
+#' @param codeName Optional character string. Name of the attribute to add or modify.
+#' @param allowNull Optional logical (TRUE/FALSE). Whether null values are permissible for the attribute indicated with 'codeName'.
+#' @param dataType Optional character string. Datatype of the attribute indicated with 'codeName'.
+#' @param definition Optional character string. Definition of the attribute indicated with 'codeName'.
+#' @param units Optional character string. Unit-of-measure for the attribute indicated with 'codeName'.
+#' @param unitsResolution Optional numeric. Smallest increment of measurement for the attribute indicated with 'codeName'.
+#' @param isCaseSensitive Optional logical (TRUE/FALSE). Whether case-sensitive ASCII encoding is used for the attribute indicated with 'codeName'.
+#' @param missingValue Optional character string. Code representing missing values of the attribute indicated with 'codeName'.
+#' @param minValue Optional character string. Minimum value permissible for the attribute indicated with 'codeName'.
+#' @param maxValue Optional character string. Maximum value permissible for the attribute indicated with 'codeName'.
+#' @param fieldWidth Optional integer. Field width of the attribute indicated with 'codeName'.
+#' @param domainId Optional character string. Universally Unique Identifier (UUID) of the attribute or domain indicated with 'codeName' or domainName', respectively.
+#' @param domainName Optional character string. Name of the domain to add or modify.
+#' @param domainDescription Optional character string. Description of the domain indicated with 'domainName'.
+#' @param domainItem_value Optional character string. Value of the domain item (entry value) indicated with 'domainName'. Only applicable to how = 'add_domainItem'.
+#' @param domainItem_name Optional character string. Name of the domain item (entry value) indicated with 'domainItem_value'. Only applicable to how = 'add_domainItem'.
+#' @param domainItem_definition Optional character string. Definition of the domain item (entry value) indicated with 'domainItem_value'. Only applicable to how = 'add_domainItem'.
 #' @return Returns a modified list object corresponding to the mdJSON data dictionary file.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```modify.mdJSON()```
@@ -23,32 +38,53 @@
 #' # Add a domain item
 #' modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domainItem", codeName = "WingArea", domainItem_value = "U")
 #'
+#' # Update attribute datatype and allowNull values
+#' modified.dxnry<- modify.mdJSON(x = ref.dictionary, how = "update_attribute", codeName = "BandSize", dataType = "Integer", allowNull = TRUE)
+#'
 #' # Convert list to JSON
 #' new.json = rjson::toJSON(x = modified.dxnry)
 #'
 #' # Export JSON to disk
 #' write(x = new.json, file = "e.g.dictionary.json")
 
+
+
+# add summary an prompts to cancel or approve
 # parameter to turn off update prompts
+
+# add_attribute: link to an existing domain based on domainName
+# update_attribute: link to an existing domain based on domainName
+# remove domain item, attribute, domain
+
+# double quote - readline
+
 
 modify.mdJSON <-
   function(x,
-           how = c("add_attribute",
-                   "add_domain",
-                   "add_domainItem",
-                   "update_attribute"),
-           codeName,
-           domainItem,
-           allowNull,
-           dataType,
-           definition,
-           units,
-           unitsResolution,
-           isCaseSensitive,
-           missingValue,
-           minValue,
-           maxValue,
-           fieldWidth) {
+           how = c(
+             "add_attribute",
+             "add_domain",
+             "add_domainItem",
+             "update_attribute",
+             "update_domain"
+           ),
+           codeName = NULL,
+           allowNull = NULL,
+           dataType = NULL,
+           definition = NULL,
+           units = NULL,
+           unitsResolution = NULL,
+           isCaseSensitive = NULL,
+           missingValue = NULL,
+           minValue = NULL,
+           maxValue = NULL,
+           fieldWidth = NULL,
+           domainId = NULL,
+           domainName = NULL,
+           domainDescription = NULL,
+           domainItem_value = NULL,
+           domainItem_name = NULL,
+           domainItem_definition = NULL) {
     `%>%` <- magrittr::`%>%`
 
     if (length(x[["data"]]) > 1) {
@@ -68,20 +104,29 @@ modify.mdJSON <-
     }
 
 
-    if (missing(codeName)) {
-      codeName <- ""
-      while (codeName == "") {
-        message(cat(
-          paste0("\nREQUIRED: Provide the attribute or domain codeName.")
-        ))
-        codeName <- as.character(readline(prompt = ))
-      }
-    }
+    dictionarylist <-
+      rjson::fromJSON(input.dxnry[["data"]][[1]][["attributes"]][["json"]])
 
-    if (missing(domainItem)) {
-      domainItem_value.input <- ""
+
+
+    definedparam <- c()
+
+    if (missing(codeName)) {
+      codeName.input <- ""
+      if (how %in% c("add_attribute",
+                     "add_domain",
+                     "update_attribute")) {
+        while (codeName == "") {
+          message(cat(paste0(
+            "\nREQUIRED: Provide the attribute codeName."
+          )))
+          codeName.input <- as.character(readline(prompt = ))
+        }
+        definedparam <- c(definedparam, "codeName")
+      }
     } else {
-      domainItem_value.input <- domainItem
+      codeName.input <- codeName
+      definedparam <- c(definedparam, "codeName")
     }
     if (missing(allowNull)) {
       allowNull.input <- ""
@@ -90,6 +135,7 @@ modify.mdJSON <-
       allowNull.input <- ""
     } else {
       allowNull.input <- allowNull
+      definedparam <- c(definedparam, "allowNull")
     }
     if (missing(dataType)) {
       dataType.input <- ""
@@ -98,16 +144,19 @@ modify.mdJSON <-
       dataType.input <- ""
     } else {
       dataType.input <- dataType
+      definedparam <- c(definedparam, "dataType")
     }
     if (missing(definition)) {
       definition.input <- ""
     } else {
       definition.input <- definition
+      definedparam <- c(definedparam, "definition")
     }
     if (missing(units)) {
       units.input <- ""
     } else {
       units.input <- units
+      definedparam <- c(definedparam, "units")
     }
     if (missing(unitsResolution)) {
       unitsResolution.input <- ""
@@ -116,6 +165,7 @@ modify.mdJSON <-
       unitsResolution.input <- ""
     } else {
       unitsResolution.input <- unitsResolution
+      definedparam <- c(definedparam, "unitsResolution")
     }
     if (missing(isCaseSensitive)) {
       isCaseSensitive.input <- ""
@@ -124,21 +174,25 @@ modify.mdJSON <-
       isCaseSensitive.input <- ""
     } else {
       isCaseSensitive.input <- isCaseSensitive
+      definedparam <- c(definedparam, "isCaseSensitive")
     }
     if (missing(missingValue)) {
       missingValue.input <- ""
     } else {
       missingValue.input <- missingValue
+      definedparam <- c(definedparam, "missingValue")
     }
     if (missing(minValue)) {
       minValue.input <- ""
     } else {
       minValue.input <- minValue
+      definedparam <- c(definedparam, "minValue")
     }
     if (missing(maxValue)) {
       maxValue.input <- ""
     } else {
       maxValue.input <- maxValue
+      definedparam <- c(definedparam, "maxValue")
     }
     if (missing(fieldWidth)) {
       fieldWidth.input <- ""
@@ -150,13 +204,56 @@ modify.mdJSON <-
       fieldWidth.input <- ""
     } else {
       fieldWidth.input <- fieldWidth
+      definedparam <- c(definedparam, "fieldWidth")
     }
+    if (missing(domainId)) {
+      domainId.input <- ""
+    } else {
+      domainId.input <- domainId
+    }
+    if (missing(domainName)) {
+      domainName.input <- ""
+      if (domainId.input == "" &
+          how %in% c("update_domain",
+                     "add_domainItem")) {
+        while (domainName.input == "") {
+          message(cat(paste0(
+            "\nREQUIRED: Provide the domain name."
+          )))
 
+          domainName.input <- as.character(readline(prompt =))
 
-
-    dictionarylist <-
-      rjson::fromJSON(input.dxnry[["data"]][[1]][["attributes"]][["json"]])
-
+        }
+        definedparam <- c(definedparam, "domainName")
+      }
+    } else {
+      domainName.input <- domainName
+      definedparam <- c(definedparam, "domainName")
+    }
+    if (missing(domainDescription)) {
+      domainDescription.input <- ""
+    } else {
+      domainDescription.input <- domainDescription
+      definedparam <- c(definedparam, "domainDescription")
+    }
+    if (missing(domainItem_name)) {
+      domainItem_name.input <- ""
+    } else {
+      domainItem_name.input <- domainItem_name
+      definedparam <- c(definedparam, "domainItem_name")
+    }
+    if (missing(domainItem_value)) {
+      domainItem_value.input <- ""
+    } else {
+      domainItem_value.input <- domainItem_value
+      definedparam <- c(definedparam, "domainItem_value")
+    }
+    if (missing(domainItem_definition)) {
+      domainItem_definition.input <- ""
+    } else {
+      domainItem_definition.input <- domainItem_definition
+      definedparam <- c(definedparam, "domainItem_definition")
+    }
 
     #### Add an attribute (and domain - optional) ####
     if (how == "add_attribute") {
@@ -164,7 +261,7 @@ modify.mdJSON <-
       attribute.num <- c()
       for (a in 1:length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]])) {
         if (dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[a]][["codeName"]] ==
-            codeName) {
+            codeName.input) {
           attribute.num <- c(attribute.num, a)
         }
       }
@@ -173,14 +270,14 @@ modify.mdJSON <-
         message(cat(
           paste0(
             "Operation canceled. An attribute with the codeName '",
-            codeName,
+            codeName.input,
             "' already exists."
           )
         ))
       } else {
         newattribute <- blankattribute
 
-        newattribute[[1]][["codeName"]] <- codeName
+        newattribute[[1]][["codeName"]] <- codeName.input
 
         ## attribute allowNull
         if (allowNull.input == "") {
@@ -193,7 +290,7 @@ modify.mdJSON <-
                             cat(
                               paste0(
                                 "\nREQUIRED: Are null values permitted for the attribute '",
-                                codeName,
+                                codeName.input,
                                 "'?\n"
                               )
                             ))
@@ -214,7 +311,7 @@ modify.mdJSON <-
                           title = cat(
                             paste0(
                               "\nREQUIRED: Select the datatype/format for entry values of the attribute '",
-                              codeName,
+                              codeName.input,
                               "'.\n"
                             )
                           ))
@@ -231,7 +328,7 @@ modify.mdJSON <-
             message(cat(
               paste0(
                 "\nREQUIRED: Provide a definition for the attribute '",
-                codeName,
+                codeName.input,
                 "'."
               )
             ))
@@ -246,7 +343,7 @@ modify.mdJSON <-
           message(cat(
             paste0(
               "\nOPTIONAL: Provide the unit-of-measure for the attribute '",
-              codeName,
+              codeName.input,
               "' (e.g., meters, atmospheres, liters).\nPress Enter to omit this information."
             )
           ))
@@ -260,21 +357,29 @@ modify.mdJSON <-
           message(cat(
             paste0(
               "\nOPTIONAL: Provide the smallest unit increment (numeric) to which the attribute '",
-              codeName,
+              codeName.input,
               "' is measured (e.g., 1, .1, .01).\nPress Enter to omit this information."
             )
           ))
           unitsResolution.input <- as.character(readline(prompt = ))
         }
 
-        while (suppressWarnings(is.na(as.numeric(unitsResolution.input))) == TRUE) {
-          message(cat(
-            paste0(
-              "\nInvalid entry: unit resolution must be numeric.\nPress Enter to omit this information."
-            )
-          ))
-          unitsResolution.input <- as.character(readline(prompt = ))
+        if (unitsResolution.input != "") {
+          while (suppressWarnings(is.na(as.numeric(unitsResolution.input))) == TRUE) {
+            message(cat(
+              paste0(
+                "\nInvalid entry: unit resolution must be numeric.\nPress Enter to omit this information."
+              )
+            ))
+            unitsResolution.input <-
+              as.character(readline(prompt =))
 
+            if (unitsResolution.input == "")
+            {
+              break
+            }
+
+          }
         }
 
         newattribute[[1]][["unitsResolution"]] <-
@@ -289,7 +394,7 @@ modify.mdJSON <-
                           cat(
                             paste0(
                               "\nOPTIONAL: Are the entry values of the attribute '",
-                              codeName,
+                              codeName.input,
                               "' encoded in case-sensitive ASCII?\nEnter '0' to omit this information.\n"
                             )
                           ))
@@ -310,7 +415,7 @@ modify.mdJSON <-
             message(cat(
               paste0(
                 "\nOPTIONAL: Provide the code which represents missing entry values for the attribute '",
-                codeName,
+                codeName.input,
                 "' (e.g., NA, na, -).\nPress Enter to omit this information."
               )
             ))
@@ -326,7 +431,7 @@ modify.mdJSON <-
           message(cat(
             paste0(
               "\nOPTIONAL: Provide the minimum value permissible for the attribute '",
-              codeName,
+              codeName.input,
               "'.\nPress Enter to omit this information."
             )
           ))
@@ -340,14 +445,13 @@ modify.mdJSON <-
           message(cat(
             paste0(
               "\nOPTIONAL: Provide the maximum value permissible for the attribute '",
-              codeName,
+              codeName.input,
               "'.\nPress Enter to omit this information."
             )
           ))
           maxValue.input <- as.character(readline(prompt =))
         }
         newattribute[[1]][["maxValue"]] <- maxValue.input
-
 
         ## attribute fieldWidth
         if (fieldWidth.input == "") {
@@ -379,40 +483,147 @@ modify.mdJSON <-
         newattribute[[1]][["fieldWidth"]] <- fieldWidth.input
 
 
-        ## Add attribute to dictionary list
-        dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]]) +
-                                                                              1]] <-
-          newattribute[[1]]
-
-
         ## Add an associated domain
-        domainId.choice <- 0
+        domain.choice <- 0
 
-        while (domainId.choice == 0) {
-          domainId.choice <-
-            utils::menu(c("yes", "no"),
-                        title = cat(
-                          paste0(
-                            "\nREQUIRED: Does the attribute '",
-                            codeName,
-                            "' have a domain (defined entry values)?\n"
-                          )
-                        ))
+        if ("domainId" %in% definedparam) {
+          newattribute[[1]][["domainId"]] <-
+            domainId.input
+          domain.choice <- 3
         }
-        ## attribute domainId
-        newattribute[[1]][["domainId"]] <-
-          uuid::UUIDgenerate(use.time = FALSE, n = 1)
 
-        ## domain domainId, codeName, & definition
-        if (domainId.choice == 1) {
+        while (domain.choice == 0) {
+          domain.choice <-
+            utils::menu(
+              c(
+                "yes - create a new domain",
+                "yes - link to an existing domain",
+                "no"
+              ),
+              title = cat(
+                paste0(
+                  "\nREQUIRED: Does the attribute '",
+                  codeName.input,
+                  "' have a domain (defined entry values)?\n"
+                )
+              )
+            )
+        }
+
+
+
+        if (domain.choice == 3) {
+          ## Add attribute to dictionary list with domainId input or no domain
+          dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]]) +
+                                                                                1]] <-
+            newattribute[[1]]
+        } else if (domain.choice == 2) {
+          message(cat(
+            paste0(
+              "\nProvide the ID (UUID) or name of the domain to associate with the attribute '",
+              codeName.input,
+              "'. Press Enter to omit this information."
+            )
+          ))
+          domainId.input <- as.character(readline(prompt =))
+
+          if (domainId.input != "") {
+            if (domainId.input %in% sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "domainId")) {
+              newattribute[[1]][["domainId"]] <-
+                domainId.input
+            } else {
+              for (a in 1:length(dictionarylist[["dataDictionary"]][["domain"]])) {
+                if (dictionarylist[["dataDictionary"]][["domain"]][[a]][["codeName"]] ==
+                    domainId.input) {
+                  domainId.input <-
+                    dictionarylist[["dataDictionary"]][["domain"]][[a]][["domainId"]]
+
+                } else {
+                  domainId.input <- ""
+                }
+              }
+              if (domainId.input == "") {
+                message(cat(
+                  paste0(
+                    "\nInvalid entry: no domain found.\nThe current domain Id will be retained."
+                  )
+                ))
+              } else {
+                newattribute[[1]][["domainId"]] <-
+                  domainId.input
+              }
+            }
+          }
+
+        } else if (domain.choice == 1) {
+          ## attribute domainId
+          newattribute[[1]][["domainId"]] <-
+            uuid::UUIDgenerate(use.time = FALSE, n = 1)
+
+          ## Add attribute to dictionary list with domainId
+          dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]]) +
+                                                                                1]] <-
+            newattribute[[1]]
+
+          ## Create a domain
           newdomain <- blankdomain
 
           newdomain[[1]][["domainId"]] <-
             newattribute[[1]][["domainId"]]
-          newdomain[[1]][["codeName"]] <- codeName
-          newdomain[[1]][["description"]] <-
-            newattribute[[1]][["definition"]]
 
+          ## Auto-fill domain based on attribute
+          domainfill.choice <- 0
+
+          while (domainfill.choice == 0) {
+            domainfill.choice <-
+              utils::menu(c("yes (recommended)", "no"),
+                          title = cat(
+                            paste0(
+                              "\nREQUIRED: Auto-fill domain name and description based on the associated attribute '",
+                              codeName.input,
+                              "'?\n"
+                            )
+                          ))
+          }
+
+          if (domainfill.choice == 1) {
+            newdomain[[1]][["codeName"]] <- codeName.input
+            newdomain[[1]][["description"]] <-
+              newattribute[[1]][["definition"]]
+
+            ## Provide new domain name and description
+          } else {
+            ## domain codeName
+            if (domainName.input == "") {
+              while (domainName.input == "") {
+                message(cat(
+                  paste0("\nREQUIRED: Provide a name for the domain.")
+                ))
+                domainName.input <-
+                  as.character(readline(prompt =))
+              }
+            }
+            newdomain[[1]][["codeName"]] <-
+              domainName.input
+
+            ## domain description
+            if (domainDescription.input == "") {
+              while (domainDescription.input == "") {
+                message(cat(
+                  paste0(
+                    "\nREQUIRED: Provide a description for the domain '",
+                    domainName.input,
+                    "'."
+                  )
+                ))
+                domainDescription.input <-
+                  as.character(readline(prompt =))
+              }
+            }
+            newdomain[[1]][["description"]] <-
+              domainDescription.input
+
+          }
 
           ## Add a domainItem
           domainItems.choice <- 0
@@ -423,7 +634,7 @@ modify.mdJSON <-
                           title = cat(
                             paste0(
                               "\nREQUIRED: Would you like to add items to the domain associated with '",
-                              codeName,
+                              codeName.input,
                               "'?\n"
                             )
                           ))
@@ -521,13 +732,12 @@ modify.mdJSON <-
 
 
     #### Add domain to existing attribute ####
-
     if (how == "add_domain") {
       ## Find attribute number
       attribute.num <- c()
       for (a in 1:length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]])) {
         if (dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[a]][["codeName"]] ==
-            codeName) {
+            codeName.input) {
           attribute.num <- c(attribute.num, a)
         }
       }
@@ -537,7 +747,7 @@ modify.mdJSON <-
         message(cat(
           paste0(
             "Operation canceled. More than one attribute with the codeName '",
-            codeName,
+            codeName.input,
             "' was found. Correct one or both attributes before proceeding."
           )
         ))
@@ -545,32 +755,133 @@ modify.mdJSON <-
         message(cat(
           paste0(
             "Operation canceled. No attribute with the codeName '",
-            codeName,
+            codeName.input,
             "' was found."
           )
         ))
 
       } else {
-        ## Check if a domain already exists for the attribute
+        ## Check if the attribute already has a domain
         domain.num <- c()
         for (a in 1:length(dictionarylist[["dataDictionary"]][["domain"]])) {
-          if (dictionarylist[["dataDictionary"]][["domain"]][[a]][["codeName"]] ==
-              codeName) {
-            domain.num <- c(domain.num, a)
+          if (dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["domainId"]] ==
+              dictionarylist[["dataDictionary"]][["domain"]][[a]][["domainId"]]) {
+            domain.num <- a
           }
         }
-
+        ## ..if not, check if a domain with the same codeName exists
         if (length(domain.num) == 0) {
-          newdomain <- blankdomain
+          for (a in 1:length(dictionarylist[["dataDictionary"]][["domain"]])) {
+            if (dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["codeName"]] ==
+                dictionarylist[["dataDictionary"]][["domain"]][[a]][["codeName"]]) {
+              domain.num <- a
+            }
+          }
 
-          ## domain domainId, codeName, & definition
-          newdomain[[1]][["domainId"]] <-
-            uuid::UUIDgenerate(use.time = FALSE, n = 1)
-          newdomain[[1]][["codeName"]] <- codeName
+          domainlink.choice <- 0
+
+          while (domainlink.choice == 0) {
+            domainlink.choice <-
+              utils::menu(c("associate the existing domain", "create a new domain"),
+                          title = cat(
+                            paste0(
+                              "\nREQUIRED: A domain with the same name at the attribute '",
+                              codeName.input,
+                              "' was found.\nHow would you like to proceed?\n"
+                            )
+                          ))
+          }
+          if (domainlink.choice == 1) {
+            dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["domainId"]] <-
+              dictionarylist[["dataDictionary"]][["domain"]][[domain.num]][["domainId"]]
+          } else if (domainlink.choice == 2) {
+            domain.num <- c()
+          }
+        }
+      }
+
+      if (length(domain.num) == 0) {
+        ## attribute domainId
+        newdomainId <-
+          uuid::UUIDgenerate(use.time = FALSE, n = 1)
+
+        dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["domainId"]] <-
+          newdomainId
+
+        newdomain <- blankdomain
+
+        newdomain[[1]][["domainId"]] <-
+          newdomainId
+
+        ## Auto-fill domain based on attribute
+        domainfill.choice <- 0
+
+        while (domainfill.choice == 0) {
+          domainfill.choice <-
+            utils::menu(c("yes", "no"),
+                        title = cat(
+                          paste0(
+                            "\nREQUIRED: Auto-fill domain name and description based on the associated attribute '",
+                            codeName.input,
+                            "' (recommended)?\n"
+                          )
+                        ))
+        }
+
+        if (domainfill.choice == 1) {
+          newdomain[[1]][["codeName"]] <- codeName.input
           newdomain[[1]][["description"]] <-
             dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["definition"]]
+          ## Provide new domain name and description
+        } else {
+          ## domain codeName
+          if (domainName.input == "") {
+            while (domainName.input == "") {
+              message(cat(paste0(
+                "\nREQUIRED: Provide a name for the domain."
+              )))
+              domainName.input <-
+                as.character(readline(prompt = ))
+            }
+          }
+          newdomain[[1]][["codeName"]] <-
+            domainName.input
 
+          ## domain description
+          if (domainDescription.input == "") {
+            while (domainDescription.input == "") {
+              message(cat(
+                paste0(
+                  "\nREQUIRED: Provide a description for the domain '",
+                  domainName.input,
+                  "'."
+                )
+              ))
+              domainDescription.input <-
+                as.character(readline(prompt = ))
+            }
+          }
+          newdomain[[1]][["description"]] <-
+            domainDescription.input
 
+        }
+
+        ## Add domain items
+        domainItems.choice <- 0
+
+        while (domainItems.choice == 0) {
+          domainItems.choice <-
+            utils::menu(c("yes", "no"),
+                        title = cat(
+                          paste0(
+                            "\nREQUIRED: Would you like to add items to the domain associated with '",
+                            codeName.input,
+                            "'?\n"
+                          )
+                        ))
+        }
+
+        if (domainItems.choice == 1) {
           ## Describe initial domainItem, append subsequent
           moredomainItems.choice <- 1
 
@@ -592,7 +903,7 @@ modify.mdJSON <-
                 paste0("\nREQUIRED: Provide a name for the new domain item.")
               ))
               domainItem_name.input <-
-                as.character(readline(prompt = ))
+                as.character(readline(prompt =))
             }
             newdomain[[1]][["domainItem"]][[domainItem.num]][["name"]] <-
               domainItem_name.input
@@ -610,7 +921,7 @@ modify.mdJSON <-
                 )
               ))
               domainItem_value.input <-
-                as.character(readline(prompt =))
+                as.character(readline(prompt = ))
             }
             newdomain[[1]][["domainItem"]][[domainItem.num]][["value"]] <-
               domainItem_value.input
@@ -628,7 +939,7 @@ modify.mdJSON <-
                 )
               ))
               domainItem_defintion.input <-
-                as.character(readline(prompt = ))
+                as.character(readline(prompt =))
             }
             newdomain[[1]][["domainItem"]][[domainItem.num]][["definition"]] <-
               domainItem_defintion.input
@@ -645,54 +956,41 @@ modify.mdJSON <-
 
 
           }
+        }
 
 
-          ## Add domain to dictionary list
-          dictionarylist[["dataDictionary"]][["domain"]][[length(dictionarylist[["dataDictionary"]][["domain"]]) +
-                                                            1]] <-
-            newdomain[[1]]
+        ## Add domain to dictionary list
+        dictionarylist[["dataDictionary"]][["domain"]][[length(dictionarylist[["dataDictionary"]][["domain"]]) +
+                                                          1]] <-
+          newdomain[[1]]
 
 
-          ## Update attribute domainId in dictionary list
-          dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["domainId"]] <-
-            newdomain[[1]][["domainId"]]
 
-
-          ## When a domain exists...
-        } else if (length(domain.num) == 1) {
-          ## Check if attribute and domain domainId match
-          if (dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["domainId"]] == dictionarylist[["dataDictionary"]][["domain"]][[domain.num]][["domainId"]]) {
+        ## When a domain exists...
+      } else if (length(domain.num) == 1) {
+        ## Check if attribute and domain domainId match
+        if (dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["domainId"]] == dictionarylist[["dataDictionary"]][["domain"]][[domain.num]][["domainId"]]) {
+          message(cat(
+            paste0(
+              "Operation canceled. A domain is already associated with the attribute '",
+              codeName.input,
+              "'."
+            )
+          ))
+        } else {
+          if (dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["codeName"]] == dictionarylist[["dataDictionary"]][["domain"]][[domain.num]][["codeName"]]) {
+            dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["domainId"]] <-
+              dictionarylist[["dataDictionary"]][["domain"]][[domain.num]][["domainId"]]
+          } else {
             message(cat(
               paste0(
-                "Operation canceled. A domain already exists for the attribute '",
-                codeName,
+                "\nOperation canceled. The domain '",
+                dictionarylist[["dataDictionary"]][["domain"]][[domain.num]][["codeName"]],
+                "' is already associated with the attribute '",
+                codeName.input,
                 "'."
               )
             ))
-          } else if (dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["domainId"]] != dictionarylist[["dataDictionary"]][["domain"]][[domain.num]][["domainId"]]) {
-            message(cat(
-              paste0(
-                "\nA domain already exists for the attribute '",
-                codeName,
-                "'.",
-                "\nAttribute domainId: ",
-                dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["domainId"]],
-                "\nDomain domainId: ",
-                dictionarylist[["dataDictionary"]][["domain"]][[domain.num]][["domainId"]]
-              )
-            ))
-            ## Update attribute domainId if it doesn't match (assuming domain domainID is valid)
-            attribute.domainId.choice <-
-              utils::menu(c("yes", "no"),
-                          title = cat(
-                            paste0(
-                              "\nWould you like to update the attribute domainId to match the existing domain?"
-                            )
-                          ))
-            if (attribute.domainId.choice == 1) {
-              dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]][["domainId"]] <-
-                dictionarylist[["dataDictionary"]][["domain"]][[domain.num]][["domainId"]]
-            }
           }
         }
 
@@ -701,29 +999,48 @@ modify.mdJSON <-
 
     #### Add domainItem ####
     if (how == "add_domainItem") {
-      ## Find domain number
-      domain.num <- c()
-      for (a in 1:length(dictionarylist[["dataDictionary"]][["domain"]])) {
-        if (dictionarylist[["dataDictionary"]][["domain"]][[a]][["codeName"]] ==
-            codeName) {
-          domain.num <- c(domain.num, a)
+      ## Check domain exists
+      if ("domainName" %in% definedparam) {
+        if (domainName.input %in% sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "codeName")) {
+          domain.num <-
+            which(sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "codeName") ==
+                    domainName.input)
+        } else {
+          domainName.input <- ""
         }
+      }
+      if ("domainId" %in% definedparam) {
+        if (domainId.input %in% sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "domainId")) {
+          domain.num <-
+            which(sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "domainId") ==
+                    domainId.input)
+        }
+        else {
+          domainId.input <- ""
+        }
+      }
+
+      if (domainId.input == "" & domainName.input == "") {
+        message(cat(paste0(
+          "Operation canceled. Domain not found."
+        )))
+        stop()
       }
 
       ## Check if a single domain exists
       if (length(domain.num) > 1) {
         message(cat(
           paste0(
-            "Operation canceled. More than one domain with the codeName '",
-            codeName,
+            "Operation canceled. More than one domain with the name '",
+            codeName.input,
             "' was found. Correct one or both domains before proceeding."
           )
         ))
       } else if (length(domain.num) == 0) {
         message(cat(
           paste0(
-            "Operation canceled. No domain with the codeName '",
-            codeName,
+            "Operation canceled. No domain with the name '",
+            codeName.input,
             "' was found."
           )
         ))
@@ -751,7 +1068,7 @@ modify.mdJSON <-
               message(cat(
                 paste0(
                   "\nREQUIRED: Provide the new entry value for the attribute '",
-                  codeName,
+                  codeName.input,
                   "'."
                 )
               ))
@@ -826,7 +1143,7 @@ modify.mdJSON <-
       attribute.num <- c()
       for (a in 1:length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]])) {
         if (dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[a]][["codeName"]] ==
-            codeName) {
+            codeName.input) {
           attribute.num <- c(attribute.num, a)
         }
       }
@@ -836,7 +1153,7 @@ modify.mdJSON <-
         message(cat(
           paste0(
             "Operation canceled. More than one attribute with the codeName '",
-            codeName,
+            codeName.input,
             "' was found. Correct one or both attributes before proceeding."
           )
         ))
@@ -844,7 +1161,7 @@ modify.mdJSON <-
         message(cat(
           paste0(
             "Operation canceled. No attribute with the codeName '",
-            codeName,
+            codeName.input,
             "' was found."
           )
         ))
@@ -858,33 +1175,21 @@ modify.mdJSON <-
 
 
       ## Make changes based on inputs
-      field.vector <-
-        c(
-          "allowNull",
-          "dataType",
-          "definition",
-          "units",
-          "unitsResolution",
-          "isCaseSensitive",
-          "missingValue",
-          "minValue",
-          "maxValue",
-          "fieldWidth"
-        )
+      attributeparam <- c(
+        "allowNull",
+        "dataType",
+        "definition",
+        "units",
+        "unitsResolution",
+        "isCaseSensitive",
+        "missingValue",
+        "minValue",
+        "maxValue",
+        "fieldWidth",
+        "domainId"
+      )
 
-      ## No inputs provided
-      if (any(field.vector %in% ls()) == FALSE) {
-        update.choice <-
-          utils::menu(c("keep as is", "make changes"),
-                      title = cat(
-                        paste0("\n'", codeName, "' is described as followed.\n"),
-                        paste0(jsonlite::toJSON(originalattribute, pretty = TRUE), sep = "\n"),
-                        paste0("\nWould you like to do?")
-                      ))
-
-      } else if (any(field.vector %in% ls()) == TRUE) {
-        ## Inputs provided
-
+      if (length(definedparam %in% attributeparam) != 0) {
         ## attribute allowNull
         if (allowNull.input != "") {
           newattribute[["allowNull"]] <- allowNull.input
@@ -926,340 +1231,431 @@ modify.mdJSON <-
           newattribute[["fieldWidth"]] <- fieldWidth.input
         }
 
-        update.choice <-
-          utils::menu(
-            c(
-              "disregard all revisions",
-              "make additional changes",
-              "looks good"
-            ),
-            title = cat(
-              paste0("\n'", codeName, "' has been updated as followed.\n"),
-              paste0(jsonlite::toJSON(newattribute, pretty = TRUE), sep = "\n"),
-              paste0("\nDoes this look correct?")
+        ## attribute domainId
+        if (domainId.input != "") {
+          newattribute[["domainId"]] <- domainId.input
+
+
+
+          update.choice <-
+            utils::menu(
+              c(
+                "disregard all revisions",
+                "make additional changes",
+                "looks good"
+              ),
+              title = cat(
+                paste0(
+                  "\n'",
+                  codeName.input,
+                  "' has been updated as followed.\n"
+                ),
+                paste0(jsonlite::toJSON(newattribute, pretty = TRUE), sep = "\n"),
+                paste0("\nDoes this look correct?")
+              )
             )
-          )
-
-      }
-
-      ## Make additional changes
-      while (update.choice == 2) {
-        field.choice <-
-          utils::menu(c(field.vector),
-                      title =
-                        cat(paste0(
-                          "\nWhich field would you like to add/modify?\n"
-                        )))
-
-
-        # Create field if it doesn't exist
-
-        if (field.vector[field.choice] %in% names(newattribute) == FALSE) {
-          newfield <- list()
-          newfield[[paste0(field.vector[field.choice])]] <- ""
-          newattribute <- append(newattribute, newfield)
+        } else {
+          update.choice <-
+            utils::menu(c("keep as is", "make changes"),
+                        title = cat(
+                          paste0("\n'", codeName.input, "' is described as followed.\n"),
+                          paste0(
+                            jsonlite::toJSON(originalattribute, pretty = TRUE),
+                            sep = "\n"
+                          ),
+                          paste0("\nWould you like to do?")
+                        ))
         }
 
-        ## attribute allowNull
-        if (field.vector[field.choice] == "allowNull") {
-          allowNull.choice <- 0
-          originalvalue <- newattribute[["allowNull"]]
 
-          allowNull.choice <-
-            utils::menu(c(TRUE, FALSE),
+
+        ## Make additional changes
+        attributefield <- c(
+          "allowNull",
+          "dataType",
+          "definition",
+          "units",
+          "unitsResolution",
+          "isCaseSensitive",
+          "missingValue",
+          "minValue",
+          "maxValue",
+          "fieldWidth",
+          "domainId"
+        )
+
+        while (update.choice == 2) {
+          field.choice <-
+            utils::menu(c(attributefield),
                         title =
-                          cat(
-                            paste0(
-                              "\nAre null values permitted for the attribute '",
-                              codeName,
-                              "'? \nThe current value is '",
-                              originalvalue,
-                              "'.\n"
-                            )
-                          ))
+                          cat(paste0(
+                            "\nWhich field would you like to add/modify?\n"
+                          )))
 
-          if (allowNull.choice %in% c(1, 2)) {
-            allowNull.input <- c(TRUE, FALSE)[allowNull.choice]
-            newattribute[["allowNull"]] <-
-              allowNull.input
+
+          # Create field if it doesn't exist
+
+          if (attributefield[field.choice] %in% names(newattribute) == FALSE) {
+            newfield <- list()
+            newfield[[paste0(attributefield[field.choice])]] <- ""
+            newattribute <- append(newattribute, newfield)
           }
 
-          ## attribute dataType
-        } else if (field.vector[field.choice] == "dataType") {
-          dataType.choice <- 0
-          originalvalue <- newattribute[["dataType"]]
+          ## attribute allowNull
+          if (attributefield[field.choice] == "allowNull") {
+            allowNull.choice <- 0
+            originalvalue <- newattribute[["allowNull"]]
 
-          dataType.choice <-
-            utils::menu(c(dataType.vector),
-                        title = cat(
-                          paste0(
-                            "\nSelect the datatype/format for entry values of the attribute '",
-                            codeName,
-                            "'. \nThe current datatype is '",
-                            originalvalue,
-                            "'.\n"
-                          )
-                        ))
-
-          if (dataType.choice != 0) {
-            dataType.input <- dataType.vector[dataType.choice]
-
-            newattribute[["dataType"]] <-
-              dataType.input
-          }
-
-          ## attribute definition
-        } else if (field.vector[field.choice] == "definition") {
-          originalvalue <- newattribute[["definition"]]
-
-          message(cat(
-            paste0(
-              "\nProvide a new definition for the attribute '",
-              codeName,
-              "'. \nThe current definition is '",
-              originalvalue,
-              "'\nPress Enter to abort changes."
-            )
-          ))
-          definition.input <- as.character(readline(prompt = ))
-
-
-          if (definition.input != "") {
-            newattribute[["definition"]] <- definition.input
-          }
-
-          ## attribute units
-        } else if (field.vector[field.choice] == "units") {
-          originalvalue <- newattribute[["units"]]
-
-          message(cat(
-            paste0(
-              "\nProvide the unit-of-measure for the attribute '",
-              codeName,
-              "' (e.g., meters, atmospheres, liters). \nThe current unit is '",
-              originalvalue,
-              "'. \nEnter 'rm()' to remove the current value. Press Enter to abort changes."
-            )
-          ))
-          units.input <- as.character(readline(prompt =))
-
-          if (units.input == "rm()") {
-            newattribute[["units"]] <- ""
-          } else if (units.input != "") {
-            newattribute[["units"]] <- units.input
-          }
-
-          ## attribute unitsResolution
-        } else if (field.vector[field.choice] == "unitsResolution") {
-          originalvalue <- newattribute[["unitsResolution"]]
-
-          message(cat(
-            paste0(
-              "\nProvide the smallest unit increment (numeric) to which the attribute '",
-              codeName,
-              "' is measured (e.g., 1, .1, .01). \nThe current unit resolution is '",
-              originalvalue,
-              "'\nEnter 'rm()' to remove the current value. Press Enter to abort changes."
-            )
-          ))
-          unitsResolution.input <- as.character(readline(prompt =))
-
-          if (unitsResolution.input == "rm()") {
-            newattribute[["unitsResolution"]] <-
-              ""
-          } else if (suppressWarnings(is.na(as.numeric(unitsResolution.input))) == TRUE) {
-            message(
-              "\nInvalid entry: unit resolution must be numeric.\nThe current resolution will be retained."
-            )
-          } else {
-            newattribute[["unitsResolution"]] <-
-              unitsResolution.input
-          }
-
-
-          ## attribute isCaseSensitive
-        } else if (field.vector[field.choice] == "isCaseSensitive") {
-          isCaseSensitive.choice <- 0
-          originalvalue <- newattribute[["isCaseSensitive"]]
-
-          isCaseSensitive.choice <-
-            utils::menu(c(TRUE, FALSE),
-                        title =
-                          cat(
-                            paste0(
-                              "\nAre the entry values of the attribute '",
-                              codeName,
-                              "' encoded in case-sensitive ASCII?\nThe current value is '",
-                              originalvalue,
-                              "'.\n"
-                            )
-                          ))
-
-          if (isCaseSensitive.choice %in% c(1, 2)) {
-            isCaseSensitive.input <- c(TRUE, FALSE)[isCaseSensitive.choice]
-
-            newattribute[["isCaseSensitive"]] <-
-              isCaseSensitive.input
-          }
-
-          ## attribute missingValue
-        } else if (field.vector[field.choice] == "missingValue") {
-          originalvalue <- newattribute[["missingValue"]]
-
-          if ("allowNull" %in% names(newattribute) == TRUE &
-              newattribute[["allowNull"]] == FALSE) {
-            allowNull.check <-
-              utils::menu(c("yes", "no"),
+            allowNull.choice <-
+              utils::menu(c(TRUE, FALSE),
                           title =
                             cat(
                               paste0(
-                                "\nThe dictionary indicates the attribute '",
-                                codeName,
-                                "' does not allow null values.\nWould you still like to proceed?\n"
+                                "\nAre null values permitted for the attribute '",
+                                codeName.input,
+                                "'? \nThe current value is '",
+                                originalvalue,
+                                "'.\n"
                               )
                             ))
 
+            if (allowNull.choice %in% c(1, 2)) {
+              allowNull.input <- c(TRUE, FALSE)[allowNull.choice]
+              newattribute[["allowNull"]] <-
+                allowNull.input
+            }
 
-          } else {
-            allowNull.check <- 1
-          }
+            ## attribute dataType
+          } else if (attributefield[field.choice] == "dataType") {
+            dataType.choice <- 0
+            originalvalue <- newattribute[["dataType"]]
 
-          if (allowNull.check == 1) {
+            dataType.choice <-
+              utils::menu(c(dataType.vector),
+                          title = cat(
+                            paste0(
+                              "\nSelect the datatype/format for entry values of the attribute '",
+                              codeName.input,
+                              "'. \nThe current datatype is '",
+                              originalvalue,
+                              "'.\n"
+                            )
+                          ))
+
+            if (dataType.choice != 0) {
+              dataType.input <- dataType.vector[dataType.choice]
+
+              newattribute[["dataType"]] <-
+                dataType.input
+            }
+
+            ## attribute definition
+          } else if (attributefield[field.choice] == "definition") {
+            originalvalue <- newattribute[["definition"]]
+
             message(cat(
               paste0(
-                "\nProvide the code which represents missing entry values for the attribute '",
-                codeName,
-                "' (e.g., NA, na, -).\nThe current code is '",
+                "\nProvide a new definition for the attribute '",
+                codeName.input,
+                "'. \nThe current definition is '",
+                originalvalue,
+                "'\nPress Enter to abort changes."
+              )
+            ))
+            definition.input <- as.character(readline(prompt = ))
+
+
+            if (definition.input != "") {
+              newattribute[["definition"]] <- definition.input
+            }
+
+            ## attribute units
+          } else if (attributefield[field.choice] == "units") {
+            originalvalue <- newattribute[["units"]]
+
+            message(cat(
+              paste0(
+                "\nProvide the unit-of-measure for the attribute '",
+                codeName.input,
+                "' (e.g., meters, atmospheres, liters). \nThe current unit is '",
+                originalvalue,
+                "'. \nEnter 'rm()' to remove the current value. Press Enter to abort changes."
+              )
+            ))
+            units.input <- as.character(readline(prompt =))
+
+            if (units.input == "rm()") {
+              newattribute[["units"]] <- ""
+            } else if (units.input != "") {
+              newattribute[["units"]] <- units.input
+            }
+
+            ## attribute unitsResolution
+          } else if (attributefield[field.choice] == "unitsResolution") {
+            originalvalue <- newattribute[["unitsResolution"]]
+
+            message(cat(
+              paste0(
+                "\nProvide the smallest unit increment (numeric) to which the attribute '",
+                codeName.input,
+                "' is measured (e.g., 1, .1, .01). \nThe current unit resolution is '",
+                originalvalue,
+                "'\nEnter 'rm()' to remove the current value. Press Enter to abort changes."
+              )
+            ))
+            unitsResolution.input <- as.character(readline(prompt =))
+
+            if (unitsResolution.input == "rm()") {
+              newattribute[["unitsResolution"]] <-
+                ""
+            } else if (suppressWarnings(is.na(as.numeric(unitsResolution.input))) == TRUE) {
+              message(
+                "\nInvalid entry: unit resolution must be numeric.\nThe current resolution will be retained."
+              )
+            } else {
+              newattribute[["unitsResolution"]] <-
+                unitsResolution.input
+            }
+
+
+            ## attribute isCaseSensitive
+          } else if (attributefield[field.choice] == "isCaseSensitive") {
+            isCaseSensitive.choice <- 0
+            originalvalue <- newattribute[["isCaseSensitive"]]
+
+            isCaseSensitive.choice <-
+              utils::menu(c(TRUE, FALSE),
+                          title =
+                            cat(
+                              paste0(
+                                "\nAre the entry values of the attribute '",
+                                codeName.input,
+                                "' encoded in case-sensitive ASCII?\nThe current value is '",
+                                originalvalue,
+                                "'.\n"
+                              )
+                            ))
+
+            if (isCaseSensitive.choice %in% c(1, 2)) {
+              isCaseSensitive.input <- c(TRUE, FALSE)[isCaseSensitive.choice]
+
+              newattribute[["isCaseSensitive"]] <-
+                isCaseSensitive.input
+            }
+
+            ## attribute missingValue
+          } else if (attributefield[field.choice] == "missingValue") {
+            originalvalue <- newattribute[["missingValue"]]
+
+            if ("allowNull" %in% names(newattribute) == TRUE &
+                newattribute[["allowNull"]] == FALSE) {
+              allowNull.check <-
+                utils::menu(c("yes", "no"),
+                            title =
+                              cat(
+                                paste0(
+                                  "\nThe dictionary indicates the attribute '",
+                                  codeName.input,
+                                  "' does not allow null values.\nWould you still like to proceed?\n"
+                                )
+                              ))
+
+
+            } else {
+              allowNull.check <- 1
+            }
+
+            if (allowNull.check == 1) {
+              message(cat(
+                paste0(
+                  "\nProvide the code which represents missing entry values for the attribute '",
+                  codeName.input,
+                  "' (e.g., NA, na, -).\nThe current code is '",
+                  originalvalue,
+                  "'.\nEnter 'rm()' to remove the current value. Press Enter to abort changes."
+                )
+              ))
+              missingValue.input <- as.character(readline(prompt =))
+
+              if (missingValue.input == "rm()") {
+                newattribute[["missingValue"]] <- ""
+              } else if (missingValue.input != "") {
+                newattribute[["missingValue"]] <-
+                  missingValue.input
+              }
+
+            } else {
+              message(cat(paste0("\nChanges aborted.")))
+            }
+
+            ## attribute minValue
+          } else if (attributefield[field.choice] == "minValue") {
+            originalvalue <- newattribute[["minValue"]]
+
+            message(cat(
+              paste0(
+                "\nProvide the minimum value permissible for the attribute '",
+                codeName.input,
+                "'.\nThe current minimum value is '",
                 originalvalue,
                 "'.\nEnter 'rm()' to remove the current value. Press Enter to abort changes."
               )
             ))
-            missingValue.input <- as.character(readline(prompt =))
+            minValue.input <- as.character(readline(prompt =))
 
-            if (missingValue.input == "rm()") {
-              newattribute[["missingValue"]] <- ""
-            } else if (missingValue.input != "") {
-              newattribute[["missingValue"]] <-
-                missingValue.input
+            if (minValue.input == "rm()") {
+              newattribute[["minValue"]] <- ""
+            } else if (minValue.input != "") {
+              newattribute[["minValue"]] <- minValue.input
             }
 
-          } else {
-            message(cat(paste0("\nChanges aborted.")))
-          }
+            ## attribute maxValue
+          } else if (attributefield[field.choice] == "maxValue") {
+            originalvalue <- newattribute[["maxValue"]]
 
-          ## attribute minValue
-        } else if (field.vector[field.choice] == "minValue") {
-          originalvalue <- newattribute[["minValue"]]
-
-          message(cat(
-            paste0(
-              "\nProvide the minimum value permissible for the attribute '",
-              codeName,
-              "'.\nThe current minimum value is '",
-              originalvalue,
-              "'.\nEnter 'rm()' to remove the current value. Press Enter to abort changes."
-            )
-          ))
-          minValue.input <- as.character(readline(prompt =))
-
-          if (minValue.input == "rm()") {
-            newattribute[["minValue"]] <- ""
-          } else if (minValue.input != "") {
-            newattribute[["minValue"]] <- minValue.input
-          }
-
-          ## attribute maxValue
-        } else if (field.vector[field.choice] == "maxValue") {
-          originalvalue <- newattribute[["maxValue"]]
-
-          message(cat(
-            paste0(
-              "\nProvide the maximum value permissible for the attribute '",
-              codeName,
-              "'.\nThe current maximum value is '",
-              originalvalue,
-              "'.\nEnter 'rm()' to remove the current value. Press Enter to abort changes."
-            )
-          ))
-          maxValue.input <- as.character(readline(prompt =))
-
-
-          if (maxValue.input == "rm()") {
-            newattribute[["maxValue"]] <- ""
-          } else if (minValue.input != "") {
-            newattribute[["maxValue"]] <- maxValue.input
-          }
-
-          ## attribute fieldWidth
-        } else if (field.vector[field.choice] == "fieldWidth") {
-          originalvalue <- newattribute[["fieldWidth"]]
-
-          message(cat(
-            paste0(
-              "\nProvide the field width (integer) of entry values for the attribute '",
-              codeName,
-              "'.\nThe current field width is '",
-              originalvalue,
-              "'\nEnter 'rm()' to remove the current value. Press Enter to abort changes."
-            )
-          ))
-          fieldWidth.input <- as.character(readline(prompt =))
-
-          if (fieldWidth.input == "rm()") {
-            newattribute[["fieldWidth"]] <- ""
-          } else if (fieldWidth.input != "") {
-            if (!grepl("[^[:digit:]]",
-                       format(
-                         fieldWidth.input,
-                         digits = 20,
-                         scientific = FALSE
-                       )) == FALSE) {
-              message(
-                "\nInvalid entry: field width must be an integer.\nThe current field width will be retained."
+            message(cat(
+              paste0(
+                "\nProvide the maximum value permissible for the attribute '",
+                codeName.input,
+                "'.\nThe current maximum value is '",
+                originalvalue,
+                "'.\nEnter 'rm()' to remove the current value. Press Enter to abort changes."
               )
-            } else {
-              newattribute[["fieldWidth"]] <-
-                fieldWidth.input
+            ))
+            maxValue.input <- as.character(readline(prompt =))
+
+
+            if (maxValue.input == "rm()") {
+              newattribute[["maxValue"]] <- ""
+            } else if (minValue.input != "") {
+              newattribute[["maxValue"]] <- maxValue.input
+            }
+
+            ## attribute fieldWidth
+          } else if (attributefield[field.choice] == "fieldWidth") {
+            originalvalue <- newattribute[["fieldWidth"]]
+
+            message(cat(
+              paste0(
+                "\nProvide the field width (integer) of entry values for the attribute '",
+                codeName.input,
+                "'.\nThe current field width is '",
+                originalvalue,
+                "'\nEnter 'rm()' to remove the current value. Press Enter to abort changes."
+              )
+            ))
+            fieldWidth.input <- as.character(readline(prompt =))
+
+            if (fieldWidth.input == "rm()") {
+              newattribute[["fieldWidth"]] <- ""
+            } else if (fieldWidth.input != "") {
+              if (!grepl("[^[:digit:]]",
+                         format(
+                           fieldWidth.input,
+                           digits = 20,
+                           scientific = FALSE
+                         )) == FALSE) {
+                message(
+                  "\nInvalid entry: field width must be an integer.\nThe current field width will be retained."
+                )
+              } else {
+                newattribute[["fieldWidth"]] <-
+                  fieldWidth.input
+              }
+            }
+            ## attribute domainId
+          } else if (attributefield[field.choice] == "domainId") {
+            originalvalue <- newattribute[["domainId"]]
+
+            for (a in 1:length(dictionarylist[["dataDictionary"]][["domain"]])) {
+              if (dictionarylist[["dataDictionary"]][["domain"]][[a]][["domainId"]] ==
+                  domainId.input) {
+                originalvalue2 <-
+                  dictionarylist[["dataDictionary"]][["domain"]][[a]][["codeName"]]
+
+              }
+            }
+
+            message(cat(
+              paste0(
+                "\nProvide the ID (UUID) or name of the domain to associate with the attribute '",
+                codeName.input,
+                "'.\nThe current domain name is '",
+                originalvalue2,
+                "'\nEnter 'rm()' to remove the current value. Press Enter to abort changes."
+              )
+            ))
+            domain.input <- as.character(readline(prompt =))
+
+            if (domain.input == "rm()") {
+              newattribute[["domainId"]] <- ""
+            } else if (domain.input != "") {
+              if (domain.input %in% sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "domainId")) {
+                newattribute[[1]][["domainId"]] <-
+                  domain.input
+              } else {
+                for (a in 1:length(dictionarylist[["dataDictionary"]][["domain"]])) {
+                  if (dictionarylist[["dataDictionary"]][["domain"]][[a]][["codeName"]] ==
+                      domain.input) {
+                    domainId.input <-
+                      dictionarylist[["dataDictionary"]][["domain"]][[a]][["domainId"]]
+
+                  }
+                }
+                if (domainId.input == "") {
+                  message(cat(
+                    paste0(
+                      "\nInvalid entry: no domain found.\nThe current domain Id will be retained."
+                    )
+                  ))
+                } else {
+                  newattribute[[1]][["domainId"]] <-
+                    domainId.input
+                }
+              }
             }
           }
+
+
+          update.choice <-
+            utils::menu(
+              c(
+                "disregard all revisions",
+                "make additional changes",
+                "looks good"
+              ),
+              title = cat(
+                paste0(
+                  "\n'",
+                  codeName.input,
+                  "' has been updated as followed.\n"
+                ),
+                paste0(jsonlite::toJSON(newattribute, pretty = TRUE), sep = "\n"),
+                paste0("\nDoes this look correct?")
+              )
+            )
         }
 
-        update.choice <-
-          utils::menu(
-            c(
-              "disregard all revisions",
-              "make additional changes",
-              "looks good"
-            ),
-            title = cat(
-              paste0("\n'", codeName, "' has been updated as followed.\n"),
-              paste0(jsonlite::toJSON(newattribute, pretty = TRUE), sep = "\n"),
-              paste0("\nDoes this look correct?")
-            )
-          )
+        if (update.choice == 1) {
+          message("Operation canceled.")
+
+        } else if (update.choice == 3) {
+          # update attribute in dictionary
+          dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]] <-
+            newattribute
+
+
+        }
       }
 
+      input.dxnry[["data"]][[1]][["attributes"]][["json"]] <-
+        rjson::toJSON(dictionarylist)
 
-      if (update.choice == 1) {
-        message("Operation canceled.")
+      if (length(x[["data"]]) > 1) {
+        x[["data"]][[record.num]] <- input.dxnry[["data"]][[1]]
 
-      } else if (update.choice == 3) {
-        # update attribute in dictionary
-        dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[attribute.num]] <-
-          newattribute
-
-
+        return(x)
+      } else {
+        return(input.dxnry)
       }
     }
-
-    input.dxnry[["data"]][[1]][["attributes"]][["json"]] <-
-      rjson::toJSON(dictionarylist)
-
-    if (length(x[["data"]]) > 1) {
-      x[["data"]][[record.num]] <- input.dxnry[["data"]][[1]]
-
-      return(x)
-    } else {
-      return(input.dxnry)
-    }
-  }
