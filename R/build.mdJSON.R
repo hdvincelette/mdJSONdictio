@@ -22,8 +22,6 @@
 #' write(x = new.json, file = "e.g.dictionary.json")
 
 
-
-
 build.mdJSON <- function(x, title) {
   `%>%` <- magrittr::`%>%`
 
@@ -206,7 +204,6 @@ build.mdJSON <- function(x, title) {
       }
     }
   }
-
 
   # Add domain and entity reference numbers
   Data.Dictionary$entityNum <- NA
