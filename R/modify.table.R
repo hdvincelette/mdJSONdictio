@@ -1,4 +1,4 @@
-Modify Tabular Data Dictionaries
+#' Modify Tabular Data Dictionaries
 #'
 #' Amends a tabular data dictionary, including adding/updating attributes and domains.
 #' @param x  Data frame of a tabular data dictionary.
@@ -27,8 +27,7 @@ Modify Tabular Data Dictionaries
 #' @export
 #' @examples
 #'
-
-
+#'
 
 modify.table <-
   function(x,
@@ -67,7 +66,7 @@ modify.table <-
 
 
     input.dxnry <- modify.mdJSON(
-      x.2 = ,
+      x = x.2,
       how = how,
       codeName = codeName,
       allowNull = allowNull,
