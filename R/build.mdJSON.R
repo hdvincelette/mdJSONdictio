@@ -2,7 +2,7 @@
 #'
 #' Translates a data frame of a tabular data dictionary into an list object that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary Record. The input tabular data dictionary must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
 #' @param x  Data frame of the tabular data dictionary.
-#' @param title String designating the title of the Dictionary Record in mdEditor.
+#' @param title String designating the title of the Dictionary Record in mdEditor.Default=deparse(match.call()$x).
 #' @return Returns a list object corresponding to the tabular data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```build.table()```
@@ -23,15 +23,25 @@
 
 
 
-build.mdJSON <- function(x, title) {
 
+build.mdJSON <- function(x, title) {
   `%>%` <- magrittr::`%>%`
 
-  # Prepare the dictionary
+  if (missing(title)) {
+    title <- deparse(match.call()$x)
+  }
 
+  # Prepare the dictionary
   Data.Dictionary <- x
 
-
+  Data.Dictionary <- Data.Dictionary %>% tidyr::replace_na(
+    list(
+      codeName = 'NA',
+      domainItem_name = 'NA',
+      domainItem_value = 'NA',
+      definition = 'NA'
+    )
+  )
 
   ## Check for errors
   Required.cols <- c(
@@ -143,14 +153,13 @@ build.mdJSON <- function(x, title) {
     }
   }
 
-
   ## Replace values and add domain column
   Data.Dictionary <- Data.Dictionary %>%
     dplyr::mutate_if(is.character, stringr::str_replace_all, "\"", "'") %>%
     dplyr::mutate_at(dplyr::vars(allowNull, isCaseSensitive),
-              ~ replace(., which(. == "yes"), "true")) %>%
+                     ~ replace(., which(. == "yes"), "true")) %>%
     dplyr::mutate_at(dplyr::vars(allowNull, isCaseSensitive),
-              ~ replace(., which(. == "no"), "false")) %>%
+                     ~ replace(., which(. == "no"), "false")) %>%
     dplyr::select(-notes) %>%
     tibble::add_column(domainId = NA)
 
@@ -165,7 +174,6 @@ build.mdJSON <- function(x, title) {
     }
   }
 
-
   ## Generate uuids
   id <- uuid::UUIDgenerate(use.time = FALSE, n = 1)
   id <- sub("\\-.*", "", id)
@@ -177,7 +185,6 @@ build.mdJSON <- function(x, title) {
   ## "2019-10-16T20:13:48.641Z"
   date <- strftime(as.POSIXlt(Sys.time(), "UTC"), "%Y-%m-%dT%H:%M")
   date <- paste0(date, ":00.000Z", collapse = "")
-
 
   ## Add domain ids to original file
   ## Isolate dataField rows with domain notations
@@ -201,15 +208,11 @@ build.mdJSON <- function(x, title) {
   }
 
 
-
   # Add domain and entity reference numbers
-
   Data.Dictionary$entityNum <- NA
   Data.Dictionary$domainNum <- NA
   entitycount = 0
   domaincount = 0
-
-
 
   for (h in 1:nrow(Data.Dictionary)) {
     if (Data.Dictionary$domainItem_name[h] == "dataField") {
@@ -222,14 +225,10 @@ build.mdJSON <- function(x, title) {
     Data.Dictionary$domainNum[h] = 0
   }
 
-
   # Create entity and domain references
-
-
   domainref.A <- Data.Dictionary %>%
     dplyr::filter(domainItem_name == "dataField", is.na(domainId) == FALSE) %>%
     dplyr::select(-domainItem_name, domainItem_value)
-
 
   for (i in 1:nrow(Data.Dictionary)) {
     for (k in 1:nrow(domainref.A)) {
@@ -250,10 +249,6 @@ build.mdJSON <- function(x, title) {
     dplyr::filter(domainItem_name == "dataField") %>%
     dplyr::select(-domainItem_name, domainItem_value)
 
-
-
-
-
   for (r in 1:nrow(entityref)) {
     for (s in 1:nrow(domainref.I)) {
       if (domainref.I$codeName[s] == entityref$codeName[r]) {
@@ -262,9 +257,7 @@ build.mdJSON <- function(x, title) {
     }
   }
 
-
   # Add attributes
-
   dictionarylist <-
     rjson::fromJSON(blankjson[["data"]][[1]][["attributes"]][["json"]])
 
@@ -274,11 +267,7 @@ build.mdJSON <- function(x, title) {
   names <-
     names(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[1]])
 
-
   ## Duplicate first (empty) attribute and update the addition
-
-
-
   for (m in 2:nrow(entityref)) {
     dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]]) +
                                                                           1]] <-
@@ -286,7 +275,7 @@ build.mdJSON <- function(x, title) {
 
     for (n in 1:ncol(entityref)) {
       for (o in 1:length(names)) {
-        if (colnames(entityref[m, n]) == names[o]) {
+        if (colnames(entityref[n]) == names[o]) {
           value <- as.character(entityref[[paste0(names[o])]][m])
 
           dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[m]][[paste0(names[o])]] <-
@@ -302,13 +291,10 @@ build.mdJSON <- function(x, title) {
 
   }
 
-
-
   ## Update the first attribute
-
   for (n in 1:ncol(entityref)) {
     for (o in 1:length(names)) {
-      if (colnames(entityref[1, n]) == names[o]) {
+      if (colnames(entityref[1]) == names[o]) {
         value <- as.character(entityref[[paste0(names[o])]][1])
 
         if (!names[o] %in% c("fieldWidth", "unitsResolution")) {
@@ -327,39 +313,31 @@ build.mdJSON <- function(x, title) {
   }
 
   ## Correct data types for unitsResolution and fieldWidth
-
-  for (nn in 1:length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]])) {
+  suppressWarnings(for (nn in 1:length(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]])) {
     dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[nn]][["unitsResolution"]] <-
       as.numeric(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[nn]][["unitsResolution"]])
     dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[nn]][["fieldWidth"]] <-
       as.numeric(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]][[nn]][["fieldWidth"]])
-  }
-
-
-
+  })
 
   # Add domains
-
   e.count <- c(1:length(domainref.A$entityNum))
   d.count <- c(1:length(domainref.I$domainNum))
-
 
   names <-
     names(dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]])
 
-
   ## Duplicate first (empty) domain and update the addition
-
   for (p in 2:length(e.count)) {
     dictionarylist[["dataDictionary"]][["domain"]][[length(dictionarylist[["dataDictionary"]][["domain"]]) + 1]] <-
       dictionarylist[["dataDictionary"]][["domain"]][[1]]
 
-      dictionarylist[["dataDictionary"]][["domain"]][[p]][["codeName"]] <-
-        as.character(domainref.A$codeName[p])
-      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainId"]] <-
-        as.character(domainref.A$domainId[p])
-      dictionarylist[["dataDictionary"]][["domain"]][[p]][["description"]] <-
-        as.character(domainref.A$definition[p])
+    dictionarylist[["dataDictionary"]][["domain"]][[p]][["codeName"]] <-
+      as.character(domainref.A$codeName[p])
+    dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainId"]] <-
+      as.character(domainref.A$domainId[p])
+    dictionarylist[["dataDictionary"]][["domain"]][[p]][["description"]] <-
+      as.character(domainref.A$definition[p])
 
     e.reference <- domainref.A$entityNum[p]
 
@@ -367,7 +345,6 @@ build.mdJSON <- function(x, title) {
       dplyr::filter(entityNum == e.reference)
 
     ### Duplicate first (empty) domain item and update the addition
-
     for (t in 1:nrow(items)) {
       dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]][["name"]] <-
         as.character(items$domainItem_name[1])
@@ -393,11 +370,8 @@ build.mdJSON <- function(x, title) {
 
   }
 
-
   ## Update the first domain and items
-
   e.reference <- domainref.A$entityNum[1]
-
 
   items <- domainref.I %>%
     dplyr::filter(entityNum == e.reference)
@@ -432,9 +406,7 @@ build.mdJSON <- function(x, title) {
 
   }
 
-
   # Update fields
-
   dictionarylist[["dictionaryId"]] <- as.character(dictionaryId)
 
   dictionarylist[["dataDictionary"]][["citation"]][["title"]] <-
@@ -450,8 +422,10 @@ build.mdJSON <- function(x, title) {
 
   newstring <- rjson::toJSON(dictionarylist)
 
-  oldsubject <- paste0('\"', 'subject', '\":\"', 'dataDictionary', '\"')
-  newsubject <- paste0('\"', 'subject', '\":[\"', 'dataDictionary', '\"]')
+  oldsubject <-
+    paste0('\"', 'subject', '\":\"', 'dataDictionary', '\"')
+  newsubject <-
+    paste0('\"', 'subject', '\":[\"', 'dataDictionary', '\"]')
   newstring <- gsub(oldsubject, newsubject, newstring)
 
   oldcase <- paste0('\"', 'isCaseSensitive', '\":\"', 'true', '\"')
@@ -476,5 +450,3 @@ build.mdJSON <- function(x, title) {
 
 
 }
-
-
