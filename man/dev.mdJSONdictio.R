@@ -5,6 +5,28 @@ setwd("C:/Users/hvincelette/OneDrive - DOI/Documents/GitHub/mdJSONdictio")
 remove.packages("mdJSONdictio")
 .rs.restartR()
 
+remove.packages(c("rlang", "purrr", "stringr"))
+install.packages(c("rlang", "purrr", "stringr"))
+
+
+remove.packages(
+  c(
+    "readxl",
+    "rjson",
+    "stats",
+    "tibble",
+    "uuid",
+    "dplyr",
+    "plyr",
+    "glue",
+    "cli",
+    "vctrs",
+    "fansi",
+    "Rcpp",
+    "stringi"
+  )
+)
+
 
 #### Update ####
 library(devtools)
