@@ -26,7 +26,7 @@
 #' @seealso ```modify.table()```
 #' @export
 #' @examples
-#'
+#' TBD
 #'
 
 modify.table <-
