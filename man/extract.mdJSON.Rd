@@ -17,6 +17,20 @@ Returns a list object corresponding to the mdJSON data dictionary file.
 \description{
 Plucks one or more mdJSON data dictionaries from an mdJSON file comprised of other types of records.
 }
+\examples{
+# Import mdJSON data dictionary as list
+path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
+input.metadata <- rjson::fromJSON(file = path)
+
+# Extract a data dictionary record from a Metadata file
+dxnry.record<- extract.mdJSON(x = input.metadata, record.type = "dictionaries")
+
+# Convert list to JSON
+output.dxnry = rjson::toJSON(x = dxnry.record)
+
+# Export JSON to disk
+write(x = output.dxnry, file = "e.g.dictionary.json")
+}
 \seealso{
 \code{extract.mdJSON()}
 }
