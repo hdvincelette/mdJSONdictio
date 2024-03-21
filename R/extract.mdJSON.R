@@ -13,7 +13,7 @@
 #' input.metadata <- rjson::fromJSON(file = path)
 #'
 #' # Extract a data dictionary record from a Metadata file
-#' dxnry.record<- extract.mdJSON(x = input.metadata, record.type = "dictionaries)
+#' dxnry.record<- extract.mdJSON(x = input.metadata, record.type = "dictionaries")
 #'
 #' # Convert list to JSON
 #' output.dxnry = rjson::toJSON(x = dxnry.record)
@@ -28,10 +28,10 @@ extract.mdJSON <-
            multiple = TRUE) {
     `%>%` <- magrittr::`%>%`
 
-    if (missing(record.type)){
+    if (missing(record.type)) {
       record.type <- "dictionaries"
     }
-    if (missing(multiple)){
+    if (missing(multiple)) {
       multiple <- TRUE
     }
 
@@ -78,7 +78,9 @@ extract.mdJSON <-
 
       record.choice <- utils::select.list(
         c(filtered.names),
-        title = cat(paste0("The mdJSON list object contains more than one record.")),
+        title = cat(
+          paste0("The mdJSON list object contains more than one record.")
+        ),
         multiple = multiple,
         graphics = TRUE
       )
