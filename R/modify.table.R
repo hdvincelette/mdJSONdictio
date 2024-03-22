@@ -65,7 +65,7 @@ modify.table <-
 
 
 
-    input.dxnry <- modify.mdJSON(
+    X.3 <- modify.mdJSON(
       x = x.2,
       how = how,
       codeName = codeName,
@@ -87,6 +87,10 @@ modify.table <-
       domainItem_definition = domainItem_definition,
       quiet = FALSE
     )
+
+    x.4 <- mdJSONdictio::build.table(x = X.3)
+
+    return(X.4)
 
 
   }
