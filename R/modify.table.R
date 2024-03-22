@@ -65,7 +65,7 @@ modify.table <-
 
 
 
-    X.3 <- modify.mdJSON(
+    x.3 <- modify.mdJSON(
       x = x.2,
       how = how,
       codeName = codeName,
@@ -88,9 +88,9 @@ modify.table <-
       quiet = FALSE
     )
 
-    x.4 <- mdJSONdictio::build.table(x = X.3)
+    x.4 <- mdJSONdictio::build.table(x = x.3)
 
-    return(X.4)
+    return(x.4)
 
 
   }
