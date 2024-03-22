@@ -1,6 +1,6 @@
 
 # mdJSONdictio
-Tools to Build, Translate, and Validate mdEditor mdJSON Data Dictionaries in R.
+Tools to Extract, Build, Modify, and Validate mdEditor Dictionary records in R.
 
 ## Installation
 You can install the released version of mdJSONdictio from [GitHub](https://github.com/) with:
@@ -25,5 +25,5 @@ For more detailed instructions and troubleshooting tips, see [Install mdJSONdict
 
 ## Usage
 
-```build.mdJSON()``` builds an mdJSON data dictionary that can be imported to mdEditor to create a Dictionary Record. The input file must be formatted to a [tabular data dictionary template](https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true). ```build.table()``` builds a tabular data dictionary from an mdEditor mdJSON data dictionary. mdJSON and tabular data dictionaries can be validated against a dataset with ```validate.mdJSON()``` and ```validate.table()```, respectively.
+```build.mdJSON()``` builds an mdJSON data dictionary that can be imported to mdEditor to create a Dictionary record. The input file must be formatted to a [tabular data dictionary template](https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v2.xlsx?raw=true). ```build.table()``` builds a tabular data dictionary from an mdEditor mdJSON data dictionary. Additional functions include ```validate.mdJSON()```/```validate.table()```, which validates mdJSON and tabular data dictionaries against a dataset, and ```modify.mdJSON()```/```modify.table()```, which modifies mdJSON and tabular data dictionaries based on inputs.```extract.mdJSON()``` extracts one or more mdJSON data dictionary from an mdJSON file comprised of other types of records.
 
