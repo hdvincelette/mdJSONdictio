@@ -165,7 +165,7 @@ validate.table <- function(x, y) {
     for (a in 1:ncol(data.NA)) {
       for (bb in 1:nrow(dict.datafield))
         if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
-            dict.datafield$allowNull[bb] == "no" &
+            dict.datafield$allowNull[bb] == FALSE &
             NA %in% (unique(data.NA[, a]))) {
           warnings.df <- warnings.df %>%
             dplyr::add_row(
