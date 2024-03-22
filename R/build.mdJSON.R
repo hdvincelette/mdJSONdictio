@@ -154,10 +154,6 @@ build.mdJSON <- function(x, title) {
   ## Replace values and add domain column
   Data.Dictionary <- Data.Dictionary %>%
     dplyr::mutate_if(is.character, stringr::str_replace_all, "\"", "'") %>%
-    dplyr::mutate_at(dplyr::vars(allowNull, isCaseSensitive),
-                     ~ replace(., which(. == "yes"), "true")) %>%
-    dplyr::mutate_at(dplyr::vars(allowNull, isCaseSensitive),
-                     ~ replace(., which(. == "no"), "false")) %>%
     dplyr::select(-notes) %>%
     tibble::add_column(domainId = NA)
 
@@ -291,7 +287,7 @@ build.mdJSON <- function(x, title) {
   ## Update the first attribute
   for (n in 1:ncol(entityref)) {
     for (o in 1:length(names)) {
-      if (colnames(entityref[1]) == names[o]) {
+      if (colnames(entityref[n]) == names[o]) {
         value <- as.character(entityref[[paste0(names[o])]][1])
 
         if (!names[o] %in% c("fieldWidth", "unitsResolution")) {
@@ -425,21 +421,6 @@ build.mdJSON <- function(x, title) {
     paste0('\"', 'subject', '\":[\"', 'dataDictionary', '\"]')
   newstring <- gsub(oldsubject, newsubject, newstring)
 
-  oldcase <- paste0('\"', 'isCaseSensitive', '\":\"', 'true', '\"')
-  newcase <- paste0('\"', 'isCaseSensitive', '\":', 'true')
-  newstring <- gsub(oldcase, newcase, newstring)
-
-  oldcase <- paste0('\"', 'isCaseSensitive', '\":\"', 'false', '\"')
-  newcase <- paste0('\"', 'isCaseSensitive', '\":', 'false')
-  newstring <- gsub(oldcase, newcase, newstring)
-
-  oldnull <- paste0('\"', 'allowNull', '\":\"', 'true', '\"')
-  newnull <- paste0('\"', 'allowNull', '\":', 'true')
-  newstring <- gsub(oldnull, newnull, newstring)
-
-  oldnull <- paste0('\"', 'allowNull', '\":\"', 'false', '\"')
-  newnull <- paste0('\"', 'allowNull', '\":', 'false')
-  newstring <- gsub(oldnull, newnull, newstring)
 
   blankjson[["data"]][[1]][["attributes"]][["json"]] <- newstring
 
