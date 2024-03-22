@@ -79,7 +79,7 @@ gitcreds::gitcreds_set()
 
 # Add...
 usethis::use_version("patch")
-save(datatype.rules, file = "data/datatype.rules.rda")
+save(blankattribute, file = "data/blankattribute.rda")
 usethis::use_package("plyr")
 usethis::use_build_ignore()
 
