@@ -1,6 +1,6 @@
 #' Validate Tabular Data Dictionaries
 #'
-#' Compares a tabular data dictionary to a tabular dataset and summarizes discrepancies in a data frame. The input data dictionary must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
+#' Compares a tabular data dictionary to a tabular dataset and summarizes discrepancies in a data frame. The input data dictionary must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v2.xlsx?raw=true}{template}.
 #' @param x  Data frame of a tabular data dictionary.
 #' @param y Data frame of a dataset.
 #' @return Returns a data frame comprised of warning messages about the tabular data dictionary.
@@ -33,6 +33,13 @@ validate.table <- function(x, y) {
     input.dxnry <- x
     input.data <- y
 
+    # Check for tabular data dictionary template v1
+    if ("yes" %in% unique(Data.Dictionary$allowNull) |
+        "no" %in% unique(Data.Dictionary$allowNull)) {
+      stop(
+        "'allowNull' and 'isCaseSensitive' only accept logical values (TRUE/FALSE).\nCorrect these fields in the data frame input before continuing.\nUse the latest version (v2) of the tabular data dictionary template to ensure the functon runs smoothly.\n  Print `help(package = 'mdJSONdictio')` for Help Pages.'"
+      )
+    }
 
     # Check for multibyte strings in data file
     for (a in 1:ncol(input.data)) {

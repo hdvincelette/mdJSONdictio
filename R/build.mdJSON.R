@@ -1,6 +1,6 @@
 #' Build mdJSON Data Dictionaries
 #'
-#' Translates a data frame of a tabular data dictionary into an list object that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary Record. The input tabular data dictionary must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v1.xlsx?raw=true}{template}.
+#' Translates a data frame of a tabular data dictionary into an list object that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary Record. The input tabular data dictionary must be formatted to a \href{https://github.com/hdvincelette/mdJSONdictio/blob/master/inst/templates/mdJSONdictio_Dictionary_Template_v2.xlsx?raw=true}{template}.
 #' @param x  Data frame of the tabular data dictionary.
 #' @param title String designating the title of the Dictionary Record in mdEditor.Default=deparse(match.call()$x).
 #' @return Returns a list object corresponding to the tabular data dictionary.
@@ -22,12 +22,14 @@
 #' write(x = new.json, file = "e.g.dictionary.json")
 
 
+
 build.mdJSON <- function(x, title) {
   `%>%` <- magrittr::`%>%`
 
   if (missing(title)) {
     title <- deparse(match.call()$x)
   }
+
 
   # Prepare the dictionary
   Data.Dictionary <- x
@@ -40,6 +42,14 @@ build.mdJSON <- function(x, title) {
       definition = 'NA'
     )
   )
+
+  # Check for tabular data dictionary template v1
+  if ("yes" %in% unique(Data.Dictionary$allowNull) |
+      "no" %in% unique(Data.Dictionary$allowNull)) {
+    stop(
+      "'allowNull' and 'isCaseSensitive' only accept logical values (TRUE/FALSE).\nCorrect these fields in the data frame input before continuing.\nUse the latest version (v2) of the tabular data dictionary template to ensure the functon runs smoothly.\n  Print `help(package = 'mdJSONdictio')` for Help Pages.'"
+    )
+  }
 
   ## Check for errors
   Required.cols <- c(
@@ -428,3 +438,4 @@ build.mdJSON <- function(x, title) {
 
 
 }
+
