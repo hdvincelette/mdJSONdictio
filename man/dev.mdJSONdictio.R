@@ -5,42 +5,38 @@ setwd("C:/Users/hvincelette/OneDrive - DOI/Documents/GitHub/mdJSONdictio")
 remove.packages("mdJSONdictio")
 .rs.restartR()
 
-remove.packages(c(
-  "rlang",
-  "purrr",
-  "stringr",
-  "glue",
-  "cli",
-  "vctrs",
-  "fansi",
-  "Rcpp",
-  "stringi"
-))
-install.packages(c(
-  "rlang",
-  "purrr",
-  "stringr",
-  "glue",
-  "cli",
-  "vctrs",
-  "fansi",
-  "Rcpp",
-  "stringi"
-))
-
-
-remove.packages(
-  c(
-    "readxl",
-    "rjson",
-    "stats",
-    "tibble",
-    "uuid",
-    "dplyr",
-    "plyr"
-  )
-)
-.rs.restartR()
+# remove.packages(c(
+#   "rlang",
+#   "purrr",
+#   "stringr",
+#   "glue",
+#   "cli",
+#   "vctrs",
+#   "fansi",
+#   "Rcpp",
+#   "stringi"
+# ))
+# install.packages(c(
+#   "rlang",
+#   "purrr",
+#   "stringr",
+#   "glue",
+#   "cli",
+#   "vctrs",
+#   "fansi",
+#   "Rcpp",
+#   "stringi"
+# ))
+#
+#
+# remove.packages(c("readxl",
+#                   "rjson",
+#                   "stats",
+#                   "tibble",
+#                   "uuid",
+#                   "dplyr",
+#                   "plyr"))
+# .rs.restartR()
 
 
 #### Update ####
@@ -79,7 +75,7 @@ gitcreds::gitcreds_set()
 
 # Add...
 usethis::use_version("patch")
-save(blankattribute, file = "data/blankattribute.rda")
+save(blankjson, file = "data/blankjson.rda")
 usethis::use_package("plyr")
 usethis::use_build_ignore()
 
