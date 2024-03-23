@@ -58,6 +58,8 @@ rmarkdown::render('vignettes/04_mdJSONdictio_Tutorial.Rmd')
 rmarkdown::render('vignettes/05_Next_Steps_mdEditor.Rmd')
 
 # Update site
+pkgdown::build_site_github_pages(examples = FALSE)
+
 pkgdown::deploy_to_branch(
   clean = TRUE,
   branch = "gh-pages",
@@ -67,8 +69,7 @@ pkgdown::deploy_to_branch(
   examples = FALSE
 )
 
-pkgdown::build_site_github_pages(examples = FALSE)
-pkgdown::build_site(examples = FALSE)
+# pkgdown::build_site(examples = FALSE)
 
 # Update token
 gitcreds::gitcreds_set()
