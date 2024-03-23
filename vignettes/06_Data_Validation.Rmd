@@ -1,0 +1,96 @@
+---
+title: "Data Validation with mdJSONdictio"
+output: 
+  # html_document:
+  #   theme: readable
+  #   highlight:
+  #   fig_caption: true
+  knitr:::html_vignette:
+    toc: true
+  pdf_document:
+    highlight: null
+    number_sections: yes
+vignette: >
+  %\VignetteIndexEntry{mdJSONdictio}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+<style type="text/css">
+  body{
+  font-size: 12pt;
+}
+</style>
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(width = 9999)
+
+library(mdJSONdictio)
+library(knitr)
+library(bookdown)
+library(kableExtra)
+library(tibble)
+library(rmarkdown)
+library(DT)
+library(png)
+library(utils)
+library(rjson)
+```
+
+
+```validate.mdJSON()```/```validate.tableN()``` compares mdJSON and tabular data dictionaries against a corresponding dataset and outputs a warnings table, as shown here.
+
+##### <span style="color: grey;">Warnings table in Excel</span>
+![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Warnings_Table.png)
+<br />
+<br />
+
+# Attributes and domain items
+
+The two main components of the tabular data dictionary template are attributes and domain items, each of which are represented as a row. Attributes are units of information (metadata) describing data fields (e.g. columns in a table). Domain items are accepted entry values for a data field, which collectively make up the domain of an attribute. It is important to remember that not all attribute domains are defined. For example, the attribute "Sex" may have a domain comprised of three domain items ("F","M", and "U"), where as the attribute "Year" does not have a defined domain since an unlimited number of years can be entered.
+<br />
+<br />
+The table below describes the header in the tabular data dictionary template, which represent field(s) in mdEditor Dictionary Records. "Definition" describes the template column. These definitions are derived from the [mdEditor User Manual](https://guide.mdeditor.org/reference/edit-window/dictionary/dictionary-record.html). "Type" indicates the type of value allowed in the template column. "Required" indicates whether the template column is required by attributes and/or domain items ("No" indicates it is not required by either attributes or domain items). 
+<br />
+
+*Note: The template columns "codeName," "domainItem_name," "domainItem_value," and "definition" are all required by attributes and domain items. The template columns "dataType" and "allowNull" are required by attributes*
+<br />
+<br />
+
+#### Data dictionary template column descriptions
+
+<font size="2.5"> 
+```{r, echo=FALSE}
+kable(read.csv(path<-system.file("extdata", "template_column_definitions.csv", package = "mdJSONdictio")),align = "l") %>%
+  kable_styling(full_width = F)
+```
+</font>
+<br />
+<br />
+
+# Attribute data types
+Attributes require a defined data type. The "dataType" template column accepts  numerous values as shown in the table below. These are derived from the mdEditor web application, and the definitions were acquired from the [mdCodes Viewer](https://adiwg.github.io/mdTools/#codes-page) in the mdTools interface.
+<br />
+<br />
+
+#### "dataType" value descriptions
+
+<font size="2.5"> 
+```{r, echo=FALSE}
+kable(read.csv(path<-system.file("extdata", "datatype_definitions.csv", package = "mdJSONdictio")), align = "l") %>%
+  kable_styling(full_width = F,position = "left")
+```
+</font>
+<br />
+<br />
+<br />
+
+
