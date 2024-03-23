@@ -180,7 +180,7 @@ validate.table <- function(x, y) {
               Variable = colnames(data.NA[a]),
               Category = "allowNull",
               Message =  paste0(
-                'Dataset variable contains blank values, which is not consistent with "allowNull" in dictionary '
+                'Dataset variable contains blank values, which is inconsistent with "allowNull" in dictionary '
               )
             )
         }
@@ -410,9 +410,8 @@ validate.table <- function(x, y) {
                 NA %in% unique(data.NA[, a]) &
                 length(unique(data.NA[, a])) > 1) {
               MaxPrecision <-
-                max(nchar(gsub(
-                  ".*\\.|^[^.]+$", "", as.character(data.NA[, a])
-                )), na.rm = TRUE)
+                max(nchar(sub("^0+", "", as.character(data.NA[, a]))), na.rm = TRUE)
+
 
               # print(MaxPrecision)
 
