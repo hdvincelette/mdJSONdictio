@@ -1,4 +1,4 @@
-Value,RDatatype,MaxLength,MaxPrecision,MinValue_unsigned,MaxValue_unsigned,DistinctValue,DistinctLength
+Value,RDatatype,maxLength,maxPrecision,minValue_unsigned,maxValue_unsigned,distinctValue,distinctLength
 character,is.character,255,,,,,1
 character varying,is.character,65535,,,,,
 character large object,is.character,2147483647,,,,,
