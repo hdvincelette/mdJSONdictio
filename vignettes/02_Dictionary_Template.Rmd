@@ -89,7 +89,7 @@ Attributes require a defined data type. The "dataType" template column accepts  
 <br />
 <br />
 
-#### "dataType" value descriptions
+#### Data type definitions
 
 <font size="2.5"> 
 ```{r, echo=FALSE}
