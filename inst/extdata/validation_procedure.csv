@@ -1,18 +1,18 @@
-﻿Category,Detects,,
-codeName,attributes not listed in the dictionary,,
-domainItem_value,entry values not listed in the dictionary,,
-allowNull,NAs when allowNull is FALSE in the dictionary,,
-dataType,different datatype than described in the dictionary,,
+﻿Category,Detects
+codeName,attributes not listed in the dictionary
+domainItem_value,entry values not listed in the dictionary
+allowNull,NAs when allowNull is FALSE in the dictionary
+dataType,different datatype than described in the dictionary
 dataType_datetime,"entry values with datetime, date, or time datatypes not in standard ISO 1806 datetime format 
-(e.g., 2022-09-27 18:00:00.000)",,
-dataType_maxLength,entry values with more characters than allowed for the datatype,,
-dataType_maxPrecision,entry values with more precision than allowed for the datatype,,
-dataType_minValue,smaller entry values than allowed for the datatype,,
-dataType_maxValue,larger entry values than allowed for the datatype,,
-dataType_distinctValue,greater number of distinct values than allowed for the datatype,,
-dataType_distinctLength,variable length entry values when the datatype is fixed length,,
-unitsResolution,entry values with greater or lower resolution than indicated in the dictionary,,
-fieldWidth,entry values with more characters than indicated in the dictionary,,
-missingValue,NAs when missingValue is otherwise defined in the dictionary,,
-minValue,smaller entry values than indicated in the dictionary,,
-maxValue,larger entry values than indicated in the dictionary,,
+(e.g., 2022-09-27 18:00:00.000)"
+dataType_maxLength,entry values with more characters than allowed for the datatype
+dataType_maxPrecision,entry values with more precision than allowed for the datatype
+dataType_minValue,smaller entry values than allowed for the datatype
+dataType_maxValue,larger entry values than allowed for the datatype
+dataType_distinctValue,greater number of distinct values than allowed for the datatype
+dataType_distinctLength,variable length entry values when the datatype is fixed length
+unitsResolution,entry values with greater or lower resolution than indicated in the dictionary
+fieldWidth,entry values with more characters than indicated in the dictionary
+missingValue,NAs when missingValue is otherwise defined in the dictionary
+minValue,smaller entry values than indicated in the dictionary
+maxValue,larger entry values than indicated in the dictionary
