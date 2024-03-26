@@ -212,7 +212,7 @@ validate.table <- function(x, y) {
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
                   Variable = colnames(data.NA[a]),
-                  Category = "dataType",
+                  Category = "dataType_RDatatype",
                   Message =  paste0(
                     'Dataset variable is detected as a different datatype (',
                     purrr::map(data.NA[a], class),
@@ -344,19 +344,19 @@ validate.table <- function(x, y) {
     }
 
 
-    ## MaxLength
+    ## maxlength
     #!# R only stores up to 32,767 characters
 
 
     for (a in 1:ncol(data.NA)) {
       data.nchar <- NA
-      MaxLength <- NA
+      maxlength <- NA
 
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
               dict.datafield$dataType[bb] == datatype.rules$Value[cc] &
-              is.na(datatype.rules$MaxLength[cc]) == FALSE) {
+              is.na(datatype.rules$maxlength[cc]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
             # print(paste0("datatype.rules: ", datatype.rules$Value[cc]))
@@ -364,22 +364,22 @@ validate.table <- function(x, y) {
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
                 length(unique(data.NA[, a])) > 1) {
-              MaxLength <- max(nchar(as.character(data.NA[, a])), na.rm = TRUE)
+              maxlength <- max(nchar(as.character(data.NA[, a])), na.rm = TRUE)
 
-              # print(MaxLength)
+              # print(maxlength)
 
-              if (is.na(MaxLength) == FALSE &
-                  MaxLength > datatype.rules$MaxLength[cc])  {
+              if (is.na(maxlength) == FALSE &
+                  maxlength > datatype.rules$maxlength[cc])  {
                 warnings.df <- warnings.df %>%
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
                     Variable = colnames(data.NA[a]),
-                    Category = "dataType_maxLength",
+                    Category = "dataType_maxlength",
                     Message =  paste0(
                       'Dataset variable has entry value(s) with a greater length (',
-                      MaxLength,
+                      maxlength,
                       ') than allowed for the datatype (',
-                      datatype.rules$MaxLength[cc],
+                      datatype.rules$maxlength[cc],
                       ')'
                     )
                   )
@@ -392,7 +392,7 @@ validate.table <- function(x, y) {
     }
 
 
-    ## MaxPrecision
+    ## maxPrecision
     #!# Need to test; Excel doesn't store > 15 sigfigs
 
     for (a in 1:ncol(data.NA)) {
@@ -400,7 +400,7 @@ validate.table <- function(x, y) {
         for (cc in 1:nrow(datatype.rules)) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
               dict.datafield$dataType[bb] == datatype.rules$Value[cc] &
-              is.na(datatype.rules$MaxPrecision[cc]) == FALSE &
+              is.na(datatype.rules$maxPrecision[cc]) == FALSE &
               is.character(data.NA[, a]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
@@ -409,14 +409,14 @@ validate.table <- function(x, y) {
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
                 length(unique(data.NA[, a])) > 1) {
-              MaxPrecision <-
+              maxPrecision <-
                 max(nchar(sub("^0+", "", as.character(data.NA[, a]))), na.rm = TRUE)
 
 
-              # print(MaxPrecision)
+              # print(maxPrecision)
 
-              if (is.na(MaxPrecision) == FALSE &
-                  MaxPrecision > datatype.rules$MaxPrecision[cc]) {
+              if (is.na(maxPrecision) == FALSE &
+                  maxPrecision > datatype.rules$maxPrecision[cc]) {
                 warnings.df <- warnings.df %>%
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
@@ -424,9 +424,9 @@ validate.table <- function(x, y) {
                     Category = "dataType_maxPrecision",
                     Message =  paste0(
                       'Dataset variable has entry value(s) with greater precision (',
-                      MaxPrecision,
+                      maxPrecision,
                       ') than allowed for the datatype (',
-                      datatype.rules$MaxPrecision[cc],
+                      datatype.rules$maxPrecision[cc],
                       ')'
                     )
                   )
@@ -438,16 +438,16 @@ validate.table <- function(x, y) {
       }
     }
 
-    ## MinValue
+    ## minValue
 
     for (a in 1:ncol(data.NA)) {
-      MinValue <- NA
+      minValue <- NA
 
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
               dict.datafield$dataType[bb] == datatype.rules$Value[cc] &
-              is.na(datatype.rules$MinValue_unsigned[cc]) == FALSE &
+              is.na(datatype.rules$minValue_unsigned[cc]) == FALSE &
               is.character(data.NA[, a]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
@@ -456,12 +456,12 @@ validate.table <- function(x, y) {
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
                 length(unique(data.NA[, a])) > 1) {
-              MinValue <- min(unique(data.NA[, a]), na.rm = TRUE)
+              minValue <- min(unique(data.NA[, a]), na.rm = TRUE)
 
-              # print(MinValue)
+              # print(minValue)
 
-              if (is.na(MinValue) == FALSE &
-                  MinValue < datatype.rules$MinValue_unsigned[cc]) {
+              if (is.na(minValue) == FALSE &
+                  minValue < datatype.rules$minValue_unsigned[cc]) {
                 warnings.df <- warnings.df %>%
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
@@ -469,9 +469,9 @@ validate.table <- function(x, y) {
                     Category = "dataType_minValue",
                     Message =  paste0(
                       'Dataset variable has entry value(s) with a smaller value (',
-                      MinValue,
+                      minValue,
                       ') than allowed for the datatype (',
-                      datatype.rules$MinValue_unsigned[cc],
+                      datatype.rules$minValue_unsigned[cc],
                       ')'
                     )
                   )
@@ -483,16 +483,16 @@ validate.table <- function(x, y) {
       }
     }
 
-    ## MaxValue
+    ## maxValue
 
     for (a in 1:ncol(data.NA)) {
-      MaxValue <- NA
+      maxValue <- NA
 
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
               dict.datafield$dataType[bb] == datatype.rules$Value[cc] &
-              is.na(datatype.rules$MaxValue_unsigned[cc]) == FALSE &
+              is.na(datatype.rules$maxValue_unsigned[cc]) == FALSE &
               is.character(data.NA[, a]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
@@ -501,12 +501,12 @@ validate.table <- function(x, y) {
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
                 length(unique(data.NA[, a])) > 1) {
-              MaxValue <- max(unique(data.NA[, a]), na.rm = TRUE)
+              maxValue <- max(unique(data.NA[, a]), na.rm = TRUE)
 
-              # print(MaxValue)
+              # print(maxValue)
 
-              if (is.na(MaxValue) == FALSE &
-                  MaxValue > datatype.rules$MaxValue_unsigned[cc]) {
+              if (is.na(maxValue) == FALSE &
+                  maxValue > datatype.rules$maxValue_unsigned[cc]) {
                 warnings.df <- warnings.df %>%
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
@@ -514,9 +514,9 @@ validate.table <- function(x, y) {
                     Category = "dataType_maxValue",
                     Message =  paste0(
                       'Dataset variable has entry value(s) with a greater value (',
-                      MaxValue,
+                      maxValue,
                       ') than allowed for the datatype (',
-                      datatype.rules$MaxValue_unsigned[cc],
+                      datatype.rules$maxValue_unsigned[cc],
                       ')'
                     )
                   )
@@ -529,16 +529,16 @@ validate.table <- function(x, y) {
     }
 
 
-    ## DistinctValue
+    ## distinctValue
 
     for (a in 1:ncol(data.NA)) {
-      DistinctValue <- NA
+      distinctValue <- NA
 
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
               dict.datafield$dataType[bb] == datatype.rules$Value[cc] &
-              is.na(datatype.rules$DistinctValue[cc]) == FALSE) {
+              is.na(datatype.rules$distinctValue[cc]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
             # print(paste0("datatype.rules: ", datatype.rules$Value[cc]))
@@ -546,12 +546,12 @@ validate.table <- function(x, y) {
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
                 length(unique(data.NA[, a])) > 1) {
-              DistinctValue <- length(unique(na.omit(data.NA[, a])))
+              distinctValue <- length(unique(na.omit(data.NA[, a])))
 
-              # print(DistinctValue)
+              # print(distinctValue)
 
-              if (is.na(DistinctValue) == FALSE &
-                  DistinctValue > datatype.rules$DistinctValue[cc]) {
+              if (is.na(distinctValue) == FALSE &
+                  distinctValue > datatype.rules$distinctValue[cc]) {
                 warnings.df <- warnings.df %>%
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
@@ -559,9 +559,9 @@ validate.table <- function(x, y) {
                     Category = "dataType_distinctValue",
                     Message =  paste0(
                       'Dataset variable has a greater number of distinct values (',
-                      DistinctValue,
+                      distinctValue,
                       ') than allowed for the datatype (',
-                      datatype.rules$DistinctValue[cc],
+                      datatype.rules$distinctValue[cc],
                       ')'
                     )
                   )
@@ -574,16 +574,16 @@ validate.table <- function(x, y) {
     }
 
 
-    ## DistinctLength
+    ## distinctLength
 
     for (a in 1:ncol(data.NA)) {
-      DistinctLength <- NA
+      distinctLength <- NA
 
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
               dict.datafield$dataType[bb] == datatype.rules$Value[cc] &
-              is.na(datatype.rules$DistinctLength[cc]) == FALSE) {
+              is.na(datatype.rules$distinctLength[cc]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
             # print(paste0("datatype.rules: ", datatype.rules$Value[cc]))
@@ -591,14 +591,14 @@ validate.table <- function(x, y) {
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
                 length(unique(data.NA[, a])) > 1) {
-              DistinctLength <- length(unique(nchar(na.omit(
+              distinctLength <- length(unique(nchar(na.omit(
                 data.NA[, a]
               ))))
 
-              # print(DistinctLength)
+              # print(distinctLength)
 
-              if (is.na(DistinctLength) == FALSE &
-                  DistinctLength > datatype.rules$DistinctLength[cc]) {
+              if (is.na(distinctLength) == FALSE &
+                  distinctLength > datatype.rules$distinctLength[cc]) {
                 warnings.df <- warnings.df %>%
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
@@ -606,7 +606,7 @@ validate.table <- function(x, y) {
                     Category = "dataType_distinctLength",
                     Message =  paste0(
                       'Dataset variable has entry values with more than one length (',
-                      DistinctLength,
+                      distinctLength,
                       ') while the datatype indicates values should be "fixed length"'
                     )
                   )
