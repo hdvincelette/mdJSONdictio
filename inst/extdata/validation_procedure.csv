@@ -1,29 +1,18 @@
-﻿Category,Function,Detects
-codeName,dplyr::setDiff,attributes not listed in the dictionary
-domainItem_value,dplyr::setDiff,entry values not listed in the dictionary
-allowNull,NA %in% y,NAs when allowNull is FALSE in the dictionary
-dataType,match.fun(datatype.rules$RDatatype),different datatype than described in the dictionary
-dataType_datetime,"!y %in%  c(""%Y-%m-%d"", 
-                 ""%Y-W%U-%u"", 
-                 ""%Y-%j"", 
-                 ""%Y%m%d"", 
-                 ""%YW%U%u"",  
-                 ""%YW%U"",  
-                 ""%Y%j"") 
-| y %in% c(""%d-%m-%Y"",
-                       ""%m-%d-%Y"",
-                       ""%d%m%Y"",
-                        ""%m%d%Y"")
-| grepl(""AM|PM"", y)","entry values with datetime, date, or time datatypes not in standard ISO 1806 datetime format 
-(e.g., 2022-09-27 18:00:00.000)"
-dataType_maxLength,max(nchar(y)) > datatype.rules$MaxLength,entry values with more characters than allowed for the datatype
-dataType_maxPrecision,max(nchar(y)) > datatype.rules$MaxPrecision,entry values with more precision than allowed for the datatype
-dataType_minValue,min(y) < datatype.rules$MinValue,smaller entry values than allowed for the datatype
-dataType_maxValue,max(y) > datatype.rules$MaxValue,larger entry values than allowed for the datatype
-dataType_distinctValue,length(unique(y)) > 2,greater number of distinct values than allowed for the datatype
-dataType_distinctLength,length(unique(nchar(y))) > 1,variable length entry values when the datatype is fixed length
-unitsResolution,max(nchar(y)) > datatype.rules$unitsResolution | min(nchar(y)) < datatype.rules$unitsResolution,entry values with greater or lower resolution than indicated in the dictionary
-fieldWidth,nchar(y) > fieldWidth,entry values with more characters than indicated in the dictionary
-missingValue,NA %in% y,NAs when missingValue is otherwise defined in the dictionary
-minValue,min(y) < minValue,smaller entry values than indicated in the dictionary
-maxValue,max(y) > maxValue,larger entry values than indicated in the dictionary
+﻿Category,Detects,,
+codeName,attributes not listed in the dictionary,,
+domainItem_value,entry values not listed in the dictionary,,
+allowNull,NAs when allowNull is FALSE in the dictionary,,
+dataType,different datatype than described in the dictionary,,
+dataType_datetime,"entry values with datetime, date, or time datatypes not in standard ISO 1806 datetime format 
+(e.g., 2022-09-27 18:00:00.000)",,
+dataType_maxLength,entry values with more characters than allowed for the datatype,,
+dataType_maxPrecision,entry values with more precision than allowed for the datatype,,
+dataType_minValue,smaller entry values than allowed for the datatype,,
+dataType_maxValue,larger entry values than allowed for the datatype,,
+dataType_distinctValue,greater number of distinct values than allowed for the datatype,,
+dataType_distinctLength,variable length entry values when the datatype is fixed length,,
+unitsResolution,entry values with greater or lower resolution than indicated in the dictionary,,
+fieldWidth,entry values with more characters than indicated in the dictionary,,
+missingValue,NAs when missingValue is otherwise defined in the dictionary,,
+minValue,smaller entry values than indicated in the dictionary,,
+maxValue,larger entry values than indicated in the dictionary,,
