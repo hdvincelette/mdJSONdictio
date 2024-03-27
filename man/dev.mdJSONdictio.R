@@ -171,7 +171,6 @@ path <-
   system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 e.g.dictionary <- readxl::read_excel(path)
 
-
 newjson <-
   build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
 
@@ -182,11 +181,11 @@ e.g.dictionary <- e.g.dictionary %>%
 # invalid column
 e.g.dictionary$newcol1 <- NA
 
-# required field incomplete
-e.g.dictionary$codeName[c(30, 45)] <- NA
+# # required field incomplete
+# e.g.dictionary$codeName[c(30, 45)] <- NA
 
-# conflicting entries
-e.g.dictionary$domainItem_name[c(107)] <- "test"
+# # conflicting entries
+# e.g.dictionary$domainItem_name[c(107)] <- "test"
 
 # colname row missing dataType
 e.g.dictionary$dataType[c(10)] <- NA
@@ -194,7 +193,7 @@ e.g.dictionary$dataType[c(10)] <- NA
 # colname row missing allowNull
 e.g.dictionary$allowNull[c(4)] <- NA
 
-# invalid data type
+# invalid fieldwidth
 e.g.dictionary$fieldWidth[c(4)] <-"hi"
 
 # invalid data type
