@@ -1,4 +1,4 @@
-﻿category,discrepancy 
+﻿category,discrepancy
 codeName,attributes not listed in the dictionary
 domainItem_value,entry values not listed in the dictionary
 allowNull,NAs when allowNull is FALSE in the dictionary
