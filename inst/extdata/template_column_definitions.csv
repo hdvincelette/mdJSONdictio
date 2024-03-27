@@ -1,4 +1,4 @@
-Column,Type,Definition,Required
+column,type,definition,required
 codeName,character varying,Attribute name; the code used to identify this attribute; most often this will be the table or spreadsheet column name,Attributes; Domain items
 domainItem_name,character varying,A descriptive name associated with the domain item value; Default is to use the domain item value; rows regarding attributes are 'dataField',Attributes; Domain items
 domainItem_value,character varying,The domain item value; the entry value in the table; rows regarding attributes are 'dataField',Attributes; Domain items
