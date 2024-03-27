@@ -14,7 +14,7 @@
 #' input.list <- rjson::fromJSON(file = path)
 #'
 #' # Translate list to data frame
-#' new.table<- mdJSONdictio::build.table(x = input.list, dictionary_num = 1, entity_num = 1)
+#' new.table<- mdJSONdictio::build.table(x = input.list, entity_num = 1)
 #'
 #' # Export table to disk
 #' write.csv(x = new.table, file = "e.g.dictionary2.csv", na="", row.names = FALSE)
@@ -204,7 +204,7 @@ build.table <- function(x, entity_num) {
     dplyr::rename("domainItem_name" = "name",
                   "domainItem_value" = "value")
 
-  assign(paste0("newtable", a), blanktable)
+  assign(paste0("newtable"), blanktable)
 
 
 
