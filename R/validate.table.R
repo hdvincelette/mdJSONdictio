@@ -69,6 +69,13 @@ validate.table <- function(x, y) {
     datatype.rules <-
       datatype.rules %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
 
+    # for (a in 1:nrow(datatype_rules)) {
+    #   if (is.na(datatype_rules$RDatatype[a]) == FALSE) {
+    #     datatype_rules$RDatatype[a] <-
+    #       paste0('is.', datatype_rules$RDatatype[a])
+    #   }
+    # }
+
 
     # Create dictionary references
     dict.vars <- unique(input.dxnry$codeName)
