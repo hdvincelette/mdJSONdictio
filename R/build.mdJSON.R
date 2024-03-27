@@ -91,11 +91,12 @@ build.mdJSON <- function(x, title) {
       '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
     )
     for (aa in 1:nrow(Data.Dictionary)) {
-      if (as.logical(colnames(Data.Dictionary[a]) %in% c("codeName",
+      ## inoperative; NA replaced with 'NA'
+      if (colnames(Data.Dictionary[a]) %in% c("codeName",
                                               "domainItem_name",
                                               "domainItem_value",
                                               "definition") &
-          is.na(Data.Dictionary[aa, a])) == TRUE)
+          is.na(Data.Dictionary[aa, a]) == TRUE)
         stop(
           'Required field incomplete. \n  ',
           colnames(Data.Dictionary[a]),
