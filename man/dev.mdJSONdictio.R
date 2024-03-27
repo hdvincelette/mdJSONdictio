@@ -81,7 +81,17 @@ gitcreds::gitcreds_set()
 # Add...
 usethis::use_version("patch")
 save(datatype.rules, file = "data/datatype.rules.rda")
-devtools::use_data(..., internal = FALSE)
+usethis::use_data(
+  blankattribute,
+  blankdictionarylist,
+  blankdomain,
+  blankdomainItem,
+  blankjson,
+  datatype.rules,
+  dataType.vector,
+  internal = FALSE,
+  overwrite = TRUE
+)
 usethis::use_package("plyr")
 usethis::use_build_ignore()
 
@@ -267,7 +277,7 @@ path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 
 # Validate dataset against dictionary
-all.warnings<- validate.table(input.dxnry, input.data)
+all.warnings<- mdJSONdictio::validate.table(input.dxnry, input.data)
 
 # Export table to disk
 write.csv(x = all.warnings2, file = "e.g.warnings.csv")
@@ -293,7 +303,7 @@ all.warnings<- validate.table(input.dxnry, input.data)
 
 ## Standard run ##
 setwd("~/Desktop")
-setwd("C:/Users/hvincelette/Desktop")
+setwd("C:/Users/hvincelette/OneDrive - DOI/Desktop")
 
 library(mdJSONdictio)
 
