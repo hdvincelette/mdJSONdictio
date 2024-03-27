@@ -80,6 +80,7 @@ gitcreds::gitcreds_set()
 
 # Add...
 usethis::use_version("minor")
+# 03_Setup, README
 save(datatype.rules, file = "data/datatype.rules.rda")
 usethis::use_data(
   blankattribute,
