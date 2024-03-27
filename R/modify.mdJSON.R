@@ -85,15 +85,12 @@ modify.mdJSON <-
            quiet = FALSE) {
     `%>%` <- magrittr::`%>%`
 
-    data(
-      list = c(
-        "blankattribute",
-        "blankdictionarylist",
-        "blankdomain",
-        "blankdomainItem",
-        "dataType.vector"
-      )
-    )
+    blankattribute<- get0("blankattribute", envir = asNamespace("mdJSONdictio"))
+    blankdictionarylist<- get0("blankdictionarylist", envir = asNamespace("mdJSONdictio"))
+    blankdomain<- get0("blankdomain", envir = asNamespace("mdJSONdictio"))
+    blankdomainItem<- get0("blankdomainItem", envir = asNamespace("mdJSONdictio"))
+    dataType.vector<- get0("dataType.vector", envir = asNamespace("mdJSONdictio"))
+
 
 
     #### Extract dictionary list ####
