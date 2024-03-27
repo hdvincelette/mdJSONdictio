@@ -1,4 +1,4 @@
-value,definition,RDatatype,maxLength,maxPrecision,minValue_unsigned,maxValue_unsigned,distinctValue,distinctLength
+value,definition,RdataType,maxLength,maxPrecision,minValue_unsigned,maxValue_unsigned,distinctValue,distinctLength
 character,Fixed length character strings,character,255,,,,,1
 character varying,Variable length character strings,character,65535,,,,,
 character large object,Character large object; large objects are designed to hold extremely large column values,character,2147483647,,,,,
