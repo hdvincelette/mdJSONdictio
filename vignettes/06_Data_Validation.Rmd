@@ -54,7 +54,7 @@ library(rjson)
 <br />
 
 # Validation procedures
-```validate.mdJSON()``` and ```validate.tableN()``` can detect numerous discrepencies between a dataset and dictionary, as shown below. "category" corresponds to field(s) in the tabular data dictionary or mdEditor Dictionary record which failed one or more logical tests in the function. "discrepancy" describes the cause of that failure. The output is called a "warnings" table because some discrepancies may not warrant an action (e.g., the data type for the attribute "TagID" appears to be "integer" in the dataset, but the data type is described as "character varying" in the dictionary because entry values can contains letters). It is ultimately up to the data steward to decide what needs to be corrected to most accurately describe the associated dataset. 
+```validate.mdJSON()``` and ```validate.tableN()``` can detect numerous discrepencies between a dataset and dictionary, as shown below. "category" corresponds to field(s) in the tabular data dictionary or mdEditor Dictionary record which failed one or more logical tests. "discrepancy" describes the cause of that failure. The output is called a "warnings" table because some discrepancies may not warrant an action (e.g., the data type for the attribute "TagID" appears to be "integer" in the dataset, but the data type is described as "character varying" in the dictionary because entry values can contains letters). It is ultimately up to the data steward to decide what needs to be corrected to most accurately describe the associated dataset. 
 
 Refer to the [mdEditor Reference Manual](https://guide.mdeditor.org/reference/reference-manual.html) for complete definitions and constraints of all mdEditor Attribute, Domain, and Domain Item fields.
 
@@ -73,25 +73,19 @@ align = "l") %>%
 <br />
 
 # Data type contraints
-"dataType" values undergo a series of tests based on [Structured Query Language (SQL)](https://www.iso.org/obp/ui/en/#iso:std:iso-iec:9075:-1:ed-6:v1:en) data constraints to ensure the associated dataset attribute is described accurately. Data types are described as followed. Definitions are derived from the [mdCodes Viewer](https://adiwg.github.io/mdTools/#codes-page) in the mdTools interface, and "rules" by the [International Organization for Standardization (ISO)](https://www.iso.org/obp/ui/en/#iso:std:iso-iec:9075:-1:ed-6:v1:en).
-<br />
-<br />
-
-##### <span style="color: grey;">Data type definitions</span>
-<font size="2.5"> 
-```{r, echo=FALSE}
-kable(read.csv(path<-system.file("extdata", "datatype_definitions.csv", package = "mdJSONdictio")), align = "l") %>%
-  kable_styling(full_width = F,position = "left")
-```
-</font>
-<br />
-<br />
+"dataType" values undergo a series of tests based on [Structured Query Language (SQL)](https://www.iso.org/obp/ui/en/#iso:std:iso-iec:9075:-1:ed-6:v1:en) data constraints to ensure the associated dataset attribute is described accurately. Data types are described as followed. Definitions are derived from the [mdCodes Viewer](https://adiwg.github.io/mdTools/#codes-page) in the mdTools interface, and "rules" from the [International Organization for Standardization (ISO)](https://www.iso.org/obp/ui/en/#iso:std:iso-iec:9075:-1:ed-6:v1:en).
 
 ##### <span style="color: grey;">Data type rules</span>
 <font size="2.5"> 
 ```{r, echo=FALSE}
-kable(read.csv(path<-system.file("extdata", "datatype.rules.csv", package = "mdJSONdictio"),  fileEncoding="latin1", na.strings = NA), align = "l") %>%
-  kable_styling(full_width = F,position = "left") %>% scroll_box(width = "100%")
+kable(read.csv(path<-system.file("extdata", "datatype.rules_definitions.csv", package = "mdJSONdictio"),  fileEncoding="latin1", na.strings = NA), escape = F, align = "l") %>% kable_styling(full_width = F, position = "left") %>%
+  column_spec(1, width_min = '2in') %>%
+  column_spec(2, width_min = '3.5in') %>%
+  column_spec(3:7, width_min = '1in') %>%
+  scroll_box(width = "100%")
+
+# kable(read.csv(path<-system.file("extdata", "datatype.rules_definitions.csv", package = "mdJSONdictio"),  fileEncoding="latin1", na.strings = NA), align = "l") %>% column_spec(2, width = "50em") %>%
+#   kable_styling(full_width = F,position = "left")
 ```
 </font>
 <br />
