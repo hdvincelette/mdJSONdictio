@@ -70,9 +70,9 @@ validate.table <- function(x, y) {
       datatype.rules %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
 
     # for (a in 1:nrow(datatype_rules)) {
-    #   if (is.na(datatype_rules$RDatatype[a]) == FALSE) {
-    #     datatype_rules$RDatatype[a] <-
-    #       paste0('is.', datatype_rules$RDatatype[a])
+    #   if (is.na(datatype_rules$Rdatatype[a]) == FALSE) {
+    #     datatype_rules$Rdatatype[a] <-
+    #       paste0('is.', datatype_rules$Rdatatype[a])
     #   }
     # }
 
@@ -196,30 +196,30 @@ validate.table <- function(x, y) {
 
     #### Required fields: dataType ####
 
-    # RDatatype: all
+    # Rdatatype: all
     #!# Excluding date, time, datetime, xml
 
     for (a in 1:ncol(data.NA)) {
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
-          RDatatype <- NULL
+          Rdatatype <- NULL
 
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
               dict.datafield$dataType[bb] == datatype.rules$Value[cc]) {
-            if (is.na(datatype.rules$RDatatype[cc]) == FALSE) {
-              RDatatype <- match.fun(datatype.rules$RDatatype[cc])
+            if (is.na(datatype.rules$Rdatatype[cc]) == FALSE) {
+              Rdatatype <- match.fun(datatype.rules$Rdatatype[cc])
             }
 
-            if (is.null(RDatatype) == TRUE) {
+            if (is.null(Rdatatype) == TRUE) {
               next
             }
-            else if (RDatatype(data.NA[[a]]) == FALSE &
+            else if (Rdatatype(data.NA[[a]]) == FALSE &
                      purrr::map(data.NA[a], class) != "logical") {
               warnings.df <- warnings.df %>%
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
                   Variable = colnames(data.NA[a]),
-                  Category = "dataType_RDatatype",
+                  Category = "dataType_Rdatatype",
                   Message =  paste0(
                     'Dataset variable is detected as a different datatype (',
                     purrr::map(data.NA[a], class),
@@ -236,7 +236,7 @@ validate.table <- function(x, y) {
     }
 
 
-    # RDatatype: date, datetime
+    # Rdatatype: date, datetime
 
     ISO.datetime <- function(x,
                              datetime.format = c("%Y-%m-%d",
@@ -314,7 +314,7 @@ validate.table <- function(x, y) {
     }
 
 
-    # RDatatype: time
+    # Rdatatype: time
 
     for (a in 1:ncol(data.NA)) {
       time <- NA
