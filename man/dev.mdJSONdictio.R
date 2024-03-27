@@ -62,8 +62,6 @@ rmarkdown::render('vignettes/05_Next_Steps_mdEditor.Rmd')
 rmarkdown::render('vignettes/06_Data_Validation.Rmd')
 
 # Update site
-pkgdown::build_site_github_pages(examples = FALSE)
-
 pkgdown::deploy_to_branch(
   clean = TRUE,
   branch = "gh-pages",
@@ -72,6 +70,8 @@ pkgdown::deploy_to_branch(
   subdir = NULL,
   examples = FALSE
 )
+
+pkgdown::build_site_github_pages(examples = FALSE)
 
 # pkgdown::build_site(examples = FALSE)
 
@@ -146,7 +146,7 @@ vignette("mdJSONdictio")
 ## Standard run ##
 
 setwd("~/Desktop")
-setwd("C:/Users/hvincelette/Desktop")
+setwd("C:/Users/hvincelette/OneDrive - DOI/Desktop")
 
 library(mdJSONdictio)
 
