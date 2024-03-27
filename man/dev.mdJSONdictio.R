@@ -225,17 +225,15 @@ write.csv(x = new.table, file = "e.g.dictionary2.csv", na="", row.names = FALSE)
 
 library(mdJSONdictio)
 
-setwd("C:/Users/hvincelette/OneDrive - DOI/Data_management")
-path <- "C:/Users/hvincelette/OneDrive - DOI/Data_management"
+setwd("C:/Users/hvincelette/OneDrive - DOI/Documents/Data_management/mdJSONdictio/test_dictionaries")
+path <- "C:/Users/hvincelette/OneDrive - DOI/Documents/Data_management/mdJSONdictio/test_dictionaries"
 
-setwd("~/Desktop/test_dictionaries")
-path = "~/Desktop/test_dictionaries"
 files <- list.files(path = path, pattern = ".json")
 
 test.json <- NA
 
 for (a in 1:length(files)) {
-  test.json <- fromJSON(file = files[18])
+  test.json <- fromJSON(file = files[a])
   test.json <- build.table(x = test.json,entity_num = 1)
   name <- gsub("\\.json$", "", paste0(files[a]))
   write.csv(test.json,paste0(name,".csv"), na="",row.names = FALSE)
@@ -255,7 +253,7 @@ test2<- build.table(x = test, dictionary_num = 1, entity_num = 1)
 
 ## Standard run ##
 setwd("~/Desktop")
-setwd("C:/Users/hvincelette/Desktop")
+setwd("C:/Users/hvincelette/OneDrive - DOI/Desktop")
 
 library(mdJSONdictio)
 
