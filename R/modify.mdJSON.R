@@ -85,6 +85,16 @@ modify.mdJSON <-
            quiet = FALSE) {
     `%>%` <- magrittr::`%>%`
 
+    data(
+      list = c(
+        "blankattribute",
+        "blankdictionarylist",
+        "blankdomain",
+        "blankdomainItem",
+        "dataType.vector"
+      )
+    )
+
 
     #### Extract dictionary list ####
     if (length(x[["data"]]) > 1) {
