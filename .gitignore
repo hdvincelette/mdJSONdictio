@@ -8,5 +8,3 @@ inst/doc
 /Meta/
 .quarto
 docs
-R/modify.mdJSON.R
-R/modify.table.R
