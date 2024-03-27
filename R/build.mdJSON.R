@@ -26,7 +26,7 @@
 build.mdJSON <- function(x, title) {
   `%>%` <- magrittr::`%>%`
 
-  data("blankjson")
+  blankjson<- get0("blankjson", envir = asNamespace("mdJSONdictio"))
 
   if (missing(title)) {
     title <- deparse(match.call()$x)
