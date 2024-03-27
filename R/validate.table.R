@@ -30,6 +30,8 @@ validate.table <- function(x, y) {
 
     `%>%` <- magrittr::`%>%`
 
+    data("datatype.rules")
+
     # data(sysdata, envir=environment())
 
     input.dxnry <- x
