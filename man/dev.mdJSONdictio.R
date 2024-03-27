@@ -89,7 +89,7 @@ usethis::use_data(
   blankjson,
   datatype.rules,
   dataType.vector,
-  internal = FALSE,
+  internal = TRUE,
   overwrite = TRUE
 )
 usethis::use_package("plyr")
