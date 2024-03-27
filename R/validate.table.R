@@ -72,9 +72,9 @@ validate.table <- function(x, y) {
       datatype.rules %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
 
     # for (a in 1:nrow(datatype_rules)) {
-    #   if (is.na(datatype_rules$Rdatatype[a]) == FALSE) {
-    #     datatype_rules$Rdatatype[a] <-
-    #       paste0('is.', datatype_rules$Rdatatype[a])
+    #   if (is.na(datatype_rules$RdataType[a]) == FALSE) {
+    #     datatype_rules$RdataType[a] <-
+    #       paste0('is.', datatype_rules$RdataType[a])
     #   }
     # }
 
@@ -198,30 +198,30 @@ validate.table <- function(x, y) {
 
     #### Required fields: dataType ####
 
-    # Rdatatype: all
+    # RdataType: all
     #!# Excluding date, time, datetime, xml
 
     for (a in 1:ncol(data.NA)) {
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
-          Rdatatype <- NULL
+          RdataType <- NULL
 
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
               dict.datafield$dataType[bb] == datatype.rules$value[cc]) {
             if (is.na(datatype.rules$RdataType[cc]) == FALSE) {
-              Rdatatype <- match.fun(datatype.rules$RdataType[cc])
+              RdataType <- match.fun(datatype.rules$RdataType[cc])
             }
 
-            if (is.null(Rdatatype) == TRUE) {
+            if (is.null(RdataType) == TRUE) {
               next
             }
-            else if (Rdatatype(data.NA[[a]]) == FALSE &
+            else if (RdataType(data.NA[[a]]) == FALSE &
                      purrr::map(data.NA[a], class) != "logical") {
               warnings.df <- warnings.df %>%
                 dplyr::add_row(
                   Num = nrow(warnings.df) + 1,
                   Variable = colnames(data.NA[a]),
-                  Category = "dataType_Rdatatype",
+                  Category = "dataType_RdataType",
                   Message =  paste0(
                     'Dataset variable is detected as a different datatype (',
                     purrr::map(data.NA[a], class),
@@ -238,7 +238,7 @@ validate.table <- function(x, y) {
     }
 
 
-    # Rdatatype: date, datetime
+    # RdataType: date, datetime
 
     ISO.datetime <- function(x,
                              datetime.format = c("%Y-%m-%d",
@@ -316,7 +316,7 @@ validate.table <- function(x, y) {
     }
 
 
-    # Rdatatype: time
+    # RdataType: time
 
     for (a in 1:ncol(data.NA)) {
       time <- NA
@@ -353,13 +353,13 @@ validate.table <- function(x, y) {
     }
 
 
-    ## maxlength
+    ## maxLength
     #!# R only stores up to 32,767 characters
 
 
     for (a in 1:ncol(data.NA)) {
       data.nchar <- NA
-      maxlength <- NA
+      maxLength <- NA
 
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
@@ -373,20 +373,20 @@ validate.table <- function(x, y) {
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
                 length(unique(data.NA[, a])) > 1) {
-              maxlength <- max(nchar(as.character(data.NA[, a])), na.rm = TRUE)
+              maxLength <- max(nchar(as.character(data.NA[, a])), na.rm = TRUE)
 
-              # print(maxlength)
+              # print(maxLength)
 
-              if (is.na(maxlength) == FALSE &
-                  maxlength > datatype.rules$maxLength[cc])  {
+              if (is.na(maxLength) == FALSE &
+                  maxLength > datatype.rules$maxLength[cc])  {
                 warnings.df <- warnings.df %>%
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
                     Variable = colnames(data.NA[a]),
-                    Category = "dataType_maxlength",
+                    Category = "dataType_maxLength",
                     Message =  paste0(
                       'Dataset variable has entry value(s) with a greater length (',
-                      maxlength,
+                      maxLength,
                       ') than allowed for the datatype (',
                       datatype.rules$maxLength[cc],
                       ')'
