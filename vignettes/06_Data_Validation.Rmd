@@ -78,11 +78,11 @@ align = "l") %>%
 ##### <span style="color: grey;">Data type rules</span>
 <font size="2.5"> 
 ```{r, echo=FALSE}
-kable(read.csv(path<-system.file("extdata", "datatype.rules_definitions.csv", package = "mdJSONdictio"),  fileEncoding="latin1", na.strings = NA), escape = F, align = "l") %>% kable_styling(full_width = F, position = "left") %>%
+kable(read.csv(path<-system.file("extdata", "datatype.rules.csv", package = "mdJSONdictio"),  fileEncoding="latin1", na.strings = NA), escape = F, align = "l") %>% kable_styling(full_width = F, position = "left") %>%
   column_spec(1, width_min = '2in') %>%
   column_spec(2, width_min = '3.5in') %>%
-  column_spec(3:7, width_min = '1in') %>%
-  scroll_box(width = "100%")
+  column_spec(3:7, width_min = '1in') 
+  # scroll_box(width = "100%")
 
 # kable(read.csv(path<-system.file("extdata", "datatype.rules_definitions.csv", package = "mdJSONdictio"),  fileEncoding="latin1", na.strings = NA), align = "l") %>% column_spec(2, width = "50em") %>%
 #   kable_styling(full_width = F,position = "left")
