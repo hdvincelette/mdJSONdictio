@@ -1,6 +1,6 @@
 Package: mdJSONdictio
 Title: Tools to Extract, Build, Modify, and Validate mdEditor Dictionary records in R.
-Version: 0.1.2
+Version: 0.2.0
 Authors@R: 
     person(given = "Hannah Vincelette", email = "hdvincelette@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6404-0410"))
