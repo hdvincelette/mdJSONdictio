@@ -171,12 +171,13 @@ path <-
   system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
 e.g.dictionary <- readxl::read_excel(path)
 
+
 newjson <-
   build.mdJSON(x = e.g.dictionary, title = "Example Dictionary")
 
 # missing required column
 e.g.dictionary <- e.g.dictionary %>%
-  rename(newname1 = codeName)
+  dplyr::rename(newname1 = codeName)
 
 # invalid column
 e.g.dictionary$newcol1 <- NA
