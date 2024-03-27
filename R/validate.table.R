@@ -207,9 +207,9 @@ validate.table <- function(x, y) {
           Rdatatype <- NULL
 
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
-              dict.datafield$dataType[bb] == datatype.rules$Value[cc]) {
-            if (is.na(datatype.rules$Rdatatype[cc]) == FALSE) {
-              Rdatatype <- match.fun(datatype.rules$Rdatatype[cc])
+              dict.datafield$dataType[bb] == datatype.rules$value[cc]) {
+            if (is.na(datatype.rules$RdataType[cc]) == FALSE) {
+              Rdatatype <- match.fun(datatype.rules$RdataType[cc])
             }
 
             if (is.null(Rdatatype) == TRUE) {
@@ -364,11 +364,11 @@ validate.table <- function(x, y) {
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
-              dict.datafield$dataType[bb] == datatype.rules$Value[cc] &
-              is.na(datatype.rules$maxlength[cc]) == FALSE) {
+              dict.datafield$dataType[bb] == datatype.rules$value[cc] &
+              is.na(datatype.rules$maxLength[cc]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
-            # print(paste0("datatype.rules: ", datatype.rules$Value[cc]))
+            # print(paste0("datatype.rules: ", datatype.rules$value[cc]))
 
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
@@ -378,7 +378,7 @@ validate.table <- function(x, y) {
               # print(maxlength)
 
               if (is.na(maxlength) == FALSE &
-                  maxlength > datatype.rules$maxlength[cc])  {
+                  maxlength > datatype.rules$maxLength[cc])  {
                 warnings.df <- warnings.df %>%
                   dplyr::add_row(
                     Num = nrow(warnings.df) + 1,
@@ -388,7 +388,7 @@ validate.table <- function(x, y) {
                       'Dataset variable has entry value(s) with a greater length (',
                       maxlength,
                       ') than allowed for the datatype (',
-                      datatype.rules$maxlength[cc],
+                      datatype.rules$maxLength[cc],
                       ')'
                     )
                   )
@@ -408,12 +408,12 @@ validate.table <- function(x, y) {
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
-              dict.datafield$dataType[bb] == datatype.rules$Value[cc] &
+              dict.datafield$dataType[bb] == datatype.rules$value[cc] &
               is.na(datatype.rules$maxPrecision[cc]) == FALSE &
               is.character(data.NA[, a]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
-            # print(paste0("datatype.rules: ", datatype.rules$Value[cc]))
+            # print(paste0("datatype.rules: ", datatype.rules$value[cc]))
 
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
@@ -455,12 +455,12 @@ validate.table <- function(x, y) {
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
-              dict.datafield$dataType[bb] == datatype.rules$Value[cc] &
+              dict.datafield$dataType[bb] == datatype.rules$value[cc] &
               is.na(datatype.rules$minValue_unsigned[cc]) == FALSE &
               is.character(data.NA[, a]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
-            # print(paste0("datatype.rules: ", datatype.rules$Value[cc]))
+            # print(paste0("datatype.rules: ", datatype.rules$value[cc]))
 
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
@@ -500,12 +500,12 @@ validate.table <- function(x, y) {
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
-              dict.datafield$dataType[bb] == datatype.rules$Value[cc] &
+              dict.datafield$dataType[bb] == datatype.rules$value[cc] &
               is.na(datatype.rules$maxValue_unsigned[cc]) == FALSE &
               is.character(data.NA[, a]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
-            # print(paste0("datatype.rules: ", datatype.rules$Value[cc]))
+            # print(paste0("datatype.rules: ", datatype.rules$value[cc]))
 
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
@@ -546,11 +546,11 @@ validate.table <- function(x, y) {
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
-              dict.datafield$dataType[bb] == datatype.rules$Value[cc] &
+              dict.datafield$dataType[bb] == datatype.rules$value[cc] &
               is.na(datatype.rules$distinctValue[cc]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
-            # print(paste0("datatype.rules: ", datatype.rules$Value[cc]))
+            # print(paste0("datatype.rules: ", datatype.rules$value[cc]))
 
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
@@ -591,11 +591,11 @@ validate.table <- function(x, y) {
       for (bb in 1:nrow(dict.datafield)) {
         for (cc in 1:nrow(datatype.rules)) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
-              dict.datafield$dataType[bb] == datatype.rules$Value[cc] &
+              dict.datafield$dataType[bb] == datatype.rules$value[cc] &
               is.na(datatype.rules$distinctLength[cc]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
-            # print(paste0("datatype.rules: ", datatype.rules$Value[cc]))
+            # print(paste0("datatype.rules: ", datatype.rules$value[cc]))
 
             if (!NA %in% unique(data.NA[, a]) |
                 NA %in% unique(data.NA[, a]) &
