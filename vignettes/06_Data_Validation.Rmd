@@ -78,8 +78,7 @@ kable(read.csv(path<-system.file("extdata", "datatype.rules.csv", package = "mdJ
   column_spec(2, width_min = '3.5in') %>%
   column_spec(3:7, width_min = '1in') %>%
   scroll_box(
-  height = "1000px",
-)
+  height = "500px")
 
 # kable(read.csv(path<-system.file("extdata", "datatype.rules_definitions.csv", package = "mdJSONdictio"),  fileEncoding="latin1", na.strings = NA), align = "l") %>% column_spec(2, width = "50em") %>%
 #   kable_styling(full_width = F,position = "left")
