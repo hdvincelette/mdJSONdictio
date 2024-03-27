@@ -1,19 +1,15 @@
 ---
 title: "Data Validation with mdJSONdictio"
-output: 
-  # html_document:
-  #   theme: readable
-  #   highlight:
-  #   fig_caption: true
+output:
+  html_document:
+    toc: yes
+    df_print: paged
   knitr:::html_vignette:
-    toc: true
+    toc: yes
   pdf_document:
     highlight: null
     number_sections: yes
-vignette: >
-  %\VignetteIndexEntry{mdJSONdictio}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+vignette: "%\\VignetteIndexEntry{mdJSONdictio} %\\VignetteEncoding{UTF-8} %\\VignetteEngine{knitr::rmarkdown}\n"
 ---
 <style type="text/css">
   body{
@@ -73,11 +69,11 @@ align = "l") %>%
 <br />
 
 # Data type contraints
-"dataType" values undergo a series of tests based on [Structured Query Language (SQL)](https://www.iso.org/obp/ui/en/#iso:std:iso-iec:9075:-1:ed-6:v1:en) data constraints to ensure the associated dataset attribute is described accurately. Data types are described as followed. Definitions are derived from the [mdCodes Viewer](https://adiwg.github.io/mdTools/#codes-page) in the mdTools interface, and "rules" from the [International Organization for Standardization (ISO)](https://www.iso.org/obp/ui/en/#iso:std:iso-iec:9075:-1:ed-6:v1:en).
+"dataType" values undergo a series of tests based on [Structured Query Language (SQL)](https://www.iso.org/obp/ui/en/#iso:std:iso-iec:9075:-1:ed-6:v1:en) data constraints to ensure the associated dataset attribute is described accurately. Data types are described as followed. Definitions are from the [mdCodes Viewer](https://adiwg.github.io/mdTools/#codes-page) in the mdTools interface, and contraints from the [International Organization for Standardization (ISO)](https://www.iso.org/obp/ui/en/#iso:std:iso-iec:9075:-1:ed-6:v1:en).
 
 ##### <span style="color: grey;">Data type rules</span>
 <font size="2.5"> 
-```{r, echo=FALSE}
+```{r, echo=FALSE, out.height="50%"}
 kable(read.csv(path<-system.file("extdata", "datatype.rules.csv", package = "mdJSONdictio"),  fileEncoding="latin1", na.strings = NA), escape = F, align = "l") %>% kable_styling(full_width = F, position = "left") %>%
   column_spec(1, width_min = '2in') %>%
   column_spec(2, width_min = '3.5in') %>%
