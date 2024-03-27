@@ -1,4 +1,4 @@
-﻿Value,Definition
+﻿value,definition
 character,fixed length character strings
 character varying,Variable length character strings
 character large object,Character large object
