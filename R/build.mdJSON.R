@@ -63,7 +63,7 @@ build.mdJSON <- function(x, title) {
 
   if (length(setdiff(Required.cols, names(Data.Dictionary))) != 0)
     stop(
-      'Data frame missing required columns: ',
+      'Data frame missing required column(s): ',
       toString(setdiff(Required.cols, names(Data.Dictionary))),
       '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
     )
@@ -91,11 +91,11 @@ build.mdJSON <- function(x, title) {
       '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
     )
     for (aa in 1:nrow(Data.Dictionary)) {
-      if (colnames(Data.Dictionary[a]) %in% c("codeName",
+      if (as.logical(colnames(Data.Dictionary[a]) %in% c("codeName",
                                               "domainItem_name",
                                               "domainItem_value",
                                               "definition") &
-          is.na(Data.Dictionary[aa, a]) == TRUE)
+          is.na(Data.Dictionary[aa, a])) == TRUE)
         stop(
           'Required field incomplete. \n  ',
           colnames(Data.Dictionary[a]),
