@@ -79,7 +79,7 @@ pkgdown::build_site_github_pages(examples = FALSE)
 gitcreds::gitcreds_set()
 
 # Add...
-usethis::use_version("major")
+usethis::use_version("minor")
 save(datatype.rules, file = "data/datatype.rules.rda")
 usethis::use_data(
   blankattribute,
