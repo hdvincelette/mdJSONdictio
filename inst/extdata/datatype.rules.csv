@@ -9,7 +9,7 @@ text,Variable string to maximum of 65k characters,character,65535,,,,,
 tinytext,Variable string to maximum of 255 characters,character,255,,,,,
 mediumtext,Variable string to maximum of 16m characters,character,16777215,,,,,
 longtext,Variable string to maximum of 4g characters,character,4294967295,,,,,
-binary,Fixed length binary,integer,255 ,,,,,1
+binary,Fixed length binary,integer,255,,,,,1
 binary varying,Variable length binary,integer,32704,,,,,
 binary large object,Binary large object to maximum of 65k bytes; large objects are designed to hold extremely large column values,integer,2147483647,,,,,
 mediumblob,Binary large object to maximum of 16m bytes; large objects are designed to hold extremely large column values,integer,16777215,,,,,
