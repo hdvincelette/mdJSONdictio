@@ -59,6 +59,7 @@ rmarkdown::render('vignettes/02_Dictionary_Template.Rmd')
 rmarkdown::render('vignettes/03_Setup_mdJSONdictio.Rmd')
 rmarkdown::render('vignettes/04_mdJSONdictio_Tutorial.Rmd')
 rmarkdown::render('vignettes/05_Next_Steps_mdEditor.Rmd')
+rmarkdown::render('vignettes/06_Data_Validation.Rmd')
 
 # Update site
 pkgdown::build_site_github_pages(examples = FALSE)
@@ -79,7 +80,7 @@ gitcreds::gitcreds_set()
 
 # Add...
 usethis::use_version("patch")
-save(blankjson, file = "data/blankjson.rda")
+save(datatype_rules, file = "data/datatype.rules.rda")
 usethis::use_package("plyr")
 usethis::use_build_ignore()
 
