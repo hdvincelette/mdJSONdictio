@@ -71,10 +71,10 @@ validate.table <- function(x, y) {
     datatype.rules <-
       datatype.rules %>% dplyr::mutate_if(is.character, ~ dplyr::na_if(., ''))
 
-    # for (a in 1:nrow(datatype_rules)) {
-    #   if (is.na(datatype_rules$RdataType[a]) == FALSE) {
-    #     datatype_rules$RdataType[a] <-
-    #       paste0('is.', datatype_rules$RdataType[a])
+    # for (a in 1:nrow(datatype.rules)) {
+    #   if (is.na(datatype.rules$RdataType[a]) == FALSE) {
+    #     datatype.rules$RdataType[a] <-
+    #       paste0('is.', datatype.rules$RdataType[a])
     #   }
     # }
 
