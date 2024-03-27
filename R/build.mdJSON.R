@@ -425,11 +425,28 @@ build.mdJSON <- function(x, title) {
 
   newstring <- rjson::toJSON(dictionarylist)
 
+  ## Correct subject
   oldsubject <-
     paste0('\"', 'subject', '\":\"', 'dataDictionary', '\"')
   newsubject <-
     paste0('\"', 'subject', '\":[\"', 'dataDictionary', '\"]')
   newstring <- gsub(oldsubject, newsubject, newstring)
+
+  oldcase <- paste0('\"', 'isCaseSensitive', '\":\"', 'true', '\"')
+  newcase <- paste0('\"', 'isCaseSensitive', '\":', 'true')
+  newstring <- gsub(oldcase, newcase, newstring, ignore.case = TRUE)
+
+  oldcase <- paste0('\"', 'isCaseSensitive', '\":\"', 'false', '\"')
+  newcase <- paste0('\"', 'isCaseSensitive', '\":', 'false')
+  newstring <- gsub(oldcase, newcase, newstring, ignore.case = TRUE)
+
+  oldnull <- paste0('\"', 'allowNull', '\":\"', 'true', '\"')
+  newnull <- paste0('\"', 'allowNull', '\":', 'true')
+  newstring <- gsub(oldnull, newnull, newstring, ignore.case = TRUE)
+
+  oldnull <- paste0('\"', 'allowNull', '\":\"', 'false', '\"')
+  newnull <- paste0('\"', 'allowNull', '\":', 'false')
+  newstring <- gsub(oldnull, newnull, newstring, ignore.case = TRUE)
 
 
   blankjson[["data"]][[1]][["attributes"]][["json"]] <- newstring
