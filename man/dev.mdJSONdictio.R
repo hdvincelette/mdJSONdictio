@@ -260,14 +260,14 @@ library(mdJSONdictio)
 
 # Import tabular data dictionary as data frame
 path<-system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")
-input.dict<-readxl::read_excel(path = path)
+input.dxnry<-readxl::read_excel(path = path)
 
 # Import dataset as data frame
 path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 
 # Validate dataset against dictionary
-all.warnings<- validate.table(input.dict, input.data)
+all.warnings<- validate.table(input.dxnry, input.data)
 
 # Export table to disk
 write.csv(x = all.warnings2, file = "e.g.warnings.csv")
@@ -275,7 +275,7 @@ write.csv(x = all.warnings2, file = "e.g.warnings.csv")
 
 ## Load local files
 path<-"inst/extdata/e.g.dictionary.xlsx"
-input.dict<-readxl::read_excel(path = path)
+input.dxnry<-readxl::read_excel(path = path)
 
 path<-"inst/extdata/e.g.dataset.csv"
 input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
@@ -285,7 +285,7 @@ datatype.rules <-
   read.csv("inst/extdata/datatype.rules.csv", na.strings = "")
 save(datatype.rules, file = "data/datatype.rules.rda")
 
-all.warnings<- validate.table(input.dict, input.data)
+all.warnings<- validate.table(input.dxnry, input.data)
 
 
 
@@ -299,14 +299,14 @@ library(mdJSONdictio)
 
 # Import mdJSON data dictionary as list
 path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-input.dict <- rjson::fromJSON(file = path)
+input.dxnry <- rjson::fromJSON(file = path)
 
 # Import dataset as data frame
 path<-system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio")
 input.data<-read.csv(path, na.strings = "", stringsAsFactors = FALSE)
 
 # Validate dataset against dictionary
-all.warnings<- validate.mdJSON(input.dict, input.data, dictionary_num = 1, entity_num = 1)
+all.warnings<- validate.mdJSON(input.dxnry, input.data, dictionary_num = 1, entity_num = 1)
 
 # Export table to disk
 write.csv(x = all.warnings, file = "e.g.warnings.csv")
@@ -373,7 +373,7 @@ lapply(string_vector, find_offending_character)
 # markdown::markdownToHTML(text = knitr::knit(text = markobj), output = 'test.html')
 #
 #
-# input.dict[is.na(input.dict)] <- ""
+# input.dxnry[is.na(input.dxnry)] <- ""
 # input.data[is.na(input.data)] <- ""
 #
 # parsedate::parse_iso_8601("2013-02-08 09")
