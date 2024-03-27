@@ -5,6 +5,9 @@ setwd("C:/Users/hvincelette/OneDrive - DOI/Documents/GitHub/mdJSONdictio")
 remove.packages("mdJSONdictio")
 .rs.restartR()
 
+install()
+
+
 # remove.packages(c(
 #   "rlang",
 #   "purrr",
