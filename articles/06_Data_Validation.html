@@ -282,7 +282,6 @@ Organization for Standardization (ISO)</a>.</p>
 <span style="color: grey;">Data type rules</span><a class="anchor" aria-label="anchor" href="#data-type-rules"></a>
 </h6>
 <font size="2.5">
-<div style="border: 1px solid #ddd; padding: 5px; overflow-x: scroll; width:100%; ">
 <table class="table table" style="width: auto !important; ">
 <thead><tr>
 <th style="text-align:left;">
@@ -322,7 +321,7 @@ character
 Fixed length character strings
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.character
+character
 </td>
 <td style="text-align:left;min-width: 1in; ">
 255
@@ -351,7 +350,7 @@ character varying
 Variable length character strings
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.character
+character
 </td>
 <td style="text-align:left;min-width: 1in; ">
 65535
@@ -381,7 +380,7 @@ Character large object; large objects are designed to hold extremely
 large column values
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.character
+character
 </td>
 <td style="text-align:left;min-width: 1in; ">
 2147483647
@@ -411,7 +410,7 @@ Fixed length national character strings (2 byte unicode); UTF-8 or
 UTF-16 encoded characters as defined by the Unicode Standard
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.character
+character
 </td>
 <td style="text-align:left;min-width: 1in; ">
 255
@@ -441,7 +440,7 @@ Variable length national character strings (2 byte unicode); UTF-8 or
 UTF-16 encoded characters as defined by the Unicode Standard
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.character
+character
 </td>
 <td style="text-align:left;min-width: 1in; ">
 65535
@@ -471,7 +470,7 @@ National character (2 byte unicode) large object; UTF-8 or UTF-16
 encoded characters as defined by the Unicode Standard
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.character
+character
 </td>
 <td style="text-align:left;min-width: 1in; ">
 2147483647
@@ -500,7 +499,7 @@ text
 Variable string to maximum of 65k characters
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.character
+character
 </td>
 <td style="text-align:left;min-width: 1in; ">
 65535
@@ -529,7 +528,7 @@ tinytext
 Variable string to maximum of 255 characters
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.character
+character
 </td>
 <td style="text-align:left;min-width: 1in; ">
 255
@@ -558,7 +557,7 @@ mediumtext
 Variable string to maximum of 16m characters
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.character
+character
 </td>
 <td style="text-align:left;min-width: 1in; ">
 16777215
@@ -587,7 +586,7 @@ longtext
 Variable string to maximum of 4g characters
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.character
+character
 </td>
 <td style="text-align:left;min-width: 1in; ">
 4294967295
@@ -616,7 +615,7 @@ binary
 Fixed length binary
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 255 
@@ -645,7 +644,7 @@ binary varying
 Variable length binary
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 32704
@@ -675,7 +674,7 @@ Binary large object to maximum of 65k bytes; large objects are designed
 to hold extremely large column values
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 2147483647
@@ -705,7 +704,7 @@ Binary large object to maximum of 16m bytes; large objects are designed
 to hold extremely large column values
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 16777215
@@ -735,7 +734,7 @@ Binary large object to maximum of 4g bytes; large objects are designed
 to hold extremely large column values
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 4294967295
@@ -764,7 +763,7 @@ integer
 Integers number (+-2b)
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -792,7 +791,7 @@ tinyint
 Integer numbers (+-128)
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -820,7 +819,7 @@ mediumint
 Integer numbers (+-16k)
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -848,7 +847,7 @@ smallint
 Integer numbers (+-32k)
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -876,7 +875,7 @@ bigint
 Integer numbers (+-1e27)
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -904,7 +903,7 @@ float
 Floating point numbers
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.numeric
+numeric
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -932,7 +931,7 @@ real
 Low precision floating point numbers
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.numeric
+numeric
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -960,7 +959,7 @@ double precision
 High precision floating point numbers
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.double
+double
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -988,7 +987,7 @@ numeric
 Fixed precision and scale decimal numbers
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.numeric
+numeric
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -1016,7 +1015,7 @@ decimal
 Fixed precision and scale decimal numbers (numeric alternate)
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.decimal
+decimal
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -1044,7 +1043,7 @@ bit
 Fixed length bit strings
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -1072,7 +1071,7 @@ bit varying
 Variable length bit strings
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -1181,7 +1180,7 @@ timestamp
 Number of seconds since the unix epoch (1970-01-01t00:00:00 utc)
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.numeric
+numeric
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -1209,7 +1208,7 @@ year
 Year
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.integer
+integer
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -1238,7 +1237,7 @@ Time intervals (i.e., length of time in year, month, day, hour, minute,
 or second)
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.numeric
+numeric
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -1266,7 +1265,7 @@ interval day
 Day intervals
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.numeric
+numeric
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -1294,7 +1293,7 @@ interval year
 Year intervals
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.numeric
+numeric
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -1322,7 +1321,7 @@ currency
 Monetary value
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.numeric
+numeric
 </td>
 <td style="text-align:left;min-width: 1in; ">
 19
@@ -1351,7 +1350,7 @@ money
 Monetary value
 </td>
 <td style="text-align:left;min-width: 1in; ">
-is.numeric
+numeric
 </td>
 <td style="text-align:left;min-width: 1in; ">
 </td>
@@ -1454,7 +1453,6 @@ NA
 </tr>
 </tbody>
 </table>
-</div>
 <p></p></font> <br><br>
 </div>
 </div>
