@@ -30,7 +30,7 @@ validate.table <- function(x, y) {
 
     `%>%` <- magrittr::`%>%`
 
-    data("datatype.rules")
+    datatype.rules<- get0("datatype.rules", envir = asNamespace("mdJSONdictio"))
 
     # data(sysdata, envir=environment())
 
