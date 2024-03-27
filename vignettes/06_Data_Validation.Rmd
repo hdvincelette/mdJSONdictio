@@ -41,7 +41,6 @@ library(utils)
 library(rjson)
 ```
 
-
 ```validate.mdJSON()```/```validate.tableN()``` compares mdJSON and tabular data dictionaries against a corresponding dataset and outputs a warnings table, as shown below. The tabular data dictionary must be formatted to the mdJSONdictio [template](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html).These functions are intended to be used as a Quality Assurance step in the data management process.
 
 ##### <span style="color: grey;">Warnings table in Excel</span>
@@ -73,12 +72,14 @@ align = "l") %>%
 
 ##### <span style="color: grey;">Data type rules</span>
 <font size="2.5"> 
-```{r, echo=FALSE, out.height="50%"}
+```{r, echo=FALSE}
 kable(read.csv(path<-system.file("extdata", "datatype.rules.csv", package = "mdJSONdictio"),  fileEncoding="latin1", na.strings = NA), escape = F, align = "l") %>% kable_styling(full_width = F, position = "left") %>%
   column_spec(1, width_min = '2in') %>%
   column_spec(2, width_min = '3.5in') %>%
-  column_spec(3:7, width_min = '1in') 
-  # scroll_box(width = "100%")
+  column_spec(3:7, width_min = '1in') %>%
+  scroll_box(
+  height = "1000px",
+)
 
 # kable(read.csv(path<-system.file("extdata", "datatype.rules_definitions.csv", package = "mdJSONdictio"),  fileEncoding="latin1", na.strings = NA), align = "l") %>% column_spec(2, width = "50em") %>%
 #   kable_styling(full_width = F,position = "left")
