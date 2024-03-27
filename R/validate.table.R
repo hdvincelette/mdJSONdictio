@@ -34,8 +34,8 @@ validate.table <- function(x, y) {
     input.data <- y
 
     # Check for tabular data dictionary template v1
-    if ("yes" %in% unique(Data.Dictionary$allowNull) |
-        "no" %in% unique(Data.Dictionary$allowNull)) {
+    if ("yes" %in% unique(input.dxnry$allowNull) |
+        "no" %in% unique(input.dxnry$allowNull)) {
       stop(
         "'allowNull' and 'isCaseSensitive' only accept logical values (TRUE/FALSE).\nCorrect these fields in the data frame input before continuing.\nUse the latest version (v2) of the tabular data dictionary template to ensure the functon runs smoothly.\n  Print `help(package = 'mdJSONdictio')` for Help Pages.'"
       )
