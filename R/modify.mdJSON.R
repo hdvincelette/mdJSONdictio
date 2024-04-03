@@ -1459,7 +1459,7 @@ modify.mdJSON <-
       }
     }
 
-    #### Update attribute info ####
+    #### Update attribute ####
     if (how == "update_attribute") {
       attribute.num <-
         which(sapply(dictionarylist[["dataDictionary"]][["entity"]][[1]][["attribute"]], "[", "codeName") ==
@@ -1991,9 +1991,38 @@ modify.mdJSON <-
       }
     }
 
-    #### Update domain info ####
+    #### Update domain ####
+    if (how == "update_domain") {
+
+    }
 
     #### Reattach dictionary list ####
+    lastUpdate <- strftime(as.POSIXlt(Sys.time(), "UTC"), "%Y-%m-%dT%H:%M")
+    lastUpdate <- paste0(lastUpdate, ":00.000Z", collapse = "")
+
+    lastUpdate.num<- c()
+
+    for (aa in 1:length(dictionarylist[["dataDictionary"]][["citation"]][["date"]])) {
+      if (dictionarylist[["dataDictionary"]][["citation"]][["date"]][[aa]][["dateType"]] ==
+          "lastUpdate") {
+        lastUpdate.num <- c(lastUpdate.num, aa)
+      }
+    }
+
+    if (is.null(lastUpdate.num) == FALSE) {
+      if (length(lastUpdate.num) > 1) {
+        dictionarylist[["dataDictionary"]][["citation"]][["date"]] <-
+          dictionarylist[["dataDictionary"]][["citation"]][["date"]][-lastUpdate.num[-1]]
+      }
+      dictionarylist[["dataDictionary"]][["citation"]][["date"]][[lastUpdate.num[1]]][["date"]] <-
+        lastUpdate
+    } else {
+      dictionarylist[["dataDictionary"]][["citation"]][["date"]][[length(dictionarylist[["dataDictionary"]][["citation"]][["date"]]) +
+                                                                    1]] <-
+        list(date = lastUpdate, dateType = "lastUpdate")
+    }
+
+
     input.dxnry[["data"]][[1]][["attributes"]][["json"]] <-
       rjson::toJSON(dictionarylist)
 
