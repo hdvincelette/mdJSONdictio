@@ -216,8 +216,12 @@ validate.table <- function(x, y) {
 
             if (is.null(RdataType) == TRUE) {
               next
-            }
-            else if (RdataType(data.NA[[a]]) == FALSE &
+            # }
+            # else if (RdataType(data.NA[[a]]) == TRUE) {
+            #   print(colnames(data.NA[a]))
+            #   print(RdataType)
+            #   print(class(data.NA[,a]))
+            } else if (RdataType(data.NA[[a]]) == FALSE &
                      purrr::map(data.NA[a], class) != "logical") {
               warnings.df <- warnings.df %>%
                 dplyr::add_row(
