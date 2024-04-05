@@ -41,7 +41,7 @@ library(utils)
 library(rjson)
 ```
 
-```validate.mdJSON()```/```validate.tableN()``` compares mdJSON and tabular data dictionaries against a corresponding dataset and outputs a warnings table, as shown below. The tabular data dictionary must be formatted to the mdJSONdictio [template](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html).These functions are intended to be used as a Quality Assurance step in the data management process.
+```validate.mdJSON()```/```validate.table()``` compares mdJSON and tabular data dictionaries against a corresponding dataset and outputs a warnings table, as shown below. The tabular data dictionary must be formatted to the mdJSONdictio [template](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html).These functions are intended to be used as a Quality Assurance step in the data management process.
 
 ##### <span style="color: grey;">Warnings table in Excel</span>
 ![](https://github.com/hdvincelette/mdJSONdictio/raw/master/man/figures/Warnings_Table.png)
