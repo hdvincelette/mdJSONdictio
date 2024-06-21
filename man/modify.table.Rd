@@ -89,7 +89,7 @@ Returns a modified data frame of the data dictionary.
 Amends a tabular data dictionary, including adding, updating, and removing attributes and domains.
 }
 \examples{
-TBD
+# TBD
 
 }
 \seealso{
