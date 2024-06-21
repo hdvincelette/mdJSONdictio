@@ -200,7 +200,30 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># Import mdJSON data dictionary as list</span></span>
+<span><span class="co"># path&lt;-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")</span></span>
+<span><span class="co"># input.dxnry &lt;- rjson::fromJSON(file = path)</span></span>
+<span></span>
+<span><span class="co"># Add an attribute</span></span>
+<span><span class="co"># modified.dxnry&lt;- modify.mdJSON(x = input.dxnry, how = "add_attribute", attribute_codeName = "WingArea")</span></span>
+<span></span>
+<span><span class="co"># Add a domain</span></span>
+<span><span class="co"># modified.dxnry&lt;- modify.mdJSON(x = input.dxnry, how = "add_domain")</span></span>
+<span></span>
+<span><span class="co"># Add a domain item</span></span>
+<span><span class="co"># modified.dxnry&lt;- modify.mdJSON(x = input.dxnry, how = "add_domainItem", attribute_codeName = "WingArea", domainItem_value = "U")</span></span>
+<span></span>
+<span><span class="co"># Update attribute datatype and allowNull values</span></span>
+<span><span class="co"># modified.dxnry&lt;- modify.mdJSON(x = ref.dictionary, how = "update_attribute", attribute_codeName = "BandSize", attribute_dataType = "Integer", attribute_allowNull = TRUE)</span></span>
+<span></span>
+<span><span class="co"># Update domain codeName</span></span>
+<span><span class="co"># modified.dxnry&lt;- modify.mdJSON(x = ref.dictionary, how = "update_domain", domain_codeName = "Wing_mm", new.domain_codeName = "WingFlattened_mm")</span></span>
+<span></span>
+<span><span class="co"># Convert list to JSON</span></span>
+<span><span class="co"># new.json = rjson::toJSON(x = modified.dxnry)</span></span>
+<span></span>
+<span><span class="co"># Export JSON to disk</span></span>
+<span><span class="co"># write(x = new.json, file = "e.g.dictionary.json")</span></span></code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
