@@ -90,29 +90,29 @@ Amends an mdJSON data dictionary, including adding, updating, and removing attri
 }
 \examples{
 # Import mdJSON data dictionary as list
-path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
-input.dxnry <- rjson::fromJSON(file = path)
+# path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
+# input.dxnry <- rjson::fromJSON(file = path)
 
 # Add an attribute
-modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_attribute", attribute_codeName = "WingArea")
+# modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_attribute", attribute_codeName = "WingArea")
 
 # Add a domain
-modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domain")
+# modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domain")
 
 # Add a domain item
-modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domainItem", attribute_codeName = "WingArea", domainItem_value = "U")
+# modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domainItem", attribute_codeName = "WingArea", domainItem_value = "U")
 
 # Update attribute datatype and allowNull values
-modified.dxnry<- modify.mdJSON(x = ref.dictionary, how = "update_attribute", attribute_codeName = "BandSize", attribute_dataType = "Integer", attribute_allowNull = TRUE)
+# modified.dxnry<- modify.mdJSON(x = ref.dictionary, how = "update_attribute", attribute_codeName = "BandSize", attribute_dataType = "Integer", attribute_allowNull = TRUE)
 
 Update domain codeName
-modified.dxnry<- modify.mdJSON(x = ref.dictionary, how = "update_domain", domain_codeName = "Wing_mm", new.domain_codeName = "WingFlattened_mm")
+# modified.dxnry<- modify.mdJSON(x = ref.dictionary, how = "update_domain", domain_codeName = "Wing_mm", new.domain_codeName = "WingFlattened_mm")
 
 # Convert list to JSON
-new.json = rjson::toJSON(x = modified.dxnry)
+# new.json = rjson::toJSON(x = modified.dxnry)
 
 # Export JSON to disk
-write(x = new.json, file = "e.g.dictionary.json")
+# write(x = new.json, file = "e.g.dictionary.json")
 }
 \seealso{
 \code{modify.mdJSON()}
