@@ -7,65 +7,78 @@
 modify.mdJSON(
   x,
   how = c("add_attribute", "add_domain", "add_domainItem", "update_attribute",
-    "update_domain", "update_domainItem"),
-  codeName = "",
-  allowNull = "",
-  dataType = "",
-  definition = "",
-  units = "",
-  unitsResolution = "",
-  isCaseSensitive = "",
-  missingValue = "",
-  minValue = "",
-  maxValue = "",
-  fieldWidth = "",
-  domainId = "",
-  domainName = "",
-  domainDescription = "",
+    "update_domain", "update_domainItem", "remove_attribute", "remove_domain",
+    "remove_domainItem"),
+  attribute_codeName = "",
+  attribute_allowNull = "",
+  attribute_dataType = "",
+  attribute_definition = "",
+  attribute_units = "",
+  attribute_unitsResolution = "",
+  attribute_isCaseSensitive = "",
+  attribute_missingValue = "",
+  attribute_minValue = "",
+  attribute_maxValue = "",
+  attribute_fieldWidth = "",
+  domain_domainId = "",
+  domain_codeName = "",
+  domain_description = "",
+  domainItem = list(list(name = "", value = "", definition = "")),
   domainItem_value = "",
   domainItem_name = "",
   domainItem_definition = "",
+  new.attribute_codeName = "",
+  new.domain_codeName = "",
+  new.domainItem_value = "",
   quiet = FALSE
 )
 }
 \arguments{
-\item{x}{List object converted from an mdJSON file.}
+\item{x}{List. Metadata file containing a Dictionary Record.}
 
-\item{how}{Character string matching one of the modification options: see ‘Details’.}
+\item{how}{Character string. How the dictionary will be modified. Available options include 'add_attribute', 'add_domain', 'add_domainItem', 'update_attribute', 'update_domain', 'update_domainItem', 'remove_attribute', 'remove_domain', 'remove_domainItem'; see 'Details'.}
 
-\item{codeName}{Conditionally optional character string. Name of the attribute to add or modify.}
+\item{attribute_codeName}{Conditionally optional character string. Name of the attribute to add or modify.}
 
-\item{allowNull}{Optional logical (TRUE/FALSE). Whether null values are permissible for the attribute indicated with 'codeName'.}
+\item{attribute_allowNull}{Optional logical (TRUE/FALSE). Whether null values are permissible for the attribute specified with 'attribute_codeName'.}
 
-\item{dataType}{Optional character string. Datatype of the attribute indicated with 'codeName'.}
+\item{attribute_dataType}{Optional character string. Datatype of the attribute specified with 'attribute_codeName'.}
 
-\item{definition}{Optional character string. Definition of the attribute indicated with 'codeName'.}
+\item{attribute_definition}{Optional character string. Definition of the attribute specified with 'attribute_codeName'.}
 
-\item{units}{Optional character string. Unit-of-measure for the attribute indicated with 'codeName'.}
+\item{attribute_units}{Optional character string. Unit-of-measure for the attribute specified with 'attribute_codeName'.}
 
-\item{unitsResolution}{Optional numeric. Smallest increment of measurement for the attribute indicated with 'codeName'.}
+\item{attribute_unitsResolution}{Optional numeric. Smallest increment of measurement for the attribute specified with 'attribute_codeName'.}
 
-\item{isCaseSensitive}{Optional logical (TRUE/FALSE). Whether case-sensitive ASCII encoding is used for the attribute indicated with 'codeName'.}
+\item{attribute_isCaseSensitive}{Optional logical (TRUE/FALSE). Whether case-sensitive ASCII encoding is used for the attribute specified with 'attribute_codeName'.}
 
-\item{missingValue}{Optional character string. Code representing missing values of the attribute indicated with 'codeName'.}
+\item{attribute_missingValue}{Optional character string. Code representing missing values of the attribute specified with 'attribute_codeName'.}
 
-\item{minValue}{Optional character string. Minimum value permissible for the attribute indicated with 'codeName'.}
+\item{attribute_minValue}{Optional character string. Minimum value permissible for the attribute specified with 'attribute_codeName'.}
 
-\item{maxValue}{Optional character string. Maximum value permissible for the attribute indicated with 'codeName'.}
+\item{attribute_maxValue}{Optional character string. Maximum value permissible for the attribute specified with 'attribute_codeName'.}
 
-\item{fieldWidth}{Optional integer. Field width of the attribute indicated with 'codeName'.}
+\item{attribute_fieldWidth}{Optional integer. Field width of the attribute indicated with 'attribute_codeName'.}
 
-\item{domainId}{Conditionally optional character string. Universally Unique Identifier (UUID) of the attribute or domain indicated with 'codeName' or domainName', respectively.}
+\item{domain_domainId}{Conditionally optional character string. Universally Unique Identifier (UUID) of the domain specified with 'domain_codeName', or the domain linked to the attribute specified with 'attribute_codeName'.}
 
-\item{domainName}{Conditionally optional character string. Name of the domain to add or modify.}
+\item{domain_codeName}{Conditionally optional character string. Name of the domain to add or modify.}
 
-\item{domainDescription}{Optional character string. Description of the domain indicated with 'domainName'.}
+\item{domain_description}{Optional character string. Description of the domain specified with 'domain_codeName'.}
 
-\item{domainItem_value}{Optional character string. Value of the domain item (entry value) indicated with 'domainName'.}
+\item{domainItem}{Optional list or vector. Permissible entry value(s), name(s), and definition(s) of the domain specified with 'domain_codeName'. Unnamed list elements must be ordered correctly (i.e., name, value, definition). 'domainItem' will override 'domainItem_value', 'domainItem_name', and 'domainItem_definition' when 'how' == 'add_attribute', 'add_domain' or 'add_domainItem.}
 
-\item{domainItem_name}{Optional character string. Name of the domain item (entry value) indicated with 'domainItem_value'.}
+\item{domainItem_value}{Optional character string or vector. Permissible entry value(s) of the domain specified with 'domain_codeName'.}
 
-\item{domainItem_definition}{Optional character string. Definition of the domain item (entry value) indicated with 'domainItem_value'.}
+\item{domainItem_name}{Optional character string or vector. Name(s) of permissible entry value(s) specified with 'domainItem_value'.}
+
+\item{domainItem_definition}{Optional character string or vector. Definition(s) of permissible entry value(s) specified with 'domainItem_value'.}
+
+\item{new.attribute_codeName}{Optional character string. New name for the attribute specified with 'attribute_codeName'.}
+
+\item{new.domain_codeName}{Optional character string. New name for the domain specified with 'domain_codeName'.}
+
+\item{new.domainItem_value}{Optional character string. New entry value for the domain item specified with 'domainItem_value'.}
 
 \item{quiet}{Optional logical. Default=FALSE. If TRUE, function runs with minimum input required and does not print revisions for approval.}
 }
@@ -73,7 +86,7 @@ modify.mdJSON(
 Returns a modified list object corresponding to the mdJSON file.
 }
 \description{
-Amends an mdJSON data dictionary, including adding/updating attributes and domains.
+Amends an mdJSON data dictionary, including adding, updating, and removing attributes and domains.
 }
 \examples{
 # Import mdJSON data dictionary as list
@@ -81,16 +94,19 @@ path<-system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")
 input.dxnry <- rjson::fromJSON(file = path)
 
 # Add an attribute
-modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_attribute", codeName = "WingArea")
+modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_attribute", attribute_codeName = "WingArea")
 
 # Add a domain
 modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domain")
 
 # Add a domain item
-modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domainItem", codeName = "WingArea", domainItem_value = "U")
+modified.dxnry<- modify.mdJSON(x = input.dxnry, how = "add_domainItem", attribute_codeName = "WingArea", domainItem_value = "U")
 
 # Update attribute datatype and allowNull values
-modified.dxnry<- modify.mdJSON(x = ref.dictionary, how = "update_attribute", codeName = "BandSize", dataType = "Integer", allowNull = TRUE)
+modified.dxnry<- modify.mdJSON(x = ref.dictionary, how = "update_attribute", attribute_codeName = "BandSize", attribute_dataType = "Integer", attribute_allowNull = TRUE)
+
+Update domain codeName
+modified.dxnry<- modify.mdJSON(x = ref.dictionary, how = "update_domain", domain_codeName = "Wing_mm", new.domain_codeName = "WingFlattened_mm")
 
 # Convert list to JSON
 new.json = rjson::toJSON(x = modified.dxnry)

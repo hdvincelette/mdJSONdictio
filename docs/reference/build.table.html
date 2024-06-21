@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">mdJSONdictio</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +94,7 @@
 <span><span class="va">input.list</span> <span class="op">&lt;-</span> <span class="fu">rjson</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rjson/man/fromJSON.html" class="external-link">fromJSON</a></span><span class="op">(</span>file <span class="op">=</span> <span class="va">path</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Translate list to data frame</span></span>
-<span><span class="va">new.table</span><span class="op">&lt;-</span> <span class="fu">mdJSONdictio</span><span class="fu">::</span><span class="fu">build.table</span><span class="op">(</span>x <span class="op">=</span> <span class="va">input.list</span>, dictionary_num <span class="op">=</span> <span class="fl">1</span>, entity_num <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="va">new.table</span><span class="op">&lt;-</span> <span class="fu">mdJSONdictio</span><span class="fu">::</span><span class="fu">build.table</span><span class="op">(</span>x <span class="op">=</span> <span class="va">input.list</span>, entity_num <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Export table to disk</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">new.table</span>, file <span class="op">=</span> <span class="st">"e.g.dictionary2.csv"</span>, na<span class="op">=</span><span class="st">""</span>, row.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
