@@ -1,8 +1,8 @@
 #' Modify mdJSON Data Dictionaries
 #'
-#' Amends an mdJSON data dictionary, including adding/updating attributes and domains.
-#' @param x List object converted from an mdJSON file.
-#' @param how Character string matching one of the modification options: see ‘Details’.
+#' Amends an mdJSON data dictionary, including adding, updating, and removing attributes and domains.
+#' @param x List. Metadata file containing a Dictionary Record.
+#' @param how Character string. How the dictionary will be modified. Available options include 'add_attribute', 'add_domain', 'add_domainItem', 'update_attribute', 'update_domain', 'update_domainItem', 'remove_attribute', 'remove_domain', 'remove_domainItem'; see 'Details'.
 #' @param attribute_codeName Conditionally optional character string. Name of the attribute to add or modify.
 #' @param attribute_allowNull Optional logical (TRUE/FALSE). Whether null values are permissible for the attribute specified with 'attribute_codeName'.
 #' @param attribute_dataType Optional character string. Datatype of the attribute specified with 'attribute_codeName'.
