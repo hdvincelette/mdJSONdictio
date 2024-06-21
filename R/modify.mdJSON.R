@@ -1063,7 +1063,7 @@ modify.mdJSON <-
                     as.character(readline(prompt = ))
                 }
                 domainItem.input[[a]][["definition"]] <-
-                  domainItem_name.input
+                  domainItem_definition.input
               }
             }
             if (length(domainItem.omit) != 0) {
