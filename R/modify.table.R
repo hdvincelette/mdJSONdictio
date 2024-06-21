@@ -76,7 +76,7 @@ modify.table <-
 
 
 
-    x.3 <- modify.mdJSON(
+    x.3 <- mdJSONdictio::modify.mdJSON(
       x = x.2,
       how = how,
       attribute_codeName = attribute_codeName,
@@ -88,7 +88,7 @@ modify.table <-
       attribute_isCaseSensitive = attribute_isCaseSensitive,
       attribute_missingValue = attribute_missingValue,
       attribute_minValue = attribute_minValue,
-      attribute_maxValue =attribute_maxValue,
+      attribute_maxValue = attribute_maxValue,
       attribute_fieldWidth = attribute_fieldWidth,
       domain_domainId = domain_domainId,
       domain_codeName = domain_codeName,
