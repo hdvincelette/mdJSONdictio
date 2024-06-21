@@ -105,7 +105,7 @@ Amends an mdJSON data dictionary, including adding, updating, and removing attri
 # Update attribute datatype and allowNull values
 # modified.dxnry<- modify.mdJSON(x = ref.dictionary, how = "update_attribute", attribute_codeName = "BandSize", attribute_dataType = "Integer", attribute_allowNull = TRUE)
 
-Update domain codeName
+# Update domain codeName
 # modified.dxnry<- modify.mdJSON(x = ref.dictionary, how = "update_domain", domain_codeName = "Wing_mm", new.domain_codeName = "WingFlattened_mm")
 
 # Convert list to JSON
