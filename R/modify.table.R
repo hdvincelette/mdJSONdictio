@@ -75,6 +75,72 @@ modify.table <-
     x.2 <- mdJSONdictio::build.mdJSON(x = x)
 
 
+    if (missing(attribute_codeName)) {
+      attribute_codeName <- ""
+    }
+    if (missing(attribute_allowNull)) {
+      attribute_allowNull <- ""
+    }
+    if (missing(attribute_dataType)) {
+      attribute_dataType <- ""
+    }
+    if (missing(attribute_definition)) {
+      attribute_definition <- ""
+    }
+    if (missing(attribute_units)) {
+      attribute_units <- ""
+    }
+    if (missing(attribute_unitsResolution)) {
+      attribute_unitsResolution <- ""
+    }
+    if (missing(attribute_isCaseSensitive)) {
+      attribute_isCaseSensitive <- ""
+    }
+    if (missing(attribute_missingValue)) {
+      attribute_missingValue <- ""
+    }
+    if (missing(attribute_minValue)) {
+      attribute_minValue <- ""
+    }
+    if (missing(attribute_maxValue)) {
+      attribute_maxValue <- ""
+    }
+    if (missing(attribute_fieldWidth)) {
+      attribute_fieldWidth <- ""
+    }
+    if (missing(domain_domainId)) {
+      domain_domainId <- ""
+    }
+    if (missing(domain_codeName)) {
+      domain_codeName <- ""
+    }
+    if (missing(domain_description)) {
+      domain_description <- ""
+    }
+    if (missing(domainItem)) {
+      domainItem <- list(list(name = "", value = "", definition = ""))
+    }
+    if (missing(domainItem_value)) {
+      domainItem_value <- ""
+    }
+    if (missing(domainItem_name)) {
+      domainItem_name <- ""
+    }
+    if (missing(domainItem_definition)) {
+      domainItem_definition <- ""
+    }
+    if (missing(new.attribute_codeName)) {
+      new.attribute_codeName <- ""
+    }
+    if (missing(new.domain_codeName)) {
+      new.domain_codeName <- ""
+    }
+    if (missing(new.domainItem_value)) {
+      new.domainItem_value <- ""
+    }
+    if (missing(quiet)) {
+      quiet <- FALSE
+    }
 
     x.3 <- mdJSONdictio::modify.mdJSON(
       x = x.2,
