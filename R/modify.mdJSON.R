@@ -17,7 +17,7 @@
 #' @param domain_domainId Conditionally optional character string. Universally Unique Identifier (UUID) of the domain specified with 'domain_codeName', or the domain linked to the attribute specified with 'attribute_codeName'.
 #' @param domain_codeName Conditionally optional character string. Name of the domain to add or modify.
 #' @param domain_description Optional character string. Description of the domain specified with 'domain_codeName'.
-#' @param domainItem Optional list or vector. Permissible entry value(s), name(s), and definition(s) of the domain specified with 'domain_codeName'. Unnamed list elements must be ordered correctly (i.e., name, value, definition). 'domainItem' will override 'domainItem_value', 'domainItem_name', and 'domainItem_definition' when 'how' == 'add_attribute', 'add_domain' or 'add_domainItem.
+#' @param domainItem Optional list. Permissible entry value(s), name(s), and definition(s) of the domain specified with 'domain_codeName', i.e., domainItem = list(list(name = "", value = "", definition = "")). Unnamed list elements must be ordered correctly (name, value, definition). 'domainItem' will override 'domainItem_value', 'domainItem_name', and 'domainItem_definition' when 'how' == 'add_attribute', 'add_domain' or 'add_domainItem.
 #' @param domainItem_value Optional character string or vector. Permissible entry value(s) of the domain specified with 'domain_codeName'.
 #' @param domainItem_name Optional character string or vector. Name(s) of permissible entry value(s) specified with 'domainItem_value'.
 #' @param domainItem_definition Optional character string or vector. Definition(s) of permissible entry value(s) specified with 'domainItem_value'.
@@ -86,11 +86,7 @@ modify.mdJSON <-
            domain_domainId = "",
            domain_codeName = "",
            domain_description = "",
-           domainItem = list(list(
-             name = "",
-             value = "",
-             definition = ""
-           )),
+           domainItem = list(),
            domainItem_value = "",
            domainItem_name = "",
            domainItem_definition = "",
@@ -133,7 +129,7 @@ modify.mdJSON <-
     #### Check: all parameters ####
     definedparam <- c()
 
-    if (missing(attribute_codeName)) {
+    if (missing(attribute_codeName) | attribute_allowNull == "") {
       attribute_codeName <- ""
     } else {
       if (is.null(attribute_codeName) == FALSE) {
@@ -142,7 +138,7 @@ modify.mdJSON <-
     }
     attribute_codeName.input <- attribute_codeName
 
-    if (missing(attribute_allowNull)) {
+    if (missing(attribute_allowNull) | attribute_allowNull == "") {
       attribute_allowNull <- ""
     } else if (is.null(attribute_allowNull) == FALSE) {
       if (!attribute_allowNull %in% c(TRUE, FALSE)) {
@@ -156,7 +152,7 @@ modify.mdJSON <-
     }
     attribute_allowNull.input <- attribute_allowNull
 
-    if (missing(attribute_dataType)) {
+    if (missing(attribute_dataType) | attribute_dataType == "") {
       attribute_dataType <- ""
     } else if (is.null(attribute_dataType) == FALSE) {
       if (!attribute_dataType %in% dataType.vector) {
@@ -170,25 +166,21 @@ modify.mdJSON <-
     }
     attribute_dataType.input <- attribute_dataType
 
-    if (missing(attribute_definition)) {
+    if (missing(attribute_definition) | attribute_definition == "") {
       attribute_definition <- ""
-    } else {
-      if (is.null(attribute_definition) == FALSE) {
-        definedparam <- c(definedparam, "attribute_definition")
-      }
+    } else if (is.null(attribute_definition) == FALSE) {
+      definedparam <- c(definedparam, "attribute_definition")
     }
     attribute_definition.input <- attribute_definition
 
-    if (missing(attribute_units)) {
+    if (missing(attribute_units) | attribute_units == "") {
       attribute_units <- ""
-    } else {
-      if (is.null(attribute_units) == FALSE) {
-        definedparam <- c(definedparam, "attribute_units")
-      }
+    } else if (is.null(attribute_units) == FALSE) {
+      definedparam <- c(definedparam, "attribute_units")
     }
     attribute_units.input <- attribute_units
 
-    if (missing(attribute_unitsResolution)) {
+    if (missing(attribute_unitsResolution) | attribute_unitsResolution == "") {
       attribute_unitsResolution <- ""
     } else if (is.null(attribute_unitsResolution) == FALSE) {
       if (suppressWarnings(is.na(as.numeric(attribute_unitsResolution))) == TRUE) {
@@ -204,7 +196,7 @@ modify.mdJSON <-
     }
     attribute_unitsResolution.input <- attribute_unitsResolution
 
-    if (missing(attribute_isCaseSensitive)) {
+    if (missing(attribute_isCaseSensitive) | attribute_isCaseSensitive == "") {
       attribute_isCaseSensitive <- ""
     } else if (is.null(attribute_isCaseSensitive) == FALSE) {
       if (!attribute_isCaseSensitive %in% c(TRUE, FALSE)) {
@@ -220,34 +212,28 @@ modify.mdJSON <-
     }
     attribute_isCaseSensitive.input <- attribute_isCaseSensitive
 
-    if (missing(attribute_missingValue)) {
+    if (missing(attribute_missingValue) | attribute_missingValue == "") {
       attribute_missingValue <- ""
-    } else {
-      if (is.null(attribute_missingValue) == FALSE) {
+    } else if (is.null(attribute_missingValue) == FALSE) {
         definedparam <- c(definedparam, "attribute_missingValue")
       }
-    }
     attribute_missingValue.input <- attribute_missingValue
 
-    if (missing(attribute_minValue)) {
+    if (missing(attribute_minValue) | attribute_minValue == "") {
       attribute_minValue <- ""
-    } else {
-      if (is.null(attribute_minValue) == FALSE) {
-        definedparam <- c(definedparam, "attribute_minValue")
-      }
+    } else if (is.null(attribute_minValue) == FALSE) {
+      definedparam <- c(definedparam, "attribute_minValue")
     }
     attribute_minValue.input <- attribute_minValue
 
-    if (missing(attribute_maxValue)) {
+    if (missing(attribute_maxValue) | attribute_maxValue == "") {
       attribute_maxValue <- ""
-    } else {
-      if (is.null(attribute_maxValue) == FALSE) {
-        definedparam <- c(definedparam, "attribute_maxValue")
-      }
+    } else if (is.null(attribute_maxValue) == FALSE) {
+      definedparam <- c(definedparam, "attribute_maxValue")
     }
     attribute_maxValue.input <- attribute_maxValue
 
-    if (missing(attribute_fieldWidth)) {
+    if (missing(attribute_fieldWidth) | attribute_fieldWidth == "") {
       attribute_fieldWidth <- ""
     } else if (is.null(attribute_fieldWidth) == FALSE) {
       if (!grepl("[^[:digit:]]",
@@ -266,7 +252,7 @@ modify.mdJSON <-
     }
     attribute_fieldWidth.input <- attribute_fieldWidth
 
-    if (missing(domain_domainId)) {
+    if (missing(domain_domainId) | domain_domainId == "") {
       domain_domainId <- ""
     } else if (is.null(domain_domainId) == FALSE) {
       if (!domain_domainId %in% sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "domainId")) {
@@ -280,7 +266,7 @@ modify.mdJSON <-
     }
     domain_domainId.input <- domain_domainId
 
-    if (missing(domain_codeName)) {
+    if (missing(domain_codeName) | domain_codeName == "") {
       domain_codeName <- ""
     } else if (is.null(domain_codeName) == FALSE) {
       if (!domain_codeName %in% sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "codeName")) {
@@ -294,75 +280,59 @@ modify.mdJSON <-
     }
     domain_codeName.input <- domain_codeName
 
-    if (missing(domain_description)) {
+    if (missing(domain_description) | domain_description == "") {
       domain_description <- ""
-    } else {
-      if (is.null(domain_description) == FALSE) {
-        definedparam <- c(definedparam, "domain_description")
-      }
+    } else if (is.null(domain_description) == FALSE) {
+      definedparam <- c(definedparam, "domain_description")
     }
     domain_description.input <- domain_description
 
-    if (missing(domainItem)) {
+    if (missing(domainItem) | length(domainItem)==0) {
       domainItem <-  list()
-    } else {
-      if (is.null(domainItem) == FALSE) {
+    } else if (is.null(domainItem) == FALSE) {
         definedparam <- c(definedparam, "domainItem")
-      }
     }
     domainItem.input <- domainItem
 
-    if (missing(domainItem_value)) {
+    if (missing(domainItem_value) | domainItem_value == "") {
       domainItem_value <- ""
-    } else {
-      if (is.null(domainItem_value) == FALSE) {
+    } else if (is.null(domainItem_value) == FALSE) {
         definedparam <- c(definedparam, "domainItem_value")
-      }
     }
     domainItem_value.input <- domainItem_value
 
-    if (missing(domainItem_name)) {
+    if (missing(domainItem_name) | domainItem_name == "") {
       domainItem_name <- ""
-    } else {
-      if (is.null(domainItem_name) == FALSE) {
+    } else if (is.null(domainItem_name) == FALSE) {
         definedparam <- c(definedparam, "domainItem_name")
-      }
     }
     domainItem_name.input <- domainItem_name
 
-    if (missing(domainItem_definition)) {
+    if (missing(domainItem_definition) | domainItem_definition == "") {
       domainItem_definition <- ""
-    } else {
-      if (is.null(domainItem_definition) == FALSE) {
+    } else if (is.null(domainItem_definition) == FALSE) {
         definedparam <- c(definedparam, "domainItem_definition")
-      }
     }
     domainItem_definition.input <- domainItem_definition
 
-    if (missing(new.attribute_codeName)) {
+    if (missing(new.attribute_codeName) | new.attribute_codeName == "") {
       new.attribute_codeName <- ""
-    } else {
-      if (is.null(new.attribute_codeName) == FALSE) {
+    } else if (is.null(new.attribute_codeName) == FALSE) {
         definedparam <- c(definedparam, "new.attribute_codeName")
-      }
     }
     new.attribute_codeName.input <- new.attribute_codeName
 
-    if (missing(new.domain_codeName)) {
+    if (missing(new.domain_codeName) | new.domain_codeName == "") {
       new.domain_codeName <- ""
-    } else {
-      if (is.null(new.domain_codeName) == FALSE) {
-        definedparam <- c(definedparam, "new.domain_codeName")
-      }
+    } else if (is.null(new.domain_codeName) == FALSE) {
+      definedparam <- c(definedparam, "new.domain_codeName")
     }
     new.domain_codeName.input <- new.domain_codeName
 
-    if (missing(new.domainItem_value)) {
+    if (missing(new.domainItem_value) | new.domainItem_value == "") {
       new.domainItem_value <- ""
-    } else {
-      if (is.null(new.domainItem_value) == FALSE) {
-        definedparam <- c(definedparam, "new.domainItem_value")
-      }
+    } else if (is.null(new.domainItem_value) == FALSE) {
+      definedparam <- c(definedparam, "new.domainItem_value")
     }
     new.domainItem_value.input <- new.domainItem_value
 
