@@ -167,10 +167,9 @@ validate.table <- function(x, y) {
                 Category = "domainItem_value",
                 Message =  paste0(
                   'Dataset variable contains entry value(s) not listed under "domainItem_Value" in dictionary: ',
-                  paste(setdiff(
-                    na.omit(data.NA[, a]), dict.domain[[b]][["domainItem_value"]]
-                  ),
-                  collapse = ", ")
+                  capture.output(cat(toString(
+                    dQuote(setdiff(na.omit(data.NA[, a]), dict.domain[[b]][["domainItem_value"]]), FALSE)
+                  )))
                 )
               )
           }
