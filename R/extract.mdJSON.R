@@ -3,6 +3,7 @@
 #' Plucks one or more mdJSON data dictionaries from an mdJSON file comprised of other types of records.
 #' @param x List object converted from an mdJSON file.
 #' @param record.type Default="dictionaries". String or vector representing the type(s) of records to extract. Additional options include "records" and "contacts".
+#' @param multiple Default=TRUE. Whether to allow a selection of multiple records.
 #' @return Returns a list object corresponding to the mdJSON data dictionary file.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```extract.mdJSON()```
