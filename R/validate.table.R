@@ -158,7 +158,9 @@ validate.table <- function(x, y) {
       for (a in 1:ncol(data.NA)) {
         for (b in 1:length(dict.domain)) {
           if (colnames(data.NA[a]) == names(dict.domain[b]) &
-              length(setdiff(na.omit(data.NA[, a]), dict.domain[[b]][["domainItem_value"]])) !=
+              length(unlist(setdiff(
+                x = unique(na.omit(data.NA[, a])), y = dict.domain[[b]][["domainItem_value"]]
+              ))) !=
               0) {
             warnings.df <- warnings.df %>%
               dplyr::add_row(
@@ -168,7 +170,9 @@ validate.table <- function(x, y) {
                 Message =  paste0(
                   'Dataset variable contains entry value(s) not listed under "domainItem_Value" in dictionary: ',
                   capture.output(cat(toString(
-                    dQuote(setdiff(na.omit(data.NA[, a]), dict.domain[[b]][["domainItem_value"]]), FALSE)
+                    dQuote(unlist(
+                      setdiff(x = unique(na.omit(data.NA[, a])), y = dict.domain[[b]][["domainItem_value"]])
+                    ), FALSE)
                   )))
                 )
               )
