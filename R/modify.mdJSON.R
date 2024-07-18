@@ -129,7 +129,7 @@ modify.mdJSON <-
     #### Check: all parameters ####
     definedparam <- c()
 
-    if (missing(attribute_codeName) & missing(attribute_allowNull) | attribute_allowNull == "") {
+    if (missing(attribute_codeName) | attribute_codeName == "") {
       attribute_codeName <- ""
     } else {
       if (is.null(attribute_codeName) == FALSE) {
