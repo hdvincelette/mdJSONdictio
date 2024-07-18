@@ -167,7 +167,7 @@ build.mdJSON <- function(x, title) {
   ## Replace values and add domain column
   Data.Dictionary <- Data.Dictionary %>%
     dplyr::mutate_if(is.character, stringr::str_replace_all, "\"", "'") %>%
-    dplyr::select(-notes) %>%
+    dplyr::select(-tidyselect::any_of(c("notes"))) %>%
     tibble::add_column(domainId = NA)
 
   for (b in 1:nrow(Data.Dictionary)) {
