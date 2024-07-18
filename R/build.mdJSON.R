@@ -71,27 +71,27 @@ build.mdJSON <- function(x, title) {
     )
 
   for (a in 1:ncol(Data.Dictionary)) {
-    if (!colnames(Data.Dictionary[a]) %in% c(
-      "codeName",
-      "domainItem_name",
-      "domainItem_value",
-      "definition",
-      "dataType",
-      "allowNull",
-      "units",
-      "unitsResolution",
-      "minValue",
-      "maxValue",
-      "missingValue",
-      "fieldWidth",
-      "isCaseSensitive",
-      "notes"
-    ))
-    stop(
-      'Data frame contains an invalid column: ',
-      colnames(Data.Dictionary[a]),
-      '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
-    )
+    # if (!colnames(Data.Dictionary[a]) %in% c(
+    #   "codeName",
+    #   "domainItem_name",
+    #   "domainItem_value",
+    #   "definition",
+    #   "dataType",
+    #   "allowNull",
+    #   "units",
+    #   "unitsResolution",
+    #   "minValue",
+    #   "maxValue",
+    #   "missingValue",
+    #   "fieldWidth",
+    #   "isCaseSensitive",
+    #   "notes"
+    # ))
+    # stop(
+    #   'Data frame contains an invalid column: ',
+    #   colnames(Data.Dictionary[a]),
+    #   '.\n  Print `help(package = "mdJSONdictio")` for Help Pages.'
+    # )
     for (aa in 1:nrow(Data.Dictionary)) {
       ## inoperative; NA replaced with 'NA'
       if (colnames(Data.Dictionary[a]) %in% c("codeName",
