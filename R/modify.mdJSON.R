@@ -129,210 +129,267 @@ modify.mdJSON <-
     #### Check: all parameters ####
     definedparam <- c()
 
-    if (missing(attribute_codeName) | attribute_codeName == "") {
-      attribute_codeName <- ""
-    } else {
-      if (is.null(attribute_codeName) == FALSE) {
+    if (is.null(attribute_codeName) == FALSE) {
+      if (missing(attribute_codeName) |
+          attribute_codeName == "") {
+        attribute_codeName <- ""
+      } else {
         definedparam <- c(definedparam, "attribute_codeName")
       }
     }
     attribute_codeName.input <- attribute_codeName
 
-    if (missing(attribute_allowNull) | attribute_allowNull == "") {
-      attribute_allowNull <- ""
-    } else if (is.null(attribute_allowNull) == FALSE) {
-      if (!attribute_allowNull %in% c(TRUE, FALSE)) {
-        message(cat(
-          paste0("'attribute_allowNull' is invalid and will be ignored.")
-        ))
+    if (is.null(attribute_allowNull) == FALSE) {
+      if (missing(attribute_allowNull) |
+          attribute_allowNull == "") {
         attribute_allowNull <- ""
       } else {
-        definedparam <- c(definedparam, "attribute_allowNull")
+        if (!attribute_allowNull %in% c(TRUE, FALSE)) {
+          message(cat(
+            paste0("'attribute_allowNull' is invalid and will be ignored.")
+          ))
+          attribute_allowNull <- ""
+        } else {
+          definedparam <- c(definedparam, "attribute_allowNull")
+        }
       }
     }
     attribute_allowNull.input <- attribute_allowNull
 
-    if (missing(attribute_dataType) | attribute_dataType == "") {
-      attribute_dataType <- ""
-    } else if (is.null(attribute_dataType) == FALSE) {
-      if (!attribute_dataType %in% dataType.vector) {
-        message(cat(
-          paste0("'attribute_dataType' is invalid and will be ignored.")
-        ))
+    if (is.null(attribute_dataType) == FALSE) {
+      if (missing(attribute_dataType) |
+          attribute_dataType == "") {
         attribute_dataType <- ""
       } else {
-        definedparam <- c(definedparam, "attribute_dataType")
+        if (!attribute_dataType %in% dataType.vector) {
+          message(cat(
+            paste0("'attribute_dataType' is invalid and will be ignored.")
+          ))
+          attribute_dataType <- ""
+        } else {
+          definedparam <- c(definedparam, "attribute_dataType")
+        }
       }
     }
     attribute_dataType.input <- attribute_dataType
 
-    if (missing(attribute_definition) | attribute_definition == "") {
-      attribute_definition <- ""
-    } else if (is.null(attribute_definition) == FALSE) {
-      definedparam <- c(definedparam, "attribute_definition")
+    if (is.null(attribute_definition) == FALSE) {
+      if (missing(attribute_definition) |
+          attribute_definition == "") {
+        attribute_definition <- ""
+      } else {
+        definedparam <- c(definedparam, "attribute_definition")
+      }
     }
     attribute_definition.input <- attribute_definition
 
-    if (missing(attribute_units) | attribute_units == "") {
-      attribute_units <- ""
-    } else if (is.null(attribute_units) == FALSE) {
-      definedparam <- c(definedparam, "attribute_units")
+    if (is.null(attribute_units) == FALSE) {
+      if (missing(attribute_units) | attribute_units == "") {
+        attribute_units <- ""
+      } else {
+        definedparam <- c(definedparam, "attribute_units")
+      }
     }
     attribute_units.input <- attribute_units
 
-    if (missing(attribute_unitsResolution) | attribute_unitsResolution == "") {
-      attribute_unitsResolution <- ""
-    } else if (is.null(attribute_unitsResolution) == FALSE) {
-      if (suppressWarnings(is.na(as.numeric(attribute_unitsResolution))) == TRUE) {
-        message(cat(
-          paste0(
-            "'attribute_unitsResolution' is invalid and will be ignored."
-          )
-        ))
+    if (is.null(attribute_unitsResolution) == FALSE) {
+      if (missing(attribute_unitsResolution) |
+          attribute_unitsResolution == "") {
         attribute_unitsResolution <- ""
       } else {
-        definedparam <- c(definedparam, "attribute_unitsResolution")
+        if (suppressWarnings(is.na(as.numeric(attribute_unitsResolution))) == TRUE) {
+          message(cat(
+            paste0(
+              "'attribute_unitsResolution' is invalid and will be ignored."
+            )
+          ))
+          attribute_unitsResolution <- ""
+        } else {
+          definedparam <- c(definedparam, "attribute_unitsResolution")
+        }
       }
     }
     attribute_unitsResolution.input <- attribute_unitsResolution
 
-    if (missing(attribute_isCaseSensitive) | attribute_isCaseSensitive == "") {
-      attribute_isCaseSensitive <- ""
-    } else if (is.null(attribute_isCaseSensitive) == FALSE) {
-      if (!attribute_isCaseSensitive %in% c(TRUE, FALSE)) {
-        message(cat(
-          paste0(
-            "'attribute_isCaseSensitive' is invalid and will be ignored."
-          )
-        ))
+    if (is.null(attribute_isCaseSensitive) == FALSE) {
+      if (missing(attribute_isCaseSensitive) |
+          attribute_isCaseSensitive == "") {
         attribute_isCaseSensitive <- ""
       } else {
-        definedparam <- c(definedparam, "attribute_isCaseSensitive")
+        if (!attribute_isCaseSensitive %in% c(TRUE, FALSE)) {
+          message(cat(
+            paste0(
+              "'attribute_isCaseSensitive' is invalid and will be ignored."
+            )
+          ))
+          attribute_isCaseSensitive <- ""
+        } else {
+          definedparam <- c(definedparam, "attribute_isCaseSensitive")
+        }
       }
     }
     attribute_isCaseSensitive.input <- attribute_isCaseSensitive
 
-    if (missing(attribute_missingValue) | attribute_missingValue == "") {
-      attribute_missingValue <- ""
-    } else if (is.null(attribute_missingValue) == FALSE) {
+    if (is.null(attribute_missingValue) == FALSE) {
+      if (missing(attribute_missingValue) |
+          attribute_missingValue == "") {
+        attribute_missingValue <- ""
+      } else if (is.null(attribute_missingValue) == FALSE) {
         definedparam <- c(definedparam, "attribute_missingValue")
       }
+    }
     attribute_missingValue.input <- attribute_missingValue
 
-    if (missing(attribute_minValue) | attribute_minValue == "") {
-      attribute_minValue <- ""
-    } else if (is.null(attribute_minValue) == FALSE) {
-      definedparam <- c(definedparam, "attribute_minValue")
+    if (is.null(attribute_minValue) == FALSE) {
+      if (missing(attribute_minValue) |
+          attribute_minValue == "") {
+        attribute_minValue <- ""
+      } else {
+        definedparam <- c(definedparam, "attribute_minValue")
+      }
     }
     attribute_minValue.input <- attribute_minValue
 
-    if (missing(attribute_maxValue) | attribute_maxValue == "") {
-      attribute_maxValue <- ""
-    } else if (is.null(attribute_maxValue) == FALSE) {
-      definedparam <- c(definedparam, "attribute_maxValue")
+    if (is.null(attribute_maxValue) == FALSE) {
+      if (missing(attribute_maxValue) | attribute_maxValue == "") {
+        attribute_maxValue <- ""
+      } else if (is.null(attribute_maxValue) == FALSE) {
+        definedparam <- c(definedparam, "attribute_maxValue")
+      }
     }
     attribute_maxValue.input <- attribute_maxValue
 
-    if (missing(attribute_fieldWidth) | attribute_fieldWidth == "") {
-      attribute_fieldWidth <- ""
-    } else if (is.null(attribute_fieldWidth) == FALSE) {
-      if (!grepl("[^[:digit:]]",
-                 format(
-                   attribute_fieldWidth,
-                   digits = 20,
-                   scientific = FALSE
-                 )) == FALSE) {
-        message(cat(
-          paste0("'attribute_fieldWidth' is invalid and will be ignored.")
-        ))
+    if (is.null(attribute_fieldWidth) == FALSE) {
+      if (missing(attribute_fieldWidth) | attribute_fieldWidth == "") {
         attribute_fieldWidth <- ""
       } else {
-        definedparam <- c(definedparam, "attribute_fieldWidth")
+        if (!grepl("[^[:digit:]]",
+                   format(
+                     attribute_fieldWidth,
+                     digits = 20,
+                     scientific = FALSE
+                   )) == FALSE) {
+          message(cat(
+            paste0("'attribute_fieldWidth' is invalid and will be ignored.")
+          ))
+          attribute_fieldWidth <- ""
+        } else {
+          definedparam <- c(definedparam, "attribute_fieldWidth")
+        }
       }
     }
     attribute_fieldWidth.input <- attribute_fieldWidth
 
-    if (missing(domain_domainId) | domain_domainId == "") {
-      domain_domainId <- ""
-    } else if (is.null(domain_domainId) == FALSE) {
-      if (!domain_domainId %in% sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "domainId")) {
-        message(cat(
-          paste0("'domain_domainId' is invalid and will be ignored.")
-        ))
+    if (is.null(domain_domainId) == FALSE) {
+      if (missing(domain_domainId) | domain_domainId == "") {
         domain_domainId <- ""
       } else {
-        definedparam <- c(definedparam, "domain_domainId")
+        if (!domain_domainId %in% sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "domainId")) {
+          message(cat(
+            paste0("'domain_domainId' is invalid and will be ignored.")
+          ))
+          domain_domainId <- ""
+        } else {
+          definedparam <- c(definedparam, "domain_domainId")
+        }
       }
     }
     domain_domainId.input <- domain_domainId
 
-    if (missing(domain_codeName) | domain_codeName == "") {
-      domain_codeName <- ""
-    } else if (is.null(domain_codeName) == FALSE) {
-      if (!domain_codeName %in% sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "codeName")) {
-        message(cat(
-          paste0("'domain_codeName' is invalid and will be ignored.")
-        ))
+    if (is.null(domain_codeName) == FALSE) {
+      if (missing(domain_codeName) | domain_codeName == "") {
         domain_codeName <- ""
       } else {
-        definedparam <- c(definedparam, "domain_codeName")
+        if (!domain_codeName %in% sapply(dictionarylist[["dataDictionary"]][["domain"]], "[", "codeName")) {
+          message(cat(
+            paste0("'domain_codeName' is invalid and will be ignored.")
+          ))
+          domain_codeName <- ""
+        } else {
+          definedparam <- c(definedparam, "domain_codeName")
+        }
       }
     }
     domain_codeName.input <- domain_codeName
 
-    if (missing(domain_description) | domain_description == "") {
-      domain_description <- ""
-    } else if (is.null(domain_description) == FALSE) {
-      definedparam <- c(definedparam, "domain_description")
+    if (is.null(domain_description) == FALSE) {
+      if (missing(domain_description) |
+          domain_description == "") {
+        domain_description <- ""
+      } else {
+        definedparam <- c(definedparam, "domain_description")
+      }
     }
     domain_description.input <- domain_description
 
-    if (missing(domainItem) | length(domainItem)==0) {
-      domainItem <-  list()
-    } else if (is.null(domainItem) == FALSE) {
+    if (is.null(domainItem) == FALSE) {
+      if (missing(domainItem) |
+          length(domainItem) == 0) {
+        domainItem <-  list()
+      } else {
         definedparam <- c(definedparam, "domainItem")
+      }
     }
     domainItem.input <- domainItem
 
-    if (missing(domainItem_value) | domainItem_value == "") {
-      domainItem_value <- ""
-    } else if (is.null(domainItem_value) == FALSE) {
+    if (is.null(domainItem_value) == FALSE) {
+      if (missing(domainItem_value) |
+          domainItem_value == "") {
+        domainItem_value <- ""
+      } else {
         definedparam <- c(definedparam, "domainItem_value")
+      }
     }
     domainItem_value.input <- domainItem_value
 
-    if (missing(domainItem_name) | domainItem_name == "") {
-      domainItem_name <- ""
-    } else if (is.null(domainItem_name) == FALSE) {
+    if (is.null(domainItem_name) == FALSE) {
+      if (missing(domainItem_name) |
+          domainItem_name == "") {
+        domainItem_name <- ""
+      } else {
         definedparam <- c(definedparam, "domainItem_name")
+      }
     }
     domainItem_name.input <- domainItem_name
 
-    if (missing(domainItem_definition) | domainItem_definition == "") {
-      domainItem_definition <- ""
-    } else if (is.null(domainItem_definition) == FALSE) {
+    if (is.null(domainItem_definition) == FALSE) {
+      if (missing(domainItem_definition) |
+          domainItem_definition == "") {
+        domainItem_definition <- ""
+      } else {
         definedparam <- c(definedparam, "domainItem_definition")
+      }
     }
     domainItem_definition.input <- domainItem_definition
 
-    if (missing(new.attribute_codeName) | new.attribute_codeName == "") {
+    if (is.null(new.attribute_codeName) == FALSE) {
       new.attribute_codeName <- ""
-    } else if (is.null(new.attribute_codeName) == FALSE) {
+      if (missing(new.attribute_codeName) |
+          new.attribute_codeName == "") {
+        new.attribute_codeName <- ""
+      } else {
         definedparam <- c(definedparam, "new.attribute_codeName")
+      }
     }
     new.attribute_codeName.input <- new.attribute_codeName
 
-    if (missing(new.domain_codeName) | new.domain_codeName == "") {
-      new.domain_codeName <- ""
-    } else if (is.null(new.domain_codeName) == FALSE) {
-      definedparam <- c(definedparam, "new.domain_codeName")
+    if (is.null(new.domain_codeName) == FALSE) {
+      if (missing(new.domain_codeName) |
+          new.domain_codeName == "") {
+        new.domain_codeName <- ""
+      } else if (is.null(new.domain_codeName) == FALSE) {
+        definedparam <- c(definedparam, "new.domain_codeName")
+      }
     }
     new.domain_codeName.input <- new.domain_codeName
 
-    if (missing(new.domainItem_value) | new.domainItem_value == "") {
-      new.domainItem_value <- ""
-    } else if (is.null(new.domainItem_value) == FALSE) {
-      definedparam <- c(definedparam, "new.domainItem_value")
+    if (is.null(new.domainItem_value) == FALSE) {
+      if (missing(new.domainItem_value) |
+          new.domainItem_value == "") {
+        new.domainItem_value <- ""
+      } else {
+        definedparam <- c(definedparam, "new.domainItem_value")
+      }
     }
     new.domainItem_value.input <- new.domainItem_value
 
@@ -1046,7 +1103,7 @@ modify.mdJSON <-
     }
 
 
-    #### Add an attribute (and domain - optional) ####
+    #### Add attribute (and domain - optional) ####
     if (how == "add_attribute") {
       newattribute <- blankattribute
 
@@ -1455,7 +1512,7 @@ modify.mdJSON <-
             moredomainItems.choice <- 1
 
             while (moredomainItems.choice == 1) {
-              if (newdomain[[1]][["domainItem"]][[1]][["name"]] != "NA") {
+              if (length(newdomain[[1]][["domainItem"]][[1]][["name"]]) != 0) {
                 newdomain[[1]][["domainItem"]] <-
                   append(newdomain[[1]][["domainItem"]], blankdomain[[1]][["domainItem"]])
                 domainItem.num <-
@@ -1746,7 +1803,7 @@ modify.mdJSON <-
           moredomainItems.choice <- 1
 
           while (moredomainItems.choice == 1) {
-            if (newdomain[[1]][["domainItem"]][[1]][["name"]] != "NA") {
+            if (length(newdomain[[1]][["domainItem"]][[1]][["name"]]) != 0) {
               newdomain[[1]][["domainItem"]] <-
                 append(newdomain[[1]][["domainItem"]], blankdomain[[1]][["domainItem"]])
               domainItem.num <-
