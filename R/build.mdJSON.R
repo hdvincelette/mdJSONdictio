@@ -430,9 +430,19 @@ build.mdJSON <- function(x, title) {
 
   ## Correct subject
   oldsubject <-
-    paste0('\"', 'subject', '\":\"', 'dataDictionary', '\"')
+    paste0('\"',
+           'subject',
+           '\":\"',
+           gsub(".*\"subject\":\"(\\w+)\"*", "\\1", newstring),
+           '\"')
   newsubject <-
-    paste0('\"', 'subject', '\":[\"', 'dataDictionary', '\"]')
+    paste0(
+      '\"',
+      'subject',
+      '\":[\"',
+      gsub(".*\"subject\":\"(\\w+)\"*", "\\1", newstring),
+      '\"]'
+    )
   newstring <- gsub(oldsubject, newsubject, newstring)
 
   oldcase <- paste0('\"', 'isCaseSensitive', '\":\"', 'true', '\"')
