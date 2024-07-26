@@ -433,14 +433,14 @@ build.mdJSON <- function(x, title) {
     paste0('\"',
            'subject',
            '\":\"',
-           gsub(".*\"subject\":\"(\\w+)\"*", "\\1", newstring),
+           gsub(".*\"subject\":\"(\\w+)\".*", "\\1", newstring),
            '\"')
   newsubject <-
     paste0(
       '\"',
       'subject',
       '\":[\"',
-      gsub(".*\"subject\":\"(\\w+)\"*", "\\1", newstring),
+      gsub(".*\"subject\":\"(\\w+)\".*", "\\1", newstring),
       '\"]'
     )
   newstring <- gsub(oldsubject, newsubject, newstring)
