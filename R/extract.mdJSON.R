@@ -80,7 +80,7 @@ extract.mdJSON <-
       record.choice <- utils::select.list(
         c(filtered.names),
         title = cat(
-          paste0("The mdJSON list object contains more than one record.")
+          paste0("\nThe mdJSON list object contains more than one record.\n")
         ),
         multiple = multiple,
         graphics = TRUE
