@@ -1082,7 +1082,7 @@ modify.mdJSON <-
                 while (domainItem_definition.input == "") {
                   message(cat(
                     paste0(
-                      "\n1: REQUIRED: Provide a definition for the domain item '",
+                      "\nREQUIRED: Provide a definition for the domain item '",
                       domainItem_value.input,
                       "'."
                     )
@@ -1567,7 +1567,7 @@ modify.mdJSON <-
               while (domainItem_defintion.input == "") {
                 message(cat(
                   paste0(
-                    "\n2: REQUIRED: Provide a definition for the domain item '",
+                    "\nREQUIRED: Provide a definition for the domain item '",
                     domainItem_name.input,
                     "'."
                   )
@@ -1857,7 +1857,7 @@ modify.mdJSON <-
             while (domainItem_defintion.input == "") {
               message(cat(
                 paste0(
-                  "\n3: REQUIRED: Provide a definition for the domain item '",
+                  "\nREQUIRED: Provide a definition for the domain item '",
                   domainItem_name.input,
                   "'."
                 )
@@ -1959,7 +1959,7 @@ modify.mdJSON <-
         while (domainItem_definition.input == "") {
           message(cat(
             paste0(
-              "\n4: REQUIRED: Provide a definition for the domain item '",
+              "\nREQUIRED: Provide a definition for the domain item '",
               domainItem_value.input,
               "'."
             )
