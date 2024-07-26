@@ -5,7 +5,7 @@ setwd("C:/Users/hvincelette/OneDrive - DOI/Documents/GitHub/mdJSONdictio")
 remove.packages("mdJSONdictio")
 .rs.restartR()
 
-install()
+devtools::install()
 
 
 # remove.packages(c(
