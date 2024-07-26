@@ -3386,9 +3386,27 @@ modify.mdJSON <-
         list(date = lastUpdate, dateType = "lastUpdate")
     }
 
+    newstring <- rjson::toJSON(dictionarylist)
+    oldsubject <-
+      paste0('\"',
+             'subject',
+             '\":\"',
+             gsub(".*\"subject\":\"(\\w+)\"*", "\\1", newstring),
+             '\"')
+    newsubject <-
+      paste0(
+        '\"',
+        'subject',
+        '\":[\"',
+        gsub(".*\"subject\":\"(\\w+)\"*", "\\1", newstring),
+        '\"]'
+      )
+    newstring <- gsub(oldsubject, newsubject, newstring)
+
+
 
     input.dxnry[["data"]][[1]][["attributes"]][["json"]] <-
-      rjson::toJSON(dictionarylist)
+      newstring
 
     if (length(x[["data"]]) > 1) {
       x[["data"]][[record.num]] <- input.dxnry[["data"]][[1]]
