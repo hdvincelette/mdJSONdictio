@@ -58,6 +58,7 @@
 
 # update_domainItem
 # remove domain item, attribute, domain
+# remove domainItem_name.input, domainItem_value.input, domainItem_definition.input after translating to domainItem.input
 
 modify.mdJSON <-
   function(x,
