@@ -1095,6 +1095,10 @@ modify.mdJSON <-
             }
             if (length(domainItem.omit) != 0) {
               domainItem.input <- domainItem.input[-domainItem.omit]
+
+              if(length(domainItem.input)==0) {
+                how <- "quit"
+              }
             }
 
           }
