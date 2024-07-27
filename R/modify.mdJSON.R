@@ -55,7 +55,6 @@
 #' # Export JSON to disk
 #' # write(x = new.json, file = "e.g.dictionary.json")
 
-# update date-updated
 # update_domainItem
 # remove domain item, attribute, domain
 # remove domainItem_name.input, domainItem_value.input, domainItem_definition.input after translating to domainItem.input
@@ -3412,6 +3411,8 @@ modify.mdJSON <-
 
     input.dxnry[["data"]][[1]][["attributes"]][["json"]] <-
       newstring
+
+    input.dxnry[["data"]][[1]][["attributes"]][["date-updated"]]<- lastUpdate
 
     if (length(x[["data"]]) > 1) {
       x[["data"]][[record.num]] <- input.dxnry[["data"]][[1]]
