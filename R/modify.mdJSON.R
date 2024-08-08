@@ -3365,7 +3365,7 @@ modify.mdJSON <-
     }
 
     #### Reattach dictionary list ####
-    lastUpdate <- strftime(as.POSIXlt(Sys.time(), "UTC"), "%Y-%m-%dT%H:%M")
+    lastUpdate <- strftime(as.POSIXlt(Sys.time(),  Sys.timezone()), "%Y-%m-%dT%H:%M")
     lastUpdate <- paste0(lastUpdate, ":00.000Z", collapse = "")
 
     lastUpdate.num <- c()
