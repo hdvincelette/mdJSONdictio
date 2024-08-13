@@ -23,9 +23,9 @@ modify.table(
   domain_domainId = "",
   domain_codeName = "",
   domain_description = "",
-  domainItem = list(list(name = "", value = "", definition = "")),
-  domainItem_value = "",
+  domainItem = list(),
   domainItem_name = "",
+  domainItem_value = "",
   domainItem_definition = "",
   new.attribute_codeName = "",
   new.domain_codeName = "",
@@ -68,9 +68,9 @@ modify.table(
 
 \item{domainItem}{Optional list or vector. Permissible entry value(s), name(s), and definition(s) of the domain specified with 'domain_codeName'. Unnamed list elements must be ordered correctly (i.e., name, value, definition). 'domainItem' will override 'domainItem_value', 'domainItem_name', and 'domainItem_definition' when 'how' == 'add_attribute', 'add_domain' or 'add_domainItem.}
 
-\item{domainItem_value}{Optional character string or vector. Permissible entry value(s) of the domain specified with 'domain_codeName'.}
-
 \item{domainItem_name}{Optional character string or vector. Name(s) of permissible entry value(s) specified with 'domainItem_value'.}
+
+\item{domainItem_value}{Optional character string or vector. Permissible entry value(s) of the domain specified with 'domain_codeName'.}
 
 \item{domainItem_definition}{Optional character string or vector. Definition(s) of permissible entry value(s) specified with 'domainItem_value'.}
 

@@ -10,6 +10,8 @@ extract.mdJSON(x, record.type = "dictionaries", multiple = TRUE)
 \item{x}{List object converted from an mdJSON file.}
 
 \item{record.type}{Default="dictionaries". String or vector representing the type(s) of records to extract. Additional options include "records" and "contacts".}
+
+\item{multiple}{Default=TRUE. Whether to allow a selection of multiple records.}
 }
 \value{
 Returns a list object corresponding to the mdJSON data dictionary file.
