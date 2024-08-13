@@ -5,7 +5,7 @@ Authors@R:
     person(given = "Hannah Vincelette", email = "hdvincelette@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6404-0410"))
 Description: Tools to Extract, Build, Modify, and Validate mdEditor Dictionary records in R.
-License: MIT + file LICENSE
+License: CC0
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
