@@ -43,7 +43,7 @@ product or activity by FWS or the United States Government.
 ## Getting help
 
 Submit a [GitHub
-Issue](https://github.com/hdvincelette/FWSAkRDRtools/issues) to report a
+Issue](https://github.com/hdvincelette/mdJSONdictio/issues) to report a
 bug and request a feature or enhancement. Contact the [project
 maintainer](https://github.com/vincelette-usfws) for information about
 contributing to this project.
