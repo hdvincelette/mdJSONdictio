@@ -3,7 +3,5 @@
 export(build.mdJSON)
 export(build.table)
 export(extract.mdJSON)
-export(modify.mdJSON)
-export(modify.table)
 export(validate.mdJSON)
 export(validate.table)
