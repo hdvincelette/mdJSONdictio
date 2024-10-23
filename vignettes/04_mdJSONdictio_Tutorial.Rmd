@@ -122,7 +122,7 @@ print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary.json", packag
 ```
 
 ## Export mdJSON data dictionary
-**Convert the new list object to JSON using ```toJSON()```.** This will create another data frame object in the Environment window.
+**Convert the new list object to JSON using ```toJSON()```.** This will create another object in the Environment window.
 
 ```{r, include=TRUE, eval=FALSE}
 new.json = rjson::toJSON(x = new.list)
