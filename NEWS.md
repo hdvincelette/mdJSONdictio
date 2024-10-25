@@ -8,9 +8,6 @@ editor_options:
 
 ## Fixed
 
--   Corrected JSON syntax for the subject field and other bugs in
-    `build.mdJSON`
-
 -   Detection/reporting of unlisted entry values in `validate.table`
 
 ## Added
