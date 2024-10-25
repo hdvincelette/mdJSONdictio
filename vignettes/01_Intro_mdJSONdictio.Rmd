@@ -15,14 +15,14 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+```{=html}
 <style type="text/css">
   body{
   font-size: 12pt;
 }
 </style>
-
-
-
+```
 ```{css, echo=FALSE}
 # .main-container {
 #     max-width: 600px !important;
@@ -37,7 +37,6 @@ pre code {
   white-space: pre
 }
 ```
-
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -61,19 +60,14 @@ library(png)
 library(utils)
 library(rjson)
 ```
-<br />
-The R package mdJSONdictio aims to streamline the process of creating mdEditor data dictionaries. Rather than defining data table attributes in [mdEditor](https://go.mdeditor.org/#/dashboard), users can fill out a [tabular data dictionary template](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html) and translate it to mdJSON using the function ```build.mdJSON()```. The resultant mdJSON file can be imported in mdEditor to create a Dictionary Record with data table attributes already defined. Conversely, the function ```build.table()``` translates mdEditor data dictionary files into a tabular format to be used as a human-readable reference. The function ```validate.mdJSON()``` summarizes the discrepancies between a tabular dataset and an mdJSON data dictionary, while ```validate.table``` compares a tabular dataset to a tabular data dictionary.
-<br />
-<br />
 
+<br /> The R package mdJSONdictio aims to streamline the process of creating mdEditor data dictionaries. Rather than defining data table attributes in [mdEditor](https://go.mdeditor.org/#/dashboard), users can fill out a [tabular data dictionary template](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html) and translate it to mdJSON using the function `build.mdJSON()`. The resultant mdJSON file can be imported in mdEditor to create a Dictionary Record with data table attributes already defined. Conversely, the function `build.table()` translates mdEditor data dictionary files into a tabular format to be used as a human-readable reference. The function `validate.mdJSON()` summarizes the discrepancies between a tabular dataset and an mdJSON data dictionary, while `validate.table` compares a tabular dataset to a tabular data dictionary. <br /> <br />
 
 # Function overview
 
-## ```build.mdJSON()``` 
+## `build.mdJSON()`
 
-Translates a data frame of the tabular data dictionary into an list object that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary Record. The input data dictionary must be formatted to a template as described in the [Tabular Data Dictionary Template article](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html). A required parameter is ```title```, which accepts a string to designate the title of the Dictionary Record in mdEditor.
-<br />
-<br />
+Translates a data frame of the tabular data dictionary into an list object that can be subsequently converted to mdJSON and imported to mdEditor as a Dictionary Record. The input data dictionary must be formatted to a template as described in the [Tabular Data Dictionary Template article](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html). A required parameter is `title`, which accepts a string to designate the title of the Dictionary Record in mdEditor. <br /> <br />
 
 #### Tabular data dictionary imported as a data frame in R
 
@@ -84,103 +78,102 @@ Translates a data frame of the tabular data dictionary into an list object that 
 print(readxl::read_excel(system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")), n = 1e3)
 
 ```
+
 <br />
 
-#### ```build.mdJSON()``` return value in R
+#### `build.mdJSON()` return value in R
 
 ```{r, echo=FALSE}
 print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary.json", package = "mdJSONdictio")))
 ```
+
 <br />
 
+## `build.table()`
 
-## ```build.table()``` 
+Translates a list object converted from an mdEditor mdJSON data dictionary file into a data frame to be used as a human-readable reference. The output is formatted to the template described in the [Tabular Data Dictionary Template] section. Optional parameters are `entity_num` and `dictionary_num`, which accept integers to indicate the dictionary and entity to be processed if more than one exists in the mdJSON file. This is useful when multiple entities are created in the Entity tab of a Dictionary Record or multiple dictionaries are exported together in mdEditor. By default, `entity_num = 1` and `dictionary_num = 1`, so if the mdJSON file only has one entity and dictionary, these parameters can be ignored.
 
-Translates a list object converted from an mdEditor mdJSON data dictionary file into a data frame to be used as a human-readable reference. The output is formatted to the template described in the [Tabular Data Dictionary Template] section. Optional parameters are ```entity_num``` and ```dictionary_num```, which accept integers to indicate the dictionary and entity to be processed if more than one exists in the mdJSON file. This is useful when multiple entities are created in the Entity tab of a Dictionary Record or multiple dictionaries are exported together in mdEditor. By default, ```entity_num = 1``` and ```dictionary_num = 1```, so if the mdJSON file only has one entity and dictionary, these parameters can be ignored.
-
-<em>Note: Depending on how the Dictionary Record was completed in mdEditor, an mdJSON file processed by this function may output a table with additional columns other than those in the tabular data dictionary template. Refer to the [mdJSON Data Dictionary](https://mdbook.adiwg.org/appendix/mdjson_data_dictionary.html) to translate these and other mdEditor terms</em>.
-<br />
-<br />
+<em>Note: Depending on how the Dictionary Record was completed in mdEditor, an mdJSON file processed by this function may output a table with additional columns other than those in the tabular data dictionary template. Refer to the [mdJSON Data Dictionary](https://mdbook.adiwg.org/appendix/mdjson_data_dictionary.html) to translate these and other mdEditor terms</em>. <br /> <br />
 
 #### mdJSON data dictionary imported as a list in R
 
 ```{r, echo=FALSE}
 print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")))
 ```
+
 <br />
 
-#### ```build.table()``` return value in R
+#### `build.table()` return value in R
 
 ```{r, echo=FALSE}
 
 print(as_tibble(read.csv(system.file("extdata", "e.g.dictionary2.csv", package = "mdJSONdictio"))), n = 1e3)
 
 ```
+
 <br />
 
+## `validate.mdJSON()`
 
-## ```validate.mdJSON()``` 
-
-Compares an mdJSON data dictionary to a tabular dataset and summarizes discrepancies in a data frame. Optional parameters are ```entity_num``` and ```dictionary_num```, which accept integers to indicate the dictionary and entity to be processed if more than one exists in the mdJSON file. This is useful when multiple entities are created in the Entity tab of a Dictionary Record or multiple dictionaries are exported together in mdEditor. By default, ```entity_num = 1``` and ```dictionary_num = 1```, so if the mdJSON file only has one entity and dictionary, these parameters can be ignored.
-<br />
-<br />
+Compares an mdJSON data dictionary to a tabular dataset and summarizes discrepancies in a data frame. Optional parameters are `entity_num` and `dictionary_num`, which accept integers to indicate the dictionary and entity to be processed if more than one exists in the mdJSON file. This is useful when multiple entities are created in the Entity tab of a Dictionary Record or multiple dictionaries are exported together in mdEditor. By default, `entity_num = 1` and `dictionary_num = 1`, so if the mdJSON file only has one entity and dictionary, these parameters can be ignored. <br /> <br />
 
 #### mdJSON data dictionary imported as a list in R
 
 ```{r, echo=FALSE}
 print(rjson::fromJSON(file= system.file("extdata", "e.g.dictionary2.json", package = "mdJSONdictio")))
 ```
+
 <br />
 
 #### Dataset imported as a data frame in R
+
 ```{r, echo=FALSE}
 print(as_tibble(read.csv(system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio"), na.strings = "", stringsAsFactors = FALSE)), n = 1e3)
 ```
+
 <br />
 
-#### ```validate.mdJSON()``` return value in R
+#### `validate.mdJSON()` return value in R
 
 ```{r, echo=FALSE}
 print(as_tibble(read.csv(system.file("extdata", "e.g.warnings.csv", package = "mdJSONdictio"))), n = 1e3)
 ```
+
 <br />
 
+## `validate.table()`
 
-## ```validate.table()``` 
-
-Compares a tabular data dictionary to a tabular dataset and summarizes discrepancies in a data frame. The input data dictionary must be formatted to a template as described in the [Tabular Data Dictionary Template article](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html).
-<br />
-<br />
+Compares a tabular data dictionary to a tabular dataset and summarizes discrepancies in a data frame. The input data dictionary must be formatted to a template as described in the [Tabular Data Dictionary Template article](https://hdvincelette.github.io/mdJSONdictio/articles/02_Dictionary_Template.html). <br /> <br />
 
 #### Tabular data dictionary imported as a data frame in R
 
 ```{r, echo=FALSE}
 print(readxl::read_excel(system.file("extdata", "e.g.dictionary.xlsx", package = "mdJSONdictio")), n = 1e3)
 ```
+
 <br />
 
 #### Dataset imported as a data frame in R
+
 ```{r, echo=FALSE}
 print(as_tibble(read.csv(system.file("extdata", "e.g.dataset.csv", package = "mdJSONdictio"), na.strings = "", stringsAsFactors = FALSE)), n = 1e3)
 ```
+
 <br />
 
-#### ```validate.mdJSON()``` return value in R
+#### `validate.mdJSON()` return value in R
 
 ```{r, echo=FALSE}
 
 print(as_tibble(read.csv(system.file("extdata", "e.g.warnings2.csv", package = "mdJSONdictio"))), n = 1e3)
 
 ```
+
 <br />
 
+## Intented use
 
-## Intented use 
-
-```mdJSONdictio``` functions are intended for anyone who writes mdEditor metadata. ```build.mdJSON()``` helps ease the process of creating mdEditor Dictionary Records by allowing users to complete some fields in a simplified tabular format. ```build.table()``` creates a human-readable data dictionary reference for an mdEditor Dictionary Record. A potential workflow is to use  ```build.mdJSON()``` to initiate a Dictionary Record, the mdEditor web application to maintain the Dictionary Record, and ```build.table()``` to create an up-to-date human-readable data dictionary as needed. ```validate.mdJSON()``` and ```validate.table()``` can be used to verify whether an mdJSON or tabular data dictionary accurately represents a dataset.
-<br />
-<br />
-
+`mdJSONdictio` functions are intended for anyone who writes mdEditor metadata. `build.mdJSON()` helps ease the process of creating mdEditor Dictionary Records by allowing users to complete some fields in a simplified tabular format. `build.table()` creates a human-readable data dictionary reference for an mdEditor Dictionary Record. A potential workflow is to use `build.mdJSON()` to initiate a Dictionary Record, the mdEditor web application to maintain the Dictionary Record, and `build.table()` to create an up-to-date human-readable data dictionary as needed. `validate.mdJSON()` and `validate.table()` can be used to verify whether an mdJSON or tabular data dictionary accurately represents a dataset. <br /> <br />
 
 # Helpful resources
 
@@ -191,5 +184,3 @@ print(as_tibble(read.csv(system.file("extdata", "e.g.warnings2.csv", package = "
 [mdJSON Data Dictionary](https://mdbook.adiwg.org/appendix/mdjson_data_dictionary.html)
 
 [mdCodes Viewer](https://adiwg.github.io/mdTools/)
-
-
