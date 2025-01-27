@@ -468,7 +468,7 @@ validate.table <- function(x, y) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
               dict.datafield$dataType[bb] == datatype.rules$value[cc] &
               is.na(datatype.rules$minValue_unsigned[cc]) == FALSE &
-              is.character(data.NA[, a]) == FALSE) {
+              is.character(data.NA[[a]]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
             # print(paste0("datatype.rules: ", datatype.rules$value[cc]))
@@ -513,7 +513,7 @@ validate.table <- function(x, y) {
           if (colnames(data.NA[a]) == dict.datafield$codeName[bb] &
               dict.datafield$dataType[bb] == datatype.rules$value[cc] &
               is.na(datatype.rules$maxValue_unsigned[cc]) == FALSE &
-              is.character(data.NA[, a]) == FALSE) {
+              is.character(data.NA[[a]]) == FALSE) {
             # print(paste0("data.NA: ", colnames(data.NA[a])))
             # print(paste0("dict.datafield: ", dict.datafield$codeName[bb]))
             # print(paste0("datatype.rules: ", datatype.rules$value[cc]))
