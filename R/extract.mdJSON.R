@@ -4,6 +4,7 @@
 #' @param x List object converted from an mdJSON file.
 #' @param record.type Default="dictionaries". String or vector representing the type(s) of records to extract. Additional options include "records" and "contacts".
 #' @param multiple Default=TRUE. Whether to allow a selection of multiple records.
+#' @param all Default=FALSE. Whether to automatically select all records of the specified record type. all=TRUE overrides the multiple argument and avoids the user record selection menu.
 #' @return Returns a list object corresponding to the mdJSON data dictionary file.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
 #' @seealso ```extract.mdJSON()```
@@ -26,7 +27,8 @@
 extract.mdJSON <-
   function(x,
            record.type = "dictionaries",
-           multiple = TRUE) {
+           multiple = TRUE,
+           all = FALSE) {
     `%>%` <- magrittr::`%>%`
 
     if (missing(record.type)) {
@@ -34,6 +36,9 @@ extract.mdJSON <-
     }
     if (missing(multiple)) {
       multiple <- TRUE
+    }
+    if (missing(multiple)) {
+      all <- FALSE
     }
 
     input.metadata <- x
@@ -77,14 +82,18 @@ extract.mdJSON <-
         }
       }
 
-      record.choice <- utils::select.list(
-        c(filtered.names),
-        title = cat(
-          paste0("\nThe mdJSON list object contains more than one record.\n")
-        ),
-        multiple = multiple,
-        graphics = TRUE
-      )
+      if (all == FALSE) {
+        record.choice <- utils::select.list(
+          c(filtered.names),
+          title = cat(
+            paste0("\nThe mdJSON list object contains more than one record.\n")
+          ),
+          multiple = multiple,
+          graphics = TRUE
+        )
+      } else {
+        record.choice <- filtered.names
+      }
 
       record.index <- c()
       for (c in 1:length(record.choice)) {
