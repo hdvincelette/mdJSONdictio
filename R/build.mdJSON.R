@@ -205,11 +205,13 @@ build.mdJSON <- function(x, title) {
     uuid::UUIDgenerate(use.time = FALSE, n = nrow(domaincolumns))
 
   ## Join domainIds with origianl data frame
-  for (e in 1:nrow(domaincolumns)) {
-    for (d in 1:nrow(Data.Dictionary)) {
-      if (domaincolumns$codeName[e] == Data.Dictionary$codeName[d] &
-          Data.Dictionary$domainItem_value[d] == "dataField") {
-        Data.Dictionary$domainId[d] = domaincolumns$domainId[e]
+  if(length(domaincolumns) != 0) {
+    for (e in 1:nrow(domaincolumns)) {
+      for (d in 1:nrow(Data.Dictionary)) {
+        if (domaincolumns$codeName[e] == Data.Dictionary$codeName[d] &
+            Data.Dictionary$domainItem_value[d] == "dataField") {
+          Data.Dictionary$domainId[d] = domaincolumns$domainId[e]
+        }
       }
     }
   }
