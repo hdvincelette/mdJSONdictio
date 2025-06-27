@@ -339,48 +339,52 @@ build.mdJSON <- function(x, title) {
   names <-
     names(dictionarylist[["dataDictionary"]][["domain"]][[1]][["domainItem"]][[1]])
 
-  ## Duplicate first (empty) domain and update the addition
-  for (p in 2:length(e.count)) {
-    dictionarylist[["dataDictionary"]][["domain"]][[length(dictionarylist[["dataDictionary"]][["domain"]]) + 1]] <-
-      dictionarylist[["dataDictionary"]][["domain"]][[1]]
 
-    dictionarylist[["dataDictionary"]][["domain"]][[p]][["codeName"]] <-
-      as.character(domainref.A$codeName[p])
-    dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainId"]] <-
-      as.character(domainref.A$domainId[p])
-    dictionarylist[["dataDictionary"]][["domain"]][[p]][["description"]] <-
-      as.character(domainref.A$definition[p])
+  if(nrow(domainref.A)!=0){
+    if (length(e.count) > 1) {
+      ## Duplicate first (empty) domain and update the addition
+      for (p in 2:length(e.count)) {
+        dictionarylist[["dataDictionary"]][["domain"]][[length(dictionarylist[["dataDictionary"]][["domain"]]) + 1]] <-
+          dictionarylist[["dataDictionary"]][["domain"]][[1]]
 
-    e.reference <- domainref.A$entityNum[p]
+        dictionarylist[["dataDictionary"]][["domain"]][[p]][["codeName"]] <-
+          as.character(domainref.A$codeName[p])
+        dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainId"]] <-
+          as.character(domainref.A$domainId[p])
+        dictionarylist[["dataDictionary"]][["domain"]][[p]][["description"]] <-
+          as.character(domainref.A$definition[p])
 
-    items <- domainref.I %>%
-      dplyr::filter(entityNum == e.reference)
+        e.reference <- domainref.A$entityNum[p]
 
-    ### Duplicate first (empty) domain item and update the addition
-    for (t in 1:nrow(items)) {
-      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]][["name"]] <-
-        as.character(items$domainItem_name[1])
-      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]][["value"]] <-
-        as.character(items$domainItem_value[1])
-      dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]][["definition"]] <-
-        as.character(items$definition[1])
+        items <- domainref.I %>%
+          dplyr::filter(entityNum == e.reference)
 
-      if (nrow(items) > 1 & t > 1) {
-        dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[length(dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]]) +
-                                                                               1]] <-
-          dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]]
+        ### Duplicate first (empty) domain item and update the addition
+        for (t in 1:nrow(items)) {
+          dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]][["name"]] <-
+            as.character(items$domainItem_name[1])
+          dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]][["value"]] <-
+            as.character(items$domainItem_value[1])
+          dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]][["definition"]] <-
+            as.character(items$definition[1])
 
-        dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["name"]] <-
-          as.character(items$domainItem_name[t])
-        dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["value"]] <-
-          as.character(items$domainItem_value[t])
-        dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["definition"]] <-
-          as.character(items$definition[t])
+          if (nrow(items) > 1 & t > 1) {
+            dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[length(dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]]) +
+                                                                                   1]] <-
+              dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[1]]
+
+            dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["name"]] <-
+              as.character(items$domainItem_name[t])
+            dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["value"]] <-
+              as.character(items$domainItem_value[t])
+            dictionarylist[["dataDictionary"]][["domain"]][[p]][["domainItem"]][[t]][["definition"]] <-
+              as.character(items$definition[t])
+          }
+
+        }
+
       }
-
     }
-
-  }
 
   ## Update the first domain and items
   e.reference <- domainref.A$entityNum[1]
@@ -417,6 +421,10 @@ build.mdJSON <- function(x, title) {
     }
 
   }
+  } else {
+    dictionarylist[["dataDictionary"]][["domain"]][[1]] <- NULL
+  }
+
 
   # Update fields
   dictionarylist[["dictionaryId"]] <- as.character(dictionaryId)
