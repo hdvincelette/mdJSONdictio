@@ -205,7 +205,7 @@ build.mdJSON <- function(x, title) {
     uuid::UUIDgenerate(use.time = FALSE, n = nrow(domaincolumns))
 
   ## Join domainIds with origianl data frame
-  if(length(domaincolumns) != 0) {
+  if(nrow(domaincolumns) != 0) {
     for (e in 1:nrow(domaincolumns)) {
       for (d in 1:nrow(Data.Dictionary)) {
         if (domaincolumns$codeName[e] == Data.Dictionary$codeName[d] &
@@ -238,15 +238,17 @@ build.mdJSON <- function(x, title) {
     dplyr::filter(domainItem_name == "dataField", is.na(domainId) == FALSE) %>%
     dplyr::select(-domainItem_name, domainItem_value)
 
-  for (i in 1:nrow(Data.Dictionary)) {
-    for (k in 1:nrow(domainref.A)) {
-      if (Data.Dictionary$domainItem_name[i] != "dataField" &
-          Data.Dictionary$codeName[i] == domainref.A$codeName[k]) {
-        domaincount = domaincount + 1
-        Data.Dictionary$entityNum[i] <- domainref.A$entityNum[k]
-        Data.Dictionary$domainNum[i] <- domaincount
-      }
+  if (nrow(domainref.A) != 0) {
+    for (i in 1:nrow(Data.Dictionary)) {
+      for (k in 1:nrow(domainref.A)) {
+        if (Data.Dictionary$domainItem_name[i] != "dataField" &
+            Data.Dictionary$codeName[i] == domainref.A$codeName[k]) {
+          domaincount = domaincount + 1
+          Data.Dictionary$entityNum[i] <- domainref.A$entityNum[k]
+          Data.Dictionary$domainNum[i] <- domaincount
+        }
 
+      }
     }
   }
 
@@ -257,10 +259,12 @@ build.mdJSON <- function(x, title) {
     dplyr::filter(domainItem_name == "dataField") %>%
     dplyr::select(-domainItem_name, domainItem_value)
 
-  for (r in 1:nrow(entityref)) {
-    for (s in 1:nrow(domainref.I)) {
-      if (domainref.I$codeName[s] == entityref$codeName[r]) {
-        domainref.I$domainId[s] = entityref$domainId[r]
+  if (nrow(domainref.I) != 0) {
+    for (r in 1:nrow(entityref)) {
+      for (s in 1:nrow(domainref.I)) {
+        if (domainref.I$codeName[s] == entityref$codeName[r]) {
+          domainref.I$domainId[s] = entityref$domainId[r]
+        }
       }
     }
   }
