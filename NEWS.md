@@ -1,3 +1,5 @@
+# mdJSONdictio 0.2.3
+
 ---
 editor_options: 
   markdown: 
