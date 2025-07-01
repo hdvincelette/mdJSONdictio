@@ -4,7 +4,7 @@
 \alias{extract.mdJSON}
 \title{Extract mdJSON Data Dictionaries from a Metadata file}
 \usage{
-extract.mdJSON(x, record.type = "dictionaries", multiple = TRUE)
+extract.mdJSON(x, record.type = "dictionaries", multiple = TRUE, all = FALSE)
 }
 \arguments{
 \item{x}{List object converted from an mdJSON file.}
@@ -12,6 +12,8 @@ extract.mdJSON(x, record.type = "dictionaries", multiple = TRUE)
 \item{record.type}{Default="dictionaries". String or vector representing the type(s) of records to extract. Additional options include "records" and "contacts".}
 
 \item{multiple}{Default=TRUE. Whether to allow a selection of multiple records.}
+
+\item{all}{Default=FALSE. Whether to automatically select all records of the specified record type. all=TRUE overrides the multiple argument and avoids the user record selection menu.}
 }
 \value{
 Returns a list object corresponding to the mdJSON data dictionary file.
