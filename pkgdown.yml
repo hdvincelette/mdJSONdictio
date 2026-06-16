@@ -1,5 +1,5 @@
-pandoc: '3.2'
-pkgdown: 2.1.1
+pandoc: 3.8.3
+pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   01_Intro_mdJSONdictio: 01_Intro_mdJSONdictio.html
@@ -8,7 +8,7 @@ articles:
   04_mdJSONdictio_Tutorial: 04_mdJSONdictio_Tutorial.html
   05_Next_Steps_mdEditor: 05_Next_Steps_mdEditor.html
   06_Data_Validation: 06_Data_Validation.html
-last_built: 2025-07-01T19:35Z
+last_built: 2026-06-16T02:00Z
 urls:
   reference: https://hdvincelette.github.io/mdJSONdictio/reference
   article: https://hdvincelette.github.io/mdJSONdictio/articles
