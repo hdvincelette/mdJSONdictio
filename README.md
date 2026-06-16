@@ -9,7 +9,7 @@ You can install the released version of mdJSONdictio from [GitHub](https://githu
 install.packages("devtools")
 
 # Install mdJSONdictio from GitHub
-devtools::install_github("hdvincelette/mdJSONdictio", ref = 'v0.2.3')
+devtools::install_github("hdvincelette/mdJSONdictio", ref = 'v0.2.4')
 ```
 
 And the development version of mdJSONdictio from [GitHub](https://github.com/) with:
