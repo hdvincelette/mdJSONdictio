@@ -2,7 +2,6 @@
 #'
 #' Translates a list object converted from an mdEditor mdJSON data dictionary file into a data frame.
 #' @param x List object converted from an mdJSON file.
-#' @param y Data frame of a dataset.
 #' @param entity_num Default=1. Integer indicating the entity if there is more than one in the mdJSON file.
 #' @return Returns a data frame corresponding to the mdJSON data dictionary.
 #' @keywords mdEditor, mdJSON, json, dictionary, metadata
@@ -87,8 +86,8 @@ build.table <- function(x, entity_num) {
 
 
 
-  entitylist <- newlist[["dataDictionary"]][["entity"]]
-  domainlist <- newlist[["dataDictionary"]][["domain"]]
+  entitylist <- newlist[["entity"]]
+  domainlist <- newlist[["domain"]]
 
 
   # Create blank output table
