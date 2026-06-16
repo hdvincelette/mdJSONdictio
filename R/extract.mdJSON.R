@@ -73,7 +73,7 @@ extract.mdJSON <-
           rjson::fromJSON(filtered.records[["data"]][[b]][["attributes"]][["json"]])
         if (filtered.records[["data"]][[b]][["type"]] == "dictionaries") {
           filtered.names <-
-            c(filtered.names, recordlist[["dataDictionary"]][["citation"]][["title"]])
+            c(filtered.names, recordlist[["citation"]][["title"]])
         } else if (filtered.records[["data"]][[b]][["type"]] == "records") {
           filtered.names <-
             c(filtered.names, recordlist[["metadata"]][["resourceInfo"]][["citation"]][["title"]])
